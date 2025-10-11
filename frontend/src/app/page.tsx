@@ -1,9 +1,10 @@
+import Link from "next/link";
+
 export default function Home() {
   return (
-    <main className="flex flex-col items-center justify-center text-center px-6 py-24 sm:px-12 md:px-20 min-h-[80vh]">
-      {/* Hero Section */}
-      <section className="max-w-3xl space-y-6">
-        <h1 className="text-5xl sm:text-6xl font-bold text-white tracking-tight drop-shadow-[0_0_12px_rgba(255,255,255,0.15)]">
+    <main className="flex flex-col items-center justify-center text-center px-6 py-24 sm:px-12 md:px-20 min-h-[80vh] font-ibm">
+      <header className="max-w-3xl space-y-6">
+        <h1 className="text-4xl sm:text-5xl font-bold text-white tracking-tight drop-shadow-[0_0_12px_rgba(255,255,255,0.15)]">
           Securing the Digital World, One Line of Code at a Time.
         </h1>
 
@@ -15,31 +16,31 @@ export default function Home() {
         </p>
 
         <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
-          <a
+          <Link
             href="/contact"
-            className="rounded-md border border-zinc-700 px-6 py-3 text-lg font-semibold text-zinc-200 hover:border-white hover:text-white transition-all duration-200 cursor-pointer"
+            className="rounded-md border border-zinc-700 px-6 py-3 text-lg font-semibold text-zinc-200 hover:border-white hover:text-white transition-all duration-200"
+            aria-label="Get in touch"
           >
             Get in Touch
-          </a>
-          <a
+          </Link>
+
+          <Link
             href="/services"
-            className="rounded-md bg-white text-black px-6 py-3 text-lg font-semibold hover:bg-zinc-200 transition-all duration-200 cursor-pointer"
+            className="rounded-md bg-white text-black px-6 py-3 text-lg font-semibold hover:bg-zinc-200 transition-all duration-200"
+            aria-label="View services"
           >
             View Services
-          </a>
+          </Link>
         </div>
-      </section>
+      </header>
 
-      {/* Subsection */}
       <section className="max-w-3xl mt-24 text-zinc-400 space-y-4">
-        <h2 className="text-2xl font-semibold text-white">What I Do</h2>
+        <h2 className="text-2xl font-semibold text-white">What I do</h2>
         <p className="leading-relaxed">
           My focus is on{" "}
-          <span className="text-white">web application security</span>,
-          <span className="text-white"> bug bounty hunting</span>, and
-          <span className="text-white"> security automation</span>. I blend
-          technical precision with creative problem-solving to protect digital
-          systems and build user trust.
+          <span className="text-white">web application security</span>,{" "}
+          <span className="text-white">bug bounty hunting</span>, and{" "}
+          <span className="text-white">security automation</span>.
         </p>
       </section>
     </main>
