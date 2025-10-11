@@ -4,7 +4,7 @@ import Footer from "@/components/nav/Footer";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Niwo | Cybersecurity Freelancer & Ethical Hacker",
+  title: "niwo | Cybersecurity",
   description:
     "I’m Nikita, a cybersecurity student and freelance ethical hacker specializing in web application security, penetration testing, and digital defense. Helping businesses and individuals protect what matters online.",
 };
