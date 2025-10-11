@@ -2,7 +2,7 @@ export default function Home() {
   return (
     <main className="flex flex-col items-center justify-center text-center px-6 py-24 sm:px-12 md:px-20 min-h-[80vh]">
       {/* Hero Section */}
-      <section className="max-w-2xl space-y-6">
+      <section className="max-w-3xl space-y-6">
         <h1 className="text-5xl sm:text-6xl font-bold text-white tracking-tight drop-shadow-[0_0_12px_rgba(255,255,255,0.15)]">
           Securing the Digital World, One Line of Code at a Time.
         </h1>
