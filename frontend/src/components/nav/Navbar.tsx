@@ -13,7 +13,7 @@ export default function Navbar() {
   return (
     <header>
       <nav>
-        <div className="fixed top-0 z-50 w-full grid grid-cols-2 sm:grid-cols-3 justify-items-stretch px-8 h-16 font-monta backdrop-blur-sm dark:bg-bkg-1/60 bg-bkg-1/80">
+        <div className="fixed top-0 z-50 w-full grid grid-cols-2 sm:grid-cols-3 justify-items-stretch px-8 h-16 backdrop-blur-sm dark:bg-bkg-1/60 bg-bkg-1/80 font-ibm">
           {/* Links */}
           <ul className="hidden sm:flex my-auto w-fit h-fit gap-4">
             <li>
