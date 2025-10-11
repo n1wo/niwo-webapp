@@ -8,7 +8,7 @@ export default function NotFound() {
         <h1 className="text-6xl font-bold text-white">404</h1>
         <h2 className="text-2xl font-semibold text-zinc-300">Not Found</h2>
         <p className="text-lg text-zinc-500">
-          Could not find the requested resource.
+          Could not find the requested resource. <span className="text-white font-medium">This website is still in construction. </span>
         </p>
       </div>
 
