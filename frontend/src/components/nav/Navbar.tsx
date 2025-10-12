@@ -13,14 +13,18 @@ export default function Navbar() {
       <nav>
         <div className="fixed top-0 z-50 w-full grid grid-cols-2 sm:grid-cols-3 justify-items-stretch px-8 h-16 backdrop-blur-sm dark:bg-bkg-1/60 bg-bkg-1/80 font-ibm">
           {/* Links */}
+          
           <ul className="hidden sm:flex my-auto w-fit h-fit gap-4">
+            {/* 
             <li>
               <LinkA href="/pages/services">Services</LinkA>
             </li>
             <li>
               <LinkA href="/pages/about">About</LinkA>
             </li>
+            */}
           </ul>
+          
 
           {/* Logo */}
           <Link className="sm:flex my-auto sm:mx-auto h-fit w-fit" href="/">

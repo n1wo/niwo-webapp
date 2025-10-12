@@ -11,8 +11,9 @@ export default function Footer() {
        py-6 pb-12 gap-10 font-ibm"
       >
         {/* Links Coontainer */}
+        
         <div className="flex sm:gap-40 gap-20">
-          {/* Block 1 */}
+          {/* 
           <ul className="flex flex-col gap-2 text-sm w-fit font-bold text-gray-500">
             <li className="hover:text-white">
               <LinkA href="/pages/work">Work</LinkA>
@@ -27,7 +28,6 @@ export default function Footer() {
               <LinkA href="/pages/contact">Contact</LinkA>
             </li>
           </ul>
-          {/* Block 2 */}
           <ul className="flex flex-col gap-2 text-sm w-fit font-bold text-gray-500">
             <li className="hover:text-white">
               <LinkA href="/pages/terms">Terms</LinkA>
@@ -42,7 +42,9 @@ export default function Footer() {
               <LinkA href="/pages/impressum">Impressum</LinkA>
             </li>
           </ul>
+          */}
         </div>
+        
         {/* Logo */}
         <div className="flex w-fit">
           <Link className="flex h-full" href="/">

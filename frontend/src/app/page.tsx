@@ -24,14 +24,6 @@ export default function Home(): JSX.Element {
           >
             Contact
           </Link>
-
-          <Link
-            href="/services"
-            aria-label="View services"
-            className="rounded-md bg-white text-black px-6 py-3 text-lg font-semibold hover:bg-zinc-200 transition-all duration-200"
-          >
-            View Services
-          </Link>
         </div>
       </header>
 
