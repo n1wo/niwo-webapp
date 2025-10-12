@@ -3,7 +3,7 @@ import type { JSX } from "react";
 
 export default function Home(): JSX.Element {
   return (
-    <div className="flex flex-col items-center justify-center text-center px-6 py-24 sm:px-12 md:px-20 min-h-[80vh] font-ibm">
+    <article className="flex flex-col items-center justify-center text-center px-6 py-24 sm:px-12 md:px-20 min-h-[80vh] font-ibm">
       <header className="max-w-3xl space-y-6">
         <h1 className="text-4xl sm:text-5xl font-bold text-white tracking-tight drop-shadow-[0_0_12px_rgba(255,255,255,0.15)]">
           Securing the Digital World, One Line of Code at a Time.
@@ -18,7 +18,7 @@ export default function Home(): JSX.Element {
 
         <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
           <Link
-            href="/contact"
+            href="/pages/contact"
             aria-label="Contact — get in touch"
             className="rounded-md border border-zinc-700 px-6 py-3 text-lg font-semibold text-zinc-200 hover:border-white hover:text-white transition-all duration-200"
           >
@@ -44,6 +44,6 @@ export default function Home(): JSX.Element {
           <span className="text-white">full‑stack web design</span>.
         </p>
       </section>
-    </div>
+    </article>
   );
 }
