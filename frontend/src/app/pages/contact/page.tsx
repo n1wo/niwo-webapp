@@ -20,7 +20,7 @@ export default function Contact() {
 
   return (
     <>
-      <div className="grid lg:grid-cols-2 grid-cols-1 min-h-[80vh] ">
+      <div className="grid lg:grid-cols-2 grid-cols-1 min-h-[75vh] ">
         {/* Coontainer Image */}
         <div className="relative min-h-[300px] h-full">
           <Image
