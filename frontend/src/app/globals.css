@@ -1,21 +1,60 @@
 @import "tailwindcss";
 
+/* base design tokens */
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+   /* RGB triplets (space-separated) */
+  --color-bkg1: 255 255 255;
+  --color-bkg2: 255 255 255;
+  --color-bkg3: 210deg 40% 98%;
+  --color-content1: 217deg 32.6% 17.5%;
+  --color-content2: 217deg 32.6% 17.5%;
+  --color-accent1: 47 200 224;
+  --color-accent2: 137 43 99;
+  --color-btn1: 23 23 23;
+  --color-btn2: 210deg 40% 98%;
+  --color-borderc1: 230 230 230;
 }
 
 @theme inline {
+  /* base */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+
+  /* fonts */
   --font-sans: var(--font-ibmplexmono, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue");
   --font-mono: var(--font-geist-mono);
+
+
+  --color-bkg1: rgb(var(--color-bkg1));
+  --color-bkg2: rgb(var(--color-bkg2));
+  --color-bkg3: hsl(var(--color-bkg3));
+
+  --color-content1: hsl(var(--color-content1));
+  --color-content2: hsl(var(--color-content2));
+
+  --color-accent1: rgb(var(--color-accent1));
+  --color-accent2: rgb(var(--color-accent2));
+
+  --color-btn1: rgb(var(--color-btn1));
+  --color-btn2: hsl(var(--color-btn2));
+
+  --color-borderc1: rgb(var(--color-borderc1));
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+
+    --color-bkg1: 17 17 17;
+    --color-bkg2: 0deg 0% 0%;
+    --color-bkg3: 215deg 20% 30%;
+
+    --color-content1: 210deg 40% 98%;
+    --color-borderc1: 51 51 51;
   }
 }
 
@@ -29,3 +68,5 @@ body {
   font-family: var(--font-ibmplexmono, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue");
   /* fallback/sans stack kept for safety */
 }
+
+

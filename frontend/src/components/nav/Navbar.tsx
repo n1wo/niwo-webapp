@@ -4,11 +4,9 @@ import { useState } from "react";
 import Link from "next/link";
 import LinkA from "../nav/LinkA";
 import Image from "next/image";
-import { useScrollPosition } from "../hooks/useScrollPosition";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const scrollPosition = useScrollPosition();
 
   return (
     <header>
@@ -44,36 +42,27 @@ export default function Navbar() {
               type="button"
               onClick={() => setIsOpen(!isOpen)}
               className="relative sm:hidden flex flex-col justify-center items-center"
-              aria-expanded="false"
+              aria-expanded={isOpen}
             >
               <span
                 className={`bg-white block transition-all duration-300 ease-out 
-                h-0.5 w-6 rounded-sm ${
-                  isOpen ? "rotate-45 translate-y-1" : "-translate-y-0.5"
-                }`}
+                h-0.5 w-6 rounded-sm ${isOpen ? "rotate-45 translate-y-1" : "-translate-y-0.5"}`}
               ></span>
               <span
                 className={`bg-white block transition-all duration-300 ease-out 
-                h-0.5 w-6 rounded-sm my-0.5 ${
-                  isOpen ? "opacity-0" : "opacity-100"
-                }`}
+                h-0.5 w-6 rounded-sm my-0.5 ${isOpen ? "opacity-0" : "opacity-100"}`}
               ></span>
               <span
                 className={`bg-white block transition-all duration-300 ease-out 
-                h-0.5 w-6 rounded-sm ${
-                  isOpen ? "-rotate-45 -translate-y-1" : "translate-y-0.5"
-                }`}
+                h-0.5 w-6 rounded-sm ${isOpen ? "-rotate-45 -translate-y-1" : "translate-y-0.5"}`}
               ></span>
             </button>
           </div>
         </div>
         {/* Mobile Menu */}
         {isOpen && (
-          <div
-            className={`fixed sm:hidden z-30 top-16 px-8 my-auto w-full h-fit pb-10 backdrop-blur-sm bg-bkg-1/60 
-          `}
-          >
-            <ul className="flex flex-col gap-4 font-monta ">
+          <div className="fixed sm:hidden z-30 top-16 px-8 my-auto w-full h-fit pb-10 backdrop-blur-sm bg-bkg-1/60">
+            <ul className="flex flex-col gap-4 font-ibm">
               <li>
                 <LinkA href="/pages/work">Work</LinkA>
               </li>
