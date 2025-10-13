@@ -13,8 +13,9 @@ export default function Footer() {
         {/* Links Coontainer */}
         
         <div className="flex sm:gap-40 gap-20">
-          {/* 
+          {/* Links List */}
           <ul className="flex flex-col gap-2 text-sm w-fit font-bold text-gray-500">
+          {/* 
             <li className="hover:text-white">
               <LinkA href="/pages/work">Work</LinkA>
             </li>
@@ -24,25 +25,31 @@ export default function Footer() {
             <li className="hover:text-white">
               <LinkA href="/pages/about">About</LinkA>
             </li>
+          */}
+            
             <li className="hover:text-white">
               <LinkA href="/pages/contact">Contact</LinkA>
             </li>
           </ul>
+          
           <ul className="flex flex-col gap-2 text-sm w-fit font-bold text-gray-500">
+            {/*
             <li className="hover:text-white">
               <LinkA href="/pages/terms">Terms</LinkA>
             </li>
+            */}
             <li className="hover:text-white">
               <LinkA href="/pages/privacy-policy">Privacy policy</LinkA>
             </li>
+            {/*
             <li className="hover:text-white">
               <LinkA href="/pages/cookie-settings">Cookie settings</LinkA>
             </li>
             <li className="hover:text-white">
               <LinkA href="/pages/impressum">Impressum</LinkA>
             </li>
+            */}
           </ul>
-          */}
         </div>
         
         {/* Logo */}
