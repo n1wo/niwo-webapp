@@ -19,10 +19,11 @@ export default function Navbar() {
             <li>
               <LinkA href="/pages/services">Services</LinkA>
             </li>
+             */}
             <li>
               <LinkA href="/pages/about">About</LinkA>
             </li>
-            */}
+           
           </ul>
           
 
@@ -66,13 +67,7 @@ export default function Navbar() {
         {/* Mobile Menu */}
         {isOpen && (
           <div className="fixed sm:hidden z-30 top-16 px-8 my-auto w-full h-fit pb-10 backdrop-blur-sm bg-bkg-1/60">
-            <ul className="flex flex-col gap-4 font-ibm">
-              <li>
-                <LinkA href="/pages/work">Work</LinkA>
-              </li>
-              <li>
-                <LinkA href="/pages/services">Services</LinkA>
-              </li>
+            <ul className="flex flex-col gap-4 font-ibm pt-4">
               <li>
                 <LinkA href="/pages/about">About</LinkA>
               </li>
