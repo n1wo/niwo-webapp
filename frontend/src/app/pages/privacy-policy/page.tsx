@@ -61,10 +61,10 @@ export default function PrivacyPolicyPage() {
 
         {/* Content */}
         <article className="prose prose-invert 
-        prose-headings:font-semibold prose-h2:text-8xl 
+        prose-headings:font-semibold 
         prose-h3:text-base prose-p:text-[15px] prose-li:marker:text-white/60 lg:col-span-8 xl:col-span-9">
           <section id="intro" className="rounded-2xl border border-white/10 bg-white/5/0 p-6">
-            <h2>1. Introduction</h2>
+            <h2 className="text-2xl pb-1">1. Introduction</h2>
             <p>
               This Privacy Policy explains how we collect, use, and protect personal data when you visit this website. We are
               committed to complying with the <strong>EU General Data Protection Regulation (GDPR)</strong> and to handling your
@@ -73,7 +73,7 @@ export default function PrivacyPolicyPage() {
           </section>
 
           <section id="controller" className="mt-8 rounded-2xl border border-white/10 p-6">
-            <h2>2. Data Controller</h2>
+            <h2 className="text-2xl pb-1">2. Data Controller</h2>
             <p>
               <strong>Controller:</strong> niwo systems
               <br />
@@ -87,7 +87,7 @@ export default function PrivacyPolicyPage() {
           </section>
 
           <section id="data-we-collect" className="mt-8 rounded-2xl border border-white/10 p-6">
-            <h2>3. Data We Collect</h2>
+            <h2 className="text-2xl pb-1">3. Data We Collect</h2>
             <h3>a) Information you provide voluntarily</h3>
             <p>When you use the <strong>contact form</strong>, we collect:</p>
             <ul>
@@ -114,7 +114,7 @@ export default function PrivacyPolicyPage() {
           </section>
 
           <section id="purpose-legal-basis" className="mt-8 rounded-2xl border border-white/10 p-6">
-            <h2>4. Purpose & Legal Basis for Processing</h2>
+            <h2 className="text-2xl pb-1">4. Purpose & Legal Basis for Processing</h2>
             <ul>
               <li>
                 To respond to inquiries submitted via the contact form (Art. 6(1)(b) GDPR – performance of a contract or
@@ -128,7 +128,7 @@ export default function PrivacyPolicyPage() {
           </section>
 
           <section id="storage-retention" className="mt-8 rounded-2xl border border-white/10 p-6">
-            <h2>5. Data Storage & Retention</h2>
+            <h2 className="text-2xl pb-1">5. Data Storage & Retention</h2>
             <p>
               Your contact form submissions are transmitted securely and may be stored temporarily in our <strong>email inbox</strong>
               hosted through AWS services or another secure email provider. We keep your messages only as long as necessary to handle
@@ -137,7 +137,7 @@ export default function PrivacyPolicyPage() {
           </section>
 
           <section id="third-parties" className="mt-8 rounded-2xl border border-white/10 p-6">
-            <h2>6. Use of Third‑Party Services</h2>
+            <h2 className="text-2xl pb-1">6. Use of Third‑Party Services</h2>
             <h3>a) AWS Amplify</h3>
             <p>
               Our website is hosted using Amazon Web Services (AWS) Amplify, provided by Amazon Web Services EMEA SARL (Luxembourg).
@@ -153,7 +153,7 @@ export default function PrivacyPolicyPage() {
           </section>
 
           <section id="sharing" className="mt-8 rounded-2xl border border-white/10 p-6">
-            <h2>7. Data Sharing</h2>
+            <h2 className="text-2xl pb-1">7. Data Sharing</h2>
             <p>
               We do not share, sell, or rent personal data to third parties. Data may be shared only when required by law or to
               comply with a valid legal request.
@@ -161,7 +161,7 @@ export default function PrivacyPolicyPage() {
           </section>
 
           <section id="rights" className="mt-8 rounded-2xl border border-white/10 p-6">
-            <h2>8. Your GDPR Rights</h2>
+            <h2 className="text-2xl pb-1">8. Your GDPR Rights</h2>
             <ul>
               <li><strong>Right of access</strong> (Art. 15 GDPR)</li>
               <li><strong>Right to rectification</strong> (Art. 16 GDPR)</li>
@@ -177,12 +177,12 @@ export default function PrivacyPolicyPage() {
           </section>
 
           <section id="security" className="mt-8 rounded-2xl border border-white/10 p-6">
-            <h2>9. Data Security</h2>
+            <h2 className="text-2xl pb-1">9. Data Security</h2>
             <p>We use HTTPS encryption and appropriate technical measures to protect your data from unauthorized access, alteration, or loss.</p>
           </section>
 
           <section id="cookies" className="mt-8 rounded-2xl border border-white/10 p-6">
-            <h2>10. Cookies & Tracking</h2>
+            <h2 className="text-2xl pb-1">10. Cookies & Tracking</h2>
             <p>
               Currently, this website does not use cookies or tracking tools. If analytics or cookies are added in the future, we
               will update this policy and provide a cookie consent banner in compliance with GDPR and the ePrivacy Directive.
@@ -190,7 +190,7 @@ export default function PrivacyPolicyPage() {
           </section>
 
           <section id="changes" className="mt-8 rounded-2xl border border-white/10 p-6">
-            <h2>11. Changes to This Policy</h2>
+            <h2 className="text-2xl pb-1">11. Changes to This Policy</h2>
             <p>
               We may update this Privacy Policy occasionally to reflect new features or legal requirements. The latest version will
               always be available on this page.
@@ -198,7 +198,7 @@ export default function PrivacyPolicyPage() {
           </section>
 
           <section id="contact" className="mt-8 rounded-2xl border border-white/10 p-6">
-            <h2>12. Contact</h2>
+            <h2 className="text-2xl pb-1">12. Contact</h2>
             <p>
               If you have questions or requests related to your personal data, please contact: <Link href="mailto:info@niwosystems.com">info@niwosystems.com</Link>
               <br />
