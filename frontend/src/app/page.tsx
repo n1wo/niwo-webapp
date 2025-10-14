@@ -32,8 +32,9 @@ export default function Home(): JSX.Element {
         <p className="leading-relaxed">
           My focus is on{" "}
           <span className="text-white">web application security</span>,{" "}
-          <span className="text-white">DevSecOps</span>, and{" "}
-          <span className="text-white">full‑stack web design</span>.
+          <span className="text-white">DevSecOps</span>,{" "}
+          <span className="text-white">full-stack web development</span>, and{" "}
+          <span className="text-white">penetration testing</span>.
         </p>
       </section>
     </article>
