@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import LinkA from "./LinkA";
+import LinkAnimation from "./LinkAnimation";
 
 export default function Footer() {
   return (
@@ -28,7 +28,7 @@ export default function Footer() {
           */}
             
             <li className="hover:text-white">
-              <LinkA href="/pages/contact">Contact</LinkA>
+              <LinkAnimation href="/pages/contact">Contact</LinkAnimation>
             </li>
           </ul>
           
@@ -39,7 +39,7 @@ export default function Footer() {
             </li>
             */}
             <li className="hover:text-white">
-              <LinkA href="/pages/privacy-policy">Privacy policy</LinkA>
+              <LinkAnimation href="/pages/privacy-policy">Privacy policy</LinkAnimation>
             </li>
             {/*
             <li className="hover:text-white">

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import LinkA from "./LinkA";
+import LinkAnimation from "./LinkAnimation";
 import Image from "next/image";
 
 export default function Navbar() {
@@ -21,7 +21,7 @@ export default function Navbar() {
             </li>
              */}
             <li>
-              <LinkA href="/pages/about">About</LinkA>
+              <LinkAnimation href="/pages/about">About</LinkAnimation>
             </li>
            
           </ul>
@@ -40,7 +40,7 @@ export default function Navbar() {
           {/* Contacts */}
           <div className="flex items-center justify-self-end w-fit">
             <div className="hidden sm:flex">
-              <LinkA href="/pages/contact">Contact</LinkA>
+              <LinkAnimation href="/pages/contact">Contact</LinkAnimation>
             </div>
             {/* Mobile Menu Button with Animation */}
             <button
@@ -69,10 +69,10 @@ export default function Navbar() {
           <div className="fixed sm:hidden z-30 top-16 px-8 my-auto w-full h-fit pb-10 backdrop-blur-sm bg-bkg-1/60">
             <ul className="flex flex-col gap-4 font-ibm pt-4">
               <li>
-                <LinkA href="/pages/about">About</LinkA>
+                <LinkAnimation href="/pages/about">About</LinkAnimation>
               </li>
               <li>
-                <LinkA href="/pages/contact">Contact</LinkA>
+                <LinkAnimation href="/pages/contact">Contact</LinkAnimation>
               </li>
             </ul>
           </div>

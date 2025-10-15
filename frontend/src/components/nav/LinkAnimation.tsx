@@ -14,7 +14,7 @@ interface LinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
  * It displays its child text or element with a subtle bottom border animation on hover.
  */
 
-const LinkA: React.FC<LinkProps> = ({ href, children }) => {
+const LinkAnimation: React.FC<LinkProps> = ({ href, children }) => {
   return (
     <Link className="relative flex h-fit w-fit" href={href}>
       <p>{children}</p>
@@ -23,4 +23,4 @@ const LinkA: React.FC<LinkProps> = ({ href, children }) => {
   );
 };
 
-export default LinkA;
+export default LinkAnimation;
