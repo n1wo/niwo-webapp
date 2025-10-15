@@ -27,29 +27,6 @@ Styling	Tailwind CSS	Global tokens and light/dark themes
 Deployment	AWS Amplify	Git-based CI/CD with CloudFront CDN
 DNS	Cloudflare	Managed domain and SSL routing
 
-🗂️ Directory Structure
-frontend/
-├─ public/
-│  ├─ assets/
-│  └─ .well-known/security.txt
-├─ src/
-│  ├─ app/
-│  │  ├─ page.tsx
-│  │  ├─ layout.tsx
-│  │  ├─ not-found.tsx
-│  │  └─ globals.css
-│  ├─ components/
-│  │  ├─ nav/
-│  │  │  ├─ Navbar.tsx
-│  │  │  └─ Footer.tsx
-│  │  ├─ ui/
-│  │  └─ hooks/
-│  └─ pages/
-├─ next.config.mjs
-├─ postcss.config.mjs
-├─ tsconfig.json
-└─ package.json
-
 ⚙️ Development
 🧩 Prerequisites
 
