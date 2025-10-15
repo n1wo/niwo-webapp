@@ -14,7 +14,7 @@ export default function Footer() {
         
         <div className="flex sm:gap-40 gap-20">
           {/* Links List */}
-          <ul className="flex flex-col gap-2 text-sm w-fit font-bold text-gray-500">
+          <ul className="flex flex-col gap-2 text-sm w-fit font-bold text-zinc-500">
           {/* 
             <li className="hover:text-white">
               <LinkA href="/pages/work">Work</LinkA>
@@ -32,7 +32,7 @@ export default function Footer() {
             </li>
           </ul>
           
-          <ul className="flex flex-col gap-2 text-sm w-fit font-bold text-gray-500">
+          <ul className="flex flex-col gap-2 text-sm w-fit font-bold text-zinc-500">
             {/*
             <li className="hover:text-white">
               <LinkA href="/pages/terms">Terms</LinkA>
