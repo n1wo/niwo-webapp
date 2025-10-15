@@ -22,12 +22,14 @@ export default function Footer() {
             <li className="hover:text-white">
               <LinkA href="/pages/services">Services</LinkA>
             </li>
+            */}
             <li className="hover:text-white">
-              <LinkA href="/pages/about">About</LinkA>
+              <LinkAnimation href="/pages/about">About</LinkAnimation>
             </li>
-          */}
-            
             <li className="hover:text-white">
+              <LinkAnimation href="https://github.com/n1wo/niwo-webapp">GitHub</LinkAnimation>
+            </li>
+             <li className="hover:text-white">
               <LinkAnimation href="/pages/contact">Contact</LinkAnimation>
             </li>
           </ul>
