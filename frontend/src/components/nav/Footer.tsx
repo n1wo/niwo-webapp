@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import LinkA from "../nav/LinkA";
+import LinkA from "./LinkA";
 
 export default function Footer() {
   return (

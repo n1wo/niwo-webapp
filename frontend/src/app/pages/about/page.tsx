@@ -6,7 +6,7 @@ export default function AboutPage() {
         <h1 className="text-4xl font-bold tracking-tight">About Me</h1>
         <p className="text-lg leading-relaxed text-muted-foreground">
           Hi, I’m <strong>Nikita</strong> — a curious mind passionate about technology, 
-          security, and clean design. I enjoy exploring how systems work, building 
+          security, and clean design. I enjoy exploring how systems work, A.I, building 
           things that connect people, and creating simple, meaningful digital experiences.
         </p>
         <p className="text-lg leading-relaxed text-muted-foreground">

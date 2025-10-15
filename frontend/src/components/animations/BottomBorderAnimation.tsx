@@ -1,4 +1,4 @@
-export default function BBorderAnimation() {
+export default function BottomBorderAnimation() {
   return (
     <div className="absolute left-0 top-0 flex h-full w-full items-center justify-center">
       <div
