@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { JSX } from "react";
+import ButtonLink from "@/components/nav/ButtonLink";
 
 export default function Home(): JSX.Element {
   return (
@@ -17,13 +18,7 @@ export default function Home(): JSX.Element {
         </p>
 
         <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
-          <Link
-            href="/pages/contact"
-            aria-label="Contact — get in touch"
-            className="rounded-md border border-zinc-700 px-6 py-3 text-lg font-semibold text-zinc-200 hover:border-white hover:text-white transition-all duration-200"
-          >
-            Contact
-          </Link>
+          <ButtonLink href="/pages/contact">Contact</ButtonLink>
         </div>
       </header>
 
