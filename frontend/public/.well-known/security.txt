@@ -1,0 +1,9 @@
+Contact: mailto:security@niwosystems.com
+Policy: https://niwosystems.com/vdp
+Preferred-Languages: en, de
+Canonical: https://niwosystems.com/.well-known/security.txt
+Expires: 2026-10-16T23:59:59Z
+# Optional: add once available
+# Encryption: https://niwosystems.com/pgp.txt
+# Hiring: https://niwosystems.com/careers
+# Acknowledgments: https://niwosystems.com/hall-of-fame
