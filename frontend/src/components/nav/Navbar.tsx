@@ -15,17 +15,7 @@ export default function Navbar() {
           {/* Links */}
           
           <ul className="hidden sm:flex my-auto w-fit h-fit gap-4">
-            {/* 
-            <li>
-              <LinkA href="/pages/services">Services</LinkA>
-            </li>
-             */}
-            <li>
-              <LinkAnimation href="/pages/about">About</LinkAnimation>
-            </li>
-           
           </ul>
-          
 
           {/* Logo */}
           <Link className="sm:flex my-auto sm:mx-auto h-fit w-fit" href="/">
