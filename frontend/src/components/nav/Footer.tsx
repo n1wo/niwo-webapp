@@ -46,6 +46,9 @@ export default function Footer() {
              <li className="hover:text-white">
               <LinkAnimation href="/pages/vdp">VDP</LinkAnimation>
             </li>
+            <li className="hover:text-white">
+              <LinkAnimation href="/pages/imprint">Imprint</LinkAnimation>
+            </li>
             {/*
             <li className="hover:text-white">
               <LinkA href="/pages/cookie-settings">Cookie settings</LinkA>
