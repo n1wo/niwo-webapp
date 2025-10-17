@@ -1,6 +1,5 @@
 import type { JSX } from "react";
 import ButtonLink from "@/components/nav/ButtonLink";
-import BackgroundMedia from "@/components/BackgroundMedia";
 
 export default function Home(): JSX.Element {
   return (
@@ -12,7 +11,7 @@ export default function Home(): JSX.Element {
             className="z-0 h-full w-full object-cover">
             <source src="/bvideo.mp4" type="video/mp4" />
           </video>
-          <div className="absolute inset-0 bg-black/40 z-10" />
+          <div className="absolute inset-0 bg-black/30 z-10" />
       </div>
       <header className="max-w-3xl space-y-6 z-20">
         <h1 className="text-4xl sm:text-5xl font-bold text-white tracking-tight drop-shadow-[0_0_12px_rgba(255,255,255,0.15)]">
