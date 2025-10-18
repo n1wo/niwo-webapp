@@ -3,8 +3,8 @@ import ButtonLink from "@/components/nav/ButtonLink";
 
 export default function Home(): JSX.Element {
   return (
-    <article className="flex flex-col items-center justify-center text-center px-6 py-24 sm:px-12 md:px-20 min-h-[75vh] font-ibm">
-      <div className="absolute h-[75vh] w-full">
+    <article className="flex flex-col items-center justify-center text-center px-6 py-24 sm:px-12 md:px-20 min-h-[var(--min-h-screen)] font-ibm">
+      <div className="absolute h-[var(--min-h-screen)] w-full">
           <video 
             autoPlay 
             loop 

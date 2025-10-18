@@ -5,6 +5,9 @@
   --background: #ffffff;
   --foreground: #171717;
 
+    /* Screen sizing */
+  --min-h-screen: 80vh;
+
    /* RGB triplets (space-separated) */
   --color-bkg1: 255 255 255;
   --color-bkg2: 255 255 255;
@@ -19,6 +22,8 @@
 }
 
 @theme inline {
+  --min-h-screen: var(--min-h-screen);
+
   /* base */
   --color-background: var(--background);
   --color-foreground: var(--foreground);

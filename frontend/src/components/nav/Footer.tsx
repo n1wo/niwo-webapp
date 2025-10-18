@@ -7,7 +7,7 @@ export default function Footer() {
     <footer>
       {/* Container */}
       <div
-        className="flex flex-col justify-between bg-black h-80 px-10
+        className="flex flex-col justify-between bg-black h-70 px-10
        py-8 pb-12 gap-10 font-ibm z-30"
       >
         {/* Links Coontainer */}
