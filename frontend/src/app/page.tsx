@@ -1,15 +1,34 @@
+"use client";
+
 import type { JSX } from "react";
+import { useEffect, useRef } from "react";
 import ButtonLink from "@/components/nav/ButtonLink";
 
+const VIDEO_SRC = "https://d2k0ncl90mug6s.cloudfront.net/bvideo-20251020.mp4"; 
+
 export default function Home(): JSX.Element {
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+
+    // Respect "reduced motion" — pause the video for those users.
+  useEffect(() => {
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (prefersReduced.matches && videoRef.current) {
+      videoRef.current.pause();
+    }
+  }, []);
+
   return (
     <article className="flex flex-col items-center justify-center text-center px-6 py-24 sm:px-12 md:px-20 min-h-[var(--min-h-screen)] font-ibm">
       <div className="absolute h-[var(--min-h-screen)] w-full">
           <video 
+          ref={videoRef}
             autoPlay 
+            muted
             loop 
+            playsInline
+            preload="metadata"
             className="z-0 h-full w-full object-cover">
-            <source src="/bvideo.mp4" type="video/mp4" />
+            <source src={VIDEO_SRC} type="video/mp4" />
           </video>
           <div className="absolute inset-0 bg-black/30 z-10" />
       </div>
