@@ -48,7 +48,7 @@ export default function Home(): JSX.Element {
         </div>
       </header>
 
-      <section className="max-w-3xl mt-24 text-zinc-300 space-y-4 z-20">
+      <section className="max-w-3xl mt-14 text-zinc-300 space-y-4 z-20">
         <h2 className="text-2xl font-semibold text-white">What I do</h2>
         <p className="leading-relaxed">
           My focus is on{" "}
