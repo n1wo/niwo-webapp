@@ -30,7 +30,7 @@ export default function Navbar() {
           {/* Contacts */}
           <div className="flex items-center justify-self-end w-fit">
             <div className="hidden sm:flex">
-              <LinkAnimation href="/pages/contact">Contact</LinkAnimation>
+              <LinkAnimation href="mailto:info@niwosystems.com">Contact</LinkAnimation>
             </div>
             {/* Mobile Menu Button with Animation */}
             <button
@@ -62,7 +62,7 @@ export default function Navbar() {
                 <LinkAnimation href="/pages/about">About</LinkAnimation>
               </li>
               <li>
-                <LinkAnimation href="/pages/contact">Contact</LinkAnimation>
+                <LinkAnimation href="mailto:info@niwosystems.com">Contact</LinkAnimation>
               </li>
             </ul>
           </div>

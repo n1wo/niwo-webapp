@@ -29,9 +29,6 @@ export default function Footer() {
             <li className="hover:text-white">
               <LinkAnimation href="https://github.com/n1wo/niwo-webapp">GitHub</LinkAnimation>
             </li>
-             <li className="hover:text-white">
-              <LinkAnimation href="/pages/contact">Contact</LinkAnimation>
-            </li>
           </ul>
           
           <ul className="flex flex-col gap-2 text-sm w-fit font-bold text-zinc-500">
