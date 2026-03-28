@@ -16,6 +16,7 @@ export function proxy(request: NextRequest): NextResponse {
     },
   });
 
+  response.headers.set("x-csp-debug", "1");
   response.headers.set("Content-Security-Policy", csp);
 
   return response;
