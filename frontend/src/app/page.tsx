@@ -200,7 +200,7 @@ export default function Home(): JSX.Element {
                 ) : null}
               </span>
             </h1>
-            <p className="mx-auto max-w-xl text-base leading-8 text-zinc-200 sm:text-lg">
+            <p className="mx-auto max-w-2xl text-base leading-8 text-zinc-200 sm:text-lg">
               I help startups, developers, and small businesses identify vulnerabilities,
               improve application security, and fix weaknesses before attackers find them.
             </p>
