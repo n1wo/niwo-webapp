@@ -18,8 +18,8 @@ export default function Home(): JSX.Element {
   }, []);
 
   return (
-    <article className="flex flex-col items-center justify-center text-center px-6 py-24 sm:px-12 md:px-20 min-h-[var(--min-h-screen)] font-ibm">
-      <div className="absolute h-[var(--min-h-screen)] w-full">
+    <article className="flex flex-col items-center px-6 pt-24 pb-32 text-center font-ibm sm:px-12 md:px-20">
+      <div className="absolute top-0 h-screen w-full">
           <video 
           ref={videoRef}
             autoPlay 
@@ -30,25 +30,45 @@ export default function Home(): JSX.Element {
             className="z-0 h-full w-full object-cover">
             <source src={VIDEO_SRC} type="video/mp4" />
           </video>
-          <div className="absolute inset-0 bg-black/30 z-10" />
+          <div className="absolute inset-0 bg-black/40 z-10" />
       </div>
-      <header className="max-w-3xl space-y-6 z-20">
-        <h1 className="text-4xl sm:text-5xl font-bold text-white tracking-tight drop-shadow-[0_0_12px_rgba(255,255,255,0.15)]">
-          Securing the Digital World, One Line of Code at a Time.
-        </h1>
-        <p className="text-lg text-zinc-300 leading-relaxed">
-          I’m <span className="text-white font-medium">Nikita</span> — a
-          cybersecurity student and freelance ethical hacker. I help startups,
-          developers, and small businesses identify and fix vulnerabilities
-          before attackers find them.
-        </p>
-
-        <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
-          <ButtonLink href="mailto:info@niwosystems.com">Contact</ButtonLink>
+      <header className="z-20 flex min-h-[calc(100vh-4rem)] w-full items-center justify-center">
+        <div className="w-full max-w-5xl rounded-3xl border border-white/10 bg-black/30 px-6 py-10 shadow-[0_20px_80px_rgba(0,0,0,0.45)] backdrop-blur-[3px] sm:px-10 sm:py-14">
+          <div className="mx-auto max-w-2xl space-y-8">
+            <p className="text-xs font-medium uppercase tracking-[0.3em] text-zinc-300/90 sm:text-sm">
+              Offensive security for modern web applications
+            </p>
+            <h1 className="text-4xl font-bold leading-tight text-white tracking-tight drop-shadow-[0_0_12px_rgba(255,255,255,0.15)] sm:text-5xl md:text-6xl">
+              When it happens, will you be ready?
+            </h1>
+            <p className="mx-auto max-w-xl text-base leading-8 text-zinc-200 sm:text-lg">
+              I help startups, developers, and small businesses identify vulnerabilities, improve application security, and fix weaknesses before attackers find them.
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
+              <ButtonLink
+                href="mailto:info@niwosystems.com"
+                className="border-white/20 bg-white text-black hover:bg-zinc-200"
+              >
+                Work With Me
+              </ButtonLink>
+              <ButtonLink
+                href="#what-i-do"
+                className="border-zinc-400/30 bg-black/20 text-zinc-100 hover:bg-white/10"
+              >
+                View Services
+              </ButtonLink>
+            </div>
+            <p className="text-sm text-zinc-400">
+              Web Application Security · DevSecOps · Penetration Testing
+            </p>
+          </div>
         </div>
       </header>
 
-      <section className="max-w-3xl mt-14 text-zinc-300 space-y-4 z-20">
+      <section
+        id="what-i-do"
+        className="z-20 mt-24 max-w-3xl space-y-4 text-zinc-300 sm:mt-32"
+      >
         <h2 className="text-2xl font-semibold text-white">What I do</h2>
         <p className="leading-relaxed">
           My focus is on{" "}
