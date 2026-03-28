@@ -296,7 +296,7 @@ export default function Home(): JSX.Element {
                 Built for modern application risk
               </h2>
               <p className="mt-4 text-sm leading-7 text-zinc-400 sm:text-base">
-                Focused security support across assessment, testing, and product delivery.
+                Focused security support across testing, assessment, and delivery.
               </p>
             </div>
             <div className="grid gap-5 md:grid-cols-3">
