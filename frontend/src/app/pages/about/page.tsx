@@ -60,10 +60,13 @@ export default function AboutPage() {
               I&apos;m interested in building things that are useful, secure, and clear.
             </h2>
             <p className="mt-4 text-sm leading-7 text-zinc-300">
-              Lately I keep coming back to the overlap between security, AI, and
-              product design. I like building in that space because it forces better
-              questions: not just whether something works, but whether it holds up,
-              makes sense, and can be trusted.
+              Lately, I&apos;ve been focused on the overlap between security, AI, and
+              product design. It&apos;s the kind of space that forces better questions
+              — not just whether something works, but whether it holds up, makes
+              sense, and earns trust. I&apos;ve also been exploring agent-based
+              workflows with tools like OpenClaw and Codex, thinking through how
+              software, automation, and reasoning can come together in more
+              practical, useful ways.
             </p>
           </article>
 
