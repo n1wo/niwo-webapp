@@ -1,76 +1,122 @@
-🧩 niwo-webapp
+# niwo-webapp
 
-niwo-webapp is a modern, high-performance web application built with Next.js 16 (App Router), designed for speed, security, and scalability.
-It serves as the main frontend interface for Niwo Systems, leveraging AWS Amplify and Cloudflare for global delivery.
+Frontend for **Niwo Systems**, built with **Next.js**, **TypeScript**, and **Tailwind CSS**.
 
-🚀 Features
+This repository contains the main public-facing web application for **niwosystems.com**.
 
-Next.js 16.0.0-beta (App Router) — Fast, hybrid rendering with Turbopack.
+---
 
-React 19 (experimental) — Cutting-edge React features.
+## Stack
 
-TypeScript — Type-safe and maintainable code.
+- **Next.js 16** (App Router)
+- **React 19**
+- **TypeScript**
+- **Tailwind CSS**
+- **Framer Motion**
+- **AWS Amplify**
+- **CloudFront**
+- **Cloudflare**
 
-Tailwind CSS — Utility-first, theme-driven design system.
+---
 
-Framer Motion — Smooth, composable animations.
+## Features
 
-AWS Amplify + CloudFront — Continuous deployment and CDN edge delivery.
+- Modern App Router architecture
+- Responsive, terminal-inspired UI
+- Type-safe frontend development
+- Utility-first styling with Tailwind CSS
+- Motion and interaction support with Framer Motion
+- Production deployment via AWS Amplify
+- Global delivery through CloudFront and Cloudflare
 
-Cloudflare DNS — Secure DNS and email routing (ProtonMail integration).
+---
 
-🧱 Tech Stack
-Layer	Technology	Notes
-Framework	Next.js 16 (App Router)	Static pre-rendering, Turbopack dev
-Language	TypeScript	Strict mode enabled
-Styling	Tailwind CSS	Global tokens and light/dark themes
-Deployment	AWS Amplify	Git-based CI/CD with CloudFront CDN
-DNS	Cloudflare	Managed domain and SSL routing
+## Project Structure
 
-⚙️ Development
-🧩 Prerequisites
+```bash
+niwo-webapp/
+├── frontend/
+│   ├── public/
+│   ├── src/
+│   │   ├── app/
+│   │   ├── components/
+│   │   └── hooks/
+│   ├── package.json
+│   └── ...
+├── LICENSE
+└── README.md
+```
 
-Node.js 20.x
+---
 
-npm 10.x or later
+## Getting Started
 
-VS Code with TypeScript + Tailwind IntelliSense
+### Prerequisites
 
-🏗️ Setup
+- **Node.js 20+**
+- **npm 10+**
+
+### Install
+
+```bash
 git clone https://github.com/n1wo/niwo-webapp.git
 cd niwo-webapp/frontend
 npm ci
+```
+
+### Run locally
+
+```bash
 npm run dev
+```
 
+Open:
 
-Then open http://localhost:3000
- in your browser.
+```bash
+http://localhost:3000
+```
 
-🔒 Security
+---
 
-All routes served over HTTPS
+## Available Scripts
 
-Amplify-managed SSL via CloudFront
+```bash
+npm run dev      # Start development server
+npm run build    # Build for production
+npm run lint     # Run lint checks
+```
 
-🌐 Deployment
+---
 
-The app is deployed automatically via AWS Amplify when changes are pushed to the main branch.
-Build command: npm run build
-Output directory: .next/
+## Deployment
 
-Amplify handles:
+This project is deployed through **AWS Amplify**.
 
-Continuous deployment from GitHub
+### Deployment flow
 
-CDN caching via CloudFront
+- Push changes to `main`
+- Amplify builds and deploys automatically
+- Content is delivered globally via **CloudFront**
+- Domain and DNS are managed through **Cloudflare**
 
-SSL certificate management
+---
 
-🧩 License
+## Security
 
-This project is licensed under the GNU License.
-See the LICENSE
- file for details.
+- HTTPS enabled in production
+- SSL managed through AWS / CloudFront
+- Built with a security-conscious frontend architecture
 
-Niwo Systems
-🌐 niwosystems.com
+---
+
+## License
+
+This project is licensed under the **GPL-3.0 License**.  
+See the [`LICENSE`](./LICENSE) file for details.
+
+---
+
+## Links
+
+- 🌐 Website: [niwosystems.com](https://www.niwosystems.com)
+- 💻 GitHub: [n1wo](https://github.com/n1wo)
