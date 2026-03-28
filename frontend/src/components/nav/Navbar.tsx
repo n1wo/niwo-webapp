@@ -21,9 +21,9 @@ export default function Navbar() {
           <Link className="sm:flex my-auto sm:mx-auto h-fit w-fit" href="/">
             <Image
               src="/assets/logos/niwologo.svg"
-              width="110"
-              height="110"
-              className="dark:invert"
+              width={220}
+              height={70}
+              className="h-9 w-auto dark:invert"
               alt="Logo"
             />
           </Link>

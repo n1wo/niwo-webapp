@@ -181,8 +181,8 @@ export default function Home(): JSX.Element {
         <div className="absolute inset-0 z-10 bg-black/40" />
       </div>
 
-      <header className="z-20 flex min-h-[calc(100vh-4rem)] w-full items-center justify-center">
-        <div className="w-full max-w-7xl rounded-xl border border-white/3 bg-black/10 sx-6 py-10 shadow-[0_20px_80px_rgba(0,0,0,0.45)] backdrop-blur-[3px] sm:px-10 sm:py-14">
+      <header className="z-20 flex min-h-[calc(100vh-5rem)] w-full items-center justify-center">
+        <div className="w-full max-w-7xl rounded-xl border border-white/3 bg-black/10 px-6 py-10 shadow-[0_20px_80px_rgba(0,0,0,0.45)] backdrop-blur-[3px] sm:px-10 sm:py-14">
           <div className="mx-auto max-w-2xl space-y-8">
             <p className="text-xs font-medium uppercase tracking-[0.3em] text-zinc-300/90 sm:text-sm">
               Offensive security for modern web applications

@@ -59,13 +59,13 @@ export default function Footer() {
         
         {/* Logo */}
         <div className="flex w-fit">
-          <Link className="flex h-full" href="/">
+          <Link className="flex h-fit w-fit" href="/">
             <Image
               src="/assets/logos/niwologo.svg"
-              width="100"
-              height="100"
+              width={220}
+              height={60}
               alt="Logo"
-              className="invert"
+              className="h-9 w-auto invert"
             />
           </Link>
         </div>
