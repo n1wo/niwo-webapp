@@ -15,6 +15,12 @@ export default function Navbar() {
           {/* Links */}
           
           <ul className="hidden sm:flex my-auto w-fit h-fit gap-4">
+            <li>
+              <LinkAnimation href="/#what-i-do">Services</LinkAnimation>
+            </li>
+            <li>
+              <LinkAnimation href="/pages/about">About</LinkAnimation>
+            </li>
           </ul>
 
           {/* Logo */}
@@ -29,7 +35,7 @@ export default function Navbar() {
           </Link>
           {/* Contacts */}
           <div className="flex items-center justify-self-end w-fit">
-            <div className="hidden sm:flex">
+            <div className="hidden sm:flex items-center gap-4">
               <LinkAnimation href="mailto:info@niwosystems.com">Contact</LinkAnimation>
             </div>
             {/* Mobile Menu Button with Animation */}
@@ -58,6 +64,9 @@ export default function Navbar() {
         {isOpen && (
           <div className="fixed sm:hidden z-30 top-16 px-8 my-auto w-full h-fit pb-10 backdrop-blur-sm bg-bkg-1/60">
             <ul className="flex flex-col gap-4 font-ibm pt-4">
+              <li>
+                <LinkAnimation href="/#what-i-do">Services</LinkAnimation>
+              </li>
               <li>
                 <LinkAnimation href="/pages/about">About</LinkAnimation>
               </li>
