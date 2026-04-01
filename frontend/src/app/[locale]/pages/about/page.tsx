@@ -29,7 +29,7 @@ export default async function AboutPage({
     <main className="min-h-[75vh] bg-background px-6 pb-24 pt-28 font-ibm text-foreground sm:px-10 lg:px-16">
       <section className="mx-auto max-w-6xl">
         <div className="rounded-xl border border-white/10 bg-black/20 p-8 shadow-[0_20px_80px_rgba(0,0,0,0.35)] backdrop-blur-[3px] sm:p-10">
-          <div className="mx-auto max-w-3xl text-center">
+          <div className="mx-auto max-w-3xl text-left">
             <p className="text-xs font-medium uppercase tracking-[0.32em] text-zinc-500">
               {t("eyebrow")}
             </p>
@@ -39,7 +39,7 @@ export default async function AboutPage({
             <p className="mt-6 text-base leading-8 text-zinc-300 sm:text-lg">
               {t("intro")}
             </p>
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+            <div className="mt-8 flex flex-wrap items-center justify-start gap-3">
               <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[0.68rem] uppercase tracking-[0.22em] text-zinc-400">
                 {t("profileLabel")}
               </span>
@@ -56,7 +56,7 @@ export default async function AboutPage({
             <span>{t("signalLabel")}</span>
             <span className="h-px flex-1 bg-white/10" />
           </div>
-          <p className="mt-5 text-center text-sm leading-7 text-zinc-400 sm:text-base">
+          <p className="mt-5 max-w-3xl text-left text-sm leading-7 text-zinc-400 sm:text-base">
             {t("signalText")}
           </p>
         </div>

@@ -194,7 +194,7 @@ export default function HomePage(): JSX.Element {
   }, [prefersReducedMotion, terminalAnimationStarted, terminalLines, terminalSignature, t]);
 
   return (
-    <article className="flex flex-col items-center px-6 pt-10 pb-32 text-center font-ibm sm:px-12 md:px-20">
+    <article className="flex flex-col items-center px-6 pt-10 pb-32 font-ibm sm:px-12 md:px-20">
       <div className="absolute top-0 h-screen w-full">
         <video
           ref={videoRef}
@@ -213,12 +213,15 @@ export default function HomePage(): JSX.Element {
 
       <header className="z-20 flex min-h-[calc(100vh-5rem)] w-full items-center justify-center pb-14 sm:pb-18">
         <div className="w-full max-w-7xl rounded-xl border border-white/5 bg-black/18 px-6 py-10 shadow-[0_20px_80px_rgba(0,0,0,0.5)] backdrop-blur-[4px] sm:px-10 sm:py-14">
-          <div className="mx-auto max-w-2xl space-y-8">
+          <div className="mx-auto max-w-3xl space-y-8 text-left">
             <p className="text-xs font-medium uppercase tracking-[0.3em] text-zinc-300/90 sm:text-sm">
               {t("heroEyebrow")}
             </p>
-            <h1 className="text-4xl font-bold leading-tight tracking-tight text-white drop-shadow-[0_0_12px_rgba(255,255,255,0.15)] sm:text-5xl md:text-6xl">
-              <span aria-label={headline}>
+            <h1 className="relative text-4xl font-bold leading-tight tracking-tight text-white drop-shadow-[0_0_12px_rgba(255,255,255,0.15)] sm:text-5xl md:text-6xl">
+              <span aria-hidden="true" className="invisible block whitespace-pre-wrap">
+                {headline}
+              </span>
+              <span aria-label={headline} className="absolute inset-0 block">
                 {headline.slice(0, headlineLength)}
                 {!prefersReducedMotion && showHeadlineCursor ? (
                   <span
@@ -230,10 +233,10 @@ export default function HomePage(): JSX.Element {
                 ) : null}
               </span>
             </h1>
-            <p className="mx-auto max-w-2xl text-base leading-8 text-zinc-200 sm:text-lg">
+            <p className="max-w-2xl text-base leading-8 text-zinc-200 sm:text-lg">
               {t("heroParagraph")}
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-3 text-[0.72rem] uppercase tracking-[0.22em] text-zinc-400">
+            <div className="flex flex-wrap items-center justify-start gap-3 text-[0.72rem] uppercase tracking-[0.22em] text-zinc-400">
               <span className="rounded-full border border-white/10 bg-black/25 px-3 py-2">
                 {t("heroSignals.scope")}
               </span>
@@ -244,7 +247,7 @@ export default function HomePage(): JSX.Element {
                 {t("heroSignals.remediation")}
               </span>
             </div>
-            <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
+            <div className="flex flex-wrap items-center justify-start gap-4 pt-2">
               <ButtonLink
                 href="mailto:info@niwosystems.com"
                 className="border-white/20 bg-white text-black hover:bg-zinc-200"
@@ -324,10 +327,12 @@ export default function HomePage(): JSX.Element {
 
         <section id="what-i-do" className="w-full">
           <div className="mx-auto max-w-5xl space-y-8 text-left">
-            <div className="mx-auto max-w-2xl text-center">
-              <p className="text-xs font-medium uppercase tracking-[0.28em] text-zinc-500 sm:text-sm">
-                {t("servicesEyebrow")}
-              </p>
+            <div className="max-w-2xl text-left">
+              <div className="flex items-center gap-4 text-xs font-medium uppercase tracking-[0.28em] text-zinc-500 sm:text-sm">
+                <span className="h-px flex-1 bg-white/10" />
+                <span>{t("servicesEyebrow")}</span>
+                <span className="h-px flex-1 bg-white/10" />
+              </div>
               <h2 className="mt-4 text-2xl font-semibold text-white sm:text-3xl">
                 {t("servicesTitle")}
               </h2>
@@ -355,10 +360,12 @@ export default function HomePage(): JSX.Element {
 
         <section className="w-full">
           <div className="mx-auto max-w-5xl space-y-8 text-left">
-            <div className="mx-auto max-w-2xl text-center">
-              <p className="text-xs font-medium uppercase tracking-[0.28em] text-zinc-500 sm:text-sm">
-                {t("approach.eyebrow")}
-              </p>
+            <div className="max-w-2xl text-left">
+              <div className="flex items-center gap-4 text-xs font-medium uppercase tracking-[0.28em] text-zinc-500 sm:text-sm">
+                <span className="h-px flex-1 bg-white/10" />
+                <span>{t("approach.eyebrow")}</span>
+                <span className="h-px flex-1 bg-white/10" />
+              </div>
               <h2 className="mt-4 text-2xl font-semibold text-white sm:text-3xl">
                 {t("approach.title")}
               </h2>
