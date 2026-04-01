@@ -8,8 +8,12 @@ function getDefaultLocaleRedirect(pathname: string): string {
   return pathname === "/" ? `/${routing.defaultLocale}` : `/${routing.defaultLocale}${pathname}`;
 }
 
+function createNonce(): string {
+  return btoa(crypto.randomUUID()).replace(/=+$/g, "");
+}
+
 export function middleware(request: NextRequest): NextResponse {
-  const nonce = Buffer.from(crypto.randomUUID()).toString("base64");
+  const nonce = createNonce();
   const isDevelopment = process.env.NODE_ENV !== "production";
   const csp = buildCspHeader(nonce, isDevelopment);
   const { pathname, search } = request.nextUrl;
