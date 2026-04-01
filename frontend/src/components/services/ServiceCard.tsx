@@ -54,7 +54,7 @@ export default function ServiceCard({
           <h3 className="font-mono text-base font-semibold leading-6 text-white sm:text-lg">
             {title}
           </h3>
-          <p className="mt-4 max-w-[34ch] font-mono text-[0.92rem] leading-7 text-zinc-300/88">
+          <p className="mt-4 max-w-[40ch] font-mono text-[0.92rem] leading-7 text-zinc-300/88">
             {text}
           </p>
           <div className="mt-auto pt-5">

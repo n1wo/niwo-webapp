@@ -215,8 +215,8 @@ export default function HomePage(): JSX.Element {
           <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-b from-transparent via-black/70 to-[#0a0a0a]" />
         </div>
 
-        <div className="relative z-10 w-full max-w-4xl rounded-2xl border border-white/[0.08] bg-black/25 px-8 py-12 shadow-[0_24px_80px_rgba(0,0,0,0.5)] backdrop-blur-md sm:px-12 sm:py-16">
-          <div className="max-w-3xl space-y-8">
+        <div className="relative z-10 w-full max-w-5xl rounded-2xl border border-white/[0.08] bg-black/25 px-8 py-12 shadow-[0_24px_80px_rgba(0,0,0,0.5)] backdrop-blur-md sm:px-12 sm:py-16 lg:px-14">
+          <div className="max-w-4xl space-y-8">
             <p className="text-sm font-medium tracking-wide text-[var(--color-accent-light)]">
               {t("heroEyebrow")}
             </p>
@@ -238,7 +238,7 @@ export default function HomePage(): JSX.Element {
               </span>
             </h1>
 
-            <p className="max-w-2xl text-lg leading-8 text-zinc-200">
+            <p className="max-w-3xl text-lg leading-8 text-zinc-200">
               {t("heroParagraph")}
             </p>
 
@@ -265,7 +265,7 @@ export default function HomePage(): JSX.Element {
         </div>
       </header>
 
-      <div className="w-full max-w-6xl space-y-28 px-6 pt-16 pb-32 sm:px-12 sm:space-y-36 md:px-20">
+      <div className="w-full max-w-7xl space-y-28 px-6 pt-16 pb-32 sm:px-12 sm:space-y-36 md:px-20 2xl:max-w-[88rem]">
         <section className="mx-auto max-w-2xl">
           <InteractiveTerminal
             copy={{
@@ -283,7 +283,7 @@ export default function HomePage(): JSX.Element {
         </section>
 
         <section id="what-i-do" className="space-y-10">
-          <div ref={servicesHeadingRef} className="max-w-2xl space-y-4">
+          <div ref={servicesHeadingRef} className="max-w-3xl space-y-4">
             <p className="text-sm font-medium tracking-wide text-[var(--color-accent-light)]">
               {t("servicesEyebrow")}
             </p>
@@ -326,7 +326,7 @@ export default function HomePage(): JSX.Element {
         </section>
 
         <section className="space-y-10">
-          <div ref={approachHeadingRef} className="max-w-2xl space-y-4">
+          <div ref={approachHeadingRef} className="max-w-3xl space-y-4">
             <p className="text-sm font-medium tracking-wide text-[var(--color-accent-light)]">
               {t("approach.eyebrow")}
             </p>
