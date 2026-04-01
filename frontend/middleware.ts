@@ -44,7 +44,6 @@ export function middleware(request: NextRequest): NextResponse {
   }
 
   response.headers.set(LOCALE_HEADER, locale);
-  response.headers.set("x-csp-debug", "1");
   response.headers.set("Content-Security-Policy", csp);
 
   return response;
