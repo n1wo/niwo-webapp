@@ -212,10 +212,10 @@ export default function HomePage(): JSX.Element {
             <source src={VIDEO_SRC} type="video/mp4" />
           </video>
           <div className="absolute inset-0 bg-black/50" />
-          <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-b from-transparent via-black/70 to-[#0a0a0a]" />
+          <div className="absolute inset-x-0 bottom-0 h-48 bg-linear-to-b from-transparent via-black/70 to-[#0a0a0a]" />
         </div>
 
-        <div className="relative z-10 w-full max-w-5xl rounded-2xl border border-white/[0.08] bg-black/25 px-8 py-12 shadow-[0_24px_80px_rgba(0,0,0,0.5)] backdrop-blur-md sm:px-12 sm:py-16 lg:px-14">
+        <div className="hero-panel relative z-10 w-full max-w-5xl rounded-2xl bg-black/15 px-8 py-12 shadow-[0_24px_80px_rgba(0,0,0,0.5)] backdrop-blur-sm sm:px-12 sm:py-16 lg:px-14">
           <div className="max-w-4xl space-y-8">
             <p className="text-sm font-medium tracking-wide text-[var(--color-accent-light)]">
               {t("heroEyebrow")}

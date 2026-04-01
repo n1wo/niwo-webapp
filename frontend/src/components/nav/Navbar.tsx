@@ -15,7 +15,7 @@ export default function Navbar() {
     <header>
       <nav>
         <div className="fixed inset-x-0 top-4 z-50 px-4 sm:px-6">
-          <div className="grid h-18 w-full grid-cols-2 justify-items-stretch rounded-2xl border border-white/[0.08] bg-black/25 px-8 shadow-[0_24px_80px_rgba(0,0,0,0.42)] backdrop-blur-md sm:grid-cols-3 sm:px-10 font-mono">
+          <div className="grid h-18 w-full grid-cols-2 justify-items-stretch rounded-2xl border border-white/[0.08] bg-black/25 px-8 shadow-[0_24px_80px_rgba(0,0,0,0.42)] backdrop-blur-sm sm:grid-cols-3 sm:px-10 font-mono">
             <div className="hidden sm:flex items-center">
               <ul className="flex my-auto w-fit h-fit gap-6">
                 <li>
