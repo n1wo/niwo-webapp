@@ -221,7 +221,7 @@ export default function HomePage(): JSX.Element {
               {t("heroEyebrow")}
             </p>
 
-            <h1 className="relative font-mono text-4xl font-bold leading-[1.1] tracking-tight text-white sm:text-5xl lg:text-6xl">
+            <h1 className="relative font-mono text-3xl font-bold leading-[1.1] tracking-tight text-white sm:text-4xl lg:text-5xl">
               <span aria-hidden="true" className="invisible block whitespace-pre-wrap">
                 {headline}
               </span>
