@@ -261,13 +261,13 @@ export default async function ServicePage({
             <div className="flex flex-wrap gap-4">
               <NextLink
                 href="mailto:info@niwosystems.com"
-                className="inline-flex items-center justify-center rounded-2xl border border-white/20 bg-white px-5 py-3 text-sm font-medium text-black transition-colors duration-200 hover:bg-zinc-200"
+                className="inline-flex min-h-11 items-center justify-center rounded-xl border border-white/16 bg-white px-4 py-2.5 text-sm font-medium text-black shadow-[0_10px_30px_rgba(255,255,255,0.06)] transition-colors duration-200 hover:bg-zinc-200"
               >
                 {content.cta.primary}
               </NextLink>
               <Link
                 href="/#what-i-do"
-                className="inline-flex items-center justify-center rounded-2xl border border-zinc-400/30 bg-black/20 px-5 py-3 text-sm font-medium text-zinc-100 transition-colors duration-200 hover:bg-white/10"
+                className="inline-flex min-h-11 items-center justify-center rounded-xl border border-white/10 bg-white/[0.02] px-4 py-2.5 text-sm font-medium text-zinc-100 transition-colors duration-200 hover:border-white/16 hover:bg-white/[0.05]"
               >
                 {content.cta.secondary}
               </Link>
@@ -291,7 +291,7 @@ export default async function ServicePage({
                   href={`/services/${relatedService.slug}`}
                   className="group rounded-xl border border-white/8 bg-black/25 p-6 shadow-[0_18px_60px_rgba(0,0,0,0.24)] transition-colors duration-200 hover:border-white/16 hover:bg-black/32"
                 >
-                  <div className="h-36">
+                  <div className="h-48">
                     <ServiceVisual visual={relatedService.visual} />
                   </div>
                   <div className="mt-5 text-left">
