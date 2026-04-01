@@ -50,6 +50,27 @@ export default function HomePage(): JSX.Element {
       })),
     [serviceT],
   );
+  const approachCards = useMemo(
+    () => [
+      {
+        title: t("approach.cards.scope.title"),
+        text: t("approach.cards.scope.text"),
+      },
+      {
+        title: t("approach.cards.testing.title"),
+        text: t("approach.cards.testing.text"),
+      },
+      {
+        title: t("approach.cards.reporting.title"),
+        text: t("approach.cards.reporting.text"),
+      },
+      {
+        title: t("approach.cards.remediation.title"),
+        text: t("approach.cards.remediation.text"),
+      },
+    ],
+    [t],
+  );
 
   useEffect(() => {
     const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -186,12 +207,12 @@ export default function HomePage(): JSX.Element {
         >
           <source src={VIDEO_SRC} type="video/mp4" />
         </video>
-        <div className="absolute inset-0 z-10 bg-black/40" />
-        <div className="absolute inset-x-0 bottom-0 z-10 h-40 bg-gradient-to-b from-transparent via-black/55 to-black" />
+        <div className="absolute inset-0 z-10 bg-black/45" />
+        <div className="absolute inset-x-0 bottom-0 z-10 h-40 bg-gradient-to-b from-transparent via-black/60 to-black" />
       </div>
 
       <header className="z-20 flex min-h-[calc(100vh-5rem)] w-full items-center justify-center pb-14 sm:pb-18">
-        <div className="w-full max-w-7xl rounded-xl border border-white/3 bg-black/10 px-6 py-10 shadow-[0_20px_80px_rgba(0,0,0,0.45)] backdrop-blur-[3px] sm:px-10 sm:py-14">
+        <div className="w-full max-w-7xl rounded-xl border border-white/5 bg-black/18 px-6 py-10 shadow-[0_20px_80px_rgba(0,0,0,0.5)] backdrop-blur-[4px] sm:px-10 sm:py-14">
           <div className="mx-auto max-w-2xl space-y-8">
             <p className="text-xs font-medium uppercase tracking-[0.3em] text-zinc-300/90 sm:text-sm">
               {t("heroEyebrow")}
@@ -212,6 +233,17 @@ export default function HomePage(): JSX.Element {
             <p className="mx-auto max-w-2xl text-base leading-8 text-zinc-200 sm:text-lg">
               {t("heroParagraph")}
             </p>
+            <div className="flex flex-wrap items-center justify-center gap-3 text-[0.72rem] uppercase tracking-[0.22em] text-zinc-400">
+              <span className="rounded-full border border-white/10 bg-black/25 px-3 py-2">
+                {t("heroSignals.scope")}
+              </span>
+              <span className="rounded-full border border-white/10 bg-black/25 px-3 py-2">
+                {t("heroSignals.reporting")}
+              </span>
+              <span className="rounded-full border border-white/10 bg-black/25 px-3 py-2">
+                {t("heroSignals.remediation")}
+              </span>
+            </div>
             <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
               <ButtonLink
                 href="mailto:info@niwosystems.com"
@@ -232,37 +264,6 @@ export default function HomePage(): JSX.Element {
       </header>
 
       <div className="z-20 mt-14 flex w-full max-w-5xl flex-col items-center gap-14 sm:mt-18 sm:gap-16">
-        <section id="what-i-do" className="w-full">
-          <div className="mx-auto max-w-5xl space-y-8 text-left">
-            <div className="mx-auto max-w-2xl text-center">
-              <p className="text-xs font-medium uppercase tracking-[0.28em] text-zinc-500 sm:text-sm">
-                {t("servicesEyebrow")}
-              </p>
-              <h2 className="mt-4 text-2xl font-semibold text-white sm:text-3xl">
-                {t("servicesTitle")}
-              </h2>
-              <p className="mt-4 text-sm leading-7 text-zinc-400 sm:text-base">
-                {t("servicesDescription")}
-              </p>
-            </div>
-            <div className="grid gap-5 md:grid-cols-3 md:auto-rows-fr md:items-stretch">
-              {serviceCards.map((card, index) => (
-                <ServiceCard
-                  key={card.title}
-                  href={card.href}
-                  eyebrow={card.eyebrow}
-                  title={card.title}
-                  text={card.text}
-                  accent={card.accent}
-                  visual={card.visual}
-                  prefersReducedMotion={prefersReducedMotion}
-                  delay={index * 0.08}
-                />
-              ))}
-            </div>
-          </div>
-        </section>
-
         <section ref={terminalSectionRef} className="w-full">
           <div className="mx-auto w-full max-w-2xl rounded-xl border border-white/10 bg-black/30 p-5 text-left shadow-[0_20px_80px_rgba(0,0,0,0.35)] backdrop-blur-[3px] sm:p-6">
             <div className="mb-4 flex items-center justify-between gap-3">
@@ -320,6 +321,68 @@ export default function HomePage(): JSX.Element {
             </div>
           </div>
         </section>
+
+        <section id="what-i-do" className="w-full">
+          <div className="mx-auto max-w-5xl space-y-8 text-left">
+            <div className="mx-auto max-w-2xl text-center">
+              <p className="text-xs font-medium uppercase tracking-[0.28em] text-zinc-500 sm:text-sm">
+                {t("servicesEyebrow")}
+              </p>
+              <h2 className="mt-4 text-2xl font-semibold text-white sm:text-3xl">
+                {t("servicesTitle")}
+              </h2>
+              <p className="mt-4 text-sm leading-7 text-zinc-400 sm:text-base">
+                {t("servicesDescription")}
+              </p>
+            </div>
+            <div className="grid gap-5 md:grid-cols-3 md:auto-rows-fr md:items-stretch">
+              {serviceCards.map((card, index) => (
+                <ServiceCard
+                  key={card.title}
+                  href={card.href}
+                  eyebrow={card.eyebrow}
+                  title={card.title}
+                  text={card.text}
+                  accent={card.accent}
+                  visual={card.visual}
+                  prefersReducedMotion={prefersReducedMotion}
+                  delay={index * 0.08}
+                />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="w-full">
+          <div className="mx-auto max-w-5xl space-y-8 text-left">
+            <div className="mx-auto max-w-2xl text-center">
+              <p className="text-xs font-medium uppercase tracking-[0.28em] text-zinc-500 sm:text-sm">
+                {t("approach.eyebrow")}
+              </p>
+              <h2 className="mt-4 text-2xl font-semibold text-white sm:text-3xl">
+                {t("approach.title")}
+              </h2>
+              <p className="mt-4 text-sm leading-7 text-zinc-400 sm:text-base">
+                {t("approach.description")}
+              </p>
+            </div>
+            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+              {approachCards.map((card) => (
+                <article
+                  key={card.title}
+                  className="rounded-xl border border-white/10 bg-black/25 p-5 text-left shadow-[0_20px_60px_rgba(0,0,0,0.22)] backdrop-blur-[3px]"
+                >
+                  <p className="text-[0.72rem] uppercase tracking-[0.24em] text-zinc-500">
+                    {t("approach.cardLabel")}
+                  </p>
+                  <h3 className="mt-4 text-lg font-semibold text-white">{card.title}</h3>
+                  <p className="mt-4 text-sm leading-7 text-zinc-400">{card.text}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
       </div>
     </article>
   );

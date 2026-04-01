@@ -33,13 +33,42 @@
     },
     "heroEyebrow": "Offensive Sicherheit für moderne Webanwendungen",
     "heroHeadline": "Wenn es passiert, bist du bereit?",
-    "heroParagraph": "Ich unterstütze Startups, Entwickler und kleine Unternehmen dabei, Schwachstellen zu finden, Anwendungssicherheit zu verbessern und Risiken zu beheben, bevor Angreifer sie entdecken.",
+    "heroParagraph": "Ich unterstütze Startups, Entwickler und kleine Teams dabei, moderne Webanwendungen zu bewerten, reale Schwachstellen zu validieren und Findings in klare Prioritäten für die Behebung zu übersetzen, bevor daraus Produktionsprobleme werden.",
     "primaryCta": "Mit mir arbeiten",
     "secondaryCta": "Leistungen ansehen",
-    "supportLine": "Web Application Security · DevSecOps · Penetration Testing",
+    "supportLine": "Web Application Security · Penetration Testing · Remediation Guidance",
+    "heroSignals": {
+      "scope": "Klarer Scope",
+      "reporting": "Klare Berichte",
+      "remediation": "Praktische Behebung"
+    },
     "servicesEyebrow": "Leistungen",
-    "servicesTitle": "Entwickelt für moderne Anwendungsrisiken",
-    "servicesDescription": "Fokussierte Sicherheitsunterstützung für Testing, Bewertung und Umsetzung.",
+    "servicesTitle": "Security-Unterstützung für moderne Webanwendungsrisiken",
+    "servicesDescription": "Fokussierte Engagements, die relevante Schwachstellen sichtbar machen, Risiken klar einordnen und Teams beim Beheben der wichtigsten Probleme unterstützen.",
+    "approach": {
+      "eyebrow": "Wie ich arbeite",
+      "title": "Ein ruhiger, praktischer Ansatz für Security-Arbeit",
+      "description": "Der Anspruch ist klar: Scope fokussieren, realistisch testen, verständlich kommunizieren und Teams mit Findings zurücklassen, die sich wirklich nutzen lassen.",
+      "cardLabel": "Ansatz",
+      "cards": {
+        "scope": {
+          "title": "Fokussierter Scope",
+          "text": "Engagements bleiben auf die Flows, Vertrauensgrenzen und Aktionen ausgerichtet, die echtes Anwendungsrisiko tragen."
+        },
+        "testing": {
+          "title": "Realistisches Testing",
+          "text": "Das Testing orientiert sich daran, wie moderne Webanwendungen tatsächlich angegriffen werden, nicht nur an Checklisten."
+        },
+        "reporting": {
+          "title": "Klare Berichte",
+          "text": "Findings werden so aufbereitet, dass sie für technische und nicht-technische Beteiligte nachvollziehbar und belastbar sind."
+        },
+        "remediation": {
+          "title": "Praktische Behebung",
+          "text": "Jedes Engagement soll Teams dabei helfen, Probleme mit mehr Sicherheit zu beheben, nicht nur einen weiteren Bericht zu sammeln."
+        }
+      }
+    },
     "terminal": {
       "label": "operator console",
       "complete": "scan abgeschlossen",
@@ -55,20 +84,20 @@
       "webAppSecurity": {
         "eyebrow": "Bewertung",
         "title": "Web App Security",
-        "text": "Finde Schwachstellen in modernen Webanwendungen, bevor Angreifer es tun.",
-        "accent": "Live-Oberflächenprüfung"
+        "text": "Fokussierte Reviews, die die Schwachstellen sichtbar machen, die reale Nutzer, Zugriffskontrolle und Vertrauen in die Anwendung am ehesten betreffen.",
+        "accent": "Attack Surface Review"
       },
       "penetrationTesting": {
         "eyebrow": "Offensive Tests",
         "title": "Penetration Testing",
-        "text": "Praktische offensive Tests, um reale Schwächen und Risiken aufzudecken.",
-        "accent": "Prüfen und sondieren"
+        "text": "Gezieltes Testing, das Ausnutzbarkeit validiert, Geschäftsrisiko einordnet und die wichtigsten Findings zuerst priorisiert.",
+        "accent": "Validierte Angriffspfade"
       },
       "secureDevelopment": {
         "eyebrow": "Umsetzung",
         "title": "Secure Development",
-        "text": "Produkte mit Sicherheit im Blick entwickeln und verbessern - von Anfang an.",
-        "accent": "Mit Leitplanken ausliefern"
+        "text": "Security-orientierte Unterstützung für Teams, die stärkere Implementierungsentscheidungen treffen wollen, bevor vermeidbare Risiken in Produktion landen.",
+        "accent": "Mit Leitplanken bauen"
       }
     }
   },

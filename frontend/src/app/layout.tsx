@@ -1,7 +1,15 @@
 import { hasLocale } from "next-intl";
 import { headers } from "next/headers";
+import type { Metadata } from "next";
 import { routing } from "@/i18n/routing";
 import "./globals.css";
+
+export const metadata: Metadata = {
+  icons: {
+    icon: "/icon.svg",
+    shortcut: "/icon.svg",
+  },
+};
 
 export default async function RootLayout({
   children,

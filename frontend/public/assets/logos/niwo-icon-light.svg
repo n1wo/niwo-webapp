@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="NIWO icon light">
+  <rect width="64" height="64" rx="12" fill="#ffffff" />
+  <path
+    fill="#050508"
+    d="M18 52V25.5c0-8 5.3-13.5 13.5-13.5h1c8.2 0 13.5 5.5 13.5 13.5V52c0 2.2-1.8 4-4 4h-1.5c-2.2 0-4-1.8-4-4V25.8c0-2.4-1.6-3.8-4-3.8s-4 1.4-4 3.8V52c0 2.2-1.8 4-4 4H22c-2.2 0-4-1.8-4-4z"
+  />
+</svg>

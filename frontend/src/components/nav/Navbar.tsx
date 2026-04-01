@@ -15,16 +15,19 @@ export default function Navbar() {
     <header>
       <nav>
         <div className="fixed top-0 z-50 w-full grid grid-cols-2 sm:grid-cols-3 justify-items-stretch px-8 h-16 backdrop-blur-sm dark:bg-bkg-1/60 bg-bkg-1/80 font-ibm">
-          {/* Links */}
-          
-          <ul className="hidden sm:flex my-auto w-fit h-fit gap-4">
-            <li>
-              <LinkAnimation href="/#what-i-do">{t("services")}</LinkAnimation>
-            </li>
-            <li>
-              <LinkAnimation href="/pages/about">{t("about")}</LinkAnimation>
-            </li>
-          </ul>
+          <div className="hidden sm:flex items-center">
+            <ul className="flex my-auto w-fit h-fit gap-4">
+              <li>
+                <LinkAnimation href="mailto:info@niwosystems.com">{t("contact")}</LinkAnimation>
+              </li>
+              <li>
+                <LinkAnimation href="/pages/about">{t("about")}</LinkAnimation>
+              </li>
+              <li>
+                <LinkAnimation href="/#what-i-do">{t("services")}</LinkAnimation>
+              </li>
+            </ul>
+          </div>
 
           {/* Logo */}
           <Link className="sm:flex my-auto sm:mx-auto h-fit w-fit" href="/">
@@ -40,7 +43,6 @@ export default function Navbar() {
           <div className="flex items-center justify-self-end w-fit">
             <div className="hidden sm:flex items-center gap-4">
               <LanguageSwitcher />
-              <LinkAnimation href="mailto:info@niwosystems.com">{t("contact")}</LinkAnimation>
             </div>
             {/* Mobile Menu Button with Animation */}
             <button
@@ -72,13 +74,13 @@ export default function Navbar() {
                 <LanguageSwitcher />
               </li>
               <li>
-                <LinkAnimation href="/#what-i-do">{t("services")}</LinkAnimation>
+                <LinkAnimation href="mailto:info@niwosystems.com">{t("contact")}</LinkAnimation>
               </li>
               <li>
                 <LinkAnimation href="/pages/about">{t("about")}</LinkAnimation>
               </li>
               <li>
-                <LinkAnimation href="mailto:info@niwosystems.com">{t("contact")}</LinkAnimation>
+                <LinkAnimation href="/#what-i-do">{t("services")}</LinkAnimation>
               </li>
             </ul>
           </div>

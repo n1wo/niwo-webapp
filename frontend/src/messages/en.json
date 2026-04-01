@@ -33,13 +33,66 @@
     },
     "heroEyebrow": "Offensive security for modern web applications",
     "heroHeadline": "When it happens, will you be ready?",
-    "heroParagraph": "I help startups, developers, and small businesses identify vulnerabilities, improve application security, and fix weaknesses before attackers find them.",
+    "heroParagraph": "I help startups, developers, and small teams assess modern web applications, validate real weaknesses, and turn findings into clear remediation priorities before they become production problems.",
     "primaryCta": "Work With Me",
     "secondaryCta": "View Services",
-    "supportLine": "Web Application Security · DevSecOps · Penetration Testing",
+    "supportLine": "Web Application Security · Penetration Testing · Remediation Guidance",
+    "heroSignals": {
+      "scope": "Focused scope",
+      "reporting": "Clear reporting",
+      "remediation": "Practical remediation"
+    },
     "servicesEyebrow": "Services",
-    "servicesTitle": "Built for modern application risk",
-    "servicesDescription": "Focused security support across testing, assessment, and delivery.",
+    "servicesTitle": "Security support for modern web application risk",
+    "servicesDescription": "Focused engagements built to uncover meaningful weaknesses, explain risk clearly, and help teams fix the issues that matter first.",
+    "approach": {
+      "eyebrow": "How I work",
+      "title": "A calm, practical approach to security work",
+      "description": "The goal is straightforward: keep scope focused, test realistically, communicate clearly, and leave teams with findings they can actually use.",
+      "cardLabel": "Approach",
+      "cards": {
+        "scope": {
+          "title": "Focused scope",
+          "text": "Engagements stay centered on the flows, trust boundaries, and actions that carry real application risk."
+        },
+        "testing": {
+          "title": "Realistic testing",
+          "text": "Testing is grounded in how modern web applications are actually attacked, not just checklist coverage."
+        },
+        "reporting": {
+          "title": "Clear reporting",
+          "text": "Findings are written to be understandable, defensible, and useful to both technical and non-technical stakeholders."
+        },
+        "remediation": {
+          "title": "Practical remediation",
+          "text": "Each engagement is meant to help teams fix issues with confidence, not just collect another report."
+        }
+      }
+    },
+    "approach": {
+      "eyebrow": "How I work",
+      "title": "A calm, practical approach to security work",
+      "description": "The goal is straightforward: keep scope focused, test realistically, communicate clearly, and leave teams with findings they can actually use.",
+      "cardLabel": "Approach",
+      "cards": {
+        "scope": {
+          "title": "Focused scope",
+          "text": "Engagements stay centered on the flows, trust boundaries, and actions that carry real application risk."
+        },
+        "testing": {
+          "title": "Realistic testing",
+          "text": "Testing is grounded in how modern web applications are actually attacked, not just checklist coverage."
+        },
+        "reporting": {
+          "title": "Clear reporting",
+          "text": "Findings are written to be understandable, defensible, and useful to both technical and non-technical stakeholders."
+        },
+        "remediation": {
+          "title": "Practical remediation",
+          "text": "Each engagement is meant to help teams fix issues with confidence, not just collect another report."
+        }
+      }
+    },
     "terminal": {
       "label": "operator console",
       "complete": "scan complete",
@@ -55,20 +108,20 @@
       "webAppSecurity": {
         "eyebrow": "Assessment",
         "title": "Web App Security",
-        "text": "Identify vulnerabilities in modern web applications before attackers do.",
-        "accent": "Live surface review"
+        "text": "Focused reviews that uncover the weaknesses most likely to affect real users, access control, and application trust.",
+        "accent": "Attack surface review"
       },
       "penetrationTesting": {
         "eyebrow": "Offensive testing",
         "title": "Penetration Testing",
-        "text": "Practical offensive testing to uncover real-world weaknesses and risk.",
-        "accent": "Touch and probe"
+        "text": "Targeted testing that validates exploitability, clarifies business risk, and prioritizes the findings worth fixing first.",
+        "accent": "Validated attack paths"
       },
       "secureDevelopment": {
         "eyebrow": "Delivery",
         "title": "Secure Development",
-        "text": "Build and improve products with security in mind from the start.",
-        "accent": "Ship with guardrails"
+        "text": "Security-minded support for teams that want stronger implementation decisions before avoidable risks reach production.",
+        "accent": "Build with guardrails"
       }
     }
   },
@@ -86,8 +139,8 @@
         "card": {
           "eyebrow": "Assessment",
           "title": "Web App Security",
-          "text": "Identify vulnerabilities in modern web applications before attackers do.",
-          "accent": "Live surface review"
+          "text": "Focused reviews that uncover the weaknesses most likely to affect real users, access control, and application trust.",
+          "accent": "Attack surface review"
         },
         "hero": {
           "eyebrow": "Application assessment",
@@ -156,8 +209,8 @@
         "card": {
           "eyebrow": "Offensive testing",
           "title": "Penetration Testing",
-          "text": "Practical offensive testing to uncover real-world weaknesses and risk.",
-          "accent": "Touch and probe"
+          "text": "Targeted testing that validates exploitability, clarifies business risk, and prioritizes the findings worth fixing first.",
+          "accent": "Validated attack paths"
         },
         "hero": {
           "eyebrow": "Targeted offensive testing",
@@ -226,8 +279,8 @@
         "card": {
           "eyebrow": "Delivery",
           "title": "Secure Development",
-          "text": "Build and improve products with security in mind from the start.",
-          "accent": "Ship with guardrails"
+          "text": "Security-minded support for teams that want stronger implementation decisions before avoidable risks reach production.",
+          "accent": "Build with guardrails"
         },
         "hero": {
           "eyebrow": "Security in delivery",
@@ -492,3 +545,4 @@
     }
   }
 }
+
