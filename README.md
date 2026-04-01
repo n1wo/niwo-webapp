@@ -1,122 +1,56 @@
 # niwo-webapp
 
-Frontend for **Niwo Systems**, built with **Next.js**, **TypeScript**, and **Tailwind CSS**.
+Codebase for the NIWO Systems website at [niwosystems.com](https://www.niwosystems.com).
 
-This repository contains the main public-facing web application for **niwosystems.com**.
+This repository is public for transparency, technical credibility, and easier inspection of how the site is built. It is the production-facing website codebase for a security-focused independent business, not a generic starter or white-label brand package.
 
----
+## Tech Stack
 
-## Stack
+- Next.js App Router
+- React
+- TypeScript
+- Tailwind CSS
+- Framer Motion
+- next-intl
 
-- **Next.js 16** (App Router)
-- **React 19**
-- **TypeScript**
-- **Tailwind CSS**
-- **Framer Motion**
-- **AWS Amplify**
-- **CloudFront**
-- **Cloudflare**
+## Local Development
 
----
+Requirements:
 
-## Features
+- Node.js 20+
+- npm 10+
 
-- Modern App Router architecture
-- Responsive, terminal-inspired UI
-- Type-safe frontend development
-- Utility-first styling with Tailwind CSS
-- Motion and interaction support with Framer Motion
-- Production deployment via AWS Amplify
-- Global delivery through CloudFront and Cloudflare
-
----
-
-## Project Structure
+Run locally:
 
 ```bash
-niwo-webapp/
-├── frontend/
-│   ├── public/
-│   ├── src/
-│   │   ├── app/
-│   │   ├── components/
-│   │   └── hooks/
-│   ├── package.json
-│   └── ...
-├── LICENSE
-└── README.md
-```
-
----
-
-## Getting Started
-
-### Prerequisites
-
-- **Node.js 20+**
-- **npm 10+**
-
-### Install
-
-```bash
-git clone https://github.com/n1wo/niwo-webapp.git
-cd niwo-webapp/frontend
+cd frontend
 npm ci
-```
-
-### Run locally
-
-```bash
 npm run dev
 ```
 
-Open:
+Default local URL:
 
 ```bash
 http://localhost:3000
 ```
 
----
-
-## Available Scripts
+Useful commands:
 
 ```bash
-npm run dev      # Start development server
-npm run build    # Build for production
-npm run lint     # Run lint checks
+npm run lint
+npm run build
 ```
-
----
 
 ## Deployment
 
-This project is deployed through **AWS Amplify**.
-
-### Deployment flow
-
-- Push changes to `main`
-- Amplify builds and deploys automatically
-- Content is delivered globally via **CloudFront**
-- Domain and DNS are managed through **Cloudflare**
-
----
-
-## Security
-
-- HTTPS enabled in production
-- SSL managed through AWS / CloudFront
-- Built with a security-conscious frontend architecture
-
----
+The live site is deployed from this repository. Production updates are built from `main`.
 
 ## License
 
-This project is licensed under the **GPL-3.0 License**.  
-See the [`LICENSE`](./LICENSE) file for details.
+The source code in this repository is available under the [MIT License](./LICENSE).
 
----
+## Brand And Content Usage
 
-## Links
+Code reuse is allowed under MIT. The NIWO Systems name, logos, written copy, business positioning, and site-specific visual identity are not intended for unrestricted reuse as your own brand or commercial identity.
 
-- 🌐 Website: [niwosystems.com](https://www.niwosystems.com)
-- 💻 GitHub: [n1wo](https://github.com/n1wo)
+See [NOTICE.md](./NOTICE.md) for the concise usage note.
