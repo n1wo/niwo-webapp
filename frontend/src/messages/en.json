@@ -70,14 +70,14 @@
       }
     },
     "terminal": {
-      "label": "operator console",
+      "label": "root@niwo: ~",
       "complete": "scan complete",
       "lines": {
-        "command": "> run security_scan",
-        "scanning": "Scanning...",
-        "findings": "✔ vulnerabilities found: 3",
-        "severity": "✔ severity: high",
-        "recommendation": "✔ recommendation: fix auth flow"
+        "command": "┌──(root㉿niwo)-[~/engagement]",
+        "scanning": "└─# ./security_scan --target webapp && cat findings.txt",
+        "findings": "[+] vulnerabilities found: 3",
+        "severity": "[!] severity: high",
+        "recommendation": "[>] recommendation: fix auth flow"
       }
     },
     "serviceCards": {
@@ -521,4 +521,3 @@
     }
   }
 }
-

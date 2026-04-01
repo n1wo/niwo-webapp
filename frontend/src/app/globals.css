@@ -221,6 +221,24 @@ body {
   height: 0.5rem;
 }
 
+.terminal-scrollbar::-webkit-scrollbar {
+  width: 10px;
+}
+
+.terminal-scrollbar::-webkit-scrollbar-track {
+  background: #151519;
+}
+
+.terminal-scrollbar::-webkit-scrollbar-thumb {
+  border: 2px solid #151519;
+  border-radius: 9999px;
+  background: rgb(95 98 184 / 0.4);
+}
+
+.terminal-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgb(140 127 224 / 0.5);
+}
+
 /* ── reduced motion ── */
 
 @media (prefers-reduced-motion: reduce) {

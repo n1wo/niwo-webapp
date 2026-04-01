@@ -70,14 +70,14 @@
       }
     },
     "terminal": {
-      "label": "operator console",
+      "label": "root@niwo: ~",
       "complete": "scan abgeschlossen",
       "lines": {
-        "command": "> run security_scan",
-        "scanning": "Scanne...",
-        "findings": "✔ Schwachstellen gefunden: 3",
-        "severity": "✔ Schweregrad: hoch",
-        "recommendation": "✔ Empfehlung: Auth-Flow absichern"
+        "command": "┌──(root㉿niwo)-[~/einsatz]",
+        "scanning": "└─# ./security_scan --target webapp && cat findings.txt",
+        "findings": "[+] Schwachstellen gefunden: 3",
+        "severity": "[!] Schweregrad: hoch",
+        "recommendation": "[>] Empfehlung: Auth-Flow absichern"
       }
     },
     "serviceCards": {
