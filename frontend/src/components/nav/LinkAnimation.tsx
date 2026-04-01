@@ -31,14 +31,14 @@ const LinkAnimation: React.FC<LinkProps> = ({ href, children }) => {
 
   if (isExternal) {
     return (
-      <NextLink className="relative flex h-fit w-fit" href={href}>
+      <NextLink className="relative flex h-fit w-fit font-mono" href={href}>
         {content}
       </NextLink>
     );
   }
 
   return (
-    <IntlLink className="relative flex h-fit w-fit" href={href}>
+    <IntlLink className="relative flex h-fit w-fit font-mono" href={href}>
       {content}
     </IntlLink>
   );

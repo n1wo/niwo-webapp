@@ -25,7 +25,7 @@ export default async function RootLayout({
 
   return (
     <html lang={locale}>
-      <body className="flex min-h-screen flex-col bg-black text-white font-mono">
+      <body className="flex min-h-screen flex-col bg-[#0a0a0a] text-zinc-100 font-sans antialiased">
         {children}
       </body>
     </html>

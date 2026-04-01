@@ -49,6 +49,29 @@ type ServiceContent = {
   };
 };
 
+function asStringArray(raw: unknown): string[] {
+  if (!Array.isArray(raw) || !raw.every((item) => typeof item === "string")) {
+    throw new Error("Expected a string array from translation data");
+  }
+  return raw as string[];
+}
+
+function asStepArray(raw: unknown): { title: string; text: string }[] {
+  if (
+    !Array.isArray(raw) ||
+    !raw.every(
+      (item) =>
+        typeof item === "object" &&
+        item !== null &&
+        typeof (item as Record<string, unknown>).title === "string" &&
+        typeof (item as Record<string, unknown>).text === "string",
+    )
+  ) {
+    throw new Error("Expected a step array from translation data");
+  }
+  return raw as { title: string; text: string }[];
+}
+
 function getServiceContent(
   t: Awaited<ReturnType<typeof getTranslations>>,
   service: ServiceDefinition,
@@ -75,19 +98,19 @@ function getServiceContent(
     },
     covers: {
       title: t(`${prefix}.covers.title`),
-      items: t.raw(`${prefix}.covers.items`) as string[],
+      items: asStringArray(t.raw(`${prefix}.covers.items`)),
     },
     process: {
       title: t(`${prefix}.process.title`),
-      steps: t.raw(`${prefix}.process.steps`) as { title: string; text: string }[],
+      steps: asStepArray(t.raw(`${prefix}.process.steps`)),
     },
     bestFor: {
       title: t(`${prefix}.bestFor.title`),
-      items: t.raw(`${prefix}.bestFor.items`) as string[],
+      items: asStringArray(t.raw(`${prefix}.bestFor.items`)),
     },
     deliverables: {
       title: t(`${prefix}.deliverables.title`),
-      items: t.raw(`${prefix}.deliverables.items`) as string[],
+      items: asStringArray(t.raw(`${prefix}.deliverables.items`)),
     },
     cta: {
       title: t(`${prefix}.cta.title`),

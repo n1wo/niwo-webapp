@@ -69,30 +69,6 @@
         }
       }
     },
-    "approach": {
-      "eyebrow": "How I work",
-      "title": "A calm, practical approach to security work",
-      "description": "The goal is straightforward: keep scope focused, test realistically, communicate clearly, and leave teams with findings they can actually use.",
-      "cardLabel": "Approach",
-      "cards": {
-        "scope": {
-          "title": "Focused scope",
-          "text": "Engagements stay centered on the flows, trust boundaries, and actions that carry real application risk."
-        },
-        "testing": {
-          "title": "Realistic testing",
-          "text": "Testing is grounded in how modern web applications are actually attacked, not just checklist coverage."
-        },
-        "reporting": {
-          "title": "Clear reporting",
-          "text": "Findings are written to be understandable, defensible, and useful to both technical and non-technical stakeholders."
-        },
-        "remediation": {
-          "title": "Practical remediation",
-          "text": "Each engagement is meant to help teams fix issues with confidence, not just collect another report."
-        }
-      }
-    },
     "terminal": {
       "label": "operator console",
       "complete": "scan complete",
