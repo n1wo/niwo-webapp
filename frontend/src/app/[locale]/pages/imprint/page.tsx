@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import LegalPageLayout from "@/components/legal/LegalPageLayout";
+import { getLegalDocGroups } from "@/data/legalDocs";
 import { getLocalizedAlternates } from "@/i18n/metadata";
 
 export async function generateMetadata({
@@ -27,6 +28,8 @@ export default async function ImprintPage({
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "Imprint" });
   const common = await getTranslations({ locale, namespace: "Common" });
+  const footer = await getTranslations({ locale, namespace: "Footer" });
+  const docGroups = getLegalDocGroups(common, footer);
   const sections = [
     { id: "provider-identification", title: t("sections.provider.title") },
     { id: "nature-of-website", title: t("sections.nature.title") },
@@ -38,16 +41,16 @@ export default async function ImprintPage({
     <LegalPageLayout
       eyebrow={t("eyebrow")}
       title={t("title")}
+      path="/pages/imprint"
       lastUpdated={t("lastUpdated")}
       lastUpdatedLabel={common("lastUpdated")}
+      docsNavLabel={common("browseDocs")}
+      docGroups={docGroups}
       navLabel={common("onThisPage")}
       sections={sections}
     >
-      <section
-        id="provider-identification"
-        className="rounded-lg border border-white/10 bg-white/5/0 p-6"
-      >
-        <h2 className="pb-1 text-2xl">{t("sections.provider.title")}</h2>
+      <section id="provider-identification" className="scroll-mt-28">
+        <h2>{t("sections.provider.title")}</h2>
         <p>
           <strong>{t("sections.provider.body")}</strong>
           <br />
@@ -56,36 +59,30 @@ export default async function ImprintPage({
           {t("sections.provider.owner")}
           <br />
           Email:{" "}
-          <a
-            href="mailto:legal@niwosystems.com"
-            className="text-white underline decoration-white/30 underline-offset-4"
-          >
-            legal@niwosystems.com
-          </a>
+          <a href="mailto:legal@niwosystems.com">legal@niwosystems.com</a>
           <br />
           {t("sections.provider.address")}
         </p>
       </section>
 
-      <section
-        id="nature-of-website"
-        className="mt-8 rounded-lg border border-white/10 p-6"
-      >
-        <h2 className="pb-1 text-2xl">{t("sections.nature.title")}</h2>
+      <section id="nature-of-website" className="scroll-mt-28">
+        <h2>{t("sections.nature.title")}</h2>
         <p>{t("sections.nature.body")}</p>
-        <div className="mt-6 rounded-lg border border-white/10 bg-white/5 p-4 text-sm text-white/80">
-          <strong>{t("sections.nature.disclaimerTitle")}</strong>{" "}
-          {t("sections.nature.disclaimerText")}
+        <div className="not-prose my-5 border-l-2 border-[rgb(95_98_184/0.35)] pl-5 py-1">
+          <p className="text-[0.94rem] leading-[1.85] text-zinc-300">
+            <strong className="font-semibold text-zinc-100">{t("sections.nature.disclaimerTitle")}</strong>{" "}
+            {t("sections.nature.disclaimerText")}
+          </p>
         </div>
       </section>
 
-      <section id="contact" className="mt-8 rounded-lg border border-white/10 p-6">
-        <h2 className="pb-1 text-2xl">{t("sections.contact.title")}</h2>
+      <section id="contact" className="scroll-mt-28">
+        <h2>{t("sections.contact.title")}</h2>
         <p>{t("sections.contact.body")}</p>
       </section>
 
-      <section id="liability" className="mt-8 rounded-lg border border-white/10 p-6">
-        <h2 className="pb-1 text-2xl">{t("sections.liability.title")}</h2>
+      <section id="liability" className="scroll-mt-28">
+        <h2>{t("sections.liability.title")}</h2>
         <p>{t("sections.liability.body")}</p>
       </section>
     </LegalPageLayout>

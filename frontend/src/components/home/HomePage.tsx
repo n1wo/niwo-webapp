@@ -4,7 +4,7 @@ import type { JSX } from "react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/navigation";
+import PrimarySecondaryCta from "@/components/common/PrimarySecondaryCta";
 import InteractiveTerminal from "@/components/home/InteractiveTerminal";
 import ServiceCard from "@/components/services/ServiceCard";
 import { serviceDefinitions } from "@/data/services";
@@ -254,20 +254,11 @@ export default function HomePage(): JSX.Element {
               </span>
             </div>
 
-            <div className="flex flex-wrap items-center gap-4 pt-2">
-              <a
-                href="mailto:info@niwosystems.com"
-                className="inline-flex items-center justify-center rounded-lg bg-[var(--color-accent)] px-5 py-2.5 text-sm font-semibold text-white shadow-[0_0_24px_var(--color-accent-glow)] transition-all duration-200 hover:bg-[var(--color-accent-light)] hover:shadow-[0_0_32px_rgb(140_127_224/0.34)]"
-              >
-                {t("primaryCta")}
-              </a>
-              <Link
-                href="/#what-i-do"
-                className="inline-flex items-center justify-center rounded-lg border border-white/[0.15] bg-white/[0.05] px-5 py-2.5 text-sm font-semibold text-zinc-100 backdrop-blur-sm transition-colors duration-200 hover:border-white/[0.25] hover:bg-white/[0.1]"
-              >
-                {t("secondaryCta")}
-              </Link>
-            </div>
+            <PrimarySecondaryCta
+              className="pt-2"
+              primaryLabel={t("primaryCta")}
+              secondaryLabel={t("secondaryCta")}
+            />
 
             <p className="text-sm text-zinc-400">{t("supportLine")}</p>
           </div>
@@ -384,24 +375,15 @@ export default function HomePage(): JSX.Element {
           </div>
         </section>
 
-        <section className="rounded-lg border border-white/[0.08] bg-[#111113] px-8 py-12 text-center sm:px-12">
-          <h2 className="text-2xl font-bold text-white sm:text-3xl">
+        <section className="rounded-lg border border-white/[0.08] bg-[#111113] px-8 py-10 text-center sm:px-12 sm:py-11">
+          <h2 className="mx-auto max-w-3xl font-mono text-lg font-medium leading-8 tracking-[-0.01em] text-zinc-100 sm:text-xl">
             {t("supportLine")}
           </h2>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-            <a
-              href="mailto:info@niwosystems.com"
-              className="inline-flex items-center justify-center rounded-lg bg-[var(--color-accent)] px-6 py-3 text-sm font-semibold text-white shadow-[0_0_24px_var(--color-accent-glow)] transition-all duration-200 hover:bg-[var(--color-accent-light)] hover:shadow-[0_0_32px_rgb(140_127_224/0.34)]"
-            >
-              {t("primaryCta")}
-            </a>
-            <Link
-              href="/#what-i-do"
-              className="inline-flex items-center justify-center rounded-lg border border-zinc-700 bg-transparent px-6 py-3 text-sm font-semibold text-zinc-300 transition-colors duration-200 hover:border-zinc-500 hover:text-white"
-            >
-              {t("secondaryCta")}
-            </Link>
-          </div>
+          <PrimarySecondaryCta
+            className="mt-6 justify-center font-mono"
+            primaryLabel={t("primaryCta")}
+            secondaryLabel={t("secondaryCta")}
+          />
         </section>
       </div>
     </div>

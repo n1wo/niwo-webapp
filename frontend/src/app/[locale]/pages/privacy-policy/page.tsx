@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import LegalPageLayout from "@/components/legal/LegalPageLayout";
+import { getLegalDocGroups } from "@/data/legalDocs";
 import { getLocalizedAlternates } from "@/i18n/metadata";
 
 export async function generateMetadata({
@@ -27,8 +28,10 @@ export default async function PrivacyPolicyPage({
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "PrivacyPolicy" });
   const common = await getTranslations({ locale, namespace: "Common" });
+  const footer = await getTranslations({ locale, namespace: "Footer" });
   const voluntaryItems = t.raw("sections.dataWeCollect.voluntaryItems") as string[];
   const rightsItems = t.raw("sections.rights.items") as string[];
+  const docGroups = getLegalDocGroups(common, footer);
   const sections = [
     { id: "intro", title: t("sections.intro.navTitle") },
     { id: "controller", title: t("sections.controller.navTitle") },
@@ -48,18 +51,21 @@ export default async function PrivacyPolicyPage({
     <LegalPageLayout
       eyebrow={t("eyebrow")}
       title={t("title")}
+      path="/pages/privacy-policy"
       lastUpdated={t("lastUpdated")}
       lastUpdatedLabel={common("lastUpdated")}
+      docsNavLabel={common("browseDocs")}
+      docGroups={docGroups}
       navLabel={common("onThisPage")}
       sections={sections}
     >
-      <section id="intro" className="rounded-lg border border-white/10 bg-white/5/0 p-6">
-        <h2 className="pb-1 text-2xl">{t("sections.intro.title")}</h2>
+      <section id="intro" className="scroll-mt-28">
+        <h2>{t("sections.intro.title")}</h2>
         <p>{t("sections.intro.body")}</p>
       </section>
 
-      <section id="controller" className="mt-8 rounded-lg border border-white/10 p-6">
-        <h2 className="pb-1 text-2xl">{t("sections.controller.title")}</h2>
+      <section id="controller" className="scroll-mt-28">
+        <h2>{t("sections.controller.title")}</h2>
         <p>
           <strong>{t("sections.controller.controllerLabel")}</strong>{" "}
           {t("sections.controller.controllerValue")}
@@ -73,8 +79,8 @@ export default async function PrivacyPolicyPage({
         <p>{t("sections.controller.body")}</p>
       </section>
 
-      <section id="data-we-collect" className="mt-8 rounded-lg border border-white/10 p-6">
-        <h2 className="pb-1 text-2xl">{t("sections.dataWeCollect.title")}</h2>
+      <section id="data-we-collect" className="scroll-mt-28">
+        <h2>{t("sections.dataWeCollect.title")}</h2>
         <h3>{t("sections.dataWeCollect.voluntaryTitle")}</h3>
         <p>{t("sections.dataWeCollect.voluntaryIntro")}</p>
         <ul>
@@ -83,36 +89,35 @@ export default async function PrivacyPolicyPage({
           ))}
         </ul>
         <p>{t("sections.dataWeCollect.voluntaryOutro")}</p>
-
         <h3>{t("sections.dataWeCollect.automaticTitle")}</h3>
         <p>{t("sections.dataWeCollect.automaticBody")}</p>
       </section>
 
-      <section id="purpose-legal-basis" className="mt-8 rounded-lg border border-white/10 p-6">
-        <h2 className="pb-1 text-2xl">{t("sections.purposeLegalBasis.title")}</h2>
+      <section id="purpose-legal-basis" className="scroll-mt-28">
+        <h2>{t("sections.purposeLegalBasis.title")}</h2>
         <p>{t("sections.purposeLegalBasis.body")}</p>
       </section>
 
-      <section id="storage-retention" className="mt-8 rounded-lg border border-white/10 p-6">
-        <h2 className="pb-1 text-2xl">{t("sections.storageRetention.title")}</h2>
+      <section id="storage-retention" className="scroll-mt-28">
+        <h2>{t("sections.storageRetention.title")}</h2>
         <p>{t("sections.storageRetention.body")}</p>
       </section>
 
-      <section id="third-parties" className="mt-8 rounded-lg border border-white/10 p-6">
-        <h2 className="pb-1 text-2xl">{t("sections.thirdParties.title")}</h2>
+      <section id="third-parties" className="scroll-mt-28">
+        <h2>{t("sections.thirdParties.title")}</h2>
         <h3>{t("sections.thirdParties.hostingTitle")}</h3>
         <p>{t("sections.thirdParties.hostingBody")}</p>
         <h3>{t("sections.thirdParties.fontsTitle")}</h3>
         <p>{t("sections.thirdParties.fontsBody")}</p>
       </section>
 
-      <section id="sharing" className="mt-8 rounded-lg border border-white/10 p-6">
-        <h2 className="pb-1 text-2xl">{t("sections.sharing.title")}</h2>
+      <section id="sharing" className="scroll-mt-28">
+        <h2>{t("sections.sharing.title")}</h2>
         <p>{t("sections.sharing.body")}</p>
       </section>
 
-      <section id="rights" className="mt-8 rounded-lg border border-white/10 p-6">
-        <h2 className="pb-1 text-2xl">{t("sections.rights.title")}</h2>
+      <section id="rights" className="scroll-mt-28">
+        <h2>{t("sections.rights.title")}</h2>
         <p>{t("sections.rights.intro")}</p>
         <ul>
           {rightsItems.map((item) => (
@@ -122,23 +127,23 @@ export default async function PrivacyPolicyPage({
         <p>{t("sections.rights.outro")}</p>
       </section>
 
-      <section id="security" className="mt-8 rounded-lg border border-white/10 p-6">
-        <h2 className="pb-1 text-2xl">{t("sections.security.title")}</h2>
+      <section id="security" className="scroll-mt-28">
+        <h2>{t("sections.security.title")}</h2>
         <p>{t("sections.security.body")}</p>
       </section>
 
-      <section id="cookies" className="mt-8 rounded-lg border border-white/10 p-6">
-        <h2 className="pb-1 text-2xl">{t("sections.cookies.title")}</h2>
+      <section id="cookies" className="scroll-mt-28">
+        <h2>{t("sections.cookies.title")}</h2>
         <p>{t("sections.cookies.body")}</p>
       </section>
 
-      <section id="changes" className="mt-8 rounded-lg border border-white/10 p-6">
-        <h2 className="pb-1 text-2xl">{t("sections.changes.title")}</h2>
+      <section id="changes" className="scroll-mt-28">
+        <h2>{t("sections.changes.title")}</h2>
         <p>{t("sections.changes.body")}</p>
       </section>
 
-      <section id="contact" className="mt-8 rounded-lg border border-white/10 p-6">
-        <h2 className="pb-1 text-2xl">{t("sections.contact.title")}</h2>
+      <section id="contact" className="scroll-mt-28">
+        <h2>{t("sections.contact.title")}</h2>
         <p>{t("sections.contact.body")}</p>
       </section>
     </LegalPageLayout>

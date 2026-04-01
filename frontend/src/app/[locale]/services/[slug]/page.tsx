@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import NextLink from "next/link";
 import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
+import PrimarySecondaryCta from "@/components/common/PrimarySecondaryCta";
 import ServiceVisual from "@/components/services/ServiceVisual";
 import { getServiceBySlug, serviceDefinitions, type ServiceDefinition } from "@/data/services";
 import { Link } from "@/i18n/navigation";
@@ -281,20 +281,10 @@ export default async function ServicePage({
                 {content.cta.text}
               </p>
             </div>
-            <div className="flex flex-wrap gap-4">
-              <NextLink
-                href="mailto:info@niwosystems.com"
-                className="inline-flex min-h-11 items-center justify-center rounded-xl border border-white/16 bg-white px-4 py-2.5 text-sm font-medium text-black shadow-[0_10px_30px_rgba(255,255,255,0.06)] transition-colors duration-200 hover:bg-zinc-200"
-              >
-                {content.cta.primary}
-              </NextLink>
-              <Link
-                href="/#what-i-do"
-                className="inline-flex min-h-11 items-center justify-center rounded-xl border border-white/10 bg-white/[0.02] px-4 py-2.5 text-sm font-medium text-zinc-100 transition-colors duration-200 hover:border-white/16 hover:bg-white/[0.05]"
-              >
-                {content.cta.secondary}
-              </Link>
-            </div>
+            <PrimarySecondaryCta
+              primaryLabel={content.cta.primary}
+              secondaryLabel={content.cta.secondary}
+            />
           </div>
         </section>
 

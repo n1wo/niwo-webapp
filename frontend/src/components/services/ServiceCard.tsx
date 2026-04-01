@@ -47,12 +47,20 @@ export default function ServiceCard({
         <div className="mb-6 h-44">
           <ServiceVisual visual={visual} />
         </div>
-        <div className="flex flex-1 flex-col">
-          <p className="mb-3 text-xs font-medium tracking-wide text-[var(--color-accent-light)]">{eyebrow}</p>
-          <h3 className="text-lg font-semibold text-white">{title}</h3>
-          <p className="mt-3 text-sm leading-7 text-zinc-400">{text}</p>
-          <div className="mt-auto flex items-center gap-4 border-t border-white/[0.06] pt-4 text-xs font-medium tracking-wide text-zinc-500">
-            <span>{accent}</span>
+        <div className="flex flex-1 flex-col border-t border-white/[0.06] pt-5">
+          <p className="mb-3 font-mono text-[0.68rem] font-medium uppercase tracking-[0.22em] text-[var(--color-accent-light)]">
+            {eyebrow}
+          </p>
+          <h3 className="font-mono text-base font-semibold leading-6 text-white sm:text-lg">
+            {title}
+          </h3>
+          <p className="mt-4 max-w-[34ch] font-mono text-[0.92rem] leading-7 text-zinc-300/88">
+            {text}
+          </p>
+          <div className="mt-auto pt-5">
+            <span className="inline-flex items-center rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1.5 font-mono text-[0.68rem] font-medium uppercase tracking-[0.18em] text-zinc-400">
+              {accent}
+            </span>
           </div>
         </div>
       </motion.article>

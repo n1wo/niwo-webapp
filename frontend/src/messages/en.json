@@ -2,7 +2,10 @@
   "Common": {
     "lastUpdated": "Last updated",
     "onThisPage": "On this page",
-    "language": "Language"
+    "language": "Language",
+    "browseDocs": "Browse docs",
+    "legal": "Legal",
+    "security": "Security"
   },
   "Navbar": {
     "services": "Services",
@@ -31,12 +34,12 @@
       "title": "niwo | Cybersecurity",
       "description": "Nikita is a cybersecurity student and freelance ethical hacker specializing in web application security, penetration testing, and digital defense."
     },
-    "heroEyebrow": "Offensive security for modern web applications",
+    "heroEyebrow": "Offensive security for modern applications and agentic systems",
     "heroHeadline": "When it happens, will you be ready?",
-    "heroParagraph": "I help startups, developers, and small teams assess modern web applications, validate real weaknesses, and turn findings into clear remediation priorities before they become production problems.",
+    "heroParagraph": "I help startups, developers, and small businesses identify vulnerabilities, secure AI-assisted workflows, and strengthen modern applications before attackers do.",
     "primaryCta": "Request a Security Review",
     "secondaryCta": "View Services",
-    "supportLine": "Web Application Security · Penetration Testing · Remediation Guidance",
+    "supportLine": "Web Application Security · DevSecOps · Agentic Security · Penetration Testing",
     "heroSignals": {
       "scope": "Focused scope",
       "reporting": "Clear reporting",
@@ -96,7 +99,7 @@
       "secureDevelopment": {
         "eyebrow": "Delivery",
         "title": "Secure Development",
-        "text": "Security-minded support for teams that want stronger implementation decisions before avoidable risks reach production.",
+        "text": "Security-minded support for teams building modern applications, automation, and agent-assisted workflows — helping prevent avoidable risks before they reach production.",
         "accent": "Build with guardrails"
       }
     }
@@ -173,7 +176,7 @@
         "cta": {
           "title": "Need a clearer view of your application risk?",
           "text": "If you want a focused review of your web application before release, after a major change, or simply before attackers find the gaps first, I can help.",
-          "primary": "Work With Me",
+          "primary": "Request a Security Review",
           "secondary": "Back to services"
         }
       },
@@ -243,7 +246,7 @@
         "cta": {
           "title": "Need targeted offensive testing before it becomes urgent?",
           "text": "If you want an external view of how your application holds up under realistic testing, I can help you validate weaknesses and focus remediation where it matters most.",
-          "primary": "Work With Me",
+          "primary": "Request a Penetration Test",
           "secondary": "Back to services"
         }
       },
@@ -255,7 +258,7 @@
         "card": {
           "eyebrow": "Delivery",
           "title": "Secure Development",
-          "text": "Security-minded support for teams that want stronger implementation decisions before avoidable risks reach production.",
+          "text": "Security-minded support for teams building modern applications, automation, and agent-assisted workflows — helping prevent avoidable risks before they reach production.",
           "accent": "Build with guardrails"
         },
         "hero": {
@@ -313,7 +316,7 @@
         "cta": {
           "title": "Want security support that fits the way your team builds?",
           "text": "If you want to reduce avoidable risk earlier and ship with more confidence, I can support the product and engineering work before issues harden into production problems.",
-          "primary": "Work With Me",
+          "primary": "Talk Secure Development",
           "secondary": "Back to services"
         }
       }
@@ -326,7 +329,7 @@
     },
     "eyebrow": "ABOUT",
     "title": "The person behind the system",
-    "intro": "Hey, I'm Nikita. I tend to get pulled toward cybersecurity, AI, systems, and product design for the same reason: I like seeing how things actually work once you get past the surface. Most of the time that turns into thinking about trust, failure points, and how to build things that are useful without being careless.",
+    "intro": "Hey, I'm Nikita. I keep getting drawn to cybersecurity, AI, systems, and product design — mostly because I like figuring out how things actually work under the surface. That usually turns into thinking about where things break, where trust gets assumed instead of earned, and how to build something that doesn't fall apart when it matters.",
     "profileLabel": "operator profile",
     "statusLabel": "status: building",
     "signalLabel": "Signal",
@@ -334,18 +337,18 @@
     "cards": {
       "drives": {
         "eyebrow": "What drives me",
-        "title": "I like understanding the architecture behind the surface.",
-        "text": "Curiosity is a lot of it, honestly. I like following a system to the point where it starts to show its edges: where it breaks, where it gets fragile, and where the security assumptions stop being theoretical."
+        "title": "Mostly just curious about how things work.",
+        "text": "I like following a system far enough that it starts showing its edges — where it breaks, where it gets fragile, where the assumptions stop being theoretical. That's usually where it gets interesting."
       },
       "building": {
         "eyebrow": "What I'm building",
-        "title": "I'm interested in building things that are useful, secure, and clear.",
-        "text": "Lately, I've been focused on the overlap between security, AI, and product design. It's the kind of space that forces better questions - not just whether something works, but whether it holds up, makes sense, and earns trust. I've also been exploring agent-based workflows with tools like OpenClaw and Codex, thinking through how software, automation, and reasoning can come together in more practical, useful ways."
+        "title": "Figuring out where security, AI, and design overlap.",
+        "text": "That's what I've been spending most of my time on lately. It's the kind of space where you can't get away with surface-level answers — you have to think about whether something actually works in practice, not just in theory. I've also been exploring agent-based workflows with tools like OpenClaw and Codex, trying to understand how software, automation, and reasoning can fit together in ways that are actually useful."
       },
       "outside": {
         "eyebrow": "Outside the screen",
-        "title": "I notice the small things that make something easier to trust and use.",
-        "text": "Things like clarity, pacing, and friction stand out to me, mostly because they affect whether something feels intuitive or frustrating. I like clean interfaces, but only when they actually help something feel easier to use and better thought through."
+        "title": "I tend to notice the small things.",
+        "text": "Things like clarity, pacing, and friction — they stand out to me because they're usually what decides whether something feels intuitive or just frustrating. I like clean interfaces, but only when they actually make something easier to use, not just nicer to look at."
       }
     }
   },

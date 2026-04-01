@@ -2,7 +2,10 @@
   "Common": {
     "lastUpdated": "Zuletzt aktualisiert",
     "onThisPage": "Auf dieser Seite",
-    "language": "Sprache"
+    "language": "Sprache",
+    "browseDocs": "Dokumente",
+    "legal": "Rechtliches",
+    "security": "Sicherheit"
   },
   "Navbar": {
     "services": "Leistungen",
@@ -31,12 +34,12 @@
       "title": "niwo | Cybersicherheit",
       "description": "Nikita ist Cybersecurity-Student und freiberuflicher Ethical Hacker mit Fokus auf Web Application Security, Penetration Testing und digitale Verteidigung."
     },
-    "heroEyebrow": "Offensive Sicherheit für moderne Webanwendungen",
+    "heroEyebrow": "Offensive Sicherheit für moderne Anwendungen und agentische Systeme",
     "heroHeadline": "Wenn es passiert, bist du bereit?",
-    "heroParagraph": "Ich unterstütze Startups, Entwickler und kleine Teams dabei, moderne Webanwendungen zu bewerten, reale Schwachstellen zu validieren und Findings in klare Prioritäten für die Behebung zu übersetzen, bevor daraus Produktionsprobleme werden.",
+    "heroParagraph": "Ich helfe Startups, Entwicklern und kleinen Unternehmen dabei, Schwachstellen zu identifizieren, KI-gestützte Workflows abzusichern und moderne Anwendungen zu stärken, bevor Angreifer sie ausnutzen.",
     "primaryCta": "Sicherheitsprüfung anfragen",
     "secondaryCta": "Leistungen ansehen",
-    "supportLine": "Web Application Security · Penetration Testing · Remediation Guidance",
+    "supportLine": "Web Application Security · DevSecOps · Agentische Sicherheit · Penetration Testing",
     "heroSignals": {
       "scope": "Klarer Scope",
       "reporting": "Klare Berichte",
@@ -96,7 +99,7 @@
       "secureDevelopment": {
         "eyebrow": "Umsetzung",
         "title": "Secure Development",
-        "text": "Security-orientierte Unterstützung für Teams, die stärkere Implementierungsentscheidungen treffen wollen, bevor vermeidbare Risiken in Produktion landen.",
+        "text": "Sicherheitsorientierte Unterstützung für Teams, die moderne Anwendungen, Automatisierungen und agentengestützte Workflows entwickeln und vermeidbare Risiken abfangen wollen, bevor sie in Produktion gelangen.",
         "accent": "Mit Leitplanken bauen"
       }
     }
@@ -173,7 +176,7 @@
         "cta": {
           "title": "Brauchst du ein klareres Bild deines Anwendungsrisikos?",
           "text": "Wenn du vor einem Release, nach groesseren Aenderungen oder einfach vor dem naechsten unerwuenschten Fund eine fokussierte Sicherheitspruefung brauchst, kann ich helfen.",
-          "primary": "Mit mir arbeiten",
+          "primary": "Sicherheitspruefung anfragen",
           "secondary": "Zurueck zu den Leistungen"
         }
       },
@@ -243,7 +246,7 @@
         "cta": {
           "title": "Brauchst du gezieltes offensives Testing, bevor es dringend wird?",
           "text": "Wenn du eine externe Sicht darauf willst, wie deine Anwendung unter realistischem Testing standhaelt, kann ich dir helfen, Schwaechen zu validieren und die richtigen Prioritaeten zu setzen.",
-          "primary": "Mit mir arbeiten",
+          "primary": "Penetration Test anfragen",
           "secondary": "Zurueck zu den Leistungen"
         }
       },
@@ -313,7 +316,7 @@
         "cta": {
           "title": "Willst du Security-Unterstuetzung, die zu deiner Arbeitsweise passt?",
           "text": "Wenn du vermeidbares Risiko frueher reduzieren und mit mehr Sicherheit ausliefern willst, kann ich Produkt- und Engineering-Arbeit begleiten, bevor Probleme in Produktion haerten.",
-          "primary": "Mit mir arbeiten",
+          "primary": "Secure Development besprechen",
           "secondary": "Zurueck zu den Leistungen"
         }
       }
@@ -326,7 +329,7 @@
     },
     "eyebrow": "ÜBER MICH",
     "title": "Die Person hinter dem System",
-    "intro": "Hey, ich bin Nikita. Mich ziehen Cybersicherheit, KI, Systeme und Produktdesign aus demselben Grund an: Ich möchte verstehen, wie Dinge wirklich funktionieren, sobald man unter die Oberfläche schaut. Meistens führt das zu Fragen rund um Vertrauen, Schwachstellen und dazu, wie man nützliche Dinge baut, ohne dabei nachlässig zu werden.",
+    "intro": "Hey, ich bin Nikita. Cybersicherheit, KI, Systeme und Produktdesign ziehen mich immer wieder an — vor allem, weil ich gern herausfinde, wie Dinge wirklich funktionieren, wenn man unter die Oberfläche schaut. Meistens endet das bei Fragen darüber, wo Dinge kaputtgehen, wo Vertrauen einfach vorausgesetzt statt verdient wird, und wie man etwas baut, das nicht auseinanderfällt, wenn es drauf ankommt.",
     "profileLabel": "operator profile",
     "statusLabel": "status: building",
     "signalLabel": "Signal",
@@ -334,18 +337,18 @@
     "cards": {
       "drives": {
         "eyebrow": "Was mich antreibt",
-        "title": "Ich mag es, die Architektur hinter der Oberfläche zu verstehen.",
-        "text": "Neugier ist ein großer Teil davon, ehrlich gesagt. Ich folge einem System gern so weit, bis es seine Kanten zeigt: wo es bricht, wo es fragil wird und wo Sicherheitsannahmen aufhören, nur theoretisch zu sein."
+        "title": "Vor allem Neugier, wie Dinge funktionieren.",
+        "text": "Ich folge einem System gern so weit, bis es seine Kanten zeigt — wo es bricht, wo es fragil wird, wo die Annahmen aufhören, nur theoretisch zu sein. Da wird es meistens interessant."
       },
       "building": {
         "eyebrow": "Woran ich arbeite",
-        "title": "Ich interessiere mich für Dinge, die nützlich, sicher und klar sind.",
-        "text": "In letzter Zeit beschäftige ich mich viel mit der Schnittstelle zwischen Security, KI und Produktdesign. Das ist ein Bereich, der bessere Fragen erzwingt - nicht nur ob etwas funktioniert, sondern ob es standhält, Sinn ergibt und Vertrauen verdient. Gleichzeitig erkunde ich agentenbasierte Workflows mit Tools wie OpenClaw und Codex und denke darüber nach, wie Software, Automatisierung und Reasoning auf praktische und nützliche Weise zusammenspielen können."
+        "title": "Herausfinden, wo sich Security, KI und Design überschneiden.",
+        "text": "Damit beschäftige ich mich gerade am meisten. In dem Bereich kommt man mit oberflächlichen Antworten nicht weit — man muss sich fragen, ob etwas in der Praxis wirklich funktioniert, nicht nur in der Theorie. Nebenbei erkunde ich agentenbasierte Workflows mit Tools wie OpenClaw und Codex und versuche zu verstehen, wie Software, Automatisierung und Reasoning auf eine Weise zusammenspielen können, die tatsächlich nützlich ist."
       },
       "outside": {
         "eyebrow": "Außerhalb des Bildschirms",
-        "title": "Ich nehme die kleinen Dinge wahr, die Vertrauen und Nutzung leichter machen.",
-        "text": "Dinge wie Klarheit, Rhythmus und Reibung fallen mir auf, vor allem weil sie darüber entscheiden, ob etwas intuitiv oder frustrierend wirkt. Ich mag klare Interfaces, aber nur dann, wenn sie etwas wirklich leichter benutzbar und besser durchdacht machen."
+        "title": "Mir fallen meistens die kleinen Dinge auf.",
+        "text": "Klarheit, Rhythmus, Widerstand — so etwas sticht mir ins Auge, weil es meistens darüber entscheidet, ob sich etwas intuitiv oder frustrierend anfühlt. Ich mag klare Interfaces, aber nur wenn sie wirklich etwas einfacher machen, nicht nur besser aussehen."
       }
     }
   },
