@@ -72,6 +72,224 @@
       }
     }
   },
+  "Services": {
+    "common": {
+      "backToServices": "Zur\u00fcck zu den Leistungen",
+      "relatedServices": "Verwandte Leistungen"
+    },
+    "items": {
+      "webAppSecurity": {
+        "metadata": {
+          "title": "Web App Security | niwo",
+          "description": "Unterstuetzung bei Web Application Security mit Fokus auf praxisnahe Schwachstellen, klare Risikoeinschaetzung und umsetzbare Behebung."
+        },
+        "card": {
+          "eyebrow": "Bewertung",
+          "title": "Web App Security",
+          "text": "Finde Schwachstellen in modernen Webanwendungen, bevor Angreifer es tun.",
+          "accent": "Live-Oberflaechenpruefung"
+        },
+        "hero": {
+          "eyebrow": "Anwendungsbewertung",
+          "title": "Web App Security, die die richtigen Probleme zuerst sichtbar macht",
+          "intro": "Ich pruefe moderne Webanwendungen mit einer praktischen Angreiferperspektive und schaue auf die Stellen, an denen Vertrauen bricht: Authentifizierung, Autorisierung, Eingabeverarbeitung, freigelegte Funktionalitaet und Konfigurationsentscheidungen, die das Risiko still vergroessern.",
+          "outcomeLabel": "Ergebnis",
+          "outcomeText": "Du bekommst ein klareres Bild deiner tatsaechlichen Angriffsoberflaeche, welche Schwachstellen am meisten zaehlen und was zuerst geaendert werden sollte, um Risiko zu senken, ohne alles auszubremsen."
+        },
+        "covers": {
+          "title": "Was das abdeckt",
+          "items": [
+            "Bewertung der Anwendungs-Angriffsoberflaeche ueber Kern-Workflows und exponierte Funktionen hinweg",
+            "Schwaechen bei Authentifizierung und Session-Handling, etwa rund um Login, Passwort-Reset und Sitzungszustand",
+            "Autorisierungsprobleme wie fehlende Zugriffskontrollen, Rechtespruenge und unsicheren Objektzugriff",
+            "Probleme in der Eingabeverarbeitung wie Injektionspfade, unsichere Verarbeitung und schwache Validierungsgrenzen",
+            "Konfigurations- und Deployment-Schwaechen, die unnoetige Angriffsflaeche schaffen"
+          ]
+        },
+        "process": {
+          "title": "Wie ich arbeite",
+          "steps": [
+            {
+              "title": "Die Anwendung und ihre Vertrauensgrenzen verstehen",
+              "text": "Ich starte damit, wie die Anwendung gedacht ist, wo sensible Aktionen stattfinden und auf welche Annahmen sich das System verlaesst."
+            },
+            {
+              "title": "Dort testen, wo sich Schwaechen typischerweise verstecken",
+              "text": "Ich konzentriere mich auf Routen, Zustandswechsel und Randfaelle, in denen Sicherheitsprobleme in der Praxis am ehesten sichtbar werden."
+            },
+            {
+              "title": "Erkenntnisse in umsetzbare Behebungen uebersetzen",
+              "text": "Jeder Fund wird mit Kontext, Auswirkung und klaren naechsten Schritten dokumentiert, damit er direkt priorisiert und behoben werden kann."
+            }
+          ]
+        },
+        "bestFor": {
+          "title": "Besonders passend fuer",
+          "items": [
+            "Startups, die eine kundennahe Anwendung vor Release oder Skalierung absichern wollen",
+            "Kleine Teams, die Security-Review ohne schwergewichtigen Prozess brauchen",
+            "Produkte mit Accounts, Berechtigungen, sensiblen Workflows oder kritischer Geschaeftslogik",
+            "Entwickler, die Findings wollen, mit denen sich wirklich arbeiten laesst"
+          ]
+        },
+        "deliverables": {
+          "title": "Was du bekommst",
+          "items": [
+            "Einen kompakten Bericht mit validierten Findings und klarer Schwereeinordnung",
+            "Praktische Hinweise zur Behebung fuer jedes Problem",
+            "Eine priorisierte Sicht darauf, was zuerst angegangen werden sollte",
+            "Rueckfragen und Einordnung zu Findings und Umsetzung"
+          ]
+        },
+        "cta": {
+          "title": "Brauchst du ein klareres Bild deines Anwendungsrisikos?",
+          "text": "Wenn du vor einem Release, nach groesseren Aenderungen oder einfach vor dem naechsten unerwuenschten Fund eine fokussierte Sicherheitspruefung brauchst, kann ich helfen.",
+          "primary": "Mit mir arbeiten",
+          "secondary": "Zurueck zu den Leistungen"
+        }
+      },
+      "penetrationTesting": {
+        "metadata": {
+          "title": "Penetration Testing | niwo",
+          "description": "Gezieltes Penetration Testing fuer moderne Webanwendungen mit realistischen Angriffspfaden, validierten Findings und klaren Prioritaeten."
+        },
+        "card": {
+          "eyebrow": "Offensive Tests",
+          "title": "Penetration Testing",
+          "text": "Praktische offensive Tests, um reale Schwaechen und Risiken aufzudecken.",
+          "accent": "Pruefen und sondieren"
+        },
+        "hero": {
+          "eyebrow": "Gezielte offensive Tests",
+          "title": "Penetration Testing entlang realistischer Angriffspfade",
+          "intro": "Das hier ist fokussiertes offensives Testing, das zeigen soll, wie weit echte Schwachstellen tatsaechlich tragen. Es geht nicht nur darum, Probleme aufzulisten, sondern Exploitbarkeit, Geschaeftsauswirkung und reale Angreiferpfade verstaendlich zu machen.",
+          "outcomeLabel": "Ergebnis",
+          "outcomeText": "Du bekommst validierte Findings, klarere Behebungsprioritaeten und ein realistischeres Bild davon, wie technische Schwaechen zu echtem Risiko werden."
+        },
+        "covers": {
+          "title": "Was das abdeckt",
+          "items": [
+            "Gezieltes Testing exponierter Funktionen, risikoreicher Workflows und kritischer Nutzeraktionen",
+            "Validierung wirklich ausnutzbarer Schwaechen statt oberflaechlicher Annahmen",
+            "Pruefung von Angriffsketten, in denen sich kleinere Probleme zu groesserer Wirkung kombinieren",
+            "Risikobasierte Einordnung von Findings statt lauter, unklarer Ergebnisse",
+            "Professionelle Berichterstattung, die Teams bei Entscheidungen hilft"
+          ]
+        },
+        "process": {
+          "title": "Wie ich arbeite",
+          "steps": [
+            {
+              "title": "Den Scope an den wichtigsten Risiken ausrichten",
+              "text": "Ich richte das Testing an den Systemen, Flows und Annahmen aus, die das meiste Risiko tragen, damit Zeit dort investiert wird, wo sie zaehlt."
+            },
+            {
+              "title": "Wie ein Angreifer testen, wie ein Partner dokumentieren",
+              "text": "Waehrend des Testings validiere ich realistische Angriffswege und halte den Prozess gleichzeitig so strukturiert, dass die Ergebnisse klar und belastbar bleiben."
+            },
+            {
+              "title": "Findings so aufbereiten, dass Teams handeln koennen",
+              "text": "Das Ergebnis ist darauf ausgelegt, Remediation-Planung, interne Kommunikation und technische Nacharbeit ohne unnoetige Unklarheit zu unterstuetzen."
+            }
+          ]
+        },
+        "bestFor": {
+          "title": "Besonders passend fuer",
+          "items": [
+            "Teams vor Release, Launch oder Kundenpruefung",
+            "Produkte, die eine externe Sicht auf reale Ausnutzbarkeit brauchen",
+            "Organisationen, die lieber klares Signal als laute Testberichte wollen",
+            "Anwendungen mit sensibler Logik, komplexen Berechtigungen oder hochwertigen Workflows"
+          ]
+        },
+        "deliverables": {
+          "title": "Was du bekommst",
+          "items": [
+            "Einen professionellen Findings-Bericht mit Schwere- und Wirkungskontext",
+            "Reproduktionsdetails und konkrete Behebungsrichtung pro validiertem Problem",
+            "Priorisierte Handlungsempfehlungen auf Basis praktischen Risikos",
+            "Klare Kommunikation fuer technische und nicht-technische Beteiligte"
+          ]
+        },
+        "cta": {
+          "title": "Brauchst du gezieltes offensives Testing, bevor es dringend wird?",
+          "text": "Wenn du eine externe Sicht darauf willst, wie deine Anwendung unter realistischem Testing standhaelt, kann ich dir helfen, Schwaechen zu validieren und die richtigen Prioritaeten zu setzen.",
+          "primary": "Mit mir arbeiten",
+          "secondary": "Zurueck zu den Leistungen"
+        }
+      },
+      "secureDevelopment": {
+        "metadata": {
+          "title": "Secure Development | niwo",
+          "description": "Secure-Development-Unterstuetzung fuer Teams, die vermeidbares Risiko frueher in der Entwicklung reduzieren und mit staerkeren Sicherheitsleitplanken ausliefern wollen."
+        },
+        "card": {
+          "eyebrow": "Umsetzung",
+          "title": "Secure Development",
+          "text": "Produkte mit Sicherheit im Blick entwickeln und verbessern - von Anfang an.",
+          "accent": "Mit Leitplanken ausliefern"
+        },
+        "hero": {
+          "eyebrow": "Sicherheit in der Umsetzung",
+          "title": "Secure Development, das Teams mit weniger vermeidbarem Risiko bauen laesst",
+          "intro": "Secure-Development-Unterstuetzung bedeutet, Produkte so zu planen, umzusetzen und auszuliefern, dass typische Sicherheitsprobleme frueher erkannt werden - mit weniger Reibung und weniger unangenehmen Ueberraschungen kurz vor dem Release.",
+          "outcomeLabel": "Ergebnis",
+          "outcomeText": "Du bekommst mehr Sicherheit in Implementierungsentscheidungen, weniger vermeidbare Schwaechen in Produktion und eine staerkere Ausrichtung zwischen Liefergeschwindigkeit und Sicherheitsanspruch."
+        },
+        "covers": {
+          "title": "Was das abdeckt",
+          "items": [
+            "Pruefung von Implementierungsmustern, die haeufig vermeidbares Anwendungsrisiko einfuehren",
+            "Sicherheitsorientierte Begleitung bei Feature-Entwicklung, Change-Planung und Release-Vorbereitung",
+            "Fruehe Betrachtung von Flows rund um Authentifizierung, Autorisierung, Vertrauensgrenzen und sensible Daten",
+            "Praktische Leitplanken, die Entwicklern helfen, mit weniger Sicherheitsregressionen auszuliefern",
+            "Unterstuetzung, die Security in den Produktprozess einbindet statt daneben zu laufen"
+          ]
+        },
+        "process": {
+          "title": "Wie ich arbeite",
+          "steps": [
+            {
+              "title": "Design und Implementierung frueh betrachten",
+              "text": "Ich schaue auf den geplanten Flow, Vertrauensannahmen und wahrscheinliche Schwachpunkte, bevor Aenderungen spaeter teuer oder schwer werden."
+            },
+            {
+              "title": "Auf praktische Aenderungen konzentrieren, die Teams wirklich aufnehmen koennen",
+              "text": "Es geht nicht darum, Prozess um des Prozesses willen einzufuehren, sondern Entscheidungen, Defaults und Details auf eine Weise zu verbessern, die zum Produkt-Workflow passt."
+            },
+            {
+              "title": "Mit klareren Sicherheitsleitplanken ausliefern",
+              "text": "Das Ergebnis ist ein verlaesslicherer Weg von der Idee bis zum Release, bei dem Sicherheit Teil der Arbeit wird und nicht erst am Ende dazukommt."
+            }
+          ]
+        },
+        "bestFor": {
+          "title": "Besonders passend fuer",
+          "items": [
+            "Teams, die neue Produkte bauen oder groessere Features ausliefern",
+            "Entwickler, die waehrend der Umsetzung praktische Security-Unterstuetzung wollen",
+            "Startups, die bessere Sicherheitsentscheidungen brauchen, ohne Delivery zu stark zu bremsen",
+            "Produkte, bei denen Vertrauen, Berechtigungen und sensible Workflows frueh wichtig sind"
+          ]
+        },
+        "deliverables": {
+          "title": "Was du bekommst",
+          "items": [
+            "Umsetzungsnahe Guidance bezogen auf dein Produkt und deinen Delivery-Flow",
+            "Review-Hinweise zu riskanten Mustern und Bereichen, die sich frueh haerten lassen",
+            "Klare Empfehlungen, die Entwickler ohne grosse Uebersetzung anwenden koennen",
+            "Einen sicherheitsbewussteren Delivery-Pfad fuer kommende Arbeit, nicht nur fuer einen Release"
+          ]
+        },
+        "cta": {
+          "title": "Willst du Security-Unterstuetzung, die zu deiner Arbeitsweise passt?",
+          "text": "Wenn du vermeidbares Risiko frueher reduzieren und mit mehr Sicherheit ausliefern willst, kann ich Produkt- und Engineering-Arbeit begleiten, bevor Probleme in Produktion haerten.",
+          "primary": "Mit mir arbeiten",
+          "secondary": "Zurueck zu den Leistungen"
+        }
+      }
+    }
+  },
   "About": {
     "metadata": {
       "title": "Über mich | niwo",

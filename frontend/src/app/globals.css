@@ -96,15 +96,10 @@ body {
 }
 
 .service-card {
-  cursor: grab;
   transition:
     border-color 180ms ease,
     background-color 180ms ease,
     box-shadow 180ms ease;
-}
-
-.service-card:active {
-  cursor: grabbing;
 }
 
 .service-card:hover {
