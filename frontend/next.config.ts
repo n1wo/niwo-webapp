@@ -7,6 +7,9 @@ const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   output: "standalone",
+  outputFileTracingIncludes: {
+    "/*": ["./node_modules/@swc/helpers/esm/**/*.js"],
+  },
   images: {
     remotePatterns: [{ protocol: "https", hostname: MEDIA_HOST }],
   },
