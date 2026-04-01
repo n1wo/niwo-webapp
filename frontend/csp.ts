@@ -1,53 +1,72 @@
 export const MEDIA_HOST = "d2k0ncl90mug6s.cloudfront.net";
 
-/**
- * CSP violation reporting endpoint.
- * Replace with a real endpoint (e.g. Report URI, Sentry, or a custom collector)
- * before enabling in production. While set to empty string, report-to is omitted.
- */
-const CSP_REPORT_ENDPOINT = "";
+type SecurityHeader = {
+  key: string;
+  value: string;
+};
 
-export function buildCspHeader(nonce: string, isDevelopment: boolean): string {
+export function buildCspHeader(isDevelopment: boolean): string {
   const connectSrc = [
     "'self'",
     ...(isDevelopment ? ["http:", "https:", "ws:", "wss:"] : []),
   ].join(" ");
 
-  // NOTE: blob: is required by Next.js for web worker script loading in
-  // production builds. If this changes in a future Next.js version, remove it
-  // and verify the production build still works.
   const scriptSrc = [
     "'self'",
-    `'nonce-${nonce}'`,
-    "'strict-dynamic'",
+    "'unsafe-inline'",
     "blob:",
     ...(isDevelopment ? ["'unsafe-eval'"] : []),
   ].join(" ");
-
-  const styleSrc = [
-    "'self'",
-    ...(isDevelopment ? ["'unsafe-inline'"] : [`'nonce-${nonce}'`]),
-  ].join(" ");
-
-  const reportDirective = CSP_REPORT_ENDPOINT
-    ? `report-uri ${CSP_REPORT_ENDPOINT};`
-    : "";
 
   return `
     default-src 'self';
     base-uri 'self';
     frame-ancestors 'none';
+    form-action 'self';
+    object-src 'none';
     script-src ${scriptSrc};
-    style-src ${styleSrc};
-    img-src 'self' data: https://${MEDIA_HOST};
-    media-src 'self' https://${MEDIA_HOST};
+    style-src 'self' 'unsafe-inline';
+    img-src 'self' data: blob: https://${MEDIA_HOST};
+    media-src 'self' blob: https://${MEDIA_HOST};
     font-src 'self' data:;
     connect-src ${connectSrc};
     worker-src 'self' blob:;
     frame-src 'none';
-    object-src 'none';
-    form-action 'self';
     upgrade-insecure-requests;
-    ${reportDirective}
-  `.replace(/\s{2,}/g, " ").trim();
+  `
+    .replace(/\s{2,}/g, " ")
+    .trim();
+}
+
+export function getSecurityHeaders(isDevelopment: boolean): SecurityHeader[] {
+  return [
+    {
+      key: "Content-Security-Policy",
+      value: buildCspHeader(isDevelopment),
+    },
+    {
+      key: "Strict-Transport-Security",
+      value: "max-age=63072000; includeSubDomains; preload",
+    },
+    {
+      key: "Referrer-Policy",
+      value: "strict-origin-when-cross-origin",
+    },
+    {
+      key: "X-Content-Type-Options",
+      value: "nosniff",
+    },
+    {
+      key: "X-Frame-Options",
+      value: "DENY",
+    },
+    {
+      key: "Permissions-Policy",
+      value: "camera=(), microphone=(), geolocation=(), browsing-topics=()",
+    },
+    {
+      key: "Cross-Origin-Opener-Policy",
+      value: "same-origin",
+    },
+  ];
 }

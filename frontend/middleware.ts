@@ -1,5 +1,5 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { buildCspHeader } from "./csp";
+import { getSecurityHeaders } from "./csp";
 import { routing } from "./src/i18n/routing";
 
 const LOCALE_HEADER = "X-NEXT-INTL-LOCALE";
@@ -8,14 +8,8 @@ function getDefaultLocaleRedirect(pathname: string): string {
   return pathname === "/" ? `/${routing.defaultLocale}` : `/${routing.defaultLocale}${pathname}`;
 }
 
-function createNonce(): string {
-  return btoa(crypto.randomUUID()).replace(/=+$/g, "");
-}
-
 export function middleware(request: NextRequest): NextResponse {
-  const nonce = createNonce();
   const isDevelopment = process.env.NODE_ENV !== "production";
-  const csp = buildCspHeader(nonce, isDevelopment);
   const { pathname, search } = request.nextUrl;
   const [firstSegment] = pathname.split("/").filter(Boolean);
   const hasSupportedLocale =
@@ -33,7 +27,6 @@ export function middleware(request: NextRequest): NextResponse {
     response = NextResponse.redirect(redirectUrl);
   } else {
     const requestHeaders = new Headers(request.headers);
-    requestHeaders.set("x-nonce", nonce);
     requestHeaders.set(LOCALE_HEADER, locale);
 
     response = NextResponse.next({
@@ -44,7 +37,9 @@ export function middleware(request: NextRequest): NextResponse {
   }
 
   response.headers.set(LOCALE_HEADER, locale);
-  response.headers.set("Content-Security-Policy", csp);
+  for (const header of getSecurityHeaders(isDevelopment)) {
+    response.headers.set(header.key, header.value);
+  }
 
   return response;
 }
