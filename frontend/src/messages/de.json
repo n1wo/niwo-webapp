@@ -1,0 +1,276 @@
+{
+  "Common": {
+    "lastUpdated": "Zuletzt aktualisiert",
+    "onThisPage": "Auf dieser Seite",
+    "language": "Sprache"
+  },
+  "Navbar": {
+    "services": "Leistungen",
+    "about": "Über mich",
+    "contact": "Kontakt"
+  },
+  "Footer": {
+    "about": "Über mich",
+    "github": "GitHub",
+    "privacyPolicy": "Datenschutz",
+    "vdp": "VDP",
+    "imprint": "Impressum"
+  },
+  "LanguageSwitcher": {
+    "label": "Sprache",
+    "en": "EN",
+    "de": "DE"
+  },
+  "NotFound": {
+    "title": "Nicht gefunden",
+    "description": "Die angeforderte Ressource konnte nicht gefunden werden.",
+    "returnHome": "Zur Startseite"
+  },
+  "Home": {
+    "metadata": {
+      "title": "niwo | Cybersicherheit",
+      "description": "Nikita ist Cybersecurity-Student und freiberuflicher Ethical Hacker mit Fokus auf Web Application Security, Penetration Testing und digitale Verteidigung."
+    },
+    "heroEyebrow": "Offensive Sicherheit für moderne Webanwendungen",
+    "heroHeadline": "Wenn es passiert, bist du bereit?",
+    "heroParagraph": "Ich unterstütze Startups, Entwickler und kleine Unternehmen dabei, Schwachstellen zu finden, Anwendungssicherheit zu verbessern und Risiken zu beheben, bevor Angreifer sie entdecken.",
+    "primaryCta": "Mit mir arbeiten",
+    "secondaryCta": "Leistungen ansehen",
+    "supportLine": "Web Application Security · DevSecOps · Penetration Testing",
+    "servicesEyebrow": "Leistungen",
+    "servicesTitle": "Entwickelt für moderne Anwendungsrisiken",
+    "servicesDescription": "Fokussierte Sicherheitsunterstützung für Testing, Bewertung und Umsetzung.",
+    "terminal": {
+      "label": "operator console",
+      "complete": "scan abgeschlossen",
+      "lines": {
+        "command": "> run security_scan",
+        "scanning": "Scanne...",
+        "findings": "✔ Schwachstellen gefunden: 3",
+        "severity": "✔ Schweregrad: hoch",
+        "recommendation": "✔ Empfehlung: Auth-Flow absichern"
+      }
+    },
+    "serviceCards": {
+      "webAppSecurity": {
+        "eyebrow": "Bewertung",
+        "title": "Web App Security",
+        "text": "Finde Schwachstellen in modernen Webanwendungen, bevor Angreifer es tun.",
+        "accent": "Live-Oberflächenprüfung"
+      },
+      "penetrationTesting": {
+        "eyebrow": "Offensive Tests",
+        "title": "Penetration Testing",
+        "text": "Praktische offensive Tests, um reale Schwächen und Risiken aufzudecken.",
+        "accent": "Prüfen und sondieren"
+      },
+      "secureDevelopment": {
+        "eyebrow": "Umsetzung",
+        "title": "Secure Development",
+        "text": "Produkte mit Sicherheit im Blick entwickeln und verbessern - von Anfang an.",
+        "accent": "Mit Leitplanken ausliefern"
+      }
+    }
+  },
+  "About": {
+    "metadata": {
+      "title": "Über mich | niwo",
+      "description": "Über Nikita, die Person hinter niwo, an der Schnittstelle von Security, KI, Systemen und Produktdesign."
+    },
+    "eyebrow": "ÜBER MICH",
+    "title": "Die Person hinter dem System",
+    "intro": "Hey, ich bin Nikita. Mich ziehen Cybersicherheit, KI, Systeme und Produktdesign aus demselben Grund an: Ich möchte verstehen, wie Dinge wirklich funktionieren, sobald man unter die Oberfläche schaut. Meistens führt das zu Fragen rund um Vertrauen, Schwachstellen und dazu, wie man nützliche Dinge baut, ohne dabei nachlässig zu werden.",
+    "profileLabel": "operator profile",
+    "statusLabel": "status: building",
+    "signalLabel": "Signal",
+    "signalText": "Mir ist wichtig, ob etwas wirklich standhält - ob es vertrauenswürdig wirkt, Sinn ergibt und genau dann funktioniert, wenn es darauf ankommt.",
+    "cards": {
+      "drives": {
+        "eyebrow": "Was mich antreibt",
+        "title": "Ich mag es, die Architektur hinter der Oberfläche zu verstehen.",
+        "text": "Neugier ist ein großer Teil davon, ehrlich gesagt. Ich folge einem System gern so weit, bis es seine Kanten zeigt: wo es bricht, wo es fragil wird und wo Sicherheitsannahmen aufhören, nur theoretisch zu sein."
+      },
+      "building": {
+        "eyebrow": "Woran ich arbeite",
+        "title": "Ich interessiere mich für Dinge, die nützlich, sicher und klar sind.",
+        "text": "In letzter Zeit beschäftige ich mich viel mit der Schnittstelle zwischen Security, KI und Produktdesign. Das ist ein Bereich, der bessere Fragen erzwingt - nicht nur ob etwas funktioniert, sondern ob es standhält, Sinn ergibt und Vertrauen verdient. Gleichzeitig erkunde ich agentenbasierte Workflows mit Tools wie OpenClaw und Codex und denke darüber nach, wie Software, Automatisierung und Reasoning auf praktische und nützliche Weise zusammenspielen können."
+      },
+      "outside": {
+        "eyebrow": "Außerhalb des Bildschirms",
+        "title": "Ich nehme die kleinen Dinge wahr, die Vertrauen und Nutzung leichter machen.",
+        "text": "Dinge wie Klarheit, Rhythmus und Reibung fallen mir auf, vor allem weil sie darüber entscheiden, ob etwas intuitiv oder frustrierend wirkt. Ich mag klare Interfaces, aber nur dann, wenn sie etwas wirklich leichter benutzbar und besser durchdacht machen."
+      }
+    }
+  },
+  "Imprint": {
+    "metadata": {
+      "title": "Impressum | niwo systems",
+      "description": "Rechtliche Hinweise für niwo systems. Nicht-kommerzielle Informationswebsite. Professionelle Angebote werden privat außerhalb dieser Plattform abgewickelt."
+    },
+    "eyebrow": "Rechtliches",
+    "title": "Impressum",
+    "lastUpdated": "16. Okt. 2025",
+    "sections": {
+      "provider": {
+        "title": "1. Anbieterkennzeichnung",
+        "body": "Verantwortlich gemäß § 5 TMG / EU-E-Commerce-Richtlinie",
+        "owner": "Inhaber: N. W.",
+        "address": "Adresse: auf Anfrage erhältlich"
+      },
+      "nature": {
+        "title": "2. Art der Website",
+        "body": "Diese Website ist ein nicht-kommerzielles Informationsprojekt mit Fokus auf Technologie- und Sicherheitsforschung. Über diese Plattform werden keine Waren oder Dienstleistungen direkt verkauft.",
+        "disclaimerTitle": "Hinweis:",
+        "disclaimerText": "Diese Website bietet keine kostenpflichtigen Leistungen direkt an. Jede berufliche Zusammenarbeit oder jedes Angebot, das aus privatem Kontakt entsteht, wird außerhalb dieser Plattform abgewickelt, zum Beispiel per E-Mail oder über einen separaten Vertrag."
+      },
+      "contact": {
+        "title": "3. Kontakt",
+        "body": "Für rechtliche Hinweise oder formelle Korrespondenz kontaktiere bitte legal@niwosystems.com. Falls für eine formelle Zustellung eine Postanschrift erforderlich ist, wird diese auf Anfrage bereitgestellt."
+      },
+      "liability": {
+        "title": "4. Haftung für Inhalte",
+        "body": "Die Inhalte werden mit Sorgfalt erstellt; eine Gewähr für Vollständigkeit oder Richtigkeit wird jedoch nicht übernommen. Links zu externen Seiten dienen der Bequemlichkeit, und für deren Inhalte sind die jeweiligen Anbieter verantwortlich."
+      }
+    }
+  },
+  "Vdp": {
+    "metadata": {
+      "title": "Richtlinie zur Offenlegung von Schwachstellen | niwo",
+      "description": "Wie Schwachstellen verantwortungsvoll an das niwo-Sicherheitsteam gemeldet werden können."
+    },
+    "eyebrow": "Sicherheit",
+    "title": "Richtlinie zur Offenlegung von Schwachstellen",
+    "description": "Leitlinien für Responsible Disclosure bei potenziellen Sicherheitsproblemen.",
+    "sections": {
+      "overview": {
+        "title": "1. Überblick",
+        "body": "Sicherheit hat für uns bei niwo höchste Priorität. Wir schätzen die Arbeit von Sicherheitsforschern und die verantwortungsvolle Offenlegung potenzieller Schwachstellen."
+      },
+      "scope": {
+        "title": "2. Geltungsbereich",
+        "body": "Diese Richtlinie gilt für digitale Assets, die niwo gehören, von niwo betrieben oder gewartet werden, einschließlich niwosystems.com und zugehöriger Subdomains."
+      },
+      "guidelines": {
+        "title": "3. Richtlinien",
+        "items": [
+          "Nutze Schwachstellen nicht weiter aus, als es für den Nachweis erforderlich ist.",
+          "Greife nicht ohne Zustimmung auf Nutzerdaten zu und ändere sie nicht.",
+          "Beeinträchtige oder verschlechtere unsere Dienste nicht.",
+          "Liefere ausreichend Details, damit wir das Problem reproduzieren und validieren können."
+        ]
+      },
+      "reporting": {
+        "title": "4. Meldung",
+        "body": "Wenn du eine Schwachstelle entdeckst, melde sie bitte verantwortungsvoll an security@niwosystems.com.",
+        "calloutTitle": "Wenn möglich, füge folgende Informationen hinzu:",
+        "items": [
+          "Beschreibung der Schwachstelle",
+          "Schritte zur Reproduktion",
+          "Mögliche Auswirkungen",
+          "Vorgeschlagene Behebung, falls vorhanden"
+        ]
+      },
+      "acknowledgement": {
+        "title": "5. Anerkennung",
+        "body": "Wir können valide Meldungen öffentlich anerkennen, wenn sie uns helfen, unsere Sicherheitslage zu verbessern. Danke, dass du hilfst, niwo und seine Nutzer sicherer zu machen."
+      }
+    }
+  },
+  "PrivacyPolicy": {
+    "metadata": {
+      "title": "Datenschutzerklärung | niwo",
+      "description": "Datenschutzerklärung für diese Website zu E-Mail-Kontakt, Hosting und lokal gehosteten Schriftarten."
+    },
+    "eyebrow": "Rechtliches",
+    "title": "Datenschutzerklärung",
+    "lastUpdated": "13. Oktober 2025",
+    "sections": {
+      "intro": {
+        "navTitle": "1. Einleitung",
+        "title": "1. Einleitung",
+        "body": "Diese Datenschutzerklärung erläutert, wie wir personenbezogene Daten erfassen, verwenden und schützen, wenn du diese Website besuchst oder uns per E-Mail kontaktierst. Wir möchten Informationen verantwortungsvoll und transparent im Einklang mit geltendem Datenschutzrecht, einschließlich der EU-Datenschutz-Grundverordnung (DSGVO), verarbeiten."
+      },
+      "controller": {
+        "navTitle": "2. Verantwortlicher",
+        "title": "2. Verantwortlicher",
+        "controllerLabel": "Verantwortlicher:",
+        "controllerValue": "niwo systems",
+        "emailLabel": "E-Mail:",
+        "addressLabel": "Adresse:",
+        "addressValue": "Deutschland",
+        "body": "Wenn du Fragen zu dieser Datenschutzerklärung oder zu deinen personenbezogenen Daten hast, kannst du uns über die oben genannten Kontaktdaten erreichen."
+      },
+      "dataWeCollect": {
+        "navTitle": "3. Welche Daten wir verarbeiten",
+        "title": "3. Welche Daten wir verarbeiten",
+        "voluntaryTitle": "a) Freiwillig bereitgestellte Informationen",
+        "voluntaryIntro": "Wenn du uns per E-Mail kontaktierst, können wir Folgendes verarbeiten:",
+        "voluntaryItems": [
+          "Deine E-Mail-Adresse",
+          "Deinen Namen oder deine Signatur, falls du diese angibst",
+          "Deinen Firmennamen, deine Telefonnummer oder andere Kontaktdaten, falls du diese angibst",
+          "Den Inhalt deiner Nachricht und eventuelle Anhänge"
+        ],
+        "voluntaryOutro": "Diese Informationen werden ausschließlich genutzt, um deine Anfrage zu prüfen und zu beantworten.",
+        "automaticTitle": "b) Automatisch erhobene Daten",
+        "automaticBody": "Beim Besuch der Website können durch die Hosting-Infrastruktur grundlegende technische Daten automatisch verarbeitet werden, etwa deine IP-Adresse, Request-Metadaten, Browserinformationen und Zugriffsprotokolle, die für die sichere Auslieferung der Website erforderlich sind."
+      },
+      "purposeLegalBasis": {
+        "navTitle": "4. Zweck & Rechtsgrundlage",
+        "title": "4. Zweck & Rechtsgrundlage",
+        "body": "Wir verarbeiten personenbezogene Daten, um die Website sicher zu betreiben, auf Anfragen zu reagieren und unsere Systeme vor Missbrauch zu schützen. Je nach Kontext ist die Rechtsgrundlage entweder unser berechtigtes Interesse gemäß Art. 6 Abs. 1 lit. f DSGVO oder eine Verarbeitung auf Anfrage vor Abschluss eines Vertrags gemäß Art. 6 Abs. 1 lit. b DSGVO."
+      },
+      "storageRetention": {
+        "navTitle": "5. Speicherung & Aufbewahrung",
+        "title": "5. Speicherung & Aufbewahrung",
+        "body": "Wir speichern personenbezogene Daten nur so lange, wie es für den Zweck der Erhebung, die Kommunikation mit dir oder zur Erfüllung gesetzlicher Pflichten erforderlich ist. E-Mail-Korrespondenz kann aufbewahrt werden, soweit dies zur Dokumentation oder Bearbeitung von Folgeanfragen notwendig ist."
+      },
+      "thirdParties": {
+        "navTitle": "6. Einsatz von Dritten",
+        "title": "6. Einsatz von Dritten",
+        "hostingTitle": "Hosting",
+        "hostingBody": "Diese Website wird über AWS-Infrastruktur gehostet. Hosting-Anbieter können technische Verbindungsdaten und Server-Logs verarbeiten, soweit dies für eine sichere und zuverlässige Bereitstellung der Website erforderlich ist.",
+        "fontsTitle": "Schriftarten",
+        "fontsBody": "Die Website verwendet lokal gehostete Schriftarten. Beim Laden der Website werden keine Font-Anfragen an Drittanbieter gesendet."
+      },
+      "sharing": {
+        "navTitle": "7. Datenweitergabe",
+        "title": "7. Datenweitergabe",
+        "body": "Wir verkaufen keine personenbezogenen Daten. Daten werden nur weitergegeben, wenn dies zum Betrieb der Website, zur Erfüllung gesetzlicher Pflichten oder zum Schutz unserer Rechte und Systeme erforderlich ist."
+      },
+      "rights": {
+        "navTitle": "8. Deine DSGVO-Rechte",
+        "title": "8. Deine DSGVO-Rechte",
+        "intro": "Nach der DSGVO hast du unter Umständen das Recht auf:",
+        "items": [
+          "Auskunft über deine personenbezogenen Daten",
+          "Berichtigung oder Löschung deiner Daten",
+          "Einschränkung der Verarbeitung",
+          "Widerspruch gegen die Verarbeitung in bestimmten Fällen",
+          "Beschwerde bei einer Aufsichtsbehörde"
+        ],
+        "outro": "Um diese Rechte auszuüben, kontaktiere legal@niwosystems.com."
+      },
+      "security": {
+        "navTitle": "9. Datensicherheit",
+        "title": "9. Datensicherheit",
+        "body": "Wir treffen angemessene technische und organisatorische Maßnahmen, um personenbezogene Daten vor unbefugtem Zugriff, Verlust, Missbrauch oder Offenlegung zu schützen. Dennoch kann keine Übertragung oder Speicherung im Internet vollständig sicher garantiert werden."
+      },
+      "cookies": {
+        "navTitle": "10. Cookies & Tracking",
+        "title": "10. Cookies & Tracking",
+        "body": "Diese Website verwendet derzeit keine nicht erforderlichen Tracking-Cookies oder invasive Analyse-Tools. Sollte sich das in Zukunft ändern, wird diese Erklärung entsprechend aktualisiert."
+      },
+      "changes": {
+        "navTitle": "11. Änderungen dieser Erklärung",
+        "title": "11. Änderungen dieser Erklärung",
+        "body": "Wir können diese Datenschutzerklärung gelegentlich aktualisieren, um rechtliche, technische oder operative Änderungen abzubilden. Die jeweils aktuelle Version wird immer auf dieser Seite veröffentlicht."
+      },
+      "contact": {
+        "navTitle": "12. Kontakt",
+        "title": "12. Kontakt",
+        "body": "Wenn du Fragen zu dieser Datenschutzerklärung oder zur Verarbeitung deiner personenbezogenen Daten hast, kontaktiere legal@niwosystems.com."
+      }
+    }
+  }
+}

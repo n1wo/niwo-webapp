@@ -1,11 +1,14 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useState } from "react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import LinkAnimation from "./LinkAnimation";
 import Image from "next/image";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 export default function Navbar() {
+  const t = useTranslations("Navbar");
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -16,10 +19,10 @@ export default function Navbar() {
           
           <ul className="hidden sm:flex my-auto w-fit h-fit gap-4">
             <li>
-              <LinkAnimation href="/#what-i-do">Services</LinkAnimation>
+              <LinkAnimation href="/#what-i-do">{t("services")}</LinkAnimation>
             </li>
             <li>
-              <LinkAnimation href="/pages/about">About</LinkAnimation>
+              <LinkAnimation href="/pages/about">{t("about")}</LinkAnimation>
             </li>
           </ul>
 
@@ -36,7 +39,8 @@ export default function Navbar() {
           {/* Contacts */}
           <div className="flex items-center justify-self-end w-fit">
             <div className="hidden sm:flex items-center gap-4">
-              <LinkAnimation href="mailto:info@niwosystems.com">Contact</LinkAnimation>
+              <LanguageSwitcher />
+              <LinkAnimation href="mailto:info@niwosystems.com">{t("contact")}</LinkAnimation>
             </div>
             {/* Mobile Menu Button with Animation */}
             <button
@@ -65,13 +69,16 @@ export default function Navbar() {
           <div className="fixed sm:hidden z-30 top-16 px-8 my-auto w-full h-fit pb-10 backdrop-blur-sm bg-bkg-1/60">
             <ul className="flex flex-col gap-4 font-ibm pt-4">
               <li>
-                <LinkAnimation href="/#what-i-do">Services</LinkAnimation>
+                <LanguageSwitcher />
               </li>
               <li>
-                <LinkAnimation href="/pages/about">About</LinkAnimation>
+                <LinkAnimation href="/#what-i-do">{t("services")}</LinkAnimation>
               </li>
               <li>
-                <LinkAnimation href="mailto:info@niwosystems.com">Contact</LinkAnimation>
+                <LinkAnimation href="/pages/about">{t("about")}</LinkAnimation>
+              </li>
+              <li>
+                <LinkAnimation href="mailto:info@niwosystems.com">{t("contact")}</LinkAnimation>
               </li>
             </ul>
           </div>

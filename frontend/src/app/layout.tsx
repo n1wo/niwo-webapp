@@ -1,28 +1,24 @@
-import type { Metadata } from "next";
-import { connection } from "next/server";
-import Navbar from "@/components/nav/Navbar";
-import Footer from "@/components/nav/Footer";
+import { hasLocale } from "next-intl";
+import { headers } from "next/headers";
+import { routing } from "@/i18n/routing";
 import "./globals.css";
-
-export const metadata: Metadata = {
-  title: "niwo | Cybersecurity",
-  description:
-    "I’m Nikita, a cybersecurity student and freelance ethical hacker specializing in web application security, penetration testing, and digital defense. Helping businesses and individuals protect what matters online.",
-};
 
 export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  await connection();
+  const requestHeaders = await headers();
+  const localeHeader = requestHeaders.get("X-NEXT-INTL-LOCALE");
+  const locale =
+    localeHeader && hasLocale(routing.locales, localeHeader)
+      ? localeHeader
+      : routing.defaultLocale;
 
   return (
-    <html lang="en">
+    <html lang={locale}>
       <body className="flex min-h-screen flex-col bg-black text-white font-mono">
-        <Navbar />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        {children}
       </body>
     </html>
   );

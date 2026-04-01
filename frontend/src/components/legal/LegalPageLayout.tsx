@@ -10,7 +10,9 @@ type LegalPageLayoutProps = {
   title: string;
   description?: string;
   lastUpdated?: string;
+  lastUpdatedLabel?: string;
   sections: LegalSectionLink[];
+  navLabel?: string;
   children: ReactNode;
 };
 
@@ -19,7 +21,9 @@ export default function LegalPageLayout({
   title,
   description,
   lastUpdated,
+  lastUpdatedLabel = "Last updated",
   sections,
+  navLabel = "On this page",
   children,
 }: LegalPageLayoutProps) {
   return (
@@ -34,7 +38,9 @@ export default function LegalPageLayout({
             <p className="mt-2 max-w-2xl text-sm text-white/60">{description}</p>
           ) : null}
           {lastUpdated ? (
-            <p className="mt-2 text-sm text-white/60">Last updated: {lastUpdated}</p>
+            <p className="mt-2 text-sm text-white/60">
+              {lastUpdatedLabel}: {lastUpdated}
+            </p>
           ) : null}
         </div>
         <div className="pointer-events-none absolute -right-10 -top-10 h-48 w-48 rounded-full bg-white/5 blur-2xl" />
@@ -44,7 +50,7 @@ export default function LegalPageLayout({
         <aside className="lg:col-span-4 xl:col-span-3">
           <nav className="sticky top-20 rounded-lg border border-white/10 p-4">
             <p className="mb-3 text-xs font-medium uppercase tracking-widest text-white/60">
-              On this page
+              {navLabel}
             </p>
             <ul className="space-y-2 text-sm leading-6 [&_a:hover]:text-white">
               {sections.map((section) => (

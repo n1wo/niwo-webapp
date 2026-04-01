@@ -1,6 +1,7 @@
-import Link from "next/link";
-import BottomBorderAnimation from "../animations/BottomBorderAnimation";
+import NextLink from "next/link";
 import { ReactNode } from "react";
+import { Link as IntlLink } from "@/i18n/navigation";
+import BottomBorderAnimation from "../animations/BottomBorderAnimation";
 
 interface LinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   href: string;
@@ -15,11 +16,31 @@ interface LinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
  */
 
 const LinkAnimation: React.FC<LinkProps> = ({ href, children }) => {
-  return (
-    <Link className="relative flex h-fit w-fit" href={href}>
+  const isExternal =
+    href.startsWith("http://") ||
+    href.startsWith("https://") ||
+    href.startsWith("mailto:") ||
+    href.startsWith("#");
+
+  const content = (
+    <>
       <p>{children}</p>
       <BottomBorderAnimation />
-    </Link>
+    </>
+  );
+
+  if (isExternal) {
+    return (
+      <NextLink className="relative flex h-fit w-fit" href={href}>
+        {content}
+      </NextLink>
+    );
+  }
+
+  return (
+    <IntlLink className="relative flex h-fit w-fit" href={href}>
+      {content}
+    </IntlLink>
   );
 };
 

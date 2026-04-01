@@ -1,8 +1,11 @@
-import Link from "next/link";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import LinkAnimation from "./LinkAnimation";
 
 export default function Footer() {
+  const t = useTranslations("Footer");
+
   return (
     <footer>
       {/* Container */}
@@ -24,10 +27,10 @@ export default function Footer() {
             </li>
             */}
             <li className="hover:text-white">
-              <LinkAnimation href="/pages/about">About</LinkAnimation>
+              <LinkAnimation href="/pages/about">{t("about")}</LinkAnimation>
             </li>
             <li className="hover:text-white">
-              <LinkAnimation href="https://github.com/n1wo/niwo-webapp">GitHub</LinkAnimation>
+              <LinkAnimation href="https://github.com/n1wo/niwo-webapp">{t("github")}</LinkAnimation>
             </li>
           </ul>
           
@@ -38,13 +41,13 @@ export default function Footer() {
             </li>
             */}
             <li className="hover:text-white">
-              <LinkAnimation href="/pages/privacy-policy">Privacy policy</LinkAnimation>
+              <LinkAnimation href="/pages/privacy-policy">{t("privacyPolicy")}</LinkAnimation>
             </li>
              <li className="hover:text-white">
-              <LinkAnimation href="/pages/vdp">VDP</LinkAnimation>
+              <LinkAnimation href="/pages/vdp">{t("vdp")}</LinkAnimation>
             </li>
             <li className="hover:text-white">
-              <LinkAnimation href="/pages/imprint">Imprint</LinkAnimation>
+              <LinkAnimation href="/pages/imprint">{t("imprint")}</LinkAnimation>
             </li>
             {/*
             <li className="hover:text-white">
