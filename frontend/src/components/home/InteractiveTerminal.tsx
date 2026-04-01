@@ -1,6 +1,6 @@
 "use client";
 
-import type { JSX, KeyboardEvent } from "react";
+import type { JSX, KeyboardEvent, ReactNode } from "react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import NextLink from "next/link";
 import { Link, useRouter } from "@/i18n/navigation";
@@ -20,27 +20,28 @@ type TerminalCopy = {
 type TerminalEntry = {
   text: string;
   tone: "muted" | "prompt" | "status" | "default";
+  promptLine?: "top" | "bottom";
 };
 
 type InteractiveTerminalProps = {
   copy: TerminalCopy;
 };
 
-const PROMPT = "root㉿niwo";
+const PROMPT = "root@niwo";
 const HOME_PATH = "~";
 const KALI_GREEN = "#5fbf76";
 
 const PAGE_TARGETS: Record<string, string> = {
   "/": "/",
   "~": "/",
-  "home": "/",
-  "services": "/#what-i-do",
-  "about": "/pages/about",
-  "vdp": "/pages/vdp",
-  "privacy": "/pages/privacy-policy",
+  home: "/",
+  services: "/#what-i-do",
+  about: "/pages/about",
+  vdp: "/pages/vdp",
+  privacy: "/pages/privacy-policy",
   "privacy-policy": "/pages/privacy-policy",
-  "imprint": "/pages/imprint",
-  "contact": "mailto:info@niwosystems.com",
+  imprint: "/pages/imprint",
+  contact: "mailto:info@niwosystems.com",
 };
 
 export default function InteractiveTerminal({
@@ -111,10 +112,32 @@ export default function InteractiveTerminal({
     router.push(target);
   };
 
+  const renderPromptLine = (line: "top" | "bottom", value?: string): ReactNode => {
+    if (line === "top") {
+      return (
+        <span className="font-mono">
+          <span style={{ color: KALI_GREEN }}>{`┌──(`}</span>
+          <span className="text-[var(--color-accent-light)]">{PROMPT}</span>
+          <span style={{ color: KALI_GREEN }}>{`)-[`}</span>
+          <span className="text-white">{HOME_PATH}</span>
+          <span style={{ color: KALI_GREEN }}>]</span>
+        </span>
+      );
+    }
+
+    return (
+      <span className="font-mono">
+        <span style={{ color: KALI_GREEN }}>{`└─`}</span>
+        <span className="ml-2 text-[var(--color-accent-light)]">$</span>
+        {value ? <span className="ml-2 text-zinc-100">{value}</span> : null}
+      </span>
+    );
+  };
+
   const executeCommand = (rawCommand: string) => {
     const nextEntries: TerminalEntry[] = [
-      { text: `┌──(${PROMPT})-[${HOME_PATH}]`, tone: "prompt" },
-      { text: `└─$ ${rawCommand}`, tone: "prompt" },
+      { text: "", tone: "prompt", promptLine: "top" },
+      { text: rawCommand, tone: "prompt", promptLine: "bottom" },
     ];
     const trimmed = rawCommand.trim();
 
@@ -328,19 +351,16 @@ export default function InteractiveTerminal({
       >
         <div className="space-y-1.5">
           {entries.map((entry, index) => (
-            <p key={`${entry.text}-${index}`} className={entryToneClass(entry.tone)}>
-              {entry.text}
+            <p
+              key={`${entry.text}-${entry.promptLine ?? "text"}-${index}`}
+              className={entryToneClass(entry.tone)}
+            >
+              {entry.promptLine ? renderPromptLine(entry.promptLine, entry.text) : entry.text}
             </p>
           ))}
 
           <div className="space-y-0.5">
-            <p className="font-mono">
-              <span style={{ color: KALI_GREEN }}>{`┌──(`}</span>
-              <span className="text-[var(--color-accent-light)]">{PROMPT}</span>
-              <span style={{ color: KALI_GREEN }}>{`)-[`}</span>
-              <span className="text-white">{HOME_PATH}</span>
-              <span style={{ color: KALI_GREEN }}>]</span>
-            </p>
+            <p>{renderPromptLine("top")}</p>
             <div className="flex items-center gap-2">
               <span style={{ color: KALI_GREEN }}>{`└─`}</span>
               <span className="text-[var(--color-accent-light)]">$</span>
