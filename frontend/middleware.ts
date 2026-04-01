@@ -8,7 +8,7 @@ function getDefaultLocaleRedirect(pathname: string): string {
   return pathname === "/" ? `/${routing.defaultLocale}` : `/${routing.defaultLocale}${pathname}`;
 }
 
-export function proxy(request: NextRequest): NextResponse {
+export function middleware(request: NextRequest): NextResponse {
   const nonce = Buffer.from(crypto.randomUUID()).toString("base64");
   const isDevelopment = process.env.NODE_ENV !== "production";
   const csp = buildCspHeader(nonce, isDevelopment);
