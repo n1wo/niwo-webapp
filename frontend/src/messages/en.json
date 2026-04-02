@@ -87,19 +87,19 @@
       "webAppSecurity": {
         "eyebrow": "Assessment",
         "title": "Web App Security",
-        "text": "Focused reviews that uncover the weaknesses most likely to affect real users, access control, and application trust.",
+        "text": "I look at your web app the way an attacker would — then tell you what actually needs fixing and why.",
         "accent": "Attack surface review"
       },
       "penetrationTesting": {
         "eyebrow": "Offensive testing",
         "title": "Penetration Testing",
-        "text": "Targeted testing that validates exploitability, clarifies business risk, and prioritizes the findings worth fixing first.",
+        "text": "I try to break in the same way a real attacker would — then show you exactly what worked and what to do about it.",
         "accent": "Validated attack paths"
       },
       "secureDevelopment": {
         "eyebrow": "Delivery",
         "title": "Secure Development",
-        "text": "Security-minded support for teams building modern applications, automation, and agent-assisted workflows — helping prevent avoidable risks before they reach production.",
+        "text": "I work alongside your team during development so security gets handled early — not rushed in before release.",
         "accent": "Build with guardrails"
       }
     }
@@ -113,69 +113,69 @@
       "webAppSecurity": {
         "metadata": {
           "title": "Web App Security | niwo",
-          "description": "Web application security support focused on finding practical vulnerabilities, clarifying risk, and helping teams remediate issues before attackers do."
+          "description": "Hands-on web application security reviews that surface real vulnerabilities, explain what matters, and give your team a clear path to fix things."
         },
         "card": {
           "eyebrow": "Assessment",
           "title": "Web App Security",
-          "text": "Focused reviews that uncover the weaknesses most likely to affect real users, access control, and application trust.",
+          "text": "I look at your web app the way an attacker would — then tell you what actually needs fixing and why.",
           "accent": "Attack surface review"
         },
         "hero": {
           "eyebrow": "Application assessment",
-          "title": "Web App Security that finds the issues worth fixing first",
-          "intro": "I review modern web applications with a practical attacker mindset, focusing on the places where trust breaks down: authentication, authorization, input handling, exposed functionality, and configuration choices that quietly expand risk.",
-          "outcomeLabel": "Outcome",
-          "outcomeText": "You get a clearer view of your real attack surface, which weaknesses matter most, and what to change first to reduce risk without slowing everything down."
+          "title": "Find the gaps before someone else does",
+          "intro": "I dig into your web application with an attacker's perspective — looking at auth flows, access control, input handling, and the configuration details that tend to get overlooked. The goal is to surface the issues that actually matter, not just run a scanner and hand you a PDF.",
+          "outcomeLabel": "What you walk away with",
+          "outcomeText": "A clear picture of where your app is exposed, which issues are worth prioritizing, and specific guidance on what to fix first — without the noise."
         },
         "covers": {
           "title": "What this covers",
           "items": [
-            "Application attack surface review across core user flows and exposed functionality",
-            "Authentication and session handling weaknesses, including broken assumptions around login, password reset, and session state",
-            "Authorization issues such as missing access controls, privilege gaps, and unsafe object access",
-            "Input handling problems including injection paths, unsafe processing, and weak validation boundaries",
-            "Configuration and deployment weaknesses that increase unnecessary exposure"
+            "Your app's attack surface — user flows, exposed endpoints, and anything public-facing",
+            "Auth and session handling: login, password reset, token management, and the assumptions behind them",
+            "Access control gaps — privilege escalation, broken object-level access, missing checks",
+            "Input handling: injection vectors, unsafe parsing, weak validation",
+            "Config and deployment issues that quietly widen the attack surface"
           ]
         },
         "process": {
           "title": "How I work",
           "steps": [
             {
-              "title": "Understand the application and its trust boundaries",
-              "text": "I start by looking at how the application is meant to work, where sensitive actions happen, and which assumptions the system relies on."
+              "title": "Get the lay of the land",
+              "text": "I start by understanding how the app is supposed to work — where sensitive actions happen, what the trust boundaries are, and where things could go wrong."
             },
             {
-              "title": "Test the areas where weaknesses tend to hide",
-              "text": "I focus on the routes, states, and edge cases that are most likely to expose security issues in real use, not just obvious checklist items."
+              "title": "Go after the weak spots",
+              "text": "I test the routes, states, and edge cases that tend to hide real issues — not just the obvious stuff a checklist would catch."
             },
             {
-              "title": "Turn findings into practical remediation guidance",
-              "text": "Each issue is written up with context, impact, and clear next steps so the work can move directly into prioritization and fixing."
+              "title": "Write it up so you can act on it",
+              "text": "Every finding comes with context, impact, and concrete next steps. No vague risk ratings — just what's broken and how to fix it."
             }
           ]
         },
         "bestFor": {
           "title": "Best for",
           "items": [
-            "Startups preparing to ship or scale a customer-facing application",
-            "Small teams that want security review without heavyweight process",
-            "Products handling accounts, permissions, sensitive workflows, or business-critical logic",
-            "Developers who want findings they can actually work through and fix"
+            "Startups getting ready to ship or scale something customer-facing",
+            "Small teams that want a real security look without a heavyweight process",
+            "Products dealing with user accounts, permissions, or sensitive data",
+            "Developers who'd rather get actionable findings than a 60-page report they'll never read"
           ]
         },
         "deliverables": {
           "title": "What you get",
           "items": [
-            "A concise report with validated findings and clear severity context",
-            "Practical remediation guidance for each issue",
-            "A prioritized view of what to address first",
-            "Follow-up clarification on findings and implementation questions"
+            "A short, focused report with validated findings and severity context",
+            "Remediation guidance for each issue — specific enough to hand to a developer",
+            "A prioritized list so you know what to tackle first",
+            "Follow-up support if anything in the report needs clarification"
           ]
         },
         "cta": {
-          "title": "Need a clearer view of your application risk?",
-          "text": "If you want a focused review of your web application before release, after a major change, or simply before attackers find the gaps first, I can help.",
+          "title": "Want to know where your app is exposed?",
+          "text": "Whether you're preparing for launch, recovering from a change, or just want a second pair of eyes — I can take a look.",
           "primary": "Request a Security Review",
           "secondary": "Back to services"
         }
@@ -183,69 +183,69 @@
       "penetrationTesting": {
         "metadata": {
           "title": "Penetration Testing | niwo",
-          "description": "Targeted penetration testing for modern web applications with realistic attack paths, validated findings, and actionable remediation priorities."
+          "description": "Realistic penetration testing for web applications — validated attack paths, clear impact, and findings you can actually act on."
         },
         "card": {
           "eyebrow": "Offensive testing",
           "title": "Penetration Testing",
-          "text": "Targeted testing that validates exploitability, clarifies business risk, and prioritizes the findings worth fixing first.",
+          "text": "I try to break in the same way a real attacker would — then show you exactly what worked and what to do about it.",
           "accent": "Validated attack paths"
         },
         "hero": {
           "eyebrow": "Targeted offensive testing",
-          "title": "Penetration Testing built around realistic attack paths",
-          "intro": "This is focused offensive testing designed to validate how far real weaknesses can go. The goal is not just to list issues, but to understand exploitability, business impact, and what a motivated attacker could actually achieve.",
-          "outcomeLabel": "Outcome",
-          "outcomeText": "You get validated findings, clearer remediation priorities, and a more realistic picture of how technical weaknesses translate into actual business risk."
+          "title": "See what an attacker would actually get away with",
+          "intro": "This isn't checkbox security. I test your application the way someone trying to break it would — chaining weaknesses, escalating access, and seeing how far things go. The point is to show you what's actually exploitable, not just what's theoretically wrong.",
+          "outcomeLabel": "What you walk away with",
+          "outcomeText": "Validated findings with real impact context, a clear sense of what to fix first, and enough detail to hand things off to your developers without back-and-forth."
         },
         "covers": {
           "title": "What this covers",
           "items": [
-            "Targeted testing of exposed functionality, high-risk workflows, and critical user actions",
-            "Validation of exploitable weaknesses rather than surface-level assumptions",
-            "Exploration of attack chains where smaller issues combine into larger impact",
-            "Risk-based interpretation of findings instead of noise-heavy output",
-            "Professional reporting that helps teams make decisions quickly"
+            "Hands-on testing of exposed features, high-risk workflows, and critical user actions",
+            "Actual exploitation — not just flagging potential issues, but proving what's reachable",
+            "Attack chain exploration where smaller bugs combine into bigger problems",
+            "Findings interpreted by risk and impact, not just scanner severity scores",
+            "Reporting that's written for humans, not compliance checkboxes"
           ]
         },
         "process": {
           "title": "How I work",
           "steps": [
             {
-              "title": "Define the scope around what matters most",
-              "text": "I align the engagement around the systems, flows, and assumptions that carry the most risk so time is spent where it counts."
+              "title": "Scope it around what matters",
+              "text": "We figure out together which systems, flows, and assumptions carry the most risk — so I spend time where it counts, not everywhere at once."
             },
             {
-              "title": "Test like an attacker, document like a partner",
-              "text": "During testing, I validate paths that are realistically exploitable and keep enough structure in the process to make the results clear and defensible."
+              "title": "Attack realistically, document thoroughly",
+              "text": "I go after paths that are actually exploitable and document everything clearly enough that the results hold up under scrutiny."
             },
             {
-              "title": "Report findings in a way teams can act on",
-              "text": "The final output is built to support remediation planning, stakeholder communication, and technical follow-up without unnecessary ambiguity."
+              "title": "Deliver findings you can use immediately",
+              "text": "The report is built to support fixing things — reproduction steps, impact context, and prioritized recommendations without the filler."
             }
           ]
         },
         "bestFor": {
           "title": "Best for",
           "items": [
-            "Teams preparing for release, launch, or a customer security review",
-            "Products that need external validation of exploitable risk",
-            "Organizations that want signal over noise from a testing engagement",
-            "Applications with sensitive logic, access control complexity, or high-value workflows"
+            "Teams about to launch, scale, or face a customer security review",
+            "Products that need someone external to actually try breaking in",
+            "Organizations tired of noisy scan results that don't tell them what matters",
+            "Applications with complex access control, sensitive logic, or high-value data"
           ]
         },
         "deliverables": {
           "title": "What you get",
           "items": [
-            "A professional findings report with severity and impact context",
-            "Reproduction details and remediation direction for each validated issue",
-            "Prioritized remediation guidance based on practical risk",
-            "Clear communication suitable for technical and non-technical stakeholders"
+            "A findings report with severity, impact, and reproduction steps for each issue",
+            "Remediation guidance that's specific enough to turn into tickets",
+            "A prioritized breakdown so you know where to start",
+            "A walkthrough call if you want to go through the findings together"
           ]
         },
         "cta": {
-          "title": "Need targeted offensive testing before it becomes urgent?",
-          "text": "If you want an external view of how your application holds up under realistic testing, I can help you validate weaknesses and focus remediation where it matters most.",
+          "title": "Want to know how your app holds up under real pressure?",
+          "text": "If you'd rather find out from me than from an attacker, let's set up a test.",
           "primary": "Request a Penetration Test",
           "secondary": "Back to services"
         }
@@ -253,69 +253,69 @@
       "secureDevelopment": {
         "metadata": {
           "title": "Secure Development | niwo",
-          "description": "Secure development support for teams that want to reduce avoidable application risk earlier in delivery and ship with stronger implementation patterns."
+          "description": "Security support built into your development workflow — catch problems early, ship with more confidence, and stop bolting security on at the end."
         },
         "card": {
           "eyebrow": "Delivery",
           "title": "Secure Development",
-          "text": "Security-minded support for teams building modern applications, automation, and agent-assisted workflows — helping prevent avoidable risks before they reach production.",
+          "text": "I work alongside your team during development so security gets handled early — not rushed in before release.",
           "accent": "Build with guardrails"
         },
         "hero": {
           "eyebrow": "Security in delivery",
-          "title": "Secure Development that helps teams build with fewer avoidable risks",
-          "intro": "Secure development support is about improving how products are designed, implemented, and shipped so common security problems are handled earlier, with less friction and fewer surprises close to release.",
-          "outcomeLabel": "Outcome",
-          "outcomeText": "You get more confidence in implementation decisions, fewer avoidable weaknesses carried into production, and stronger alignment between delivery speed and security expectations."
+          "title": "Stop fixing security issues that shouldn't have shipped",
+          "intro": "Most security problems aren't hard to prevent — they just get introduced because nobody was thinking about them at the right time. I plug into your development process early and help catch the patterns that tend to cause issues later: weak auth flows, missing access checks, trust assumptions that don't hold up.",
+          "outcomeLabel": "What you walk away with",
+          "outcomeText": "Fewer surprises before release, stronger implementation patterns, and a team that's more confident about the security of what they're shipping."
         },
         "covers": {
           "title": "What this covers",
           "items": [
-            "Review of implementation patterns that commonly introduce avoidable application risk",
-            "Security-minded guidance during feature development, change planning, and release preparation",
-            "Early review of flows involving authentication, authorization, trust boundaries, and sensitive data handling",
-            "Practical guardrails that help developers ship with fewer security regressions",
-            "Support that keeps security aligned with product delivery instead of disconnected from it"
+            "Reviewing implementation patterns that tend to introduce security problems",
+            "Security input during feature development, architecture decisions, and release prep",
+            "Early review of auth flows, access control, trust boundaries, and data handling",
+            "Helping developers build with safer defaults and fewer regressions",
+            "Keeping security in sync with how your team actually builds and ships"
           ]
         },
         "process": {
           "title": "How I work",
           "steps": [
             {
-              "title": "Look at the design and implementation path early",
-              "text": "I review the intended flow, trust assumptions, and likely weak points before they become harder or more expensive to change."
+              "title": "Get involved early",
+              "text": "I look at the design, the intended flow, and the trust assumptions while things are still easy to change — not after they're baked in."
             },
             {
-              "title": "Focus on practical changes teams can absorb",
-              "text": "The goal is not to add process for its own sake, but to improve decisions, defaults, and implementation details in ways that fit the product workflow."
+              "title": "Give input that fits your workflow",
+              "text": "I'm not here to add process. I focus on improving the decisions, defaults, and implementation details that matter most — in a way that doesn't slow you down."
             },
             {
-              "title": "Help teams ship with clearer security guardrails",
-              "text": "The result is a more reliable path from idea to release, with security built into the work rather than bolted on at the end."
+              "title": "Help you ship with confidence",
+              "text": "The end result is code that's more secure by design, not because someone bolted a review onto the end of the sprint."
             }
           ]
         },
         "bestFor": {
           "title": "Best for",
           "items": [
-            "Teams building new products or shipping major feature changes",
-            "Developers who want practical security input during implementation",
-            "Startups that need stronger security decisions without slowing delivery too much",
-            "Products where trust, permissions, and sensitive workflows matter early"
+            "Teams building something new or shipping a significant feature change",
+            "Developers who want security input they can actually use while coding",
+            "Startups that can't afford to get security wrong but also can't afford to slow down",
+            "Products where auth, permissions, and sensitive data are central from day one"
           ]
         },
         "deliverables": {
           "title": "What you get",
           "items": [
-            "Implementation guidance tied to your actual product and delivery flow",
-            "Review notes on risk-prone patterns and areas worth tightening",
-            "Clear recommendations developers can apply without heavy translation",
-            "A more security-aware delivery path for future work, not just one release"
+            "Guidance tied to your actual product and how your team works",
+            "Notes on risky patterns and where to tighten things up",
+            "Recommendations specific enough for developers to apply directly",
+            "A stronger security posture that carries forward — not just a one-time review"
           ]
         },
         "cta": {
-          "title": "Want security support that fits the way your team builds?",
-          "text": "If you want to reduce avoidable risk earlier and ship with more confidence, I can support the product and engineering work before issues harden into production problems.",
+          "title": "Want security built in from the start?",
+          "text": "If you'd rather prevent issues than find them after the fact, let's talk about working together during development.",
           "primary": "Talk Secure Development",
           "secondary": "Back to services"
         }
@@ -519,4 +519,8 @@
       "contact": {
         "navTitle": "12. Contact",
         "title": "12. Contact",
-        "body": "If you have questi
+        "body": "If you have questions about this Privacy Policy or about how your personal data is handled, contact legal@niwosystems.com."
+      }
+    }
+  }
+}
