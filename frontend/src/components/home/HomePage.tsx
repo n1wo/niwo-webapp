@@ -10,7 +10,7 @@ import ServiceCard from "@/components/services/ServiceCard";
 import { serviceDefinitions } from "@/data/services";
 
 const VIDEO_SRC = "https://d2k0ncl90mug6s.cloudfront.net/bvideo-20251020.mp4";
-const HEADLINE_TYPING_DELAY_MS = 52;
+const HEADLINE_TYPING_DELAY_MS = 30;
 const SECTION_HEADING_TYPING_DELAY_MS = 34;
 
 export default function HomePage(): JSX.Element {
@@ -376,16 +376,4 @@ export default function HomePage(): JSX.Element {
         </section>
 
         <section className="rounded-lg border border-white/[0.08] bg-[#111113] px-8 py-10 text-center sm:px-12 sm:py-11">
-          <h2 className="mx-auto max-w-3xl font-mono text-lg font-medium leading-8 tracking-[-0.01em] text-zinc-100 sm:text-xl">
-            {t("supportLine")}
-          </h2>
-          <PrimarySecondaryCta
-            className="mt-6 justify-center font-mono"
-            primaryLabel={t("primaryCta")}
-            secondaryLabel={t("secondaryCta")}
-          />
-        </section>
-      </div>
-    </div>
-  );
-}
+          <h2 className="mx
