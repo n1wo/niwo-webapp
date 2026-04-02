@@ -83,4 +83,14 @@ export default async function VdpPage({
                 {item}
               </li>
             ))}
-          </u
+          </ul>
+        </div>
+      </section>
+
+      <section id="acknowledgement" className="scroll-mt-28">
+        <h2>{t("sections.acknowledgement.title")}</h2>
+        <p>{t("sections.acknowledgement.body")}</p>
+      </section>
+    </LegalPageLayout>
+  );
+}

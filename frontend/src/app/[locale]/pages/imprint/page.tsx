@@ -78,4 +78,13 @@ export default async function ImprintPage({
 
       <section id="contact" className="scroll-mt-28">
         <h2>{t("sections.contact.title")}</h2>
-        
+        <p>{t("sections.contact.body")}</p>
+      </section>
+
+      <section id="liability" className="scroll-mt-28">
+        <h2>{t("sections.liability.title")}</h2>
+        <p>{t("sections.liability.body")}</p>
+      </section>
+    </LegalPageLayout>
+  );
+}

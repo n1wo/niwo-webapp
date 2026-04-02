@@ -139,4 +139,13 @@ export default async function PrivacyPolicyPage({
 
       <section id="changes" className="scroll-mt-28">
         <h2>{t("sections.changes.title")}</h2>
-  
+        <p>{t("sections.changes.body")}</p>
+      </section>
+
+      <section id="contact" className="scroll-mt-28">
+        <h2>{t("sections.contact.title")}</h2>
+        <p>{t("sections.contact.body")}</p>
+      </section>
+    </LegalPageLayout>
+  );
+}
