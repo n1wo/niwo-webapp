@@ -300,21 +300,21 @@ export const OFFICE_LAYOUT = {
   },
   coffeeStation: {
     counter: {
-      x: 320,
+      x: 608,
       y: 480,
       width: 128,
       height: 48,
     },
     machine: {
-      x: 240,
+      x: 528,
       y: 472,
       width: 48,
       height: 48,
     },
     cups: [
-      { x: 314, y: 470 },
-      { x: 338, y: 470 },
-      { x: 362, y: 470 },
+      { x: 602, y: 470 },
+      { x: 626, y: 470 },
+      { x: 650, y: 470 },
     ],
   },
   shelfArea: {
@@ -342,7 +342,7 @@ export const OFFICE_LAYOUT = {
       height: 4,
     },
     {
-      x: 304,
+      x: 592,
       y: 496,
       width: 40,
       height: 4,
@@ -392,13 +392,13 @@ export const OFFICE_LAYOUT = {
       height: 18,
     },
     {
-      x: 320,
+      x: 608,
       y: 480,
       width: 128,
       height: 48,
     },
     {
-      x: 240,
+      x: 528,
       y: 472,
       width: 48,
       height: 48,
