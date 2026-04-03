@@ -5,6 +5,7 @@ import {
   OFFICE_LAYOUT,
   OFFICE_PALETTE,
   type OfficeDeskCluster,
+  type OfficeZone,
 } from "@/components/trust-boundary/officeSceneLayout";
 
 type TrustBoundaryCanvasProps = {
@@ -12,6 +13,16 @@ type TrustBoundaryCanvasProps = {
   onDeskRangeChange: (isNearDesk: boolean) => void;
   onDeskInteract: () => void;
 };
+
+const VIEWPORT_WIDTH = 960;
+const VIEWPORT_HEIGHT = 540;
+const ZONE_DRAW_ORDER = [
+  "circulation",
+  "utility",
+  "breakArea",
+  "secondaryWork",
+  "primaryWork",
+] as const;
 
 export default function TrustBoundaryCanvas({
   deskMode,
@@ -46,29 +57,16 @@ export default function TrustBoundaryCanvas({
 
       class TrustBoundaryRoomScene extends Phaser.Scene {
         private playerBody!: Phaser.GameObjects.Rectangle;
-
         private playerVisual!: Phaser.GameObjects.Container;
-
-        private deskFocusGlow!: Phaser.GameObjects.Ellipse;
-
-        private deskFocusRing!: Phaser.GameObjects.Ellipse;
-
-        private deskAura!: Phaser.GameObjects.Arc;
-
-        private deskSweep!: Phaser.GameObjects.Rectangle;
-
-        private coworkerLampGlow!: Phaser.GameObjects.Arc;
-
+        private deskFocusPlate!: Phaser.GameObjects.Rectangle;
+        private deskFocusOutline!: Phaser.GameObjects.Rectangle;
+        private deskFocusPulse!: Phaser.GameObjects.Ellipse;
+        private primaryMonitorGlow!: Phaser.GameObjects.Ellipse;
         private cursors!: Phaser.Types.Input.Keyboard.CursorKeys;
-
         private keys!: Record<string, Phaser.Input.Keyboard.Key>;
-
         private inputLocked = false;
-
         private isNearDesk = false;
-
         private deskModeActive = false;
-
         private staticObstacles: Phaser.GameObjects.Rectangle[] = [];
 
         constructor() {
@@ -76,48 +74,38 @@ export default function TrustBoundaryCanvas({
         }
 
         create() {
-          this.cameras.main.setBackgroundColor("#05070d");
+          this.cameras.main.setBackgroundColor("#0a0d12");
           this.physics.world.setBounds(0, 0, roomWidth, roomHeight);
           this.cameras.main.setBounds(0, 0, roomWidth, roomHeight);
           this.cameras.main.roundPixels = true;
 
-          this.buildOfficeShell(Phaser);
+          this.buildOfficeShell();
           this.createStaticColliders();
-          this.createDeskFocus();
-          this.addDeskCluster(Phaser, OFFICE_LAYOUT.coworkerDesk, false);
-          this.addDeskCluster(Phaser, OFFICE_LAYOUT.playerDesk, true);
           this.addWhiteboard();
           this.addPrinterArea();
           this.addCoffeeStation();
           this.addShelfArea();
-          this.addWallDetails();
-          this.addDoorway();
+          this.addDeskCluster(Phaser, OFFICE_LAYOUT.coworkerDesk, false);
+          this.addDeskCluster(Phaser, OFFICE_LAYOUT.playerDesk, true);
+          this.createDeskFocus();
           this.createActors();
           this.setupCamera();
 
           this.cursors = this.input.keyboard!.createCursorKeys();
-          this.keys = this.input.keyboard!.addKeys("W,A,S,D,E") as Record<
-            string,
-            Phaser.Input.Keyboard.Key
-          >;
+          this.keys = this.input.keyboard!.addKeys("W,A,S,D,E") as Record<string, Phaser.Input.Keyboard.Key>;
 
           this.events.on("desk-mode", (locked: boolean) => {
             this.inputLocked = locked;
             this.deskModeActive = locked;
-
-            const playerBody = this.playerBody.body as Phaser.Physics.Arcade.Body;
-            if (locked) {
-              playerBody.setVelocity(0, 0);
-            }
-
+            const playerPhysics = this.playerBody.body as Phaser.Physics.Arcade.Body;
+            if (locked) playerPhysics.setVelocity(0, 0);
             this.tweens.killTweensOf(this.cameras.main);
             this.tweens.add({
               targets: this.cameras.main,
               zoom: locked ? OFFICE_LAYOUT.camera.deskZoom : OFFICE_LAYOUT.camera.baseZoom,
-              duration: locked ? 280 : 360,
+              duration: locked ? 260 : 320,
               ease: "Sine.easeInOut",
             });
-
             this.refreshDeskFocus();
           });
 
@@ -127,23 +115,18 @@ export default function TrustBoundaryCanvas({
         }
 
         update() {
-          const playerBody = this.playerBody.body as Phaser.Physics.Arcade.Body;
-          const speed = 188;
+          const playerPhysics = this.playerBody.body as Phaser.Physics.Arcade.Body;
+          const speed = 184;
           let velocityX = 0;
           let velocityY = 0;
-
           if (!this.inputLocked) {
             if (this.cursors.left.isDown || this.keys.A.isDown) velocityX -= speed;
             if (this.cursors.right.isDown || this.keys.D.isDown) velocityX += speed;
             if (this.cursors.up.isDown || this.keys.W.isDown) velocityY -= speed;
             if (this.cursors.down.isDown || this.keys.S.isDown) velocityY += speed;
           }
-
-          playerBody.setVelocity(velocityX, velocityY);
-          if (velocityX !== 0 && velocityY !== 0) {
-            playerBody.velocity.normalize().scale(speed);
-          }
-
+          playerPhysics.setVelocity(velocityX, velocityY);
+          if (velocityX !== 0 && velocityY !== 0) playerPhysics.velocity.normalize().scale(speed);
           this.syncActorVisuals();
 
           const nearDesk =
@@ -160,251 +143,200 @@ export default function TrustBoundaryCanvas({
             deskRangeCallbackRef.current(nearDesk);
           }
 
-          if (
-            nearDesk &&
-            !this.inputLocked &&
-            Phaser.Input.Keyboard.JustDown(this.keys.E)
-          ) {
+          if (nearDesk && !this.inputLocked && Phaser.Input.Keyboard.JustDown(this.keys.E)) {
             deskInteractCallbackRef.current();
           }
         }
 
-        private buildOfficeShell(PhaserLib: typeof import("phaser")) {
-          const graphics = this.add.graphics();
+        private buildOfficeShell() {
           const room = OFFICE_LAYOUT.room;
           const interior = room.interior;
+          const backdrop = this.add.graphics();
 
-          graphics.setDepth(0);
-          graphics.fillStyle(OFFICE_PALETTE.roomShadow, 1);
-          graphics.fillRect(0, 0, roomWidth, roomHeight);
+          // Build the room as a contained office shell first so the props inherit a
+          // clean simulation space instead of floating in a moody void.
+          backdrop.setDepth(0);
+          backdrop.fillStyle(OFFICE_PALETTE.background, 1);
+          backdrop.fillRect(0, 0, roomWidth, roomHeight);
+          backdrop.fillStyle(0x161b23, 1);
+          backdrop.fillRect(interior.x - 80, interior.y - 88, interior.width + 160, interior.height + 176);
 
-          graphics.fillStyle(0x0b0e14, 1);
-          graphics.fillRoundedRect(
-            interior.x - 24,
-            interior.y - 20,
-            interior.width + 42,
-            interior.height + 34,
-            34,
-          );
-
-          graphics.fillStyle(OFFICE_PALETTE.floorBase, 1);
-          graphics.fillRoundedRect(
-            interior.x,
-            interior.y,
-            interior.width,
-            interior.height,
-            28,
-          );
-
-          // Inner floor zone (subtly lighter center creates depth)
-          graphics.fillStyle(OFFICE_PALETTE.floorSecondary, 0.22);
-          graphics.fillRoundedRect(
-            interior.x + 28,
-            interior.y + 34,
-            interior.width - 56,
-            interior.height - 68,
-            18,
-          );
-
-          // Floor perimeter shadow (architectural seam where floor meets walls)
-          graphics.fillStyle(0x0a0e16, 0.4);
-          graphics.fillRect(
-            interior.x + 8,
-            interior.y + 24,
-            interior.width - 28,
-            3,
-          );
-          graphics.fillRect(
-            interior.x + interior.width - 24,
-            interior.y + 28,
-            3,
-            interior.height - 46,
-          );
-
-          graphics.fillStyle(OFFICE_PALETTE.wall, 1);
-          graphics.fillRect(
-            interior.x - 24,
-            interior.y - 28,
-            interior.width + 24,
-            room.topWallHeight,
-          );
-          graphics.fillStyle(OFFICE_PALETTE.wallTrim, 0.96);
-          graphics.fillRect(
-            interior.x - 12,
-            interior.y + 16,
-            interior.width - 28,
-            12,
-          );
-
-          graphics.fillStyle(OFFICE_PALETTE.wall, 1);
-          graphics.fillRect(
-            interior.x + interior.width - 10,
-            interior.y - 6,
-            room.rightWallWidth,
-            interior.height + 8,
-          );
-          graphics.fillStyle(OFFICE_PALETTE.wallTrim, 0.86);
-          graphics.fillRect(
-            interior.x + interior.width - 22,
-            interior.y + 22,
-            12,
-            interior.height - 54,
-          );
-
-          room.leftWallSegments.forEach((segment) => {
-            graphics.fillStyle(OFFICE_PALETTE.wall, 1);
-            graphics.fillRect(segment.x, segment.y, segment.width, segment.height);
-            graphics.fillStyle(OFFICE_PALETTE.wallTrim, 0.86);
-            graphics.fillRect(
-              segment.x + segment.width - 10,
-              segment.y + 12,
-              10,
-              segment.height - 24,
-            );
-          });
-
-          // Wall shadow strips (cast from walls onto floor for grounding)
           this.add
             .rectangle(
-              interior.x + interior.width / 2 - 40,
-              interior.y + 44,
-              interior.width - 60,
-              26,
-              0x04060a,
+              interior.x + interior.width / 2,
+              interior.y + interior.height / 2 + 14,
+              interior.width + 36,
+              interior.height + 36,
+              0x000000,
               0.14,
             )
-            .setDepth(3);
-          this.add
-            .rectangle(
-              interior.x + interior.width - 34,
-              interior.y + interior.height / 2,
-              22,
-              interior.height - 50,
-              0x04060a,
-              0.1,
-            )
-            .setDepth(3);
+            .setDepth(1);
 
-          // Corner shadows (darken where walls meet for architectural weight)
-          this.add
-            .rectangle(interior.x + 4, interior.y + 6, 24, 24, 0x04060a, 0.2)
-            .setDepth(4);
-          this.add
-            .rectangle(
-              interior.x + interior.width - 18,
-              interior.y + 6,
-              24,
-              24,
-              0x04060a,
-              0.18,
-            )
-            .setDepth(4);
-
-          // Wall accent panels
-          graphics.fillStyle(OFFICE_PALETTE.wallPanel, 0.85);
-          graphics.fillRoundedRect(220, 102, 132, 20, 8);
-          graphics.fillRoundedRect(378, 102, 112, 20, 8);
-          graphics.fillRoundedRect(818, 124, 56, 184, 12);
-
-          // Floor tile grid (fewer lines, lower opacity for cohesion)
-          graphics.lineStyle(1, OFFICE_PALETTE.floorLine, 0.18);
-          for (let index = 0; index < 9; index += 1) {
-            const y = interior.y + 52 + index * 52;
-            graphics.lineBetween(
-              interior.x + 30,
-              y,
-              interior.x + interior.width - 34,
-              y - 20,
-            );
-          }
-
-          for (let index = 0; index < 11; index += 1) {
-            const x = interior.x + 34 + index * 68;
-            graphics.lineBetween(
-              x,
-              interior.y + 30,
-              x + 40,
-              interior.y + interior.height - 28,
-            );
-          }
-
-          // Subtle walkway tone (floor material shift from entrance toward desk area)
-          const walkway = this.add.rectangle(440, 454, 370, 86, 0xf4f4f5, 0.014);
-          walkway.setRotation(-0.12);
-          walkway.setDepth(6);
-
-          // Entry area shadow (darker zone near the entrance)
-          const entryShadow = this.add.rectangle(132, 546, 210, 96, 0x04060a, 0.62);
-          entryShadow.setRotation(-0.08);
-          entryShadow.setDepth(2);
-
-          graphics.fillStyle(OFFICE_PALETTE.floorSecondary, 0.78);
-          graphics.fillRoundedRect(
-            room.entranceThreshold.x,
-            room.entranceThreshold.y,
-            room.entranceThreshold.width,
-            room.entranceThreshold.height,
-            6,
-          );
-          graphics.fillStyle(0xf4f4f5, 0.08);
-          graphics.fillRect(
-            room.entranceThreshold.x + 10,
-            room.entranceThreshold.y + 3,
-            room.entranceThreshold.width - 22,
-            3,
-          );
-
-          // Edge vignette (darkens areas outside the room boundary)
-          this.add.rectangle(82, 322, 132, 620, 0x030409, 0.38).setDepth(1);
-          this.add.rectangle(512, 62, 940, 134, 0x04060a, 0.3).setDepth(1);
-          this.add.rectangle(928, 322, 120, 620, 0x020408, 0.4).setDepth(1);
-
-          // Window light spill (ambient glow from the back-wall window)
-          const windowSpill = this.add.ellipse(580, 190, 200, 120, 0xf4f4f5, 0.022);
-          windowSpill.setBlendMode(PhaserLib.BlendModes.SCREEN);
-          windowSpill.setDepth(5);
-
-          // Desk area shadow pool (grounds the work cluster)
-          const shadowPool = this.add.ellipse(740, 488, 300, 110, 0x020305, 0.16);
-          shadowPool.setRotation(-0.1);
-          shadowPool.setDepth(5);
+          this.drawFloorTiles();
+          this.drawZonePanels();
+          this.drawRoomBoundaries();
+          this.addEntryLane();
+          this.addWallAccents();
         }
 
+        private drawFloorTiles() {
+          const floor = this.add.graphics();
+          const { interior } = OFFICE_LAYOUT.room;
+          const tileSize = OFFICE_LAYOUT.tileSize;
+          const columns = Math.floor(interior.width / tileSize);
+          const rows = Math.floor(interior.height / tileSize);
+
+          floor.setDepth(2);
+          floor.fillStyle(OFFICE_PALETTE.floorBase, 1);
+          floor.fillRect(interior.x, interior.y, interior.width, interior.height);
+
+          // The floor keeps a subtle tile rhythm so objects snap into place
+          // visually without making the room feel like a debug grid.
+          for (let row = 0; row < rows; row += 1) {
+            for (let column = 0; column < columns; column += 1) {
+              const tileX = interior.x + column * tileSize;
+              const tileY = interior.y + row * tileSize;
+              const isAlternate = (row + column) % 2 === 0;
+              floor.fillStyle(isAlternate ? OFFICE_PALETTE.floorBase : OFFICE_PALETTE.floorAlt, 1);
+              floor.fillRect(tileX, tileY, tileSize - 1, tileSize - 1);
+            }
+          }
+
+          floor.lineStyle(1, OFFICE_PALETTE.floorLine, 0.18);
+          for (let row = 0; row <= rows; row += 1) {
+            const y = interior.y + row * tileSize;
+            floor.lineBetween(interior.x, y, interior.x + interior.width, y);
+          }
+          for (let column = 0; column <= columns; column += 1) {
+            const x = interior.x + column * tileSize;
+            floor.lineBetween(x, interior.y, x, interior.y + interior.height);
+          }
+
+          this.add
+            .rectangle(
+              interior.x + interior.width / 2,
+              interior.y + interior.height / 2,
+              interior.width,
+              interior.height,
+              0x000000,
+              0,
+            )
+            .setStrokeStyle(2, OFFICE_PALETTE.floorLine, 0.3)
+            .setDepth(3);
+        }
+
+        private drawZonePanels() {
+          ZONE_DRAW_ORDER.forEach((zoneKey) => {
+            const zone = OFFICE_LAYOUT.zones[zoneKey];
+            this.addZonePanel(zone, zoneKey === "primaryWork");
+          });
+        }
+
+        private addZonePanel(zone: OfficeZone, isPrimary: boolean) {
+          const zoneRect = this.add.rectangle(
+            zone.x + zone.width / 2,
+            zone.y + zone.height / 2,
+            zone.width - 8,
+            zone.height - 8,
+            zone.fillColor,
+            isPrimary ? 0.3 : 0.2,
+          );
+          zoneRect.setDepth(4);
+          zoneRect.setStrokeStyle(2, zone.edgeColor, isPrimary ? 0.34 : 0.22);
+
+          this.add
+            .rectangle(zone.x + zone.width / 2, zone.y + 10, zone.width - 22, 4, 0xffffff, isPrimary ? 0.08 : 0.05)
+            .setDepth(5);
+          this.add
+            .rectangle(zone.x + 12, zone.y + zone.height / 2, 4, zone.height - 16, zone.edgeColor, isPrimary ? 0.16 : 0.08)
+            .setDepth(5);
+        }
+
+        private drawRoomBoundaries() {
+          const walls = this.add.graphics();
+          const room = OFFICE_LAYOUT.room;
+          const interior = room.interior;
+          const topWallY = interior.y - room.topWallHeight;
+
+          walls.setDepth(16);
+          walls.fillStyle(OFFICE_PALETTE.wall, 1);
+          walls.fillRect(interior.x - 24, topWallY, interior.width + 88, room.topWallHeight);
+          walls.fillStyle(OFFICE_PALETTE.wallTrim, 1);
+          walls.fillRect(interior.x - 16, interior.y - 6, interior.width + 48, 8);
+          walls.fillStyle(OFFICE_PALETTE.wallCap, 1);
+          walls.fillRect(interior.x - 12, topWallY + 8, interior.width + 40, 6);
+
+          walls.fillStyle(OFFICE_PALETTE.wall, 1);
+          walls.fillRect(interior.x + interior.width, interior.y - 4, room.rightWallWidth, interior.height + 52);
+          walls.fillStyle(OFFICE_PALETTE.wallTrim, 1);
+          walls.fillRect(interior.x + interior.width + 8, interior.y + 8, 8, interior.height + 28);
+
+          room.leftWallSegments.forEach((segment) => {
+            walls.fillStyle(OFFICE_PALETTE.wall, 1);
+            walls.fillRect(segment.x, segment.y, segment.width, segment.height);
+            walls.fillStyle(OFFICE_PALETTE.wallTrim, 1);
+            walls.fillRect(segment.x + segment.width - 8, segment.y + 8, 8, segment.height - 16);
+          });
+
+          room.bottomWallSegments.forEach((segment) => {
+            walls.fillStyle(OFFICE_PALETTE.wall, 1);
+            walls.fillRect(segment.x, segment.y, segment.width, segment.height);
+            walls.fillStyle(OFFICE_PALETTE.wallTrim, 1);
+            walls.fillRect(segment.x + 8, segment.y + 8, segment.width - 16, 8);
+          });
+
+          this.add
+            .rectangle(interior.x + interior.width / 2, interior.y + 10, interior.width - 12, 12, 0x000000, 0.08)
+            .setDepth(15);
+          this.add
+            .rectangle(interior.x + interior.width - 8, interior.y + interior.height / 2, 12, interior.height - 12, 0x000000, 0.06)
+            .setDepth(15);
+          this.add
+            .rectangle(interior.x + 8, interior.y + interior.height / 2, 12, interior.height - 12, 0x000000, 0.05)
+            .setDepth(15);
+
+          const threshold = room.entranceThreshold;
+          const thresholdCenterX = threshold.x + threshold.width / 2;
+          this.add
+            .rectangle(thresholdCenterX, interior.y + interior.height + 44, threshold.width + 34, 88, 0x07090d, 1)
+            .setDepth(1);
+
+          const mat = this.add.rectangle(
+            thresholdCenterX,
+            threshold.y + threshold.height / 2,
+            threshold.width - 10,
+            threshold.height,
+            OFFICE_PALETTE.zonePath,
+            0.82,
+          );
+          mat.setDepth(8);
+          mat.setStrokeStyle(2, OFFICE_PALETTE.wallTrim, 0.42);
+          this.add.rectangle(thresholdCenterX, threshold.y + 3, threshold.width - 18, 4, 0xffffff, 0.08).setDepth(9);
+        }
+
+        private addEntryLane() {
+          const lane = this.add.rectangle(400, 432, 232, 28, OFFICE_PALETTE.focus, 0.06);
+          lane.setDepth(6);
+          lane.setStrokeStyle(1, OFFICE_PALETTE.focus, 0.18);
+
+          [304, 368, 432, 496].forEach((x) => {
+            this.add.rectangle(x, 432, 20, 8, OFFICE_PALETTE.focus, 0.14).setDepth(7);
+          });
+        }
+
+        private addWallAccents() {
+          this.add.rectangle(504, 126, 264, 10, OFFICE_PALETTE.wallTrim, 0.8).setDepth(18);
+          this.add.rectangle(504, 120, 220, 4, OFFICE_PALETTE.wallCap, 0.52).setDepth(19);
+          this.add.rectangle(844, 220, 12, 188, OFFICE_PALETTE.wallTrim, 0.72).setDepth(18);
+          this.add.rectangle(218, 540, 24, 20, OFFICE_PALETTE.wallTrim, 0.9).setDepth(18);
+          this.add.rectangle(358, 540, 24, 20, OFFICE_PALETTE.wallTrim, 0.9).setDepth(18);
+        }
         private createStaticColliders() {
           OFFICE_LAYOUT.collisionRects.forEach((rect) => {
             const obstacle = this.add.rectangle(rect.x, rect.y, rect.width, rect.height, 0x000000, 0);
-            if (rect.rotation) {
-              obstacle.setRotation(rect.rotation);
-            }
             this.physics.add.existing(obstacle, true);
             this.staticObstacles.push(obstacle);
           });
-        }
-
-        private createDeskFocus() {
-          this.deskFocusGlow = this.add.ellipse(
-            712,
-            406,
-            244,
-            112,
-            OFFICE_PALETTE.deskGlow,
-            0.08,
-          );
-          this.deskFocusGlow.setRotation(-0.09);
-          this.deskFocusGlow.setBlendMode(Phaser.BlendModes.SCREEN);
-          this.deskFocusGlow.setDepth(72);
-
-          this.deskFocusRing = this.add.ellipse(
-            712,
-            406,
-            194,
-            76,
-            OFFICE_PALETTE.deskGlow,
-            0.08,
-          );
-          this.deskFocusRing.setRotation(-0.08);
-          this.deskFocusRing.setStrokeStyle(2, OFFICE_PALETTE.deskGlow, 0.18);
-          this.deskFocusRing.setDepth(73);
         }
 
         private addDeskCluster(
@@ -413,54 +345,20 @@ export default function TrustBoundaryCanvas({
           isPrimary: boolean,
         ) {
           const depth = cluster.desk.y + cluster.desk.height / 2;
-          const rugColor = isPrimary ? 0x1c2234 : 0x14181f;
-          const shadowAlpha = isPrimary ? 0.28 : 0.2;
-
           const rug = this.add.rectangle(
             cluster.rug.x,
             cluster.rug.y,
             cluster.rug.width,
             cluster.rug.height,
-            rugColor,
-            0.96,
+            isPrimary ? OFFICE_PALETTE.zonePrimary : OFFICE_PALETTE.zoneSecondary,
+            0.58,
           );
-          rug.setRotation(cluster.rug.rotation ?? 0);
-          rug.setDepth(depth - 30);
+          rug.setDepth(depth - 18);
+          rug.setStrokeStyle(2, cluster.accentColor, isPrimary ? 0.28 : 0.14);
 
-          const rugEdge = this.add.rectangle(
-            cluster.rug.x,
-            cluster.rug.y - cluster.rug.height / 2 + 6,
-            cluster.rug.width - 10,
-            6,
-            cluster.accentColor,
-            isPrimary ? 0.14 : 0.08,
-          );
-          rugEdge.setRotation(cluster.rug.rotation ?? 0);
-          rugEdge.setDepth(depth - 29);
+          this.addGroundShadow(cluster.desk.x + 4, cluster.desk.y + 10, cluster.desk.width + 24, cluster.desk.height + 22, 0.18, depth - 10);
 
-          // Wide ground shadow (gives the desk visual weight)
-          this.addShadowEllipse(
-            cluster.desk.x + 14,
-            cluster.desk.y + 38,
-            cluster.desk.width + 72,
-            66,
-            shadowAlpha,
-            depth - 20,
-            -0.08,
-          );
-          // Contact shadow (tight dark strip directly under the front edge)
-          this.addShadowEllipse(
-            cluster.desk.x + 4,
-            cluster.desk.y + cluster.desk.height / 2 + 6,
-            cluster.desk.width - 8,
-            14,
-            isPrimary ? 0.34 : 0.24,
-            depth - 19,
-            -0.05,
-          );
-
-          // Desk top surface
-          const deskTop = this.add.rectangle(
+          const deskSurface = this.add.rectangle(
             cluster.desk.x,
             cluster.desk.y,
             cluster.desk.width,
@@ -468,114 +366,31 @@ export default function TrustBoundaryCanvas({
             OFFICE_PALETTE.deskTop,
             1,
           );
-          deskTop.setDepth(depth);
-          deskTop.setStrokeStyle(2, 0xffffff, 0.06);
+          deskSurface.setDepth(depth);
+          deskSurface.setStrokeStyle(2, OFFICE_PALETTE.deskFront, 0.88);
 
-          // Top surface highlight (subtle lighter strip along back edge)
-          this.add.rectangle(
-            cluster.desk.x,
-            cluster.desk.y - cluster.desk.height / 2 + 5,
-            cluster.desk.width - 10,
-            5,
-            0xffffff,
-            isPrimary ? 0.05 : 0.03,
-          ).setDepth(depth + 1);
+          this.add
+            .rectangle(cluster.desk.x, cluster.desk.y - cluster.desk.height / 2 + 6, cluster.desk.width - 12, 6, 0xffffff, 0.08)
+            .setDepth(depth + 1);
+          this.add
+            .rectangle(cluster.desk.x + cluster.desk.width / 2 - 26, cluster.desk.y + 6, 40, cluster.desk.height - 12, OFFICE_PALETTE.deskDrawer, 1)
+            .setDepth(depth + 1);
+          this.add.rectangle(cluster.desk.x + cluster.desk.width / 2 - 26, cluster.desk.y - 12, 18, 4, OFFICE_PALETTE.wallCap, 0.36).setDepth(depth + 2);
+          this.add.rectangle(cluster.desk.x + cluster.desk.width / 2 - 26, cluster.desk.y + 14, 18, 4, OFFICE_PALETTE.wallCap, 0.36).setDepth(depth + 2);
+          this.add.rectangle(cluster.desk.x - cluster.desk.width / 2 + 16, cluster.desk.y + cluster.desk.height / 2 - 10, 12, 20, OFFICE_PALETTE.deskLeg, 0.92).setDepth(depth + 1);
+          this.add.rectangle(cluster.desk.x + cluster.desk.width / 2 - 64, cluster.desk.y + cluster.desk.height / 2 - 10, 12, 20, OFFICE_PALETTE.deskLeg, 0.92).setDepth(depth + 1);
 
-          // Front edge lip (bright seam between surface and face)
-          this.add.rectangle(
-            cluster.desk.x,
-            cluster.desk.y + cluster.desk.height / 2 - 20,
-            cluster.desk.width - 16,
-            2,
-            0xffffff,
-            isPrimary ? 0.08 : 0.05,
-          ).setDepth(depth + 2);
-
-          // Front face (visible vertical face of the desk)
-          this.add.rectangle(
-            cluster.desk.x,
-            cluster.desk.y + cluster.desk.height / 2 - 9,
-            cluster.desk.width - 14,
-            20,
-            OFFICE_PALETTE.deskFront,
-            1,
-          ).setDepth(depth + 2);
-
-          // Back edge accent strip
-          this.add.rectangle(
-            cluster.desk.x,
-            cluster.desk.y - cluster.desk.height / 2 + 14,
-            cluster.desk.width - 26,
-            10,
-            cluster.accentColor,
-            isPrimary ? 0.18 : 0.11,
-          ).setDepth(depth + 1);
-
-          // Front desk legs
-          this.add.rectangle(
-            cluster.desk.x - cluster.desk.width / 2 + 22,
-            cluster.desk.y + 22,
-            14,
-            48,
-            OFFICE_PALETTE.deskLeg,
-            1,
-          ).setDepth(depth + 1);
-          this.add.rectangle(
-            cluster.desk.x + cluster.desk.width / 2 - 22,
-            cluster.desk.y + 22,
-            14,
-            48,
-            OFFICE_PALETTE.deskLeg,
-            1,
-          ).setDepth(depth + 1);
-
-          // Back desk legs (partially hidden behind the desk surface)
-          this.add.rectangle(
-            cluster.desk.x - cluster.desk.width / 2 + 24,
-            cluster.desk.y - 18,
-            12,
-            24,
-            OFFICE_PALETTE.deskLeg,
-            0.55,
-          ).setDepth(depth - 1);
-          this.add.rectangle(
-            cluster.desk.x + cluster.desk.width / 2 - 24,
-            cluster.desk.y - 18,
-            12,
-            24,
-            OFFICE_PALETTE.deskLeg,
-            0.55,
-          ).setDepth(depth - 1);
-
-          const screenGlow = this.add.circle(
+          const screenGlow = this.add.ellipse(
             cluster.screenGlow.x,
             cluster.screenGlow.y,
+            cluster.screenGlow.radius * 1.35,
             cluster.screenGlow.radius,
             cluster.accentColor,
             cluster.screenGlow.alpha,
           );
           screenGlow.setBlendMode(PhaserLib.BlendModes.SCREEN);
-          screenGlow.setDepth(depth - 6);
+          screenGlow.setDepth(depth + 2);
 
-          // Monitor stand (neck + base)
-          this.add.rectangle(
-            cluster.laptop.x,
-            cluster.laptop.y + cluster.laptop.height / 2 + 4,
-            6,
-            8,
-            OFFICE_PALETTE.monitorFrame,
-            0.7,
-          ).setDepth(depth + 3);
-          this.add.rectangle(
-            cluster.laptop.x,
-            cluster.laptop.y + cluster.laptop.height / 2 + 9,
-            26,
-            4,
-            OFFICE_PALETTE.monitorFrame,
-            0.55,
-          ).setDepth(depth + 3);
-
-          // Monitor frame
           const monitorFrame = this.add.rectangle(
             cluster.laptop.x,
             cluster.laptop.y,
@@ -584,195 +399,40 @@ export default function TrustBoundaryCanvas({
             OFFICE_PALETTE.monitorFrame,
             1,
           );
-          monitorFrame.setDepth(depth + 4);
-          monitorFrame.setStrokeStyle(2, 0xffffff, isPrimary ? 0.1 : 0.06);
+          monitorFrame.setDepth(depth + 3);
+          monitorFrame.setStrokeStyle(2, 0xffffff, isPrimary ? 0.14 : 0.08);
 
-          // Screen surface
-          this.add.rectangle(
-            cluster.laptop.x,
-            cluster.laptop.y - 1,
-            cluster.laptop.width - 10,
-            cluster.laptop.height - 10,
-            OFFICE_PALETTE.monitor,
-            isPrimary ? 0.95 : 0.65,
-          ).setDepth(depth + 5);
+          this.add.rectangle(cluster.laptop.x, cluster.laptop.y, cluster.laptop.width - 8, cluster.laptop.height - 8, OFFICE_PALETTE.monitor, isPrimary ? 0.96 : 0.76).setDepth(depth + 4);
+          this.add.rectangle(cluster.laptop.x, cluster.laptop.y - 6, cluster.laptop.width - 14, 3, 0xffffff, isPrimary ? 0.2 : 0.12).setDepth(depth + 5);
+          this.add.circle(cluster.laptop.x + cluster.laptop.width / 2 - 7, cluster.laptop.y + cluster.laptop.height / 2 - 6, 2, OFFICE_PALETTE.deviceLight, 0.85).setDepth(depth + 5);
 
-          // Screen content hint (faint text lines on player monitor only)
-          if (isPrimary) {
-            for (let line = 0; line < 3; line += 1) {
-              this.add
-                .rectangle(
-                  cluster.laptop.x - 8 + line * 2,
-                  cluster.laptop.y - 7 + line * 5,
-                  cluster.laptop.width - 30 - line * 10,
-                  1.5,
-                  cluster.accentColor,
-                  0.1 - line * 0.02,
-                )
-                .setDepth(depth + 6);
-            }
-          }
-
-          // Keyboard body
-          this.add.rectangle(
-            cluster.keyboard.x,
-            cluster.keyboard.y,
-            cluster.keyboard.width,
-            cluster.keyboard.height,
-            0x2a303e,
-            isPrimary ? 0.9 : 0.75,
-          ).setDepth(depth + 5);
-          // Key row hints
-          this.add.rectangle(
-            cluster.keyboard.x,
-            cluster.keyboard.y - 1,
-            cluster.keyboard.width - 6,
-            1,
-            0xd7dbeb,
-            isPrimary ? 0.18 : 0.1,
-          ).setDepth(depth + 6);
-          this.add.rectangle(
-            cluster.keyboard.x,
-            cluster.keyboard.y + 2,
-            cluster.keyboard.width - 10,
-            1,
-            0xd7dbeb,
-            isPrimary ? 0.13 : 0.07,
-          ).setDepth(depth + 6);
-          // Mouse
-          this.add.ellipse(
-            cluster.keyboard.x + cluster.keyboard.width / 2 + 18,
-            cluster.keyboard.y + 1,
-            10,
-            14,
-            0x2a303e,
-            isPrimary ? 0.8 : 0.6,
-          ).setDepth(depth + 5);
-
-          this.add.rectangle(
-            cluster.desk.x + 44,
-            cluster.desk.y - 18,
-            44,
-            12,
-            0x0f141d,
-            1,
-          ).setDepth(depth + 3);
-          this.add.rectangle(
-            cluster.desk.x + 44,
-            cluster.desk.y - 18,
-            28,
-            2,
-            cluster.accentColor,
-            0.28,
-          ).setDepth(depth + 4);
+          this.add.rectangle(cluster.keyboard.x, cluster.keyboard.y, cluster.keyboard.width, cluster.keyboard.height, 0x2b3644, 1).setDepth(depth + 2);
+          this.add.rectangle(cluster.keyboard.x, cluster.keyboard.y - 1, cluster.keyboard.width - 10, 2, 0xffffff, 0.08).setDepth(depth + 3);
 
           if (cluster.mug) {
-            this.add.circle(cluster.mug.x, cluster.mug.y, 8, 0xf1e6d9, 0.92).setDepth(depth + 4);
-            this.add.rectangle(cluster.mug.x + 8, cluster.mug.y, 4, 8, 0xf1e6d9, 0.56)
-              .setDepth(depth + 4);
+            this.add.circle(cluster.mug.x, cluster.mug.y, 7, 0xf1eee7, 0.92).setDepth(depth + 4);
+            this.add.rectangle(cluster.mug.x + 6, cluster.mug.y, 3, 6, 0xf1eee7, 0.4).setDepth(depth + 4);
           }
 
           if (cluster.lamp) {
-            this.add.rectangle(
-              cluster.lamp.x,
-              cluster.lamp.y + 8,
-              4,
-              18,
-              0xc8ccd6,
-              0.55,
-            ).setDepth(depth + 4);
-            this.add.circle(cluster.lamp.x, cluster.lamp.y, 8, 0xe4e7ef, 0.8).setDepth(depth + 5);
-            const lampGlow = this.add.circle(
-              cluster.lamp.x + 10,
-              cluster.lamp.y + 6,
-              isPrimary ? 46 : 34,
-              cluster.accentColor,
-              isPrimary ? 0.12 : 0.08,
-            );
-            lampGlow.setBlendMode(PhaserLib.BlendModes.SCREEN);
-            lampGlow.setDepth(depth - 8);
-
-            if (!isPrimary) {
-              this.coworkerLampGlow = lampGlow;
-            }
+            this.add.rectangle(cluster.lamp.x, cluster.lamp.y + 10, 5, 20, OFFICE_PALETTE.deskLeg, 0.9).setDepth(depth + 2);
+            this.add.rectangle(cluster.lamp.x, cluster.lamp.y, 16, 10, OFFICE_PALETTE.wallCap, 0.84).setDepth(depth + 3);
+            this.add
+              .ellipse(cluster.lamp.x + 12, cluster.lamp.y + 4, 42, 22, OFFICE_PALETTE.focusGlow, isPrimary ? 0.08 : 0.04)
+              .setBlendMode(PhaserLib.BlendModes.SCREEN)
+              .setDepth(depth + 1);
           }
-
-          this.addChair(cluster, depth + 8, isPrimary);
 
           if (isPrimary) {
-            // Desk personality: notebook, pen, and sticky note
-            const nbX = cluster.desk.x - 56;
-            const nbY = cluster.desk.y + 6;
-            this.add
-              .rectangle(nbX, nbY, 26, 34, 0x1e2536, 0.92)
-              .setRotation(-0.12)
-              .setDepth(depth + 3);
-            this.add
-              .rectangle(nbX + 1, nbY, 22, 28, 0x2a3348, 0.55)
-              .setRotation(-0.12)
-              .setDepth(depth + 4);
-            this.add
-              .rectangle(nbX + 18, nbY + 8, 22, 2.5, 0xb8c2d8, 0.5)
-              .setRotation(0.3)
-              .setDepth(depth + 5);
-            this.add
-              .rectangle(
-                cluster.keyboard.x + 46,
-                cluster.keyboard.y - 6,
-                15,
-                13,
-                OFFICE_PALETTE.stickyAccent,
-                0.35,
-              )
-              .setRotation(0.06)
-              .setDepth(depth + 5);
-
-            // Desk cable (subtle wire from monitor toward back edge)
-            this.add
-              .rectangle(
-                cluster.laptop.x + 2,
-                cluster.laptop.y - cluster.laptop.height / 2 - 8,
-                3,
-                18,
-                OFFICE_PALETTE.cable,
-                0.55,
-              )
-              .setRotation(-0.15)
-              .setDepth(depth + 2);
-
-            this.deskAura = this.add.circle(
-              cluster.screenGlow.x,
-              cluster.screenGlow.y + 30,
-              112,
-              cluster.accentColor,
-              0.08,
-            );
-            this.deskAura.setBlendMode(PhaserLib.BlendModes.SCREEN);
-            this.deskAura.setDepth(depth - 10);
-
-            this.deskSweep = this.add.rectangle(
-              cluster.laptop.x + 2,
-              cluster.laptop.y - 4,
-              90,
-              6,
-              0xffffff,
-              0.16,
-            );
-            this.deskSweep.setBlendMode(PhaserLib.BlendModes.SCREEN);
-            this.deskSweep.setDepth(depth + 6);
+            this.add.rectangle(cluster.laptop.x, cluster.laptop.y - 24, cluster.laptop.width + 18, 6, OFFICE_PALETTE.focusGlow, 0.18).setDepth(depth + 5);
+            this.primaryMonitorGlow = screenGlow;
           }
+
+          this.addChair(cluster, depth + 2, isPrimary);
         }
 
         private addChair(cluster: OfficeDeskCluster, depth: number, isPrimary: boolean) {
-          this.addShadowEllipse(
-            cluster.chair.x + 10,
-            cluster.chair.y + 18,
-            cluster.chair.width + 18,
-            24,
-            0.22,
-            depth - 2,
-            cluster.chair.rotation ?? 0,
-          );
+          this.addGroundShadow(cluster.chair.x, cluster.chair.y + 10, cluster.chair.width + 12, cluster.chair.height, 0.14, depth - 2);
 
           const seat = this.add.rectangle(
             cluster.chair.x,
@@ -782,145 +442,60 @@ export default function TrustBoundaryCanvas({
             OFFICE_PALETTE.chair,
             1,
           );
-          seat.setRotation(cluster.chair.rotation ?? 0);
           seat.setDepth(depth);
-          seat.setStrokeStyle(2, 0xffffff, 0.05);
+          seat.setStrokeStyle(2, 0xffffff, 0.08);
 
-          const backrest = this.add.rectangle(
-            cluster.chair.x - 10,
-            cluster.chair.y - 18,
-            cluster.chair.width - 16,
-            12,
-            isPrimary ? OFFICE_PALETTE.chairAccent : OFFICE_PALETTE.wallTrim,
-            isPrimary ? 0.48 : 0.32,
-          );
-          backrest.setRotation((cluster.chair.rotation ?? 0) - 0.04);
-          backrest.setDepth(depth + 1);
-
-          this.add.rectangle(
-            cluster.chair.x + 12,
-            cluster.chair.y + 16,
-            6,
-            20,
-            OFFICE_PALETTE.deskLeg,
-            1,
-          )
-            .setRotation(cluster.chair.rotation ?? 0)
+          this.add
+            .rectangle(cluster.chair.x, cluster.chair.y - cluster.chair.height / 2 - 8, cluster.chair.width - 8, 12, isPrimary ? OFFICE_PALETTE.chairAccent : OFFICE_PALETTE.wallTrim, isPrimary ? 0.7 : 0.5)
+            .setDepth(depth + 1);
+          this.add
+            .rectangle(cluster.chair.x, cluster.chair.y + cluster.chair.height / 2 + 6, 8, 12, OFFICE_PALETTE.deskLeg, 0.9)
             .setDepth(depth + 1);
         }
-
         private addWhiteboard() {
           const whiteboard = OFFICE_LAYOUT.whiteboard;
+          this.add.rectangle(whiteboard.x + 6, whiteboard.y + 8, whiteboard.width + 10, whiteboard.height + 10, 0x000000, 0.12).setDepth(109);
 
-          this.add.rectangle(
-            whiteboard.x + 10,
-            whiteboard.y + 14,
-            whiteboard.width + 14,
-            whiteboard.height + 10,
-            0x04060a,
-            0.2,
-          ).setDepth(118);
+          const board = this.add.rectangle(whiteboard.x, whiteboard.y, whiteboard.width, whiteboard.height, 0xf2f5f8, 1);
+          board.setStrokeStyle(4, 0x657180, 0.95);
+          board.setDepth(110);
 
-          const board = this.add.rectangle(
-            whiteboard.x,
-            whiteboard.y,
-            whiteboard.width,
-            whiteboard.height,
-            0xe3e8f3,
-            0.92,
-          );
-          board.setStrokeStyle(6, 0x424d62, 0.9);
-          board.setDepth(120);
-
-          this.add.rectangle(whiteboard.x, whiteboard.y + 48, whiteboard.width - 22, 8, 0xc7d0dd, 0.56)
-            .setDepth(121);
+          this.add.rectangle(whiteboard.x, whiteboard.y - 28, whiteboard.width - 36, 8, 0x6c7784, 0.6).setDepth(111);
+          this.add.rectangle(whiteboard.x, whiteboard.y + 36, whiteboard.width - 26, 6, 0xc8d0da, 0.82).setDepth(111);
 
           whiteboard.stickyNotes.forEach((note, index) => {
-            this.add.rectangle(
-              whiteboard.x - 86 + index * 42,
-              whiteboard.y - 20 + (index % 2 === 0 ? 0 : 10),
-              22,
-              18,
-              note.color,
-              0.9,
-            ).setDepth(122);
+            this.add.rectangle(whiteboard.x - 68 + index * 34, whiteboard.y - 20 + (index % 2 === 0 ? 0 : 10), 18, 18, note.color, 0.95).setDepth(112);
           });
 
           for (let row = 0; row < 4; row += 1) {
-            this.add.rectangle(
-              whiteboard.x - 40,
-              whiteboard.y - 12 + row * 16,
-              120,
-              2,
-              0x596376,
-              0.38,
-            ).setDepth(122);
-            this.add.rectangle(
-              whiteboard.x + 54,
-              whiteboard.y - 12 + row * 16,
-              46,
-              2,
-              row % 2 === 0 ? OFFICE_PALETTE.stickyAccent : OFFICE_PALETTE.stickyWarm,
-              0.42,
-            ).setDepth(122);
+            this.add.rectangle(whiteboard.x - 26, whiteboard.y - 14 + row * 16, 112, 2, 0x5c6674, 0.42).setDepth(112);
+            this.add.rectangle(whiteboard.x + 56, whiteboard.y - 14 + row * 16, 36, 2, row % 2 === 0 ? OFFICE_PALETTE.stickyAccent : OFFICE_PALETTE.stickyWarm, 0.44).setDepth(112);
           }
         }
 
         private addPrinterArea() {
           const printerArea = OFFICE_LAYOUT.printerArea;
-          const baseDepth = printerArea.counter.y + printerArea.counter.height / 2;
+          const counterDepth = printerArea.counter.y + printerArea.counter.height / 2;
 
-          this.addShadowEllipse(
-            printerArea.counter.x + 10,
-            printerArea.counter.y + 28,
-            printerArea.counter.width + 40,
-            44,
-            0.24,
-            baseDepth - 14,
-            -0.1,
-          );
+          this.addGroundShadow(printerArea.counter.x + 4, printerArea.counter.y + 8, printerArea.counter.width + 18, printerArea.counter.height + 18, 0.16, counterDepth - 4);
 
           const counter = this.add.rectangle(
             printerArea.counter.x,
             printerArea.counter.y,
             printerArea.counter.width,
             printerArea.counter.height,
-            OFFICE_PALETTE.shelf,
+            OFFICE_PALETTE.storage,
             1,
           );
-          counter.setDepth(baseDepth);
-          counter.setStrokeStyle(2, 0xffffff, 0.05);
+          counter.setDepth(counterDepth);
+          counter.setStrokeStyle(2, 0xffffff, 0.06);
+          this.add.rectangle(printerArea.counter.x, printerArea.counter.y - printerArea.counter.height / 2 + 6, printerArea.counter.width - 12, 6, 0xffffff, 0.08).setDepth(counterDepth + 1);
 
-          this.add.rectangle(
-            printerArea.counter.x,
-            printerArea.counter.y + 26,
-            printerArea.counter.width - 12,
-            18,
-            OFFICE_PALETTE.deskFront,
-            1,
-          ).setDepth(baseDepth + 1);
-
-          const printer = this.add.rectangle(
-            printerArea.printer.x,
-            printerArea.printer.y,
-            printerArea.printer.width,
-            printerArea.printer.height,
-            OFFICE_PALETTE.printer,
-            0.94,
-          );
-          printer.setDepth(baseDepth + 3);
-          printer.setStrokeStyle(2, 0x7f8798, 0.56);
-
-          this.add.rectangle(
-            printerArea.printer.x + 20,
-            printerArea.printer.y - 3,
-            36,
-            6,
-            0x8e96a8,
-            0.66,
-          ).setDepth(baseDepth + 4);
-          this.add.circle(printerArea.printer.x + 36, printerArea.printer.y + 4, 3, 0x7fd6a2, 0.8)
-            .setDepth(baseDepth + 4);
+          const printer = this.add.rectangle(printerArea.printer.x, printerArea.printer.y, printerArea.printer.width, printerArea.printer.height, OFFICE_PALETTE.printer, 1);
+          printer.setDepth(counterDepth + 2);
+          printer.setStrokeStyle(2, 0x8a93a1, 0.8);
+          this.add.rectangle(printerArea.printer.x + 16, printerArea.printer.y - 4, 30, 6, 0x9aa4b3, 0.72).setDepth(counterDepth + 3);
+          this.add.circle(printerArea.printer.x + 26, printerArea.printer.y + 3, 3, OFFICE_PALETTE.deviceLight, 0.8).setDepth(counterDepth + 3);
 
           const filing = this.add.rectangle(
             printerArea.filingCabinet.x,
@@ -930,41 +505,16 @@ export default function TrustBoundaryCanvas({
             OFFICE_PALETTE.filing,
             1,
           );
-          filing.setDepth(printerArea.filingCabinet.y + 42);
-          filing.setStrokeStyle(2, 0xffffff, 0.04);
-          // Cabinet top surface highlight
-          this.add.rectangle(
-            printerArea.filingCabinet.x,
-            printerArea.filingCabinet.y - printerArea.filingCabinet.height / 2 + 4,
-            printerArea.filingCabinet.width - 6,
-            5,
-            0xffffff,
-            0.035,
-          ).setDepth(printerArea.filingCabinet.y + 43);
+          filing.setDepth(printerArea.filingCabinet.y + printerArea.filingCabinet.height / 2);
+          filing.setStrokeStyle(2, 0xffffff, 0.05);
 
           for (let drawer = 0; drawer < 3; drawer += 1) {
-            this.add.rectangle(
-              printerArea.filingCabinet.x,
-              printerArea.filingCabinet.y - 22 + drawer * 28,
-              printerArea.filingCabinet.width - 16,
-              20,
-              0x2a3241,
-              1,
-            ).setDepth(printerArea.filingCabinet.y + 43);
-            this.add.rectangle(
-              printerArea.filingCabinet.x,
-              printerArea.filingCabinet.y - 22 + drawer * 28,
-              20,
-              4,
-              0xb7becf,
-              0.34,
-            ).setDepth(printerArea.filingCabinet.y + 44);
+            this.add.rectangle(printerArea.filingCabinet.x, printerArea.filingCabinet.y - 26 + drawer * 28, printerArea.filingCabinet.width - 14, 18, 0x67735d, 0.96).setDepth(printerArea.filingCabinet.y + printerArea.filingCabinet.height / 2 + 1);
+            this.add.rectangle(printerArea.filingCabinet.x, printerArea.filingCabinet.y - 26 + drawer * 28, 16, 4, 0xf0f4f7, 0.26).setDepth(printerArea.filingCabinet.y + printerArea.filingCabinet.height / 2 + 2);
           }
 
           printerArea.paperStacks.forEach((stack) => {
-            this.add.rectangle(stack.x, stack.y, stack.width, stack.height, 0xf1f4fa, 0.92)
-              .setRotation(-0.08)
-              .setDepth(baseDepth + 4);
+            this.add.rectangle(stack.x, stack.y, stack.width, stack.height, 0xf4f7fb, 0.96).setDepth(counterDepth + 3);
           });
         }
 
@@ -972,61 +522,22 @@ export default function TrustBoundaryCanvas({
           const coffeeStation = OFFICE_LAYOUT.coffeeStation;
           const counterDepth = coffeeStation.counter.y + coffeeStation.counter.height / 2;
 
-          this.addShadowEllipse(
-            coffeeStation.counter.x + 12,
-            coffeeStation.counter.y + 22,
-            coffeeStation.counter.width + 32,
-            32,
-            0.22,
-            counterDepth - 14,
-            -0.1,
-          );
+          this.addGroundShadow(coffeeStation.counter.x, coffeeStation.counter.y + 8, coffeeStation.counter.width + 18, coffeeStation.counter.height + 14, 0.14, counterDepth - 4);
 
-          const machine = this.add.rectangle(
-            coffeeStation.machine.x,
-            coffeeStation.machine.y,
-            coffeeStation.machine.width,
-            coffeeStation.machine.height,
-            0x1d212a,
-            1,
-          );
-          machine.setDepth(coffeeStation.machine.y + 26);
-          machine.setStrokeStyle(2, 0xffffff, 0.05);
-
-          this.add.rectangle(
-            coffeeStation.machine.x,
-            coffeeStation.machine.y - 8,
-            coffeeStation.machine.width - 14,
-            10,
-            0x2d3647,
-            1,
-          ).setDepth(coffeeStation.machine.y + 28);
-          this.add.circle(coffeeStation.machine.x + 12, coffeeStation.machine.y - 6, 4, 0x7fd6a2, 0.8)
-            .setDepth(coffeeStation.machine.y + 29);
-
-          const counter = this.add.rectangle(
-            coffeeStation.counter.x,
-            coffeeStation.counter.y,
-            coffeeStation.counter.width,
-            coffeeStation.counter.height,
-            0x2a313e,
-            1,
-          );
+          const counter = this.add.rectangle(coffeeStation.counter.x, coffeeStation.counter.y, coffeeStation.counter.width, coffeeStation.counter.height, OFFICE_PALETTE.coffeeDark, 1);
           counter.setDepth(counterDepth);
           counter.setStrokeStyle(2, 0xffffff, 0.05);
+          this.add.rectangle(coffeeStation.counter.x, coffeeStation.counter.y - coffeeStation.counter.height / 2 + 6, coffeeStation.counter.width - 10, 6, 0xffffff, 0.08).setDepth(counterDepth + 1);
 
-          this.add.rectangle(
-            coffeeStation.counter.x,
-            coffeeStation.counter.y + 18,
-            coffeeStation.counter.width - 12,
-            14,
-            OFFICE_PALETTE.coffee,
-            0.55,
-          ).setDepth(counterDepth + 1);
+          const machine = this.add.rectangle(coffeeStation.machine.x, coffeeStation.machine.y, coffeeStation.machine.width, coffeeStation.machine.height, OFFICE_PALETTE.monitorFrame, 1);
+          machine.setDepth(coffeeStation.machine.y + coffeeStation.machine.height / 2);
+          machine.setStrokeStyle(2, 0xffffff, 0.05);
+          this.add.rectangle(coffeeStation.machine.x, coffeeStation.machine.y - 10, coffeeStation.machine.width - 12, 10, 0x2e3948, 1).setDepth(coffeeStation.machine.y + coffeeStation.machine.height / 2 + 1);
+          this.add.circle(coffeeStation.machine.x + 12, coffeeStation.machine.y - 8, 3, OFFICE_PALETTE.deviceLight, 0.84).setDepth(coffeeStation.machine.y + coffeeStation.machine.height / 2 + 2);
 
           coffeeStation.cups.forEach((cup) => {
-            this.add.circle(cup.x, cup.y, 7, 0xf2ece2, 0.72).setDepth(counterDepth + 2);
-            this.add.rectangle(cup.x + 6, cup.y, 3, 7, 0xf2ece2, 0.4).setDepth(counterDepth + 2);
+            this.add.circle(cup.x, cup.y, 6, 0xf0ece4, 0.88).setDepth(counterDepth + 2);
+            this.add.rectangle(cup.x + 4, cup.y, 3, 6, 0xf0ece4, 0.34).setDepth(counterDepth + 2);
           });
         }
 
@@ -1034,148 +545,54 @@ export default function TrustBoundaryCanvas({
           const shelfArea = OFFICE_LAYOUT.shelfArea;
           const shelfDepth = shelfArea.storageShelf.y + shelfArea.storageShelf.height / 2;
 
-          this.addShadowEllipse(
-            shelfArea.storageShelf.x + 10,
-            shelfArea.storageShelf.y + 36,
-            shelfArea.storageShelf.width + 40,
-            48,
-            0.22,
-            shelfDepth - 16,
-            -0.08,
-          );
+          this.addGroundShadow(shelfArea.storageShelf.x + 4, shelfArea.storageShelf.y + 10, shelfArea.storageShelf.width + 18, shelfArea.storageShelf.height + 18, 0.16, shelfDepth - 4);
 
-          const shelf = this.add.rectangle(
-            shelfArea.storageShelf.x,
-            shelfArea.storageShelf.y,
-            shelfArea.storageShelf.width,
-            shelfArea.storageShelf.height,
-            OFFICE_PALETTE.shelf,
-            1,
-          );
+          const shelf = this.add.rectangle(shelfArea.storageShelf.x, shelfArea.storageShelf.y, shelfArea.storageShelf.width, shelfArea.storageShelf.height, OFFICE_PALETTE.storage, 1);
           shelf.setDepth(shelfDepth);
           shelf.setStrokeStyle(2, 0xffffff, 0.05);
-
-          [-24, 6, 36].forEach((offset) => {
-            this.add.rectangle(
-              shelfArea.storageShelf.x,
-              shelfArea.storageShelf.y + offset,
-              shelfArea.storageShelf.width - 12,
-              8,
-              0x2e3748,
-              1,
-            ).setDepth(shelfDepth + 1);
+          [-26, 2, 30].forEach((offset) => {
+            this.add.rectangle(shelfArea.storageShelf.x, shelfArea.storageShelf.y + offset, shelfArea.storageShelf.width - 10, 6, 0x606b59, 1).setDepth(shelfDepth + 1);
           });
 
           shelfArea.boxes.forEach((box) => {
             const boxDepth = box.y + box.height / 2;
-            const parcel = this.add.rectangle(box.x, box.y, box.width, box.height, 0x6d5840, 0.82);
+            const parcel = this.add.rectangle(box.x, box.y, box.width, box.height, 0x7b654a, 0.96);
             parcel.setDepth(boxDepth);
             parcel.setStrokeStyle(2, 0xffffff, 0.04);
-
-            this.add.rectangle(box.x, box.y, box.width - 8, 6, 0xc3a47d, 0.34).setDepth(boxDepth + 1);
+            this.add.rectangle(box.x, box.y - 4, box.width - 8, 4, 0xc6aa7f, 0.36).setDepth(boxDepth + 1);
           });
 
-          this.add.circle(
-            shelfArea.plant.x,
-            shelfArea.plant.y + 10,
-            shelfArea.plant.radius - 3,
-            OFFICE_PALETTE.plantPot,
-            0.92,
-          ).setDepth(shelfArea.plant.y + 40);
-          this.add.circle(
-            shelfArea.plant.x,
-            shelfArea.plant.y - 10,
-            shelfArea.plant.radius,
-            OFFICE_PALETTE.plantLeaf,
-            1,
-          ).setDepth(shelfArea.plant.y + 39);
-          this.add.circle(
-            shelfArea.plant.x - 16,
-            shelfArea.plant.y - 18,
-            shelfArea.plant.radius - 6,
-            0x35573f,
-            1,
-          ).setDepth(shelfArea.plant.y + 40);
-          this.add.circle(
-            shelfArea.plant.x + 14,
-            shelfArea.plant.y - 16,
-            shelfArea.plant.radius - 8,
-            0x284a37,
-            1,
-          ).setDepth(shelfArea.plant.y + 40);
+          this.add.circle(shelfArea.plant.x, shelfArea.plant.y + 12, shelfArea.plant.radius - 6, OFFICE_PALETTE.plantPot, 0.96).setDepth(shelfArea.plant.y + 24);
+          this.add.circle(shelfArea.plant.x, shelfArea.plant.y - 4, shelfArea.plant.radius, OFFICE_PALETTE.plantLeaf, 1).setDepth(shelfArea.plant.y + 25);
+          this.add.circle(shelfArea.plant.x - 14, shelfArea.plant.y - 10, shelfArea.plant.radius - 6, 0x4f6e4e, 1).setDepth(shelfArea.plant.y + 26);
+          this.add.circle(shelfArea.plant.x + 14, shelfArea.plant.y - 10, shelfArea.plant.radius - 8, 0x486449, 1).setDepth(shelfArea.plant.y + 26);
 
           OFFICE_LAYOUT.cableRuns.forEach((cable) => {
-            const strip = this.add.rectangle(
-              cable.x,
-              cable.y,
-              cable.width,
-              cable.height,
-              OFFICE_PALETTE.cable,
-              0.92,
-            );
-            strip.setRotation(cable.rotation ?? 0);
-            strip.setDepth(88);
+            this.add.rectangle(cable.x, cable.y, cable.width, cable.height, OFFICE_PALETTE.cable, 0.95).setDepth(86);
           });
         }
 
-        /** Back-wall window and right-wall clock — subtle architectural detail. */
-        private addWallDetails() {
-          // Window on back wall (suggests daylight beyond, adds depth)
-          const windowFrame = this.add.rectangle(580, 86, 148, 48, 0x0e1420, 1);
-          windowFrame.setStrokeStyle(4, 0x2a3344, 0.85);
-          windowFrame.setDepth(116);
-          this.add.rectangle(580, 86, 136, 38, 0x3a4a6a, 0.3).setDepth(117);
-          // Window dividers
-          this.add.rectangle(580, 86, 2, 38, 0x2a3344, 0.7).setDepth(118);
-          this.add.rectangle(580, 86, 136, 2, 0x2a3344, 0.5).setDepth(118);
+        private createDeskFocus() {
+          const rug = OFFICE_LAYOUT.playerDesk.rug;
+          const desk = OFFICE_LAYOUT.playerDesk.desk;
+          const interaction = OFFICE_LAYOUT.playerDesk.interactionPoint;
 
-          // Small wall clock on right wall
-          this.add
-            .circle(852, 156, 12, 0x1a2030, 1)
-            .setStrokeStyle(2, 0x3a4558, 0.75)
-            .setDepth(120);
-          this.add.rectangle(852, 152, 1.5, 8, 0xd0d6e4, 0.6).setDepth(121);
-          this.add.rectangle(854, 156, 6, 1.5, 0xd0d6e4, 0.45).setDepth(121);
-          this.add.circle(852, 156, 2, 0xd0d6e4, 0.5).setDepth(122);
-        }
+          // Keep the interaction focus crisp and geometric so the desk stands out
+          // as the task destination without adding noisy effects to the whole room.
+          this.deskFocusPlate = this.add.rectangle(rug.x, rug.y, rug.width + 14, rug.height + 14, OFFICE_PALETTE.focus, 0.07);
+          this.deskFocusPlate.setDepth(68);
+          this.deskFocusPlate.setStrokeStyle(2, OFFICE_PALETTE.focus, 0.16);
 
-        /** Frame the left-wall opening as a doorway to an unseen hallway. */
-        private addDoorway() {
-          const segments = OFFICE_LAYOUT.room.leftWallSegments;
-          const wallEdge = segments[0].x + segments[0].width;
-          const gapTop = segments[0].y + segments[0].height;
-          const gapBottom = segments[1].y;
+          this.deskFocusOutline = this.add.rectangle(desk.x, desk.y + 6, desk.width + 26, desk.height + 34, OFFICE_PALETTE.focus, 0);
+          this.deskFocusOutline.setDepth(69);
+          this.deskFocusOutline.setStrokeStyle(3, OFFICE_PALETTE.focus, 0.18);
 
-          // Door frame brackets (top and bottom of the opening)
-          this.add
-            .rectangle(wallEdge - 4, gapTop + 3, 14, 8, 0x2a3141, 0.85)
-            .setDepth(110);
-          this.add
-            .rectangle(wallEdge - 4, gapBottom - 3, 14, 8, 0x2a3141, 0.85)
-            .setDepth(110);
-
-          // Shadow spilling through the doorway (hallway darkness beyond)
-          this.add
-            .ellipse(
-              wallEdge + 22,
-              (gapTop + gapBottom) / 2,
-              48,
-              gapBottom - gapTop + 16,
-              0x04060a,
-              0.14,
-            )
-            .setDepth(4);
+          this.deskFocusPulse = this.add.ellipse(interaction.x, interaction.y + 8, 116, 42, OFFICE_PALETTE.focusGlow, 0.1);
+          this.deskFocusPulse.setDepth(70);
         }
 
         private createActors() {
-          this.playerBody = this.add.rectangle(
-            OFFICE_LAYOUT.spawn.x,
-            OFFICE_LAYOUT.spawn.y,
-            28,
-            42,
-            0x000000,
-            0,
-          );
+          this.playerBody = this.add.rectangle(OFFICE_LAYOUT.spawn.x, OFFICE_LAYOUT.spawn.y, 28, 42, 0x000000, 0);
           this.physics.add.existing(this.playerBody);
 
           const playerPhysics = this.playerBody.body as Phaser.Physics.Arcade.Body;
@@ -1186,148 +603,97 @@ export default function TrustBoundaryCanvas({
             this.physics.add.collider(this.playerBody, obstacle);
           });
 
-          this.playerVisual = this.createActorVisual(
-            OFFICE_LAYOUT.spawn.x,
-            OFFICE_LAYOUT.spawn.y,
-            OFFICE_PALETTE.deskGlow,
-          );
+          this.playerVisual = this.createActorVisual(OFFICE_LAYOUT.spawn.x, OFFICE_LAYOUT.spawn.y, OFFICE_PALETTE.actorBody);
 
           const coworker = OFFICE_LAYOUT.coworkerBody;
-          const coworkerVisual = this.createActorVisual(
-            coworker.x,
-            coworker.y,
-            OFFICE_PALETTE.coworkerGlow,
-          );
-          coworkerVisual.setAlpha(0.82);
-          coworkerVisual.setDepth(coworker.y + 42);
+          const coworkerVisual = this.createActorVisual(coworker.x, coworker.y, OFFICE_PALETTE.actorCoworker);
+          coworkerVisual.setAlpha(0.92);
+          coworkerVisual.setDepth(coworker.y + 32);
         }
 
-        private createActorVisual(x: number, y: number, accent: number) {
-          const shadow = this.add.ellipse(0, 18, 34, 16, 0x010204, 0.26);
-          const legs = this.add.rectangle(0, 10, 18, 18, 0x10151d, 1);
-          const torso = this.add.rectangle(0, -2, 24, 28, accent, 0.96);
+        private createActorVisual(x: number, y: number, bodyColor: number) {
+          const shadow = this.add.ellipse(0, 16, 34, 16, 0x000000, 0.18);
+          const legs = this.add.rectangle(0, 8, 14, 16, 0x26313f, 1);
+          const torso = this.add.rectangle(0, -2, 22, 24, bodyColor, 1);
           torso.setStrokeStyle(1, 0xffffff, 0.16);
-          const badge = this.add.rectangle(6, -4, 6, 10, 0xf4f4f5, 0.22);
-          const head = this.add.circle(0, -18, 10, 0xd7deed, 1);
-          const hair = this.add.rectangle(0, -24, 18, 6, 0x8189a0, 0.72);
+          const badge = this.add.rectangle(5, -4, 5, 9, 0xe8eef6, 0.32);
+          const head = this.add.circle(0, -18, 9, OFFICE_PALETTE.actorHead, 1);
+          const hair = this.add.rectangle(0, -23, 16, 5, 0x6d7784, 0.72);
 
           return this.add.container(x, y, [shadow, legs, torso, badge, head, hair]);
         }
 
         private syncActorVisuals() {
           this.playerVisual.setPosition(this.playerBody.x, this.playerBody.y);
-          this.playerVisual.setDepth(this.playerBody.y + 42);
+          this.playerVisual.setDepth(this.playerBody.y + 32);
         }
 
         private setupCamera() {
           this.cameras.main.startFollow(this.playerBody, true, 0.08, 0.08);
-          this.cameras.main.setDeadzone(120, 80);
+          this.cameras.main.setDeadzone(112, 84);
           this.cameras.main.setZoom(OFFICE_LAYOUT.camera.baseZoom);
         }
 
         private refreshDeskFocus() {
-          const targetRingAlpha = this.deskModeActive ? 0.22 : this.isNearDesk ? 0.16 : 0.08;
-          const targetGlowAlpha = this.deskModeActive ? 0.2 : this.isNearDesk ? 0.14 : 0.07;
-          const targetScale = this.deskModeActive ? 1.06 : this.isNearDesk ? 1.02 : 1;
+          const outlineAlpha = this.deskModeActive ? 0.28 : this.isNearDesk ? 0.22 : 0.12;
+          const plateAlpha = this.deskModeActive ? 0.18 : this.isNearDesk ? 0.14 : 0.08;
+          const pulseAlpha = this.deskModeActive ? 0.22 : this.isNearDesk ? 0.18 : 0.1;
+          const scale = this.deskModeActive ? 1.04 : this.isNearDesk ? 1.02 : 1;
+          const monitorAlpha = this.deskModeActive ? 0.2 : this.isNearDesk ? 0.16 : 0.12;
 
-          this.tweens.killTweensOf([this.deskFocusGlow, this.deskFocusRing]);
-          this.tweens.add({
-            targets: this.deskFocusGlow,
-            alpha: targetGlowAlpha,
-            scaleX: targetScale,
-            scaleY: targetScale,
-            duration: 240,
-            ease: "Sine.easeInOut",
-          });
-          this.tweens.add({
-            targets: this.deskFocusRing,
-            alpha: targetRingAlpha,
-            scaleX: targetScale,
-            scaleY: targetScale,
-            duration: 240,
-            ease: "Sine.easeInOut",
-          });
+          this.tweens.killTweensOf([this.deskFocusPlate, this.deskFocusOutline, this.deskFocusPulse, this.primaryMonitorGlow]);
+          this.tweens.add({ targets: this.deskFocusPlate, alpha: plateAlpha, scaleX: scale, scaleY: scale, duration: 220, ease: "Sine.easeInOut" });
+          this.tweens.add({ targets: this.deskFocusOutline, alpha: outlineAlpha, scaleX: scale, scaleY: scale, duration: 220, ease: "Sine.easeInOut" });
+          this.tweens.add({ targets: this.deskFocusPulse, alpha: pulseAlpha, scaleX: scale, scaleY: scale, duration: 220, ease: "Sine.easeInOut" });
+          this.tweens.add({ targets: this.primaryMonitorGlow, alpha: monitorAlpha, duration: 220, ease: "Sine.easeInOut" });
         }
 
         private startAmbientTweens() {
           this.tweens.add({
-            targets: this.deskAura,
-            alpha: { from: 0.06, to: 0.13 },
-            scale: { from: 0.98, to: 1.04 },
-            duration: 2100,
+            targets: this.deskFocusPulse,
+            alpha: { from: 0.08, to: 0.16 },
+            scaleX: { from: 0.98, to: 1.04 },
+            scaleY: { from: 0.98, to: 1.04 },
+            duration: 2200,
             yoyo: true,
             repeat: -1,
             ease: "Sine.easeInOut",
           });
 
           this.tweens.add({
-            targets: this.deskSweep,
-            x: { from: 712, to: 782 },
-            alpha: { from: 0.04, to: 0.18 },
-            duration: 1700,
+            targets: this.primaryMonitorGlow,
+            alpha: { from: 0.1, to: 0.18 },
+            duration: 1800,
             yoyo: true,
             repeat: -1,
             ease: "Sine.easeInOut",
-          });
-
-          this.tweens.add({
-            targets: this.deskFocusGlow,
-            alpha: { from: 0.06, to: 0.12 },
-            duration: 2800,
-            yoyo: true,
-            repeat: -1,
-            ease: "Sine.easeInOut",
-          });
-
-          this.tweens.add({
-            targets: this.coworkerLampGlow,
-            alpha: { from: 0.05, to: 0.12 },
-            scale: { from: 0.97, to: 1.04 },
-            duration: 2600,
-            yoyo: true,
-            repeat: -1,
-            ease: "Sine.easeInOut",
-            delay: 220,
           });
         }
 
-        private addShadowEllipse(
+        private addGroundShadow(
           x: number,
           y: number,
           width: number,
           height: number,
           alpha: number,
           depth: number,
-          rotation = 0,
         ) {
-          const shadow = this.add.ellipse(x, y, width, height, 0x010204, alpha);
-          shadow.setRotation(rotation);
-          shadow.setDepth(depth);
-          return shadow;
+          return this.add.ellipse(x, y, width, height, 0x000000, alpha).setDepth(depth);
         }
       }
 
       const game = new Phaser.Game({
         type: Phaser.AUTO,
         parent: containerRef.current,
-        width: 960,
-        height: 540,
+        width: VIEWPORT_WIDTH,
+        height: VIEWPORT_HEIGHT,
         transparent: true,
-        physics: {
-          default: "arcade",
-          arcade: {
-            debug: false,
-          },
-        },
-        scale: {
-          mode: Phaser.Scale.FIT,
-          autoCenter: Phaser.Scale.CENTER_BOTH,
-        },
+        physics: { default: "arcade", arcade: { debug: false } },
+        scale: { mode: Phaser.Scale.FIT, autoCenter: Phaser.Scale.CENTER_BOTH },
         scene: TrustBoundaryRoomScene,
       });
 
       gameRef.current = game;
-
       const scene = game.scene.getScene("trust-boundary-room");
       sceneEventsRef.current = scene.events;
       scene.events.emit("desk-mode", deskMode);
