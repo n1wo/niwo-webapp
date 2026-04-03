@@ -364,36 +364,4 @@ export const OFFICE_LAYOUT = {
       height: 40,
     },
   ] as OfficeRect[],
-  labels: [
-    {
-      text: "ENTRY",
-      x: 160,
-      y: 564,
-    },
-    {
-      text: "OPS BOARD",
-      x: 330,
-      y: 214,
-    },
-    {
-      text: "PRINT / FILE",
-      x: 188,
-      y: 394,
-    },
-    {
-      text: "COFFEE",
-      x: 228,
-      y: 520,
-    },
-    {
-      text: "PLAYER DESK",
-      x: 684,
-      y: 430,
-    },
-    {
-      text: "COWORKER",
-      x: 810,
-      y: 320,
-    },
-  ],
 } as const;
