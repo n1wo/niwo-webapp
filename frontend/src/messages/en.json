@@ -352,6 +352,107 @@
       }
     }
   },
+  "TrustBoundaryPrototype": {
+    "metadata": {
+      "title": "Trust Boundary Prototype | niwo",
+      "description": "Prototype page for Trust Boundary, a browser-based cybersecurity game concept built inside the NIWO lab."
+    },
+    "eyebrow": "Lab Prototype",
+    "title": "Trust Boundary is now staged inside the NIWO lab.",
+    "intro": "This page is the dedicated route for the Trust Boundary prototype. The game concept stays focused on a small startup office, a compact inbox-driven decision loop, and one short incident path built around trust, ambiguity, and consequences.",
+    "status": "Prototype route active",
+    "buildLabel": "Phaser runtime · DOM overlays",
+    "focusEyebrow": "Build Focus",
+    "focusTitle": "Day 1 is still the target slice.",
+    "focusText": "The first playable version should prove one thing clearly: moving through a tiny office, sitting at the desk, reviewing suspicious messages, and making good trust decisions is interesting enough to carry the game.",
+    "pillars": {
+      "office": "A small office room gives the prototype a grounded physical frame instead of dropping straight into menus.",
+      "inbox": "The inbox remains the center of play, with allow, quarantine, and investigate driving the core decision loop.",
+      "incident": "A short incident path should trigger when a bad decision lets a malicious message through.",
+      "summary": "The day ends with a readable summary of trust, work continuity, and security judgment."
+    },
+    "terminalEyebrow": "Entry Command",
+    "terminalTitle": "Homepage terminal route",
+    "terminalBody": "Use this command from the homepage terminal to jump straight into the prototype route.",
+    "note": "The route is live now so the prototype can be developed in-place inside the NIWO website instead of drifting into a separate app.",
+    "primaryCta": "Back Home",
+    "secondaryCta": "About NIWO",
+    "game": {
+      "mode": {
+        "office": "Office exploration",
+        "desk": "Desk review",
+        "incident": "Incident response",
+        "summary": "Day-end summary"
+      },
+      "objectiveEyebrow": "Current Objective",
+      "objectives": {
+        "office": "Walk to your desk and check the morning inbox.",
+        "officeReady": "You are in range. Sit down and start reviewing the day’s messages.",
+        "desk": "Review all six messages. Investigate when the call is not obvious.",
+        "incident": "A bad decision slipped through. Contain the damage before the day closes.",
+        "summary": "Review how your trust calls affected the office."
+      },
+      "enterDesk": "Sit at desk",
+      "leaveDesk": "Leave desk",
+      "openNotes": "Field Notes",
+      "closeNotes": "Close Notes",
+      "roomEyebrow": "Office Loop",
+      "roomPrompt": "Use WASD or the arrow keys to move around the office and approach the desk.",
+      "deskPrompt": "Press E or use the desk button to cross into work mode.",
+      "coworkerEyebrow": "Coworker Signal",
+      "coworkerHint": "Morning. We are waiting on a client reply, so try not to miss anything important.",
+      "inboxShell": "Morning Inbox",
+      "currentMessage": "Message {current} / {total}",
+      "sender": "Sender",
+      "subject": "Subject",
+      "allow": "Allow",
+      "quarantine": "Quarantine",
+      "investigate": "Investigate",
+      "investigated": "Investigated",
+      "visibleClues": "Visible Clues",
+      "investigation": "Investigation",
+      "investigationHint": "Use Investigate when the message feels plausible but not fully trustworthy.",
+      "feedback": {
+        "good": "Good call",
+        "risk": "Risk introduced"
+      },
+      "continue": "Continue",
+      "incidentEyebrow": "Incident Triggered",
+      "incidentTitle": "Suspicious coworker login activity detected.",
+      "incidentPrompt": "A malicious message got trusted and your coworker may have handed over credentials. Choose the best immediate response.",
+      "summaryEyebrow": "Day-End Summary",
+      "summaryTitle": "Trust is never just technical.",
+      "summaryStrong": "You protected the business without treating every rough edge like a threat.",
+      "summaryMixed": "Some calls were sharp and some were costly. The tension is working.",
+      "summaryPoor": "The office felt the damage. The prototype is showing how quickly trust mistakes compound.",
+      "replay": "Replay Day 1",
+      "backHome": "Back Home",
+      "briefEyebrow": "Prototype Brief",
+      "briefTitle": "A small office. Six messages. One possible incident.",
+      "briefText": "This first slice is meant to prove the whole fantasy in one short loop: arrive, sit down, review ambiguous messages, and live with the operational cost of your calls.",
+      "controlsTitle": "Controls",
+      "controls": {
+        "move": "Move: WASD or arrow keys",
+        "interact": "Interact: E near the desk",
+        "closeDesk": "Leave desk mode: Esc",
+        "investigate": "Investigate before deciding when the message feels plausible"
+      },
+      "metricsEyebrow": "Live Metrics",
+      "metrics": {
+        "trust": "Trust",
+        "continuity": "Work Continuity",
+        "judgment": "Security Judgment"
+      },
+      "dayPlanEyebrow": "Day Structure",
+      "dayPlan": {
+        "enter": "Enter the office and orient yourself in the room.",
+        "sit": "Sit at the desk and transition into the inbox surface.",
+        "review": "Resolve six messages with allow, quarantine, or investigate.",
+        "incident": "Handle one compact incident if a malicious message gets through.",
+        "summary": "End the day with a readable outcome tied to your decisions."
+      }
+    }
+  },
   "Imprint": {
     "metadata": {
       "title": "Imprint | niwo systems",

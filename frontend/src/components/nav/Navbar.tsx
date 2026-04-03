@@ -2,14 +2,19 @@
 
 import { useTranslations } from "next-intl";
 import { useState } from "react";
-import { Link } from "@/i18n/navigation";
+import { Link, usePathname } from "@/i18n/navigation";
 import LinkAnimation from "./LinkAnimation";
 import Image from "next/image";
 import LanguageSwitcher from "./LanguageSwitcher";
 
 export default function Navbar() {
   const t = useTranslations("Navbar");
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+
+  if (pathname.includes("/lab/trust-boundry-prototype")) {
+    return null;
+  }
 
   return (
     <header>

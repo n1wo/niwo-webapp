@@ -35,6 +35,9 @@ const PAGE_TARGETS: Record<string, string> = {
   "/": "/",
   "~": "/",
   home: "/",
+  lab: "/lab/trust-boundry-prototype",
+  "trust-boundry-prototype": "/lab/trust-boundry-prototype",
+  "lab/trust-boundry-prototype": "/lab/trust-boundry-prototype",
   services: "/#what-i-do",
   about: "/pages/about",
   vdp: "/pages/vdp",
@@ -66,6 +69,7 @@ export default function InteractiveTerminal({
       "pwd",
       "ls",
       "cd home",
+      "cd lab/trust-boundry-prototype",
       "cd services",
       "cd about",
       "cd vdp",
@@ -179,8 +183,8 @@ export default function InteractiveTerminal({
     if (normalized === "ls") {
       appendEntries([
         ...nextEntries,
-        {
-          text: "home  services  about  vdp  privacy-policy  imprint  contact  findings.txt",
+          {
+          text: "home  lab  services  about  vdp  privacy-policy  imprint  contact  findings.txt",
           tone: "default",
         },
       ]);

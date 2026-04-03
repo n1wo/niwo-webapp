@@ -352,6 +352,107 @@
       }
     }
   },
+  "TrustBoundaryPrototype": {
+    "metadata": {
+      "title": "Trust Boundary Prototype | niwo",
+      "description": "Prototyp-Seite fuer Trust Boundary, ein browserbasiertes Cybersecurity-Spielkonzept im NIWO Lab."
+    },
+    "eyebrow": "Lab Prototyp",
+    "title": "Trust Boundary hat jetzt eine feste Route im NIWO Lab.",
+    "intro": "Diese Seite ist die feste Route fuer den Trust Boundary Prototypen. Das Spielkonzept bleibt bewusst klein: ein Startup-Buero, eine kompakte inboxbasierte Entscheidungsrunde und ein kurzer Incident-Pfad rund um Vertrauen, Unklarheit und Konsequenzen.",
+    "status": "Prototyp-Route aktiv",
+    "buildLabel": "Phaser Runtime · DOM Overlays",
+    "focusEyebrow": "Build Fokus",
+    "focusTitle": "Day 1 bleibt der Ziel-Slice.",
+    "focusText": "Die erste spielbare Version soll eine Sache klar beweisen: Durch ein kleines Buero laufen, sich an den Schreibtisch setzen, verdaechtige Nachrichten pruefen und gute Vertrauensentscheidungen treffen ist spannend genug, um das Spiel zu tragen.",
+    "pillars": {
+      "office": "Ein kleiner Buero-Raum gibt dem Prototyp einen glaubwuerdigen physischen Rahmen statt direkt in Menues zu springen.",
+      "inbox": "Die Inbox bleibt das Zentrum des Spiels, mit allow, quarantine und investigate als Kern des Entscheidungsloops.",
+      "incident": "Ein kurzer Incident-Pfad soll ausloesen, wenn durch eine schlechte Entscheidung eine boesartige Nachricht durchkommt.",
+      "summary": "Der Tag endet mit einer gut lesbaren Zusammenfassung von Trust, Work Continuity und Security Judgment."
+    },
+    "terminalEyebrow": "Startbefehl",
+    "terminalTitle": "Route ueber das Homepage-Terminal",
+    "terminalBody": "Mit diesem Befehl springst du im Homepage-Terminal direkt auf die Prototyp-Route.",
+    "note": "Die Route ist jetzt vorhanden, damit der Prototyp direkt in der NIWO Website entwickelt werden kann und nicht als getrennte App auseinanderlaeuft.",
+    "primaryCta": "Zur Startseite",
+    "secondaryCta": "Ueber NIWO",
+    "game": {
+      "mode": {
+        "office": "Buero-Erkundung",
+        "desk": "Desk Review",
+        "incident": "Incident Response",
+        "summary": "Tageszusammenfassung"
+      },
+      "objectiveEyebrow": "Aktuelles Ziel",
+      "objectives": {
+        "office": "Geh zu deinem Schreibtisch und pruefe die Morgen-Inbox.",
+        "officeReady": "Du bist nah genug dran. Setz dich hin und pruefe die Nachrichten des Tages.",
+        "desk": "Bearbeite alle sechs Nachrichten. Untersuche, wenn die Entscheidung nicht eindeutig ist.",
+        "incident": "Eine schlechte Entscheidung ist durchgerutscht. Begrenze den Schaden, bevor der Tag endet.",
+        "summary": "Pruefe, wie deine Vertrauensentscheidungen das Buero beeinflusst haben."
+      },
+      "enterDesk": "An Schreibtisch setzen",
+      "leaveDesk": "Schreibtisch verlassen",
+      "openNotes": "Field Notes",
+      "closeNotes": "Notes schliessen",
+      "roomEyebrow": "Office Loop",
+      "roomPrompt": "Bewege dich mit WASD oder den Pfeiltasten durch das Buero und geh zum Schreibtisch.",
+      "deskPrompt": "Druecke E oder nutze den Desk-Button, um in den Arbeitsmodus zu wechseln.",
+      "coworkerEyebrow": "Coworker Signal",
+      "coworkerHint": "Morgen. Wir warten auf eine Kundenantwort, also lass uns nichts Wichtiges verpassen.",
+      "inboxShell": "Morgen-Inbox",
+      "currentMessage": "Nachricht {current} / {total}",
+      "sender": "Absender",
+      "subject": "Betreff",
+      "allow": "Allow",
+      "quarantine": "Quarantine",
+      "investigate": "Investigate",
+      "investigated": "Untersucht",
+      "visibleClues": "Sichtbare Hinweise",
+      "investigation": "Untersuchung",
+      "investigationHint": "Nutze Investigate, wenn die Nachricht plausibel wirkt, aber nicht ganz vertrauenswuerdig ist.",
+      "feedback": {
+        "good": "Gute Entscheidung",
+        "risk": "Risiko eingefuehrt"
+      },
+      "continue": "Weiter",
+      "incidentEyebrow": "Incident ausgeloest",
+      "incidentTitle": "Verdaechtige Coworker-Anmeldung erkannt.",
+      "incidentPrompt": "Eine boesartige Nachricht wurde vertraut und dein Coworker hat moeglicherweise Zugangsdaten preisgegeben. Waehle die beste unmittelbare Reaktion.",
+      "summaryEyebrow": "Tagesende",
+      "summaryTitle": "Vertrauen ist nie nur technisch.",
+      "summaryStrong": "Du hast das Geschaeft geschuetzt, ohne jede raue Kante als Bedrohung zu behandeln.",
+      "summaryMixed": "Einige Entscheidungen waren stark und einige teuer. Die Spannung des Konzepts funktioniert.",
+      "summaryPoor": "Das Buero hat den Schaden gespuert. Der Prototyp zeigt, wie schnell Vertrauensfehler eskalieren.",
+      "replay": "Day 1 neu spielen",
+      "backHome": "Zur Startseite",
+      "briefEyebrow": "Prototype Brief",
+      "briefTitle": "Ein kleines Buero. Sechs Nachrichten. Ein moeglicher Incident.",
+      "briefText": "Dieser erste Slice soll die komplette Fantasie in einem kurzen Loop beweisen: ankommen, hinsetzen, zweideutige Nachrichten pruefen und mit den operativen Kosten der eigenen Entscheidungen leben.",
+      "controlsTitle": "Steuerung",
+      "controls": {
+        "move": "Bewegen: WASD oder Pfeiltasten",
+        "interact": "Interagieren: E in der Naehe des Schreibtischs",
+        "closeDesk": "Desk-Modus verlassen: Esc",
+        "investigate": "Vor der Entscheidung untersuchen, wenn die Nachricht plausibel wirkt"
+      },
+      "metricsEyebrow": "Live-Metriken",
+      "metrics": {
+        "trust": "Trust",
+        "continuity": "Work Continuity",
+        "judgment": "Security Judgment"
+      },
+      "dayPlanEyebrow": "Tagesstruktur",
+      "dayPlan": {
+        "enter": "Das Buero betreten und sich im Raum orientieren.",
+        "sit": "An den Schreibtisch setzen und in die Inbox-Oberflaeche wechseln.",
+        "review": "Sechs Nachrichten mit allow, quarantine oder investigate bearbeiten.",
+        "incident": "Einen kompakten Incident behandeln, wenn eine boesartige Nachricht durchkommt.",
+        "summary": "Den Tag mit einem lesbaren Ergebnis beenden, das an deine Entscheidungen gebunden ist."
+      }
+    }
+  },
   "Imprint": {
     "metadata": {
       "title": "Impressum | niwo systems",

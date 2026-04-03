@@ -1,10 +1,17 @@
+"use client";
+
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/navigation";
+import { Link, usePathname } from "@/i18n/navigation";
 import LinkAnimation from "./LinkAnimation";
 
 export default function Footer() {
   const t = useTranslations("Footer");
+  const pathname = usePathname();
+
+  if (pathname.includes("/lab/trust-boundry-prototype")) {
+    return null;
+  }
 
   return (
     <footer className="border-t border-white/[0.06]">
