@@ -40,6 +40,10 @@ export const OFFICE_PALETTE = {
   wall: 0xd6dce4,
   wallTrim: 0xadb7c4,
   wallCap: 0xf1f4f8,
+  wallWood: 0x806247,
+  wallWoodDark: 0x5d4531,
+  wallInner: 0xc7b59a,
+  wallPlaster: 0xe4dac9,
   zonePrimary: 0x4b5667,
   zoneSecondary: 0x525b66,
   zoneUtility: 0x586055,
@@ -260,10 +264,10 @@ export const OFFICE_LAYOUT = {
     height: 44,
   },
   whiteboard: {
-    x: 384,
-    y: 144,
-    width: 224,
-    height: 96,
+    x: 392,
+    y: 140,
+    width: 180,
+    height: 76,
     stickyNotes: [
       { x: 300, y: -12, color: OFFICE_PALETTE.stickyMuted },
       { x: 332, y: 8, color: OFFICE_PALETTE.stickyWarm },
@@ -380,6 +384,12 @@ export const OFFICE_LAYOUT = {
       y: 368,
       width: 80,
       height: 96,
+    },
+    {
+      x: 392,
+      y: 186,
+      width: 184,
+      height: 18,
     },
     {
       x: 320,
