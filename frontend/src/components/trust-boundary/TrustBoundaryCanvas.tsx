@@ -345,6 +345,13 @@ export default function TrustBoundaryCanvas({
           isPrimary: boolean,
         ) {
           const depth = cluster.desk.y + cluster.desk.height / 2;
+          const drawerWidth = Math.max(24, Math.round(cluster.desk.width * 0.26));
+          const legWidth = Math.max(8, Math.round(cluster.desk.width * 0.08));
+          const legHeight = Math.max(16, Math.round(cluster.desk.height * 0.36));
+          const topLipHeight = Math.max(4, Math.round(cluster.desk.height * 0.12));
+          const apronHeight = Math.max(12, Math.round(cluster.desk.height * 0.24));
+          const accessoryDepth = depth + 4;
+
           const rug = this.add.rectangle(
             cluster.rug.x,
             cluster.rug.y,
@@ -356,7 +363,14 @@ export default function TrustBoundaryCanvas({
           rug.setDepth(depth - 18);
           rug.setStrokeStyle(2, cluster.accentColor, isPrimary ? 0.28 : 0.14);
 
-          this.addGroundShadow(cluster.desk.x + 4, cluster.desk.y + 10, cluster.desk.width + 24, cluster.desk.height + 22, 0.18, depth - 10);
+          this.addGroundShadow(
+            cluster.desk.x + 4,
+            cluster.desk.y + 10,
+            cluster.desk.width + 26,
+            cluster.desk.height + 18,
+            0.18,
+            depth - 10,
+          );
 
           const deskSurface = this.add.rectangle(
             cluster.desk.x,
@@ -370,21 +384,121 @@ export default function TrustBoundaryCanvas({
           deskSurface.setStrokeStyle(2, OFFICE_PALETTE.deskFront, 0.88);
 
           this.add
-            .rectangle(cluster.desk.x, cluster.desk.y - cluster.desk.height / 2 + 6, cluster.desk.width - 12, 6, 0xffffff, 0.08)
+            .rectangle(
+              cluster.desk.x,
+              cluster.desk.y - cluster.desk.height / 2 + topLipHeight / 2 + 1,
+              cluster.desk.width - 10,
+              topLipHeight,
+              0xc2a07d,
+              0.34,
+            )
             .setDepth(depth + 1);
           this.add
-            .rectangle(cluster.desk.x + cluster.desk.width / 2 - 26, cluster.desk.y + 6, 40, cluster.desk.height - 12, OFFICE_PALETTE.deskDrawer, 1)
+            .rectangle(
+              cluster.desk.x,
+              cluster.desk.y + cluster.desk.height / 2 - apronHeight / 2,
+              cluster.desk.width - drawerWidth - 10,
+              apronHeight,
+              OFFICE_PALETTE.deskFront,
+              1,
+            )
             .setDepth(depth + 1);
-          this.add.rectangle(cluster.desk.x + cluster.desk.width / 2 - 26, cluster.desk.y - 12, 18, 4, OFFICE_PALETTE.wallCap, 0.36).setDepth(depth + 2);
-          this.add.rectangle(cluster.desk.x + cluster.desk.width / 2 - 26, cluster.desk.y + 14, 18, 4, OFFICE_PALETTE.wallCap, 0.36).setDepth(depth + 2);
-          this.add.rectangle(cluster.desk.x - cluster.desk.width / 2 + 16, cluster.desk.y + cluster.desk.height / 2 - 10, 12, 20, OFFICE_PALETTE.deskLeg, 0.92).setDepth(depth + 1);
-          this.add.rectangle(cluster.desk.x + cluster.desk.width / 2 - 64, cluster.desk.y + cluster.desk.height / 2 - 10, 12, 20, OFFICE_PALETTE.deskLeg, 0.92).setDepth(depth + 1);
+          this.add
+            .rectangle(
+              cluster.desk.x + cluster.desk.width / 2 - drawerWidth / 2 - 5,
+              cluster.desk.y + 2,
+              drawerWidth,
+              cluster.desk.height - 10,
+              OFFICE_PALETTE.deskDrawer,
+              1,
+            )
+            .setDepth(depth + 1);
+          this.add
+            .rectangle(
+              cluster.desk.x + cluster.desk.width / 2 - drawerWidth / 2 - 5,
+              cluster.desk.y - cluster.desk.height * 0.16,
+              drawerWidth - 10,
+              4,
+              OFFICE_PALETTE.wallCap,
+              0.32,
+            )
+            .setDepth(depth + 2);
+          this.add
+            .rectangle(
+              cluster.desk.x + cluster.desk.width / 2 - drawerWidth / 2 - 5,
+              cluster.desk.y + cluster.desk.height * 0.12,
+              drawerWidth - 10,
+              4,
+              OFFICE_PALETTE.wallCap,
+              0.32,
+            )
+            .setDepth(depth + 2);
+          this.add
+            .rectangle(
+              cluster.desk.x - cluster.desk.width / 2 + 14,
+              cluster.desk.y + cluster.desk.height / 2 - legHeight / 2,
+              legWidth,
+              legHeight,
+              OFFICE_PALETTE.deskLeg,
+              0.96,
+            )
+            .setDepth(depth + 1);
+          this.add
+            .rectangle(
+              cluster.desk.x - cluster.desk.width * 0.08,
+              cluster.desk.y + cluster.desk.height / 2 - legHeight / 2,
+              legWidth,
+              legHeight,
+              OFFICE_PALETTE.deskLeg,
+              0.92,
+            )
+            .setDepth(depth + 1);
+          this.add
+            .rectangle(
+              cluster.desk.x - cluster.desk.width / 2 + 12,
+              cluster.desk.y - cluster.desk.height * 0.14,
+              18,
+              10,
+              0xffffff,
+              0.2,
+            )
+            .setDepth(accessoryDepth);
+          this.add
+            .rectangle(
+              cluster.desk.x - cluster.desk.width / 2 + 26,
+              cluster.desk.y - cluster.desk.height * 0.12,
+              10,
+              8,
+              isPrimary ? OFFICE_PALETTE.focusGlow : OFFICE_PALETTE.chairAccent,
+              0.72,
+            )
+            .setDepth(accessoryDepth + 1);
+          this.add
+            .rectangle(
+              cluster.desk.x + cluster.desk.width / 2 - drawerWidth - 18,
+              cluster.desk.y - cluster.desk.height * 0.1,
+              16,
+              12,
+              0xf0eee8,
+              0.84,
+            )
+            .setDepth(accessoryDepth);
+          this.add
+            .rectangle(
+              cluster.desk.x + cluster.desk.width / 2 - drawerWidth - 12,
+              cluster.desk.y - cluster.desk.height * 0.14,
+              10,
+              3,
+              0xc7c0b6,
+              0.5,
+            )
+            .setDepth(accessoryDepth + 1);
 
           const screenGlow = this.add.ellipse(
             cluster.screenGlow.x,
             cluster.screenGlow.y,
-            cluster.screenGlow.radius * 1.35,
-            cluster.screenGlow.radius,
+            cluster.screenGlow.radius * 1.2,
+            cluster.screenGlow.radius * 0.72,
             cluster.accentColor,
             cluster.screenGlow.alpha,
           );
@@ -402,12 +516,56 @@ export default function TrustBoundaryCanvas({
           monitorFrame.setDepth(depth + 3);
           monitorFrame.setStrokeStyle(2, 0xffffff, isPrimary ? 0.14 : 0.08);
 
-          this.add.rectangle(cluster.laptop.x, cluster.laptop.y, cluster.laptop.width - 8, cluster.laptop.height - 8, OFFICE_PALETTE.monitor, isPrimary ? 0.96 : 0.76).setDepth(depth + 4);
-          this.add.rectangle(cluster.laptop.x, cluster.laptop.y - 6, cluster.laptop.width - 14, 3, 0xffffff, isPrimary ? 0.2 : 0.12).setDepth(depth + 5);
-          this.add.circle(cluster.laptop.x + cluster.laptop.width / 2 - 7, cluster.laptop.y + cluster.laptop.height / 2 - 6, 2, OFFICE_PALETTE.deviceLight, 0.85).setDepth(depth + 5);
+          this.add
+            .rectangle(
+              cluster.laptop.x,
+              cluster.laptop.y,
+              cluster.laptop.width - 8,
+              cluster.laptop.height - 8,
+              OFFICE_PALETTE.monitor,
+              isPrimary ? 0.96 : 0.76,
+            )
+            .setDepth(depth + 4);
+          this.add
+            .rectangle(
+              cluster.laptop.x,
+              cluster.laptop.y - 5,
+              cluster.laptop.width - 14,
+              3,
+              0xffffff,
+              isPrimary ? 0.18 : 0.12,
+            )
+            .setDepth(depth + 5);
+          this.add
+            .circle(
+              cluster.laptop.x + cluster.laptop.width / 2 - 6,
+              cluster.laptop.y + cluster.laptop.height / 2 - 5,
+              2,
+              OFFICE_PALETTE.deviceLight,
+              0.85,
+            )
+            .setDepth(depth + 5);
 
-          this.add.rectangle(cluster.keyboard.x, cluster.keyboard.y, cluster.keyboard.width, cluster.keyboard.height, 0x2b3644, 1).setDepth(depth + 2);
-          this.add.rectangle(cluster.keyboard.x, cluster.keyboard.y - 1, cluster.keyboard.width - 10, 2, 0xffffff, 0.08).setDepth(depth + 3);
+          this.add
+            .rectangle(
+              cluster.keyboard.x,
+              cluster.keyboard.y,
+              cluster.keyboard.width,
+              cluster.keyboard.height,
+              0x2b3644,
+              1,
+            )
+            .setDepth(depth + 2);
+          this.add
+            .rectangle(
+              cluster.keyboard.x,
+              cluster.keyboard.y - 1,
+              cluster.keyboard.width - 10,
+              2,
+              0xffffff,
+              0.08,
+            )
+            .setDepth(depth + 3);
 
           if (cluster.mug) {
             this.add.circle(cluster.mug.x, cluster.mug.y, 7, 0xf1eee7, 0.92).setDepth(depth + 4);
@@ -432,13 +590,20 @@ export default function TrustBoundaryCanvas({
         }
 
         private addChair(cluster: OfficeDeskCluster, depth: number, isPrimary: boolean) {
-          this.addGroundShadow(cluster.chair.x, cluster.chair.y + 10, cluster.chair.width + 12, cluster.chair.height, 0.14, depth - 2);
+          this.addGroundShadow(
+            cluster.chair.x,
+            cluster.chair.y + 10,
+            cluster.chair.width + 14,
+            cluster.chair.height,
+            0.16,
+            depth - 2,
+          );
 
           const seat = this.add.rectangle(
             cluster.chair.x,
             cluster.chair.y,
             cluster.chair.width,
-            cluster.chair.height,
+            cluster.chair.height - 4,
             OFFICE_PALETTE.chair,
             1,
           );
@@ -446,15 +611,57 @@ export default function TrustBoundaryCanvas({
           seat.setStrokeStyle(2, 0xffffff, 0.08);
 
           this.add
-            .rectangle(cluster.chair.x, cluster.chair.y - cluster.chair.height / 2 - 8, cluster.chair.width - 8, 12, isPrimary ? OFFICE_PALETTE.chairAccent : OFFICE_PALETTE.wallTrim, isPrimary ? 0.7 : 0.5)
+            .rectangle(
+              cluster.chair.x,
+              cluster.chair.y - cluster.chair.height / 2 - 8,
+              cluster.chair.width - 10,
+              12,
+              isPrimary ? OFFICE_PALETTE.chairAccent : OFFICE_PALETTE.wallTrim,
+              isPrimary ? 0.78 : 0.54,
+            )
             .setDepth(depth + 1);
           this.add
-            .rectangle(cluster.chair.x, cluster.chair.y + cluster.chair.height / 2 + 6, 8, 12, OFFICE_PALETTE.deskLeg, 0.9)
+            .rectangle(
+              cluster.chair.x,
+              cluster.chair.y - cluster.chair.height / 2 - 1,
+              cluster.chair.width - 14,
+              5,
+              0xffffff,
+              0.08,
+            )
+            .setDepth(depth + 2);
+          this.add
+            .rectangle(
+              cluster.chair.x,
+              cluster.chair.y + cluster.chair.height / 2 + 4,
+              6,
+              12,
+              OFFICE_PALETTE.deskLeg,
+              0.9,
+            )
             .setDepth(depth + 1);
+          this.add
+            .rectangle(
+              cluster.chair.x,
+              cluster.chair.y + cluster.chair.height / 2 + 9,
+              18,
+              4,
+              OFFICE_PALETTE.deskLeg,
+              0.72,
+            )
+            .setDepth(depth + 1);
+          this.add
+            .circle(cluster.chair.x - 7, cluster.chair.y + cluster.chair.height / 2 + 10, 2, 0x293341, 0.88)
+            .setDepth(depth + 2);
+          this.add
+            .circle(cluster.chair.x + 7, cluster.chair.y + cluster.chair.height / 2 + 10, 2, 0x293341, 0.88)
+            .setDepth(depth + 2);
         }
         private addWhiteboard() {
           const whiteboard = OFFICE_LAYOUT.whiteboard;
-          this.add.rectangle(whiteboard.x + 6, whiteboard.y + 8, whiteboard.width + 10, whiteboard.height + 10, 0x000000, 0.12).setDepth(109);
+          this.add
+            .rectangle(whiteboard.x + 6, whiteboard.y + 8, whiteboard.width + 12, whiteboard.height + 12, 0x000000, 0.14)
+            .setDepth(109);
 
           const board = this.add.rectangle(whiteboard.x, whiteboard.y, whiteboard.width, whiteboard.height, 0xf2f5f8, 1);
           board.setStrokeStyle(4, 0x657180, 0.95);
@@ -462,9 +669,15 @@ export default function TrustBoundaryCanvas({
 
           this.add.rectangle(whiteboard.x, whiteboard.y - 28, whiteboard.width - 36, 8, 0x6c7784, 0.6).setDepth(111);
           this.add.rectangle(whiteboard.x, whiteboard.y + 36, whiteboard.width - 26, 6, 0xc8d0da, 0.82).setDepth(111);
+          this.add.rectangle(whiteboard.x, whiteboard.y + 48, whiteboard.width - 40, 8, 0xa5aeb8, 0.8).setDepth(111);
+          this.add.rectangle(whiteboard.x - 64, whiteboard.y + 48, 16, 4, 0x445166, 0.9).setDepth(112);
+          this.add.rectangle(whiteboard.x - 42, whiteboard.y + 48, 16, 4, OFFICE_PALETTE.stickyWarm, 0.8).setDepth(112);
+          this.add.circle(whiteboard.x + 78, whiteboard.y + 48, 5, 0xe7edf4, 0.9).setDepth(112);
 
           whiteboard.stickyNotes.forEach((note, index) => {
-            this.add.rectangle(whiteboard.x - 68 + index * 34, whiteboard.y - 20 + (index % 2 === 0 ? 0 : 10), 18, 18, note.color, 0.95).setDepth(112);
+            this.add
+              .rectangle(whiteboard.x - 68 + index * 34, whiteboard.y - 20 + (index % 2 === 0 ? 0 : 10), 18, 18, note.color, 0.95)
+              .setDepth(112);
           });
 
           for (let row = 0; row < 4; row += 1) {
@@ -477,7 +690,14 @@ export default function TrustBoundaryCanvas({
           const printerArea = OFFICE_LAYOUT.printerArea;
           const counterDepth = printerArea.counter.y + printerArea.counter.height / 2;
 
-          this.addGroundShadow(printerArea.counter.x + 4, printerArea.counter.y + 8, printerArea.counter.width + 18, printerArea.counter.height + 18, 0.16, counterDepth - 4);
+          this.addGroundShadow(
+            printerArea.counter.x + 4,
+            printerArea.counter.y + 8,
+            printerArea.counter.width + 18,
+            printerArea.counter.height + 18,
+            0.16,
+            counterDepth - 4,
+          );
 
           const counter = this.add.rectangle(
             printerArea.counter.x,
@@ -490,12 +710,15 @@ export default function TrustBoundaryCanvas({
           counter.setDepth(counterDepth);
           counter.setStrokeStyle(2, 0xffffff, 0.06);
           this.add.rectangle(printerArea.counter.x, printerArea.counter.y - printerArea.counter.height / 2 + 6, printerArea.counter.width - 12, 6, 0xffffff, 0.08).setDepth(counterDepth + 1);
+          this.add.rectangle(printerArea.counter.x - 18, printerArea.counter.y + 6, 18, printerArea.counter.height - 12, 0x65715a, 0.54).setDepth(counterDepth + 1);
 
           const printer = this.add.rectangle(printerArea.printer.x, printerArea.printer.y, printerArea.printer.width, printerArea.printer.height, OFFICE_PALETTE.printer, 1);
           printer.setDepth(counterDepth + 2);
           printer.setStrokeStyle(2, 0x8a93a1, 0.8);
           this.add.rectangle(printerArea.printer.x + 16, printerArea.printer.y - 4, 30, 6, 0x9aa4b3, 0.72).setDepth(counterDepth + 3);
           this.add.circle(printerArea.printer.x + 26, printerArea.printer.y + 3, 3, OFFICE_PALETTE.deviceLight, 0.8).setDepth(counterDepth + 3);
+          this.add.rectangle(printerArea.printer.x - 14, printerArea.printer.y + 8, 28, 6, 0xd5dbe2, 0.82).setDepth(counterDepth + 3);
+          this.add.rectangle(printerArea.printer.x + 14, printerArea.printer.y + 10, 18, 3, 0xb4becb, 0.6).setDepth(counterDepth + 3);
 
           const filing = this.add.rectangle(
             printerArea.filingCabinet.x,
@@ -506,15 +729,108 @@ export default function TrustBoundaryCanvas({
             1,
           );
           filing.setDepth(printerArea.filingCabinet.y + printerArea.filingCabinet.height / 2);
-          filing.setStrokeStyle(2, 0xffffff, 0.05);
+          filing.setStrokeStyle(2, 0xbfcab5, 0.28);
+
+          // Push the cabinet closer to the reference by keeping the pseudo-3D
+          // language very simple: one top lip, one side face, and chunky drawer wells.
+          this.add
+            .rectangle(
+              printerArea.filingCabinet.x,
+              printerArea.filingCabinet.y - printerArea.filingCabinet.height / 2 + 6,
+              printerArea.filingCabinet.width - 8,
+              10,
+              0xacb8a2,
+              0.96,
+            )
+            .setDepth(printerArea.filingCabinet.y + printerArea.filingCabinet.height / 2 + 1);
+          this.add
+            .rectangle(
+              printerArea.filingCabinet.x + printerArea.filingCabinet.width / 2 - 7,
+              printerArea.filingCabinet.y + 1,
+              12,
+              printerArea.filingCabinet.height - 8,
+              0x69775d,
+              0.96,
+            )
+            .setDepth(printerArea.filingCabinet.y + printerArea.filingCabinet.height / 2 + 1);
+          this.add
+            .rectangle(
+              printerArea.filingCabinet.x - printerArea.filingCabinet.width / 2 + 7,
+              printerArea.filingCabinet.y + 1,
+              5,
+              printerArea.filingCabinet.height - 10,
+              0xd5dfcc,
+              0.34,
+            )
+            .setDepth(printerArea.filingCabinet.y + printerArea.filingCabinet.height / 2 + 1);
+          this.add
+            .rectangle(
+              printerArea.filingCabinet.x,
+              printerArea.filingCabinet.y + printerArea.filingCabinet.height / 2 - 4,
+              printerArea.filingCabinet.width - 10,
+              4,
+              0x5a6651,
+              0.3,
+            )
+            .setDepth(printerArea.filingCabinet.y + printerArea.filingCabinet.height / 2 + 1);
 
           for (let drawer = 0; drawer < 3; drawer += 1) {
-            this.add.rectangle(printerArea.filingCabinet.x, printerArea.filingCabinet.y - 26 + drawer * 28, printerArea.filingCabinet.width - 14, 18, 0x67735d, 0.96).setDepth(printerArea.filingCabinet.y + printerArea.filingCabinet.height / 2 + 1);
-            this.add.rectangle(printerArea.filingCabinet.x, printerArea.filingCabinet.y - 26 + drawer * 28, 16, 4, 0xf0f4f7, 0.26).setDepth(printerArea.filingCabinet.y + printerArea.filingCabinet.height / 2 + 2);
+            const drawerY = printerArea.filingCabinet.y - 26 + drawer * 28;
+            this.add
+              .rectangle(
+                printerArea.filingCabinet.x,
+                drawerY,
+                printerArea.filingCabinet.width - 18,
+                18,
+                0x78866c,
+                1,
+              )
+                .setDepth(printerArea.filingCabinet.y + printerArea.filingCabinet.height / 2 + 2);
+            this.add
+              .rectangle(
+                printerArea.filingCabinet.x,
+                drawerY + 1,
+                printerArea.filingCabinet.width - 28,
+                11,
+                0x647158,
+                1,
+              )
+                .setDepth(printerArea.filingCabinet.y + printerArea.filingCabinet.height / 2 + 2);
+            this.add
+              .rectangle(
+                printerArea.filingCabinet.x,
+                drawerY - 5,
+                printerArea.filingCabinet.width - 32,
+                4,
+                0xcdd6c8,
+                0.18,
+              )
+                .setDepth(printerArea.filingCabinet.y + printerArea.filingCabinet.height / 2 + 3);
+            this.add
+              .rectangle(
+                printerArea.filingCabinet.x + 8,
+                drawerY + 1,
+                16,
+                4,
+                0xe9eee4,
+                0.42,
+              )
+                .setDepth(printerArea.filingCabinet.y + printerArea.filingCabinet.height / 2 + 3);
+            this.add
+              .rectangle(
+                printerArea.filingCabinet.x - 22,
+                drawerY + 1,
+                5,
+                9,
+                0x8b9981,
+                0.22,
+              )
+              .setDepth(printerArea.filingCabinet.y + printerArea.filingCabinet.height / 2 + 3);
           }
 
           printerArea.paperStacks.forEach((stack) => {
             this.add.rectangle(stack.x, stack.y, stack.width, stack.height, 0xf4f7fb, 0.96).setDepth(counterDepth + 3);
+            this.add.rectangle(stack.x, stack.y - 2, stack.width - 4, 2, 0xffffff, 0.4).setDepth(counterDepth + 4);
           });
         }
 
@@ -528,16 +844,21 @@ export default function TrustBoundaryCanvas({
           counter.setDepth(counterDepth);
           counter.setStrokeStyle(2, 0xffffff, 0.05);
           this.add.rectangle(coffeeStation.counter.x, coffeeStation.counter.y - coffeeStation.counter.height / 2 + 6, coffeeStation.counter.width - 10, 6, 0xffffff, 0.08).setDepth(counterDepth + 1);
+          this.add.rectangle(coffeeStation.counter.x + 34, coffeeStation.counter.y + 6, 22, coffeeStation.counter.height - 12, 0x4e351f, 0.55).setDepth(counterDepth + 1);
+          this.add.rectangle(coffeeStation.counter.x - 26, coffeeStation.counter.y - 10, 24, 8, 0x36261c, 0.4).setDepth(counterDepth + 2);
 
           const machine = this.add.rectangle(coffeeStation.machine.x, coffeeStation.machine.y, coffeeStation.machine.width, coffeeStation.machine.height, OFFICE_PALETTE.monitorFrame, 1);
           machine.setDepth(coffeeStation.machine.y + coffeeStation.machine.height / 2);
           machine.setStrokeStyle(2, 0xffffff, 0.05);
           this.add.rectangle(coffeeStation.machine.x, coffeeStation.machine.y - 10, coffeeStation.machine.width - 12, 10, 0x2e3948, 1).setDepth(coffeeStation.machine.y + coffeeStation.machine.height / 2 + 1);
           this.add.circle(coffeeStation.machine.x + 12, coffeeStation.machine.y - 8, 3, OFFICE_PALETTE.deviceLight, 0.84).setDepth(coffeeStation.machine.y + coffeeStation.machine.height / 2 + 2);
+          this.add.rectangle(coffeeStation.machine.x - 8, coffeeStation.machine.y + 8, 18, 8, 0x161c24, 0.72).setDepth(coffeeStation.machine.y + coffeeStation.machine.height / 2 + 2);
+          this.add.rectangle(coffeeStation.machine.x + 6, coffeeStation.machine.y + 12, 12, 4, 0xb7c3cf, 0.54).setDepth(coffeeStation.machine.y + coffeeStation.machine.height / 2 + 3);
 
           coffeeStation.cups.forEach((cup) => {
             this.add.circle(cup.x, cup.y, 6, 0xf0ece4, 0.88).setDepth(counterDepth + 2);
             this.add.rectangle(cup.x + 4, cup.y, 3, 6, 0xf0ece4, 0.34).setDepth(counterDepth + 2);
+            this.add.circle(cup.x, cup.y - 1, 3, 0x8d6438, 0.42).setDepth(counterDepth + 3);
           });
         }
 
@@ -550,6 +871,8 @@ export default function TrustBoundaryCanvas({
           const shelf = this.add.rectangle(shelfArea.storageShelf.x, shelfArea.storageShelf.y, shelfArea.storageShelf.width, shelfArea.storageShelf.height, OFFICE_PALETTE.storage, 1);
           shelf.setDepth(shelfDepth);
           shelf.setStrokeStyle(2, 0xffffff, 0.05);
+          this.add.rectangle(shelfArea.storageShelf.x + shelfArea.storageShelf.width / 2 - 6, shelfArea.storageShelf.y + 2, 10, shelfArea.storageShelf.height - 8, 0x5f6b58, 0.94).setDepth(shelfDepth + 1);
+          this.add.rectangle(shelfArea.storageShelf.x, shelfArea.storageShelf.y - shelfArea.storageShelf.height / 2 + 6, shelfArea.storageShelf.width - 8, 8, 0xa3b097, 0.76).setDepth(shelfDepth + 1);
           [-26, 2, 30].forEach((offset) => {
             this.add.rectangle(shelfArea.storageShelf.x, shelfArea.storageShelf.y + offset, shelfArea.storageShelf.width - 10, 6, 0x606b59, 1).setDepth(shelfDepth + 1);
           });
@@ -560,9 +883,11 @@ export default function TrustBoundaryCanvas({
             parcel.setDepth(boxDepth);
             parcel.setStrokeStyle(2, 0xffffff, 0.04);
             this.add.rectangle(box.x, box.y - 4, box.width - 8, 4, 0xc6aa7f, 0.36).setDepth(boxDepth + 1);
+            this.add.rectangle(box.x, box.y, 4, box.height - 4, 0x5f4d39, 0.34).setDepth(boxDepth + 1);
           });
 
           this.add.circle(shelfArea.plant.x, shelfArea.plant.y + 12, shelfArea.plant.radius - 6, OFFICE_PALETTE.plantPot, 0.96).setDepth(shelfArea.plant.y + 24);
+          this.add.rectangle(shelfArea.plant.x, shelfArea.plant.y + 2, 4, 12, 0x5b6a43, 0.7).setDepth(shelfArea.plant.y + 25);
           this.add.circle(shelfArea.plant.x, shelfArea.plant.y - 4, shelfArea.plant.radius, OFFICE_PALETTE.plantLeaf, 1).setDepth(shelfArea.plant.y + 25);
           this.add.circle(shelfArea.plant.x - 14, shelfArea.plant.y - 10, shelfArea.plant.radius - 6, 0x4f6e4e, 1).setDepth(shelfArea.plant.y + 26);
           this.add.circle(shelfArea.plant.x + 14, shelfArea.plant.y - 10, shelfArea.plant.radius - 8, 0x486449, 1).setDepth(shelfArea.plant.y + 26);
@@ -613,14 +938,17 @@ export default function TrustBoundaryCanvas({
 
         private createActorVisual(x: number, y: number, bodyColor: number) {
           const shadow = this.add.ellipse(0, 16, 34, 16, 0x000000, 0.18);
-          const legs = this.add.rectangle(0, 8, 14, 16, 0x26313f, 1);
-          const torso = this.add.rectangle(0, -2, 22, 24, bodyColor, 1);
-          torso.setStrokeStyle(1, 0xffffff, 0.16);
-          const badge = this.add.rectangle(5, -4, 5, 9, 0xe8eef6, 0.32);
+          const legs = this.add.rectangle(0, 9, 12, 14, 0x2b3441, 1);
+          const torso = this.add.rectangle(0, -2, 20, 23, bodyColor, 1);
+          torso.setStrokeStyle(1, 0xffffff, 0.14);
+          const shoulders = this.add.rectangle(0, -10, 26, 7, bodyColor, 0.92);
+          const badge = this.add.rectangle(5, -4, 4, 8, 0xe8eef6, 0.28);
+          const armLeft = this.add.rectangle(-12, -2, 4, 16, bodyColor, 0.94);
+          const armRight = this.add.rectangle(12, -2, 4, 16, bodyColor, 0.94);
           const head = this.add.circle(0, -18, 9, OFFICE_PALETTE.actorHead, 1);
           const hair = this.add.rectangle(0, -23, 16, 5, 0x6d7784, 0.72);
 
-          return this.add.container(x, y, [shadow, legs, torso, badge, head, hair]);
+          return this.add.container(x, y, [shadow, legs, torso, shoulders, badge, armLeft, armRight, head, hair]);
         }
 
         private syncActorVisuals() {
