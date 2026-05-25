@@ -221,7 +221,6 @@ export default function TrustBoundaryCanvas({
               0x000000,
               0,
             )
-            .setStrokeStyle(2, OFFICE_PALETTE.floorLine, 0.3)
             .setDepth(3);
         }
 
@@ -242,14 +241,6 @@ export default function TrustBoundaryCanvas({
             isPrimary ? 0.3 : 0.2,
           );
           zoneRect.setDepth(4);
-          zoneRect.setStrokeStyle(2, zone.edgeColor, isPrimary ? 0.34 : 0.22);
-
-          this.add
-            .rectangle(zone.x + zone.width / 2, zone.y + 10, zone.width - 22, 4, 0xffffff, isPrimary ? 0.08 : 0.05)
-            .setDepth(5);
-          this.add
-            .rectangle(zone.x + 12, zone.y + zone.height / 2, 4, zone.height - 16, zone.edgeColor, isPrimary ? 0.16 : 0.08)
-            .setDepth(5);
         }
 
         private drawRoomBoundaries() {
@@ -260,89 +251,185 @@ export default function TrustBoundaryCanvas({
           const threshold = room.entranceThreshold;
           const thresholdCenterX = threshold.x + threshold.width / 2;
 
+          // ── Wall rendering constants ────────────────────────────────
+          const OB = 3;               // outer border (darkest edge)
+          const INNER_FACE = 8;       // room-facing inner strip
+          const TOP_CAP_H = 6;        // top surface visible from above
+          const SEAM_H = 2;           // bright seam between cap and body
+
+          const outerColor = OFFICE_PALETTE.wallWoodDark;   // 0x5d4531
+          const bodyColor  = OFFICE_PALETTE.wallWood;        // 0x806247
+          const innerColor = OFFICE_PALETTE.wallInner;       // 0xc7b59a
+          const capColor   = OFFICE_PALETTE.wallPlaster;     // 0xe4dac9
+          const seamColor  = 0xd4c8b0;
+
           walls.setDepth(16);
-          walls.fillStyle(OFFICE_PALETTE.wallWoodDark, 1);
-          walls.fillRect(interior.x - 24, topWallY, interior.width + 88, room.topWallHeight);
-          walls.fillRect(interior.x + interior.width, interior.y - 4, room.rightWallWidth, interior.height + 52);
 
-          walls.fillStyle(OFFICE_PALETTE.wallWood, 1);
-          walls.fillRect(interior.x - 20, topWallY + 4, interior.width + 80, room.topWallHeight - 10);
-          walls.fillRect(interior.x + interior.width + 4, interior.y, room.rightWallWidth - 8, interior.height + 44);
+          // ── Shell geometry ────────────────────────────────────────────
+          const leftSeg = room.leftWallSegments[0];
+          const leftW = leftSeg.width;
+          const rightW = room.rightWallWidth;
+          const topH = room.topWallHeight;
+          const botH = room.bottomWallSegments[0].height;
 
-          walls.fillStyle(OFFICE_PALETTE.wallInner, 1);
-          walls.fillRect(interior.x - 14, interior.y - 10, interior.width + 44, 12);
-          walls.fillRect(interior.x + interior.width + 10, interior.y + 6, 10, interior.height + 30);
-          walls.fillStyle(OFFICE_PALETTE.wallPlaster, 1);
-          walls.fillRect(interior.x - 10, topWallY + 10, interior.width + 36, 14);
-          walls.fillRect(interior.x + interior.width + 16, interior.y + 12, 4, interior.height + 18);
+          const shellL = leftSeg.x;
+          const shellR = interior.x + interior.width + rightW;
+          const shellT = topWallY;
+          const shellB = interior.y + interior.height + botH;
+          const fullW = shellR - shellL;
+          const fullH = shellB - shellT;
 
-          room.leftWallSegments.forEach((segment) => {
-            walls.fillStyle(OFFICE_PALETTE.wallWoodDark, 1);
-            walls.fillRect(segment.x, segment.y, segment.width, segment.height);
-            walls.fillStyle(OFFICE_PALETTE.wallWood, 1);
-            walls.fillRect(segment.x + 4, segment.y + 4, segment.width - 6, segment.height - 8);
-            walls.fillStyle(OFFICE_PALETTE.wallInner, 1);
-            walls.fillRect(segment.x + segment.width - 12, segment.y + 6, 8, segment.height - 12);
-          });
+          const roomL = shellL + leftW;
+          const roomR = interior.x + interior.width;
+          const roomT = shellT + topH;
+          const roomB = interior.y + interior.height;
 
-          room.bottomWallSegments.forEach((segment) => {
-            walls.fillStyle(OFFICE_PALETTE.wallWoodDark, 1);
-            walls.fillRect(segment.x, segment.y, segment.width, segment.height);
-            walls.fillStyle(OFFICE_PALETTE.wallWood, 1);
-            walls.fillRect(segment.x + 4, segment.y + 4, segment.width - 8, segment.height - 6);
-            walls.fillStyle(OFFICE_PALETTE.wallInner, 1);
-            walls.fillRect(segment.x + 8, segment.y + 8, segment.width - 16, 8);
-          });
+          const doorL = threshold.x;
+          const doorR = threshold.x + threshold.width;
 
-          [interior.x + 92, interior.x + 232, interior.x + 372, interior.x + 512].forEach((x) => {
-            this.add.rectangle(x, topWallY + room.topWallHeight / 2, 8, room.topWallHeight - 14, OFFICE_PALETTE.wallWoodDark, 0.42).setDepth(17);
-          });
-          [interior.y + 94, interior.y + 224, interior.y + 354].forEach((y) => {
-            this.add.rectangle(interior.x + interior.width + 18, y, 8, 82, OFFICE_PALETTE.wallWoodDark, 0.36).setDepth(17);
-          });
+          // ── LAYER 1: Outer border (darkest) ───────────────────────────
+          walls.fillStyle(outerColor, 1);
+          walls.fillRect(shellL, shellT, fullW, topH);
+          walls.fillRect(shellL, shellT, leftW, fullH);
+          walls.fillRect(roomR, shellT, rightW, fullH);
+          walls.fillRect(shellL, roomB, doorL - shellL, botH);
+          walls.fillRect(doorR, roomB, shellR - doorR, botH);
 
-          this.add.rectangle(interior.x + interior.width / 2, interior.y + 10, interior.width - 12, 12, 0x000000, 0.08).setDepth(15);
-          this.add.rectangle(interior.x + interior.width - 8, interior.y + interior.height / 2, 12, interior.height - 12, 0x000000, 0.08).setDepth(15);
-          this.add.rectangle(interior.x + 8, interior.y + interior.height / 2, 12, interior.height - 12, 0x000000, 0.07).setDepth(15);
+          // ── LAYER 2: Wall body (medium wood) ──────────────────────────
+          walls.fillStyle(bodyColor, 1);
+          walls.fillRect(shellL + OB, shellT + OB, fullW - OB * 2, topH - OB * 2);
+          walls.fillRect(shellL + OB, shellT + OB, leftW - OB * 2, fullH - OB * 2);
+          walls.fillRect(roomR + OB, shellT + OB, rightW - OB * 2, fullH - OB * 2);
+          walls.fillRect(shellL + OB, roomB + OB, doorL - shellL - OB * 2, botH - OB * 2);
+          walls.fillRect(doorR + OB, roomB + OB, shellR - doorR - OB * 2, botH - OB * 2);
 
+          // ── LAYER 3: Top cap (lightest) ───────────────────────────────
+          walls.fillStyle(capColor, 1);
+          walls.fillRect(shellL + OB, shellT + OB, fullW - OB * 2, TOP_CAP_H);
+
+          // ── LAYER 4: Seam below cap ───────────────────────────────────
+          walls.fillStyle(seamColor, 1);
+          walls.fillRect(shellL + OB, shellT + OB + TOP_CAP_H, fullW - OB * 2, SEAM_H);
+
+          // ── LAYER 5: Inner faces (room-facing edges) ──────────────────
+          walls.fillStyle(innerColor, 1);
+          walls.fillRect(roomL, roomT - INNER_FACE, roomR - roomL, INNER_FACE);
+          walls.fillRect(roomL - INNER_FACE, roomT, INNER_FACE, roomB - roomT);
+          walls.fillRect(roomR, roomT, INNER_FACE, roomB - roomT);
+          walls.fillRect(roomL, roomB, doorL - roomL, INNER_FACE);
+          walls.fillRect(doorR, roomB, roomR - doorR, INNER_FACE);
+
+          // ── LAYER 6: Corner lines (diagonal from inner to outer corner)
+          // These lines show the wall thickness at each corner joint,
+          // like a mitre line where two walls meet.
+          walls.lineStyle(2, outerColor, 0.7);
+          // Top-left corner
+          walls.beginPath();
+          walls.moveTo(roomL, roomT);
+          walls.lineTo(shellL, shellT);
+          walls.strokePath();
+          // Top-right corner
+          walls.beginPath();
+          walls.moveTo(roomR, roomT);
+          walls.lineTo(shellR, shellT);
+          walls.strokePath();
+          // Bottom-left corner
+          walls.beginPath();
+          walls.moveTo(roomL, roomB);
+          walls.lineTo(shellL, shellB);
+          walls.strokePath();
+          // Bottom-right corner
+          walls.beginPath();
+          walls.moveTo(roomR, roomB);
+          walls.lineTo(shellR, shellB);
+          walls.strokePath();
+
+          // ── Inner wall shadows (cast onto the floor) ──────────────────
+          this.add.rectangle((roomL + roomR) / 2, roomT + 6, roomR - roomL - 8, 10, 0x000000, 0.1).setDepth(15);
+          this.add.rectangle(roomR - 6, (roomT + roomB) / 2, 10, roomB - roomT - 8, 0x000000, 0.09).setDepth(15);
+          this.add.rectangle(roomL + 6, (roomT + roomB) / 2, 10, roomB - roomT - 8, 0x000000, 0.07).setDepth(15);
+
+          // ── Door opening ────────────────────────────────────────────
+          const doorX = threshold.x;
+          const doorW = threshold.width;
+          const doorCX = thresholdCenterX;
+          const wallY = room.bottomWallSegments[0].y;
+          const wallH = room.bottomWallSegments[0].height;
+
+          // Dark corridor / hallway void behind the door
           this.add
-            .rectangle(thresholdCenterX, interior.y + interior.height + 44, threshold.width + 34, 88, 0x07090d, 1)
+            .rectangle(doorCX, wallY + wallH / 2 + 20, doorW + 8, wallH + 44, 0x0a0e14, 1)
             .setDepth(1);
+          // Slightly lighter back wall of corridor (visible depth)
+          this.add
+            .rectangle(doorCX, wallY + wallH + 12, doorW - 8, 16, 0x1a1f28, 1)
+            .setDepth(2);
 
-          this.add.rectangle(threshold.x - 4, room.bottomWallSegments[0].y + 20, 8, 34, OFFICE_PALETTE.wallWoodDark, 1).setDepth(18);
-          this.add.rectangle(threshold.x - 4, room.bottomWallSegments[0].y + 20, 6, 24, OFFICE_PALETTE.wallInner, 0.86).setDepth(19);
-          this.add.rectangle(threshold.x + threshold.width + 4, room.bottomWallSegments[0].y + 20, 8, 34, OFFICE_PALETTE.wallWoodDark, 1).setDepth(18);
-          this.add.rectangle(threshold.x + threshold.width + 4, room.bottomWallSegments[0].y + 20, 6, 24, OFFICE_PALETTE.wallInner, 0.86).setDepth(19);
+          // ── Door frame (left jamb) ────────────────────────────────────
+          const JAMB_W = 12;
+          const JAMB_FRONT_H = 10;
+          const jambLeftX = doorX - JAMB_W / 2;
+          const jambRightX = doorX + doorW + JAMB_W / 2;
 
+          // Left jamb — front face (darkest)
+          this.add.rectangle(jambLeftX, wallY + wallH / 2 + JAMB_FRONT_H / 2, JAMB_W, wallH + JAMB_FRONT_H, OFFICE_PALETTE.wallWoodDark, 1).setDepth(18);
+          // Left jamb — inner face (medium, facing into doorway)
+          this.add.rectangle(jambLeftX + 2, wallY + wallH / 2 + JAMB_FRONT_H / 2, JAMB_W - 4, wallH + JAMB_FRONT_H - 4, OFFICE_PALETTE.wallWood, 1).setDepth(19);
+          // Left jamb — inner edge highlight
+          this.add.rectangle(doorX + 2, wallY + wallH / 2, 3, wallH - 6, OFFICE_PALETTE.wallInner, 0.7).setDepth(20);
+
+          // Right jamb — front face (darkest)
+          this.add.rectangle(jambRightX, wallY + wallH / 2 + JAMB_FRONT_H / 2, JAMB_W, wallH + JAMB_FRONT_H, OFFICE_PALETTE.wallWoodDark, 1).setDepth(18);
+          // Right jamb — inner face (medium)
+          this.add.rectangle(jambRightX - 2, wallY + wallH / 2 + JAMB_FRONT_H / 2, JAMB_W - 4, wallH + JAMB_FRONT_H - 4, OFFICE_PALETTE.wallWood, 1).setDepth(19);
+          // Right jamb — inner edge highlight
+          this.add.rectangle(doorX + doorW - 2, wallY + wallH / 2, 3, wallH - 6, OFFICE_PALETTE.wallInner, 0.7).setDepth(20);
+
+          // ── Lintel (top header across the door) ───────────────────────
+          this.add.rectangle(doorCX, wallY + 2, doorW + JAMB_W * 2, 8, OFFICE_PALETTE.wallWoodDark, 1).setDepth(20);
+          this.add.rectangle(doorCX, wallY + 3, doorW + JAMB_W * 2 - 4, 5, OFFICE_PALETTE.wallWood, 1).setDepth(21);
+
+          // ── Door panel (slightly ajar, swung inward to the right) ─────
+          const doorPanelW = doorW * 0.45;  // foreshortened — door is angled open
+          const doorPanelH = wallH - 4;
+          const doorPanelX = doorX + doorW - doorPanelW / 2 - 4;
+          const doorPanelY = wallY + wallH / 2 + 2;
+
+          // Door panel — side face (the visible thickness of the open door)
+          this.add.rectangle(doorPanelX + doorPanelW / 2 + 2, doorPanelY, 4, doorPanelH, OFFICE_PALETTE.wallWoodDark, 0.9).setDepth(21);
+          // Door panel — front face (the main visible surface)
+          this.add.rectangle(doorPanelX, doorPanelY, doorPanelW, doorPanelH, OFFICE_PALETTE.wallWood, 1).setDepth(22);
+          // Door panel — lighter inner rectangle (panel detail)
+          this.add.rectangle(doorPanelX, doorPanelY - 6, doorPanelW - 8, doorPanelH * 0.38, OFFICE_PALETTE.wallInner, 0.5).setDepth(23);
+          this.add.rectangle(doorPanelX, doorPanelY + 8, doorPanelW - 8, doorPanelH * 0.32, OFFICE_PALETTE.wallInner, 0.4).setDepth(23);
+          // Door handle (small bright rectangle)
+          this.add.rectangle(doorPanelX - doorPanelW / 2 + 8, doorPanelY + 2, 6, 3, 0xb8b8b8, 0.9).setDepth(24);
+
+          // ── Threshold strip (metal/wood transition strip on floor) ────
+          this.add.rectangle(doorCX, wallY + wallH + 2, doorW + 4, 5, OFFICE_PALETTE.wallWoodDark, 0.85).setDepth(8);
+          this.add.rectangle(doorCX, wallY + wallH + 2, doorW - 2, 3, OFFICE_PALETTE.wallInner, 0.6).setDepth(9);
+
+          // ── Welcome mat ───────────────────────────────────────────────
           const mat = this.add.rectangle(
-            thresholdCenterX,
-            threshold.y + threshold.height / 2,
-            threshold.width - 10,
-            threshold.height,
+            doorCX,
+            wallY + wallH + 16,
+            doorW - 16,
+            14,
             OFFICE_PALETTE.zonePath,
-            0.82,
+            0.7,
           );
           mat.setDepth(8);
-          mat.setStrokeStyle(2, OFFICE_PALETTE.wallTrim, 0.42);
-          this.add.rectangle(thresholdCenterX, threshold.y + 3, threshold.width - 18, 4, 0xffffff, 0.08).setDepth(9);
+          mat.setStrokeStyle(1, OFFICE_PALETTE.wallTrim, 0.3);
         }
 
         private addEntryLane() {
-          const lane = this.add.rectangle(400, 432, 232, 28, OFFICE_PALETTE.focus, 0.06);
-          lane.setDepth(6);
-          lane.setStrokeStyle(1, OFFICE_PALETTE.focus, 0.18);
-
-          [304, 368, 432, 496].forEach((x) => {
-            this.add.rectangle(x, 432, 20, 8, OFFICE_PALETTE.focus, 0.14).setDepth(7);
-          });
+          // intentionally empty — removed ground-level outlines
         }
 
         private addWallAccents() {
-          this.add.rectangle(504, 126, 264, 10, OFFICE_PALETTE.wallInner, 0.62).setDepth(18);
-          this.add.rectangle(504, 120, 220, 4, OFFICE_PALETTE.wallPlaster, 0.5).setDepth(19);
-          this.add.rectangle(844, 220, 12, 188, OFFICE_PALETTE.wallInner, 0.52).setDepth(18);
-          this.add.rectangle(218, 540, 24, 20, OFFICE_PALETTE.wallInner, 0.72).setDepth(18);
-          this.add.rectangle(358, 540, 24, 20, OFFICE_PALETTE.wallInner, 0.72).setDepth(18);
+          // Door-side bracket accents on bottom wall (flanking the entrance)
+          this.add.rectangle(218, 540, 20, 16, OFFICE_PALETTE.wallInner, 0.6).setDepth(18);
+          this.add.rectangle(358, 540, 20, 16, OFFICE_PALETTE.wallInner, 0.6).setDepth(18);
         }
         private createStaticColliders() {
           const room = OFFICE_LAYOUT.room;
@@ -434,7 +521,7 @@ export default function TrustBoundaryCanvas({
             0.58,
           );
           rug.setDepth(depth - 18);
-          rug.setStrokeStyle(2, cluster.accentColor, isPrimary ? 0.28 : 0.14);
+          // no stroke — clean ground
 
           // ── Ground shadow ─────────────────────────────────────────────
           this.addGroundShadow(
@@ -818,67 +905,104 @@ export default function TrustBoundaryCanvas({
           const cDepth = pa.counter.y + pa.counter.height / 2;
           this.addGroundShadow(pa.counter.x + 4, pa.counter.y + pa.counter.height / 2 + FRONT_H + 4, pa.counter.width + SIDE_W + 20, 16, 0.16, cDepth - 4);
 
+          const cx = pa.counter.x;
+          const cy = pa.counter.y;
+          const cw = pa.counter.width;
+          const ch = pa.counter.height;
+          const cTopColor   = OFFICE_PALETTE.storage;  // lightest
+          const cFrontColor = 0x65715a;                // medium
+          const cSideColor  = 0x586050;                // darkest
+          const cSeamColor  = 0xa3b097;
+
           // Top surface
-          this.add.rectangle(pa.counter.x, pa.counter.y, pa.counter.width, pa.counter.height, OFFICE_PALETTE.storage, 1)
-            .setStrokeStyle(1, 0x65715a, 0.5).setDepth(cDepth);
-          this.add.rectangle(pa.counter.x, pa.counter.y - pa.counter.height / 2 + 2, pa.counter.width - 6, 3, 0xffffff, 0.07).setDepth(cDepth + 1);
+          this.add.rectangle(cx, cy, cw, ch, cTopColor, 1).setDepth(cDepth);
+          // Back-edge highlight
+          this.add.rectangle(cx, cy - ch / 2 + 2, cw - 6, 2, cSeamColor, 0.35).setDepth(cDepth + 1);
           // Edge seam
-          this.add.rectangle(pa.counter.x + SIDE_W / 2, pa.counter.y + pa.counter.height / 2 + 1, pa.counter.width + SIDE_W, 2, 0xa3b097, 0.4).setDepth(cDepth + 2);
+          this.add.rectangle(cx + SIDE_W / 2, cy + ch / 2 + 1, cw + SIDE_W, 2, cSeamColor, 0.5).setDepth(cDepth + 2);
           // Front face
-          this.add.rectangle(pa.counter.x + SIDE_W / 2, pa.counter.y + pa.counter.height / 2 + FRONT_H / 2 + 2, pa.counter.width + SIDE_W, FRONT_H, 0x65715a, 1).setDepth(cDepth + 2);
+          this.add.rectangle(cx + SIDE_W / 2, cy + ch / 2 + FRONT_H / 2 + 2, cw + SIDE_W, FRONT_H, cFrontColor, 1).setDepth(cDepth + 2);
           // Right side
-          this.add.rectangle(pa.counter.x + pa.counter.width / 2 + SIDE_W / 2, pa.counter.y + FRONT_H / 2 + 1, SIDE_W, pa.counter.height + FRONT_H, 0x586050, 1).setDepth(cDepth + 1);
+          this.add.rectangle(cx + cw / 2 + SIDE_W / 2, cy + FRONT_H / 2 + 1, SIDE_W, ch + FRONT_H, cSideColor, 1).setDepth(cDepth + 1);
 
           // ── Printer (sitting on counter top) ──────────────────────────
-          const pFront = 8;
-          const pSide = 6;
+          const pFront = 14;
+          const pSide = 8;
           const pDepth = cDepth + 4;
+
+          const px = pa.printer.x;
+          const py = pa.printer.y;
+          const pw = pa.printer.width;
+          const ph = pa.printer.height;
+
+          const pTopColor   = 0xdce2ea;   // lightest — top surface
+          const pFrontColor = 0xc0c8d2;   // medium — front face
+          const pSideColor  = 0xa8b2be;   // darkest — right side
+          const pSeamColor  = 0xe8ecf0;   // bright seam
+
           // Top surface
-          this.add.rectangle(pa.printer.x, pa.printer.y, pa.printer.width, pa.printer.height, OFFICE_PALETTE.printer, 1)
-            .setStrokeStyle(1, 0x8a93a1, 0.6).setDepth(pDepth);
-          this.add.rectangle(pa.printer.x, pa.printer.y - pa.printer.height / 2 + 2, pa.printer.width - 8, 3, 0xffffff, 0.14).setDepth(pDepth + 1);
+          this.add.rectangle(px, py, pw, ph, pTopColor, 1).setDepth(pDepth);
+          // Back-edge highlight
+          this.add.rectangle(px, py - ph / 2 + 2, pw - 6, 2, pSeamColor, 0.5).setDepth(pDepth + 1);
+          // Edge seam (between top and front)
+          this.add.rectangle(px + pSide / 2, py + ph / 2 + 1, pw + pSide, 2, pSeamColor, 0.6).setDepth(pDepth + 1);
           // Front face
-          this.add.rectangle(pa.printer.x + pSide / 2, pa.printer.y + pa.printer.height / 2 + pFront / 2 + 1, pa.printer.width + pSide, pFront, 0xc8ced6, 1).setDepth(pDepth + 1);
-          // Right side
-          this.add.rectangle(pa.printer.x + pa.printer.width / 2 + pSide / 2, pa.printer.y + pFront / 2, pSide, pa.printer.height + pFront, 0xb0b8c4, 1).setDepth(pDepth + 1);
-          // Paper feed slot
-          this.add.rectangle(pa.printer.x - 10, pa.printer.y + pa.printer.height / 2 + 3, 26, 4, 0x9aa4b3, 0.7).setDepth(pDepth + 2);
+          this.add.rectangle(px + pSide / 2, py + ph / 2 + pFront / 2 + 2, pw + pSide, pFront, pFrontColor, 1).setDepth(pDepth + 1);
+          // Right side face
+          this.add.rectangle(px + pw / 2 + pSide / 2, py + pFront / 2 + 1, pSide, ph + pFront, pSideColor, 1).setDepth(pDepth + 1);
+          // Paper output tray (on top, near back)
+          this.add.rectangle(px - 8, py - ph / 2 + 6, pw * 0.5, 6, 0xf4f7fb, 0.9).setDepth(pDepth + 2);
+          this.add.rectangle(px - 8, py - ph / 2 + 10, pw * 0.5 + 4, 2, pFrontColor, 0.5).setDepth(pDepth + 2);
+          // Paper feed slot (dark recess on front face)
+          this.add.rectangle(px - 4, py + ph / 2 + 5, 28, 4, 0x8a93a1, 0.8).setDepth(pDepth + 2);
+          // Control panel (small dark area on front face)
+          this.add.rectangle(px + 12, py + ph / 2 + 10, 16, 6, 0x3a4450, 0.7).setDepth(pDepth + 2);
           // Status LED
-          this.add.circle(pa.printer.x + 24, pa.printer.y + 2, 3, OFFICE_PALETTE.deviceLight, 0.8).setDepth(pDepth + 1);
+          this.add.circle(px + pw / 2 - 6, py - 2, 3, OFFICE_PALETTE.deviceLight, 0.9).setDepth(pDepth + 2);
 
           // ── Filing cabinet (three-plane + drawers) ────────────────────
+          // Tall cabinet: small top surface, large front face with drawers
           const fc = pa.filingCabinet;
-          const fcFront = 14;
-          const fcSide = 8;
-          const fcDepth = fc.y + fc.height / 2;
+          const fcTopH = 10;           // narrow top strip (looking down at top of tall cabinet)
+          const fcFrontH = fc.height;  // front face IS the dominant area — full layout height
+          const fcSide = 10;
+          const fcDepth = fc.y + fcTopH + fcFrontH / 2;
 
-          this.addGroundShadow(fc.x + 4, fc.y + fc.height / 2 + fcFront + 4, fc.width + fcSide + 16, 14, 0.14, fcDepth - 4);
+          const fcTopColor   = 0x96a88c;   // lightest
+          const fcFrontColor = OFFICE_PALETTE.filing; // 0x7e8d75
+          const fcSideColor  = 0x5e6e53;   // darkest
+          const fcSeamColor  = 0xacb8a2;
 
-          // Top surface
-          this.add.rectangle(fc.x, fc.y - fc.height / 2 + 4, fc.width, 8, OFFICE_PALETTE.filing, 1).setDepth(fcDepth);
-          this.add.rectangle(fc.x, fc.y - fc.height / 2 + 2, fc.width - 6, 3, 0xacb8a2, 0.5).setDepth(fcDepth + 1);
-          // Front face (contains the drawers)
-          this.add.rectangle(fc.x + fcSide / 2, fc.y + 4, fc.width + fcSide, fc.height, OFFICE_PALETTE.filing, 1).setDepth(fcDepth + 1);
-          // Edge seam between top and front
-          this.add.rectangle(fc.x + fcSide / 2, fc.y - fc.height / 2 + 9, fc.width + fcSide - 4, 2, 0xacb8a2, 0.35).setDepth(fcDepth + 2);
-          // Right side
-          this.add.rectangle(fc.x + fc.width / 2 + fcSide / 2, fc.y + 4, fcSide, fc.height, 0x69775d, 1).setDepth(fcDepth + 1);
-          // Bottom dark edge
-          this.add.rectangle(fc.x + fcSide / 2, fc.y + fc.height / 2 + 3, fc.width + fcSide - 4, 2, 0x5a6651, 0.4).setDepth(fcDepth + 2);
+          // Ground shadow (tight)
+          this.addGroundShadow(fc.x + fcSide / 2 + 2, fc.y + fcTopH + fcFrontH + 2, fc.width + fcSide + 8, 10, 0.18, fcDepth - 4);
 
-          // Drawers (cut into the front face)
-          const drawerAreaH = fc.height - 14;
-          const drawerH = Math.floor(drawerAreaH / 3) - 3;
-          for (let d = 0; d < 3; d += 1) {
-            const dy = fc.y - fc.height / 2 + 16 + d * (drawerH + 3) + drawerH / 2;
-            // Drawer well
-            this.add.rectangle(fc.x, dy, fc.width - 14, drawerH, 0x78866c, 1).setDepth(fcDepth + 2);
-            // Drawer inset (darker recess)
-            this.add.rectangle(fc.x, dy + 1, fc.width - 22, drawerH - 4, 0x647158, 1).setDepth(fcDepth + 2);
+          // Top surface (narrow strip — the top of a tall cabinet seen from above)
+          this.add.rectangle(fc.x, fc.y + fcTopH / 2, fc.width, fcTopH, fcTopColor, 1).setDepth(fcDepth);
+          // Seam between top and front
+          this.add.rectangle(fc.x + fcSide / 2, fc.y + fcTopH + 1, fc.width + fcSide, 2, fcSeamColor, 0.5).setDepth(fcDepth + 1);
+
+          // Front face (tall — this is what you mainly see)
+          this.add.rectangle(fc.x + fcSide / 2, fc.y + fcTopH + fcFrontH / 2 + 2, fc.width + fcSide, fcFrontH, fcFrontColor, 1).setDepth(fcDepth + 1);
+          // Right side face
+          this.add.rectangle(fc.x + fc.width / 2 + fcSide / 2, fc.y + fcTopH / 2 + fcFrontH / 2 + 1, fcSide, fcTopH + fcFrontH, fcSideColor, 1).setDepth(fcDepth + 1);
+          // Bottom contact line
+          this.add.rectangle(fc.x + fcSide / 2, fc.y + fcTopH + fcFrontH + 1, fc.width + fcSide, 2, 0x4a5547, 0.5).setDepth(fcDepth + 2);
+
+          // Drawers (inset into the front face)
+          const numDrawers = 3;
+          const drawerPad = 4;
+          const drawerGap = 3;
+          const drawerAreaH = fcFrontH - drawerPad * 2;
+          const drawerH = Math.floor((drawerAreaH - (numDrawers - 1) * drawerGap) / numDrawers);
+          const drawerStartY = fc.y + fcTopH + drawerPad + 2;
+          for (let d = 0; d < numDrawers; d += 1) {
+            const dy = drawerStartY + d * (drawerH + drawerGap) + drawerH / 2;
+            // Drawer face
+            this.add.rectangle(fc.x, dy, fc.width - 6, drawerH, 0x8a9c80, 1).setDepth(fcDepth + 2);
+            // Dark line at top (recess shadow)
+            this.add.rectangle(fc.x, dy - drawerH / 2 + 1, fc.width - 8, 1.5, 0x5c6b52, 0.7).setDepth(fcDepth + 3);
             // Handle
-            this.add.rectangle(fc.x + 6, dy, 14, 3, 0xe9eee4, 0.4).setDepth(fcDepth + 3);
-            // Top edge highlight
-            this.add.rectangle(fc.x, dy - drawerH / 2 + 1, fc.width - 18, 1.5, 0xcdd6c8, 0.18).setDepth(fcDepth + 3);
+            this.add.rectangle(fc.x + 4, dy, 16, 3, 0xd4dece, 0.7).setDepth(fcDepth + 3);
           }
 
           // Paper stacks on counter
@@ -1143,9 +1267,13 @@ export default function TrustBoundaryCanvas({
       });
 
       gameRef.current = game;
-      const scene = game.scene.getScene("trust-boundary-room");
-      sceneEventsRef.current = scene.events;
-      scene.events.emit("desk-mode", deskMode);
+      game.events.once("ready", () => {
+        const scene = game.scene.getScene("trust-boundary-room");
+        if (scene) {
+          sceneEventsRef.current = scene.events;
+          scene.events.emit("desk-mode", deskMode);
+        }
+      });
     }
 
     void bootGame();

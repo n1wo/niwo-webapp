@@ -26,34 +26,23 @@ type PendingResolution = {
   text: string;
 };
 
-const SCORE_STYLES: Array<{ key: keyof MetricScores; accent: string; rail: string }> = [
-  {
-    key: "trust",
-    accent: "text-[var(--color-accent-light)]",
-    rail: "bg-[linear-gradient(90deg,rgba(140,127,224,0.9),rgba(140,127,224,0.2))]",
-  },
-  {
-    key: "continuity",
-    accent: "text-zinc-100",
-    rail: "bg-[linear-gradient(90deg,rgba(244,244,245,0.9),rgba(244,244,245,0.18))]",
-  },
-  {
-    key: "judgment",
-    accent: "text-[#7fd6a2]",
-    rail: "bg-[linear-gradient(90deg,rgba(127,214,162,0.9),rgba(127,214,162,0.2))]",
-  },
+const SCORE_STYLES: Array<{ key: keyof MetricScores; accent: string; bar: string }> = [
+  { key: "trust", accent: "text-indigo-400", bar: "bg-indigo-500" },
+  { key: "continuity", accent: "text-zinc-300", bar: "bg-zinc-400" },
+  { key: "judgment", accent: "text-emerald-400", bar: "bg-emerald-500" },
 ];
+
+/* ─────────────────────────────────────────────────────────────── */
 
 export default function TrustBoundaryPrototype() {
   const locale = useLocale() as AppLocale;
   const t = useTranslations("TrustBoundaryPrototype");
-  const prefersReducedMotion = useReducedMotion();
+  const reduced = useReducedMotion();
   const messages = useMemo(() => getDayOneMessages(locale), [locale]);
   const incidentOptions = useMemo(() => getIncidentOptions(locale), [locale]);
 
   const [mode, setMode] = useState<PrototypeMode>("office");
   const [deskNearby, setDeskNearby] = useState(false);
-  const [notesOpen, setNotesOpen] = useState(false);
   const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
   const [investigatedIds, setInvestigatedIds] = useState<string[]>([]);
   const [decisions, setDecisions] = useState<DecisionRecord[]>([]);
@@ -69,113 +58,46 @@ export default function TrustBoundaryPrototype() {
   );
   const summaryTone = getSummaryTone(scores);
   const summaryNarrative = getSummaryNarrative(locale, summaryTone, incidentChoice);
-  const motionEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
-  const getEntranceMotion = (delay = 0) =>
-    prefersReducedMotion
-      ? {}
-      : {
-          initial: { opacity: 0, y: 18 },
-          animate: { opacity: 1, y: 0 },
-          transition: { duration: 0.52, delay, ease: motionEase },
-        };
-
-  const getSurfaceMotion = (delay = 0, y = 14, scale = 0.985) =>
-    prefersReducedMotion
-      ? {}
-      : {
-          initial: { opacity: 0, y, scale },
-          animate: { opacity: 1, y: 0, scale: 1 },
-          transition: { duration: 0.34, delay, ease: motionEase },
-        };
-
-  const hoverLift = prefersReducedMotion ? undefined : { y: -2, scale: 1.01 };
-  const tapPress = prefersReducedMotion ? undefined : { scale: 0.985 };
+  const ease: [number, number, number, number] = [0.22, 1, 0.36, 1];
+  const dur = reduced ? 0.1 : 0.3;
 
   useEffect(() => {
     if (mode !== "desk" || pendingResolution) return;
-
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setMode("office");
-      }
+      if (event.key === "Escape") setMode("office");
     };
-
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [mode, pendingResolution]);
 
-  const objectiveText =
-    mode === "office"
-      ? deskNearby
-        ? t("game.objectives.officeReady")
-        : t("game.objectives.office")
-      : mode === "desk"
-        ? t("game.objectives.desk")
-        : mode === "incident"
-          ? t("game.objectives.incident")
-          : t("game.objectives.summary");
-
-  const modeChip =
-    mode === "office"
-      ? t("game.mode.office")
-      : mode === "desk"
-        ? t("game.mode.desk")
-        : mode === "incident"
-          ? t("game.mode.incident")
-          : t("game.mode.summary");
-
   const handleDeskInteract = () => {
     if (mode !== "office") return;
-    setNotesOpen(false);
     setMode("desk");
   };
 
   const handleInvestigate = () => {
     if (!currentMessage || investigated) return;
-    setInvestigatedIds((previous) => [...previous, currentMessage.id]);
+    setInvestigatedIds((prev) => [...prev, currentMessage.id]);
   };
 
   const handleMessageAction = (action: MessageAction) => {
     if (!currentMessage) return;
-
-    const nextDecision: DecisionRecord = {
-      messageId: currentMessage.id,
-      action,
-      investigated,
-    };
-
-    setDecisions((previous) => [...previous, nextDecision]);
+    setDecisions((prev) => [...prev, { messageId: currentMessage.id, action, investigated }]);
     setPendingResolution({
-      title:
-        action === currentMessage.bestAction
-          ? t("game.feedback.good")
-          : t("game.feedback.risk"),
-      text:
-        action === "allow"
-          ? currentMessage.allowFeedback
-          : currentMessage.quarantineFeedback,
+      title: action === currentMessage.bestAction ? t("game.feedback.good") : t("game.feedback.risk"),
+      text: action === "allow" ? currentMessage.allowFeedback : currentMessage.quarantineFeedback,
     });
-
-    if (currentMessage.incidentTrigger && action === "allow") {
-      setIncidentTriggered(true);
-    }
+    if (currentMessage.incidentTrigger && action === "allow") setIncidentTriggered(true);
   };
 
   const advanceFlow = () => {
     setPendingResolution(null);
-
     if (currentMessageIndex < messages.length - 1) {
-      setCurrentMessageIndex((previous) => previous + 1);
+      setCurrentMessageIndex((prev) => prev + 1);
       return;
     }
-
-    if (incidentTriggered) {
-      setMode("incident");
-      return;
-    }
-
-    setMode("summary");
+    setMode(incidentTriggered ? "incident" : "summary");
   };
 
   const handleIncidentResolution = (choice: IncidentChoice) => {
@@ -186,7 +108,6 @@ export default function TrustBoundaryPrototype() {
   const handleReplay = () => {
     setMode("office");
     setDeskNearby(false);
-    setNotesOpen(false);
     setCurrentMessageIndex(0);
     setInvestigatedIds([]);
     setDecisions([]);
@@ -195,175 +116,79 @@ export default function TrustBoundaryPrototype() {
     setIncidentChoice(null);
   };
 
-  const renderMetrics = (dense: boolean) => (
-    <div className={dense ? "space-y-3" : "grid gap-4 sm:grid-cols-3"}>
-      {SCORE_STYLES.map((item, index) => (
-        <motion.div
-          key={item.key}
-          {...getSurfaceMotion(index * 0.06, 10, 0.99)}
-          className="rounded-2xl border border-white/[0.08] bg-white/[0.02] px-4 py-4"
-        >
-          <div className="flex items-center justify-between gap-3">
-            <p className="font-mono text-[0.68rem] uppercase tracking-[0.22em] text-zinc-500">
-              {t(`game.metrics.${item.key}`)}
-            </p>
-            <p className={`font-mono text-sm ${item.accent}`}>{scores[item.key]}</p>
+  /* ── Shared animation helpers ─────────────────────────── */
+  const fadeIn = (delay = 0) =>
+    reduced ? {} : {
+      initial: { opacity: 0, y: 10 },
+      animate: { opacity: 1, y: 0 },
+      transition: { duration: dur, delay, ease },
+    };
+
+  /* ── Metric bars ──────────────────────────────────────── */
+  const renderMetrics = (compact: boolean) => (
+    <div className={compact ? "space-y-2.5" : "grid gap-3 sm:grid-cols-3"}>
+      {SCORE_STYLES.map((s) => (
+        <div key={s.key} className="rounded-lg border border-white/[0.06] bg-white/[0.02] px-3 py-2.5">
+          <div className="flex items-center justify-between">
+            <span className="text-[0.65rem] font-medium uppercase tracking-widest text-zinc-500">
+              {t(`game.metrics.${s.key}`)}
+            </span>
+            <span className={`text-xs font-semibold tabular-nums ${s.accent}`}>{scores[s.key]}</span>
           </div>
-          <div className="mt-4 h-2 rounded-full bg-white/[0.06]">
+          <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-white/[0.06]">
             <motion.div
-              initial={prefersReducedMotion ? false : { width: 0 }}
-              animate={{ width: `${scores[item.key]}%` }}
-              transition={
-                prefersReducedMotion
-                  ? { duration: 0 }
-                  : { duration: 0.72, ease: motionEase, delay: 0.08 }
-              }
-              className={`h-2 rounded-full ${item.rail}`}
-              style={{ width: `${scores[item.key]}%` }}
+              initial={reduced ? false : { width: 0 }}
+              animate={{ width: `${scores[s.key]}%` }}
+              transition={reduced ? { duration: 0 } : { duration: 0.6, ease }}
+              className={`h-full rounded-full ${s.bar}`}
+              style={{ width: `${scores[s.key]}%` }}
             />
           </div>
-        </motion.div>
+        </div>
       ))}
     </div>
   );
 
+  /* ── Objective text ───────────────────────────────────── */
+  const objectiveText =
+    mode === "office"
+      ? deskNearby ? t("game.objectives.officeReady") : t("game.objectives.office")
+      : mode === "desk" ? t("game.objectives.desk")
+      : mode === "incident" ? t("game.objectives.incident")
+      : t("game.objectives.summary");
+
+  /* ─────────────────────────────────────────────────────── */
   return (
-    <main className="h-[100dvh] overflow-hidden bg-[#05060a] text-foreground">
-      <section className="mx-auto flex h-full max-w-[100rem] min-h-0 flex-col gap-4 px-3 py-3 sm:px-5 sm:py-5">
-        <motion.div
-          {...getEntranceMotion(0)}
-          className="rounded-[1.45rem] border border-white/[0.08] bg-[#111113] px-4 py-4 shadow-[0_20px_64px_rgba(0,0,0,0.34)] sm:px-5"
-        >
-          <div className="flex flex-col gap-5 xl:flex-row xl:items-end xl:justify-between">
-            <div className="max-w-4xl">
-              <p className="font-mono text-[0.68rem] uppercase tracking-[0.24em] text-zinc-500">
-                /lab/trust-boundry-prototype
-              </p>
-              <p className="mt-3 font-mono text-[0.72rem] font-medium uppercase tracking-[0.3em] text-[var(--color-accent-light)]">
-                {t("eyebrow")}
-              </p>
-              <h1 className="mt-3 max-w-4xl font-mono text-xl font-semibold leading-[1.08] tracking-tight text-white sm:text-[2.1rem] lg:text-[2.5rem]">
-                {t("title")}
-              </h1>
-              <p className="mt-3 max-w-3xl text-sm leading-6 text-zinc-300 sm:text-[0.95rem]">
-                {t("intro")}
-              </p>
-            </div>
+    <main className="h-[100dvh] overflow-hidden bg-[#0a0b10] text-zinc-100">
+      <div className="flex h-full flex-col">
 
-            <div className="flex flex-wrap items-center gap-2 font-mono">
-              <span className="rounded-full border border-[rgb(140_127_224/0.28)] bg-[rgb(95_98_184/0.14)] px-3 py-1.5 text-[0.68rem] uppercase tracking-[0.22em] text-zinc-100">
-                {t("status")}
-              </span>
-              <span className="rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1.5 text-[0.68rem] uppercase tracking-[0.22em] text-zinc-400">
-                {t("buildLabel")}
-              </span>
-              <span className="rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1.5 text-[0.68rem] uppercase tracking-[0.22em] text-zinc-300">
-                {modeChip}
-              </span>
-              <button
-                type="button"
-                onClick={() => setNotesOpen((previous) => !previous)}
-                className="rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1.5 text-[0.68rem] uppercase tracking-[0.22em] text-zinc-300 transition-colors hover:border-[rgb(95_98_184/0.28)] hover:text-white"
-              >
-                {notesOpen ? t("game.closeNotes") : t("game.openNotes")}
-              </button>
-            </div>
+        {/* ── Top bar ──────────────────────────────────────── */}
+        <header className="flex items-center justify-between border-b border-white/[0.06] bg-[#0e0f14] px-4 py-2.5 sm:px-6">
+          <div className="flex items-center gap-3">
+            <span className="text-sm font-semibold tracking-tight text-white">Trust Boundary</span>
+            <span className="rounded bg-indigo-500/20 px-1.5 py-0.5 text-[0.6rem] font-semibold uppercase tracking-wider text-indigo-400">
+              Prototype
+            </span>
           </div>
-        </motion.div>
-
-        <motion.div
-          {...getEntranceMotion(0.06)}
-          className="relative min-h-0 flex-1 overflow-hidden rounded-[1.8rem] border border-white/[0.08] bg-[#111113] shadow-[0_28px_90px_rgba(0,0,0,0.34)]"
-        >
-          <motion.div
-            aria-hidden="true"
-            className="trust-boundary-ambient-sweep pointer-events-none absolute inset-0 z-[1] bg-[radial-gradient(circle_at_22%_18%,rgba(95,98,184,0.2),transparent_22%),radial-gradient(circle_at_78%_82%,rgba(127,214,162,0.08),transparent_24%),linear-gradient(180deg,rgba(255,255,255,0.02),transparent_28%,rgba(0,0,0,0.08))]"
-            animate={
-              prefersReducedMotion
-                ? { opacity: mode === "desk" ? 0.32 : 0.5 }
-                : {
-                    opacity: mode === "desk" ? 0.32 : [0.44, 0.6, 0.44],
-                    scale: mode === "desk" ? 1 : [1, 1.015, 1],
-                  }
-            }
-            transition={
-              prefersReducedMotion
-                ? { duration: 0.2 }
-                : { duration: 7.2, repeat: Infinity, ease: "easeInOut" }
-            }
-          />
-          <motion.div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-0 z-[2] bg-[radial-gradient(circle_at_center,transparent_16%,rgba(4,5,10,0.12)_38%,rgba(4,5,10,0.74)_100%)]"
-            animate={
-              prefersReducedMotion
-                ? { opacity: mode === "desk" ? 1 : 0.14 }
-                : {
-                    opacity: mode === "desk" ? 1 : 0.14,
-                    scale: mode === "desk" ? 1.02 : 1,
-                  }
-            }
-            transition={
-              prefersReducedMotion
-                ? { duration: 0.12 }
-                : { duration: 0.42, ease: motionEase }
-            }
-          />
-          <div className="absolute inset-x-0 top-0 z-20 flex flex-wrap items-start justify-between gap-3 px-4 pt-4 sm:px-6 sm:pt-5">
-            <div className="max-w-md rounded-2xl border border-white/[0.08] bg-black/48 px-4 py-3 backdrop-blur-sm">
-              <p className="font-mono text-[0.68rem] uppercase tracking-[0.22em] text-zinc-500">
-                {t("game.objectiveEyebrow")}
-              </p>
-              <p className="mt-2 text-sm leading-7 text-zinc-200">{objectiveText}</p>
-            </div>
-
-            <div className="flex flex-wrap items-center justify-end gap-2">
-              {mode === "office" && deskNearby ? (
-                <motion.button
-                  type="button"
-                  onClick={handleDeskInteract}
-                  animate={
-                    prefersReducedMotion
-                      ? {}
-                      : {
-                          boxShadow: [
-                            "0 0 0 rgba(95,98,184,0)",
-                            "0 0 24px rgba(95,98,184,0.28)",
-                            "0 0 0 rgba(95,98,184,0)",
-                          ],
-                          y: [0, -2, 0],
-                        }
-                  }
-                  transition={
-                    prefersReducedMotion
-                      ? { duration: 0 }
-                      : { duration: 2.6, repeat: Infinity, ease: "easeInOut" }
-                  }
-                  whileHover={prefersReducedMotion ? undefined : { scale: 1.02 }}
-                  whileTap={prefersReducedMotion ? undefined : { scale: 0.985 }}
-                  className="rounded-full border border-[rgb(140_127_224/0.28)] bg-[rgb(95_98_184/0.16)] px-4 py-2 font-mono text-[0.74rem] uppercase tracking-[0.18em] text-zinc-100 transition-colors hover:bg-[rgb(95_98_184/0.24)]"
-                >
-                  {t("game.enterDesk")}
-                </motion.button>
-              ) : null}
-            </div>
+          <div className="flex items-center gap-2 text-[0.65rem] font-medium uppercase tracking-wider text-zinc-500">
+            <span className="rounded border border-white/[0.06] bg-white/[0.03] px-2 py-1">
+              {mode === "office" ? t("game.mode.office") : mode === "desk" ? t("game.mode.desk") : mode === "incident" ? t("game.mode.incident") : t("game.mode.summary")}
+            </span>
           </div>
+        </header>
 
+        {/* ── Main area ────────────────────────────────────── */}
+        <div className="relative min-h-0 flex-1">
+
+          {/* Phaser canvas */}
           <motion.div
             className="absolute inset-0"
-            animate={
-              prefersReducedMotion
-                ? { opacity: 1, scale: 1 }
-                : {
-                    opacity: mode === "desk" ? 0.76 : 1,
-                    scale: mode === "desk" ? 1.08 : deskNearby ? 1.015 : 1,
-                  }
-            }
-            transition={
-              prefersReducedMotion
-                ? { duration: 0.12 }
-                : { duration: 0.52, ease: motionEase }
-            }
+            animate={reduced ? {} : {
+              opacity: mode === "desk" ? 0.6 : 1,
+              scale: mode === "desk" ? 1.05 : 1,
+              filter: mode === "desk" ? "blur(4px)" : "blur(0px)",
+            }}
+            transition={{ duration: 0.4, ease }}
           >
             <TrustBoundaryCanvas
               deskMode={mode !== "office"}
@@ -372,532 +197,399 @@ export default function TrustBoundaryPrototype() {
             />
           </motion.div>
 
+          {/* ── Office mode HUD ────────────────────────────── */}
           <AnimatePresence>
-            {mode === "office" ? (
-              <motion.div
-                initial={prefersReducedMotion ? false : { opacity: 0, y: 18 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={prefersReducedMotion ? {} : { opacity: 0, y: 18 }}
-                transition={
-                  prefersReducedMotion
-                    ? { duration: 0.12 }
-                    : { duration: 0.34, ease: motionEase }
-                }
-                className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex flex-wrap items-end justify-between gap-3 bg-gradient-to-t from-[#05060a] via-[#05060abf] to-transparent px-4 pb-4 pt-18 sm:px-6 sm:pb-6"
-              >
+            {mode === "office" && (
+              <>
+                {/* Objective */}
                 <motion.div
-                  {...getSurfaceMotion(0.04, 16, 0.99)}
-                  className="max-w-sm rounded-2xl border border-white/[0.08] bg-black/54 px-4 py-3 backdrop-blur-sm"
+                  {...fadeIn()}
+                  exit={reduced ? {} : { opacity: 0, y: -8 }}
+                  className="absolute left-4 top-4 z-20 max-w-xs rounded-lg border border-white/[0.06] bg-black/60 px-3 py-2.5 backdrop-blur-md sm:left-6 sm:top-5"
                 >
-                  <p className="font-mono text-[0.68rem] uppercase tracking-[0.22em] text-[var(--color-accent-light)]">
-                    {t("game.roomEyebrow")}
+                  <p className="text-[0.6rem] font-semibold uppercase tracking-widest text-zinc-500">
+                    {t("game.objectiveEyebrow")}
                   </p>
-                  <p className="mt-2 text-sm leading-7 text-zinc-200">
-                    {deskNearby ? t("game.deskPrompt") : t("game.roomPrompt")}
-                  </p>
+                  <p className="mt-1.5 text-sm leading-relaxed text-zinc-200">{objectiveText}</p>
                 </motion.div>
 
-                <motion.div
-                  {...getSurfaceMotion(0.1, 16, 0.99)}
-                  className="max-w-xs rounded-2xl border border-white/[0.08] bg-black/46 px-4 py-3 backdrop-blur-sm"
-                >
-                  <p className="font-mono text-[0.68rem] uppercase tracking-[0.22em] text-zinc-500">
-                    {t("game.coworkerEyebrow")}
-                  </p>
-                  <p className="mt-2 text-sm leading-7 text-zinc-300">
-                    {t("game.coworkerHint")}
-                  </p>
-                </motion.div>
-              </motion.div>
-            ) : null}
-          </AnimatePresence>
-
-          <AnimatePresence>
-            {notesOpen && mode === "office" ? (
-              <motion.div
-                initial={prefersReducedMotion ? false : { opacity: 0, x: 28 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={prefersReducedMotion ? {} : { opacity: 0, x: 24 }}
-                transition={
-                  prefersReducedMotion
-                    ? { duration: 0.16 }
-                    : { duration: 0.34, ease: motionEase }
-                }
-                className="absolute inset-y-0 right-0 z-30 flex w-full max-w-sm border-l border-white/[0.08] bg-[#090b11]/96 backdrop-blur-xl"
-              >
-                <div className="flex h-full w-full flex-col overflow-y-auto p-5">
-                <div className="flex items-center justify-between gap-3">
-                  <div>
-                    <p className="font-mono text-[0.68rem] uppercase tracking-[0.22em] text-[var(--color-accent-light)]">
-                      {t("game.briefEyebrow")}
-                    </p>
-                    <h2 className="mt-3 font-mono text-lg font-semibold leading-7 text-white">
-                      {t("game.briefTitle")}
-                    </h2>
-                  </div>
-                  <button
+                {/* Interact prompt */}
+                {deskNearby && (
+                  <motion.button
                     type="button"
-                    onClick={() => setNotesOpen(false)}
-                    className="rounded-full border border-white/[0.08] px-3 py-1 font-mono text-[0.68rem] uppercase tracking-[0.18em] text-zinc-300 transition-colors hover:border-[rgb(95_98_184/0.28)] hover:text-white"
+                    onClick={handleDeskInteract}
+                    initial={reduced ? false : { opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={reduced ? {} : { opacity: 0, scale: 0.95 }}
+                    className="absolute right-4 top-4 z-20 rounded-lg border border-indigo-500/30 bg-indigo-500/15 px-3.5 py-2 text-xs font-semibold uppercase tracking-wider text-indigo-300 backdrop-blur-md transition-colors hover:bg-indigo-500/25 sm:right-6 sm:top-5"
                   >
-                    {t("game.closeNotes")}
-                  </button>
-                </div>
+                    {t("game.enterDesk")}
+                  </motion.button>
+                )}
 
-                <p className="mt-4 text-sm leading-7 text-zinc-300">{t("game.briefText")}</p>
-
-                <div className="mt-6 rounded-2xl border border-white/[0.08] bg-white/[0.02] p-4">
-                  <p className="font-mono text-[0.68rem] uppercase tracking-[0.22em] text-zinc-500">
-                    {t("game.controlsTitle")}
-                  </p>
-                  <ul className="mt-4 space-y-3 text-sm leading-7 text-zinc-300">
-                    <li>{t("game.controls.move")}</li>
-                    <li>{t("game.controls.interact")}</li>
-                    <li>{t("game.controls.closeDesk")}</li>
-                    <li>{t("game.controls.investigate")}</li>
-                  </ul>
-                </div>
-
-                <div className="mt-6">
-                  <p className="font-mono text-[0.68rem] uppercase tracking-[0.22em] text-zinc-500">
-                    {t("game.metricsEyebrow")}
-                  </p>
-                  <div className="mt-4">{renderMetrics(true)}</div>
-                </div>
-
-                <div className="mt-6 rounded-2xl border border-white/[0.08] bg-white/[0.02] p-4">
-                  <p className="font-mono text-[0.68rem] uppercase tracking-[0.22em] text-zinc-500">
-                    {t("game.dayPlanEyebrow")}
-                  </p>
-                  <ol className="mt-4 space-y-4 text-sm leading-7 text-zinc-300">
-                    {[
-                      t("game.dayPlan.enter"),
-                      t("game.dayPlan.sit"),
-                      t("game.dayPlan.review"),
-                      t("game.dayPlan.incident"),
-                      t("game.dayPlan.summary"),
-                    ].map((step, index) => (
-                      <li key={step} className="flex gap-3">
-                        <span className="mt-1 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-white/[0.08] bg-white/[0.03] font-mono text-[0.72rem] text-zinc-400">
-                          {index + 1}
-                        </span>
-                        <span>{step}</span>
-                      </li>
-                    ))}
-                  </ol>
-                </div>
-                </div>
-              </motion.div>
-            ) : null}
+                {/* Bottom bar */}
+                <motion.div
+                  {...fadeIn(0.05)}
+                  exit={reduced ? {} : { opacity: 0, y: 12 }}
+                  className="absolute inset-x-0 bottom-0 z-10 flex items-end justify-between gap-3 bg-gradient-to-t from-[#0a0b10] via-[#0a0b10cc] to-transparent px-4 pb-4 pt-16 sm:px-6 sm:pb-5"
+                >
+                  <div className="max-w-sm rounded-lg border border-white/[0.06] bg-black/50 px-3 py-2.5 backdrop-blur-md">
+                    <p className="text-[0.6rem] font-semibold uppercase tracking-widest text-indigo-400">
+                      {t("game.roomEyebrow")}
+                    </p>
+                    <p className="mt-1.5 text-sm leading-relaxed text-zinc-300">
+                      {deskNearby ? t("game.deskPrompt") : t("game.roomPrompt")}
+                    </p>
+                  </div>
+                  <div className="max-w-xs rounded-lg border border-white/[0.06] bg-black/50 px-3 py-2.5 backdrop-blur-md">
+                    <p className="text-[0.6rem] font-semibold uppercase tracking-widest text-zinc-500">
+                      {t("game.coworkerEyebrow")}
+                    </p>
+                    <p className="mt-1.5 text-sm leading-relaxed text-zinc-400">
+                      {t("game.coworkerHint")}
+                    </p>
+                  </div>
+                </motion.div>
+              </>
+            )}
           </AnimatePresence>
 
+          {/* ── Desk mode: Email client ────────────────────── */}
           <AnimatePresence mode="wait">
-            {mode === "desk" ? (
+            {mode === "desk" && (
               <motion.div
-                initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.975, y: 12 }}
+                initial={reduced ? false : { opacity: 0, scale: 0.97, y: 16 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={prefersReducedMotion ? {} : { opacity: 0, scale: 0.985, y: 10 }}
-                transition={
-                  prefersReducedMotion
-                    ? { duration: 0.16 }
-                    : { duration: 0.38, ease: motionEase }
-                }
-                className="absolute inset-3 z-30 rounded-[1.75rem] border border-white/[0.08] bg-[#06080f]/92 shadow-[0_24px_80px_rgba(0,0,0,0.5)] backdrop-blur-sm sm:inset-6"
+                exit={reduced ? {} : { opacity: 0, scale: 0.98, y: 10 }}
+                transition={{ duration: 0.35, ease }}
+                className="absolute inset-3 z-30 flex flex-col overflow-hidden rounded-xl border border-white/[0.08] bg-[#0e0f14] shadow-2xl sm:inset-5"
               >
-                <motion.div
-                  initial={prefersReducedMotion ? false : { opacity: 0.7 }}
-                  animate={{ opacity: 1 }}
-                  transition={prefersReducedMotion ? { duration: 0.12 } : { duration: 0.26 }}
-                  className="trust-boundary-monitor flex h-full flex-col overflow-hidden rounded-[1.55rem] border border-white/[0.06] bg-[linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.01)),#0d1016]"
-                >
-                  <motion.div
-                    aria-hidden="true"
-                    className="pointer-events-none absolute inset-x-10 top-0 z-0 h-20 rounded-b-[2rem] bg-[radial-gradient(circle_at_center,rgba(140,127,224,0.18),transparent_72%)]"
-                    animate={
-                      prefersReducedMotion
-                        ? { opacity: 0.45 }
-                        : { opacity: [0.24, 0.52, 0.24] }
-                    }
-                    transition={
-                      prefersReducedMotion
-                        ? { duration: 0.12 }
-                        : { duration: 3.2, repeat: Infinity, ease: "easeInOut" }
-                    }
-                  />
-                  <div className="relative flex h-full flex-col">
-                    <motion.div
-                      {...getSurfaceMotion(0.04, 10, 0.995)}
-                      className="flex items-center justify-between border-b border-white/[0.06] px-5 py-4 font-mono text-[0.74rem] uppercase tracking-[0.22em] text-zinc-400"
-                    >
-                      <div className="flex items-center gap-2">
-                        <span className="h-2.5 w-2.5 rounded-full bg-[var(--color-accent-light)]/80" />
-                        <span>{t("game.inboxShell")}</span>
-                      </div>
-                      <div className="flex items-center gap-3">
-                        <span className="text-[var(--color-accent-light)]">
-                          {t("game.currentMessage", {
-                            current: currentMessageIndex + 1,
-                            total: messages.length,
-                          })}
-                        </span>
-                        <motion.button
-                          type="button"
-                          onClick={() => setMode("office")}
-                          whileHover={hoverLift}
-                          whileTap={tapPress}
-                          className="rounded-full border border-white/[0.08] px-3 py-1 transition-colors hover:border-[rgb(95_98_184/0.28)] hover:text-white"
-                        >
-                          {t("game.leaveDesk")}
-                        </motion.button>
-                      </div>
-                    </motion.div>
-
-                    {currentMessage ? (
-                      <AnimatePresence mode="wait" initial={false}>
-                        <motion.div
-                          key={currentMessage.id}
-                          initial={
-                            prefersReducedMotion
-                              ? false
-                              : { opacity: 0, x: 22, scale: 0.992 }
-                          }
-                          animate={{ opacity: 1, x: 0, scale: 1 }}
-                          exit={
-                            prefersReducedMotion
-                              ? {}
-                              : { opacity: 0, x: -22, scale: 0.992 }
-                          }
-                          transition={
-                            prefersReducedMotion
-                              ? { duration: 0.12 }
-                              : { duration: 0.32, ease: motionEase }
-                          }
-                          className="grid flex-1 gap-5 overflow-auto p-5 lg:grid-cols-[minmax(0,1.5fr)_19rem]"
-                        >
-                          <motion.article
-                            {...getSurfaceMotion(0.02, 14, 0.992)}
-                            className="rounded-2xl border border-white/[0.08] bg-[#0f1117] p-5 shadow-[0_16px_48px_rgba(0,0,0,0.24)]"
-                          >
-                            <p className="font-mono text-[0.68rem] uppercase tracking-[0.22em] text-zinc-500">
-                              {currentMessage.category}
-                            </p>
-                            <div className="mt-5 space-y-4">
-                              <div>
-                                <p className="font-mono text-[0.68rem] uppercase tracking-[0.22em] text-zinc-500">
-                                  {t("game.sender")}
-                                </p>
-                                <p className="mt-2 text-sm leading-7 text-zinc-200">
-                                  {currentMessage.sender}
-                                </p>
-                              </div>
-
-                              <div>
-                                <p className="font-mono text-[0.68rem] uppercase tracking-[0.22em] text-zinc-500">
-                                  {t("game.subject")}
-                                </p>
-                                <p className="mt-2 text-lg leading-8 text-white sm:text-xl">
-                                  {currentMessage.subject}
-                                </p>
-                              </div>
-
-                              <motion.p
-                                {...getSurfaceMotion(0.06, 12, 0.995)}
-                                className="rounded-2xl border border-white/[0.06] bg-white/[0.02] px-4 py-4 text-sm leading-7 text-zinc-300 sm:text-[0.96rem]"
-                              >
-                                {currentMessage.preview}
-                              </motion.p>
-                            </div>
-
-                            <div className="mt-6 grid gap-3 sm:grid-cols-3">
-                              <motion.button
-                                type="button"
-                                onClick={() => handleMessageAction("allow")}
-                                disabled={Boolean(pendingResolution)}
-                                whileHover={hoverLift}
-                                whileTap={tapPress}
-                                className="rounded-xl border border-white/[0.08] bg-white/[0.03] px-4 py-3 font-mono text-[0.76rem] uppercase tracking-[0.18em] text-zinc-100 transition-colors hover:border-[rgb(95_98_184/0.28)] hover:bg-[rgb(95_98_184/0.08)] disabled:cursor-not-allowed disabled:opacity-60"
-                              >
-                                {t("game.allow")}
-                              </motion.button>
-                              <motion.button
-                                type="button"
-                                onClick={() => handleMessageAction("quarantine")}
-                                disabled={Boolean(pendingResolution)}
-                                whileHover={hoverLift}
-                                whileTap={tapPress}
-                                className="rounded-xl border border-white/[0.08] bg-white/[0.03] px-4 py-3 font-mono text-[0.76rem] uppercase tracking-[0.18em] text-zinc-100 transition-colors hover:border-[rgb(95_98_184/0.28)] hover:bg-[rgb(95_98_184/0.08)] disabled:cursor-not-allowed disabled:opacity-60"
-                              >
-                                {t("game.quarantine")}
-                              </motion.button>
-                              <motion.button
-                                type="button"
-                                onClick={handleInvestigate}
-                                disabled={investigated || Boolean(pendingResolution)}
-                                whileHover={hoverLift}
-                                whileTap={tapPress}
-                                className="rounded-xl border border-[rgb(140_127_224/0.28)] bg-[rgb(95_98_184/0.14)] px-4 py-3 font-mono text-[0.76rem] uppercase tracking-[0.18em] text-zinc-100 transition-colors hover:bg-[rgb(95_98_184/0.24)] disabled:cursor-not-allowed disabled:opacity-60"
-                              >
-                                {investigated ? t("game.investigated") : t("game.investigate")}
-                              </motion.button>
-                            </div>
-                          </motion.article>
-
-                          <motion.div
-                            {...getSurfaceMotion(0.08, 16, 0.992)}
-                            className="space-y-4"
-                          >
-                            <motion.article
-                              {...getSurfaceMotion(0.1, 12, 0.995)}
-                              className="rounded-2xl border border-white/[0.08] bg-[#0f1117] p-5"
-                            >
-                              <p className="font-mono text-[0.68rem] uppercase tracking-[0.22em] text-zinc-500">
-                                {t("game.visibleClues")}
-                              </p>
-                              <div className="mt-4 space-y-3 text-sm leading-7 text-zinc-300">
-                                {currentMessage.visibleClues.map((clue, index) => (
-                                  <motion.div
-                                    key={clue}
-                                    {...getSurfaceMotion(0.12 + index * 0.04, 10, 0.995)}
-                                    className="rounded-xl border border-white/[0.06] bg-white/[0.02] px-4 py-3"
-                                  >
-                                    {clue}
-                                  </motion.div>
-                                ))}
-                              </div>
-                            </motion.article>
-
-                            <motion.article
-                              {...getSurfaceMotion(0.16, 12, 0.995)}
-                              className="rounded-2xl border border-white/[0.08] bg-[#0f1117] p-5"
-                            >
-                              <p className="font-mono text-[0.68rem] uppercase tracking-[0.22em] text-zinc-500">
-                                {t("game.investigation")}
-                              </p>
-                              <AnimatePresence mode="wait" initial={false}>
-                                {investigated ? (
-                                  <motion.ul
-                                    key="investigated"
-                                    initial={
-                                      prefersReducedMotion
-                                        ? false
-                                        : { opacity: 0, y: 10 }
-                                    }
-                                    animate={{ opacity: 1, y: 0 }}
-                                    exit={
-                                      prefersReducedMotion
-                                        ? {}
-                                        : { opacity: 0, y: -8 }
-                                    }
-                                    transition={
-                                      prefersReducedMotion
-                                        ? { duration: 0.12 }
-                                        : { duration: 0.24, ease: motionEase }
-                                    }
-                                    className="mt-4 space-y-3 text-sm leading-7 text-zinc-300"
-                                  >
-                                    {currentMessage.investigateClues.map((clue, index) => (
-                                      <motion.li
-                                        key={clue}
-                                        {...getSurfaceMotion(index * 0.05, 10, 0.995)}
-                                        className="rounded-xl border border-[rgb(95_98_184/0.18)] bg-[rgb(95_98_184/0.08)] px-4 py-3"
-                                      >
-                                        {clue}
-                                      </motion.li>
-                                    ))}
-                                  </motion.ul>
-                                ) : (
-                                  <motion.p
-                                    key="hint"
-                                    initial={
-                                      prefersReducedMotion
-                                        ? false
-                                        : { opacity: 0, y: 8 }
-                                    }
-                                    animate={{ opacity: 1, y: 0 }}
-                                    exit={
-                                      prefersReducedMotion
-                                        ? {}
-                                        : { opacity: 0, y: -6 }
-                                    }
-                                    transition={
-                                      prefersReducedMotion
-                                        ? { duration: 0.12 }
-                                        : { duration: 0.22, ease: motionEase }
-                                    }
-                                    className="mt-4 text-sm leading-7 text-zinc-400"
-                                  >
-                                    {t("game.investigationHint")}
-                                  </motion.p>
-                                )}
-                              </AnimatePresence>
-                            </motion.article>
-                          </motion.div>
-                        </motion.div>
-                      </AnimatePresence>
-                    ) : null}
+                {/* Email client header */}
+                <div className="flex items-center justify-between border-b border-white/[0.06] px-4 py-2.5">
+                  <div className="flex items-center gap-2.5">
+                    <div className="flex h-7 w-7 items-center justify-center rounded-md bg-indigo-500/20">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-indigo-400">
+                        <rect x="2" y="4" width="20" height="16" rx="2" />
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                      </svg>
+                    </div>
+                    <span className="text-sm font-semibold text-white">Inbox</span>
+                    <span className="rounded-full bg-indigo-500/20 px-1.5 py-0.5 text-[0.6rem] font-bold tabular-nums text-indigo-400">
+                      {messages.length - currentMessageIndex}
+                    </span>
                   </div>
+                  <div className="flex items-center gap-3">
+                    <span className="text-xs tabular-nums text-zinc-500">
+                      {currentMessageIndex + 1} / {messages.length}
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => setMode("office")}
+                      className="rounded-md border border-white/[0.06] bg-white/[0.03] px-2.5 py-1.5 text-[0.65rem] font-medium uppercase tracking-wider text-zinc-400 transition-colors hover:bg-white/[0.06] hover:text-zinc-200"
+                    >
+                      {t("game.leaveDesk")}
+                    </button>
+                  </div>
+                </div>
 
+                {/* Email client body */}
+                {currentMessage && (
+                  <div className="flex min-h-0 flex-1">
+                    {/* ── Message list sidebar ─────────────── */}
+                    <div className="hidden w-56 flex-shrink-0 overflow-y-auto border-r border-white/[0.06] bg-[#0b0c11] lg:block">
+                      {messages.map((msg, i) => {
+                        const decided = decisions.some((d) => d.messageId === msg.id);
+                        const active = i === currentMessageIndex;
+                        return (
+                          <div
+                            key={msg.id}
+                            className={`border-b border-white/[0.04] px-3 py-3 ${
+                              active
+                                ? "border-l-2 border-l-indigo-500 bg-indigo-500/[0.06]"
+                                : "border-l-2 border-l-transparent"
+                            } ${i > currentMessageIndex ? "opacity-40" : ""}`}
+                          >
+                            <div className="flex items-center gap-2">
+                              {decided ? (
+                                <span className="h-1.5 w-1.5 rounded-full bg-zinc-600" />
+                              ) : active ? (
+                                <span className="h-1.5 w-1.5 rounded-full bg-indigo-400" />
+                              ) : (
+                                <span className="h-1.5 w-1.5 rounded-full bg-zinc-700" />
+                              )}
+                              <span className="truncate text-[0.65rem] font-medium text-zinc-400">
+                                {msg.sender.split("@")[0]}
+                              </span>
+                            </div>
+                            <p className={`mt-1 truncate text-xs leading-tight ${active ? "font-medium text-zinc-200" : "text-zinc-500"}`}>
+                              {msg.subject}
+                            </p>
+                          </div>
+                        );
+                      })}
+                    </div>
+
+                    {/* ── Reading pane ──────────────────────── */}
+                    <AnimatePresence mode="wait" initial={false}>
+                      <motion.div
+                        key={currentMessage.id}
+                        initial={reduced ? false : { opacity: 0, x: 16 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={reduced ? {} : { opacity: 0, x: -16 }}
+                        transition={{ duration: 0.25, ease }}
+                        className="flex min-h-0 flex-1 flex-col overflow-y-auto lg:flex-row"
+                      >
+                        {/* Email content */}
+                        <div className="flex min-w-0 flex-1 flex-col p-4 sm:p-5">
+                          {/* Email header */}
+                          <div className="flex items-start justify-between gap-3">
+                            <div className="min-w-0 flex-1">
+                              <div className="flex items-center gap-2">
+                                <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-zinc-800 text-xs font-bold uppercase text-zinc-400">
+                                  {currentMessage.sender[0]}
+                                </div>
+                                <div className="min-w-0">
+                                  <p className="truncate text-sm font-medium text-zinc-200">
+                                    {currentMessage.sender}
+                                  </p>
+                                  <p className="text-[0.65rem] text-zinc-500">{currentMessage.category}</p>
+                                </div>
+                              </div>
+                              <h2 className="mt-3 text-base font-semibold leading-snug text-white sm:text-lg">
+                                {currentMessage.subject}
+                              </h2>
+                            </div>
+                          </div>
+
+                          {/* Email body */}
+                          <div className="mt-4 rounded-lg border border-white/[0.04] bg-white/[0.02] px-4 py-4 text-sm leading-relaxed text-zinc-300">
+                            {currentMessage.preview}
+                          </div>
+
+                          {/* Action buttons */}
+                          <div className="mt-4 flex flex-wrap gap-2">
+                            <button
+                              type="button"
+                              onClick={() => handleMessageAction("allow")}
+                              disabled={Boolean(pendingResolution)}
+                              className="rounded-lg border border-emerald-500/20 bg-emerald-500/10 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-emerald-400 transition-colors hover:bg-emerald-500/20 disabled:cursor-not-allowed disabled:opacity-40"
+                            >
+                              {t("game.allow")}
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => handleMessageAction("quarantine")}
+                              disabled={Boolean(pendingResolution)}
+                              className="rounded-lg border border-red-500/20 bg-red-500/10 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-red-400 transition-colors hover:bg-red-500/20 disabled:cursor-not-allowed disabled:opacity-40"
+                            >
+                              {t("game.quarantine")}
+                            </button>
+                            <button
+                              type="button"
+                              onClick={handleInvestigate}
+                              disabled={investigated || Boolean(pendingResolution)}
+                              className="rounded-lg border border-indigo-500/20 bg-indigo-500/10 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-indigo-400 transition-colors hover:bg-indigo-500/20 disabled:cursor-not-allowed disabled:opacity-40"
+                            >
+                              {investigated ? t("game.investigated") : t("game.investigate")}
+                            </button>
+                          </div>
+
+                          {/* Spacer to push content up on small screens */}
+                          <div className="flex-1" />
+                        </div>
+
+                        {/* ── Clues sidebar ───────────────────── */}
+                        <div className="w-full flex-shrink-0 space-y-3 border-t border-white/[0.06] bg-[#0b0c11] p-4 sm:p-5 lg:w-64 lg:border-l lg:border-t-0 xl:w-72">
+                          {/* Visible clues */}
+                          <div>
+                            <p className="text-[0.6rem] font-semibold uppercase tracking-widest text-zinc-500">
+                              {t("game.visibleClues")}
+                            </p>
+                            <div className="mt-2.5 space-y-2">
+                              {currentMessage.visibleClues.map((clue) => (
+                                <div
+                                  key={clue}
+                                  className="rounded-md border border-white/[0.04] bg-white/[0.02] px-3 py-2 text-xs leading-relaxed text-zinc-400"
+                                >
+                                  {clue}
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+
+                          {/* Investigation clues */}
+                          <div>
+                            <p className="text-[0.6rem] font-semibold uppercase tracking-widest text-zinc-500">
+                              {t("game.investigation")}
+                            </p>
+                            <AnimatePresence mode="wait" initial={false}>
+                              {investigated ? (
+                                <motion.div
+                                  key="clues"
+                                  initial={reduced ? false : { opacity: 0, y: 6 }}
+                                  animate={{ opacity: 1, y: 0 }}
+                                  className="mt-2.5 space-y-2"
+                                >
+                                  {currentMessage.investigateClues.map((clue) => (
+                                    <div
+                                      key={clue}
+                                      className="rounded-md border border-indigo-500/15 bg-indigo-500/[0.06] px-3 py-2 text-xs leading-relaxed text-indigo-300"
+                                    >
+                                      {clue}
+                                    </div>
+                                  ))}
+                                </motion.div>
+                              ) : (
+                                <p className="mt-2.5 text-xs text-zinc-600">
+                                  {t("game.investigationHint")}
+                                </p>
+                              )}
+                            </AnimatePresence>
+                          </div>
+                        </div>
+                      </motion.div>
+                    </AnimatePresence>
+                  </div>
+                )}
+
+                {/* ── Feedback overlay ───────────────────── */}
                 <AnimatePresence>
-                  {pendingResolution ? (
+                  {pendingResolution && (
                     <motion.div
-                      initial={prefersReducedMotion ? false : { opacity: 0 }}
+                      initial={reduced ? false : { opacity: 0 }}
                       animate={{ opacity: 1 }}
-                      exit={prefersReducedMotion ? {} : { opacity: 0 }}
-                      transition={prefersReducedMotion ? { duration: 0.12 } : { duration: 0.2 }}
-                      className="absolute inset-0 flex items-center justify-center bg-[#04050a]/78 px-6 backdrop-blur-sm"
+                      exit={reduced ? {} : { opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                      className="absolute inset-0 z-10 flex items-center justify-center bg-black/70 backdrop-blur-sm"
                     >
                       <motion.div
-                        initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.96, y: 10 }}
+                        initial={reduced ? false : { opacity: 0, scale: 0.96, y: 8 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
-                        exit={prefersReducedMotion ? {} : { opacity: 0, scale: 0.98, y: 8 }}
-                        transition={
-                          prefersReducedMotion
-                            ? { duration: 0.12 }
-                            : { duration: 0.24, ease: motionEase }
-                        }
-                        className="w-full max-w-xl rounded-2xl border border-white/[0.08] bg-[#111113] p-6 shadow-[0_24px_80px_rgba(0,0,0,0.44)]"
+                        exit={reduced ? {} : { opacity: 0, scale: 0.98, y: 6 }}
+                        transition={{ duration: 0.2, ease }}
+                        className="mx-4 w-full max-w-md rounded-xl border border-white/[0.08] bg-[#12131a] p-5 shadow-2xl"
                       >
-                      <p className="font-mono text-[0.68rem] uppercase tracking-[0.22em] text-[var(--color-accent-light)]">
-                        {pendingResolution.title}
-                      </p>
-                      <p className="mt-4 text-base leading-8 text-zinc-200">
-                        {pendingResolution.text}
-                      </p>
-                      <button
-                        type="button"
-                        onClick={advanceFlow}
-                        className="mt-6 inline-flex items-center justify-center rounded-full border border-[rgb(140_127_224/0.28)] bg-[rgb(95_98_184/0.14)] px-4 py-2 font-mono text-[0.78rem] uppercase tracking-[0.18em] text-zinc-100 transition-colors hover:bg-[rgb(95_98_184/0.24)]"
-                      >
-                        {t("game.continue")}
-                      </button>
+                        <p className={`text-xs font-bold uppercase tracking-wider ${
+                          pendingResolution.title === t("game.feedback.good") ? "text-emerald-400" : "text-amber-400"
+                        }`}>
+                          {pendingResolution.title}
+                        </p>
+                        <p className="mt-3 text-sm leading-relaxed text-zinc-300">
+                          {pendingResolution.text}
+                        </p>
+                        <button
+                          type="button"
+                          onClick={advanceFlow}
+                          className="mt-4 rounded-lg bg-indigo-500/20 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-indigo-300 transition-colors hover:bg-indigo-500/30"
+                        >
+                          {t("game.continue")}
+                        </button>
                       </motion.div>
                     </motion.div>
-                  ) : null}
+                  )}
                 </AnimatePresence>
-                </motion.div>
               </motion.div>
-            ) : null}
+            )}
           </AnimatePresence>
 
+          {/* ── Incident mode ──────────────────────────────── */}
           <AnimatePresence mode="wait">
-            {mode === "incident" ? (
+            {mode === "incident" && (
               <motion.div
-                initial={prefersReducedMotion ? false : { opacity: 0 }}
+                initial={reduced ? false : { opacity: 0 }}
                 animate={{ opacity: 1 }}
-                exit={prefersReducedMotion ? {} : { opacity: 0 }}
-                transition={prefersReducedMotion ? { duration: 0.12 } : { duration: 0.24 }}
-                className="absolute inset-0 z-30 flex items-center justify-center bg-[#04050a]/84 px-6 backdrop-blur-sm"
+                exit={reduced ? {} : { opacity: 0 }}
+                transition={{ duration: dur }}
+                className="absolute inset-0 z-30 flex items-center justify-center bg-black/80 px-4 backdrop-blur-sm"
               >
                 <motion.div
-                  initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.965, y: 12 }}
+                  initial={reduced ? false : { opacity: 0, scale: 0.96, y: 12 }}
                   animate={{ opacity: 1, scale: 1, y: 0 }}
-                  exit={prefersReducedMotion ? {} : { opacity: 0, scale: 0.985, y: 8 }}
-                  transition={
-                    prefersReducedMotion
-                      ? { duration: 0.12 }
-                      : { duration: 0.3, ease: motionEase }
-                  }
-                  className="w-full max-w-3xl rounded-[1.7rem] border border-white/[0.08] bg-[#111113] p-6 shadow-[0_24px_80px_rgba(0,0,0,0.44)] sm:p-8"
+                  transition={{ duration: 0.3, ease }}
+                  className="w-full max-w-2xl rounded-xl border border-white/[0.08] bg-[#12131a] p-6 shadow-2xl sm:p-8"
                 >
-                <p className="font-mono text-[0.68rem] uppercase tracking-[0.22em] text-[var(--color-accent-light)]">
-                  {t("game.incidentEyebrow")}
-                </p>
-                <h2 className="mt-4 font-mono text-2xl font-semibold leading-9 text-white sm:text-3xl">
-                  {t("game.incidentTitle")}
-                </h2>
-                <p className="mt-4 max-w-2xl text-sm leading-8 text-zinc-300 sm:text-[0.98rem]">
-                  {t("game.incidentPrompt")}
-                </p>
-
-                <div className="mt-8 grid gap-4 md:grid-cols-2">
-                  {incidentOptions.map((option) => (
-                    <button
-                      key={option.id}
-                      type="button"
-                      onClick={() => handleIncidentResolution(option.id)}
-                      className="rounded-2xl border border-white/[0.08] bg-white/[0.02] px-5 py-5 text-left transition-colors hover:border-[rgb(95_98_184/0.28)] hover:bg-[rgb(95_98_184/0.08)]"
-                    >
-                      <p className="font-mono text-[0.78rem] uppercase tracking-[0.18em] text-zinc-100">
-                        {option.label}
-                      </p>
-                      <p className="mt-3 text-sm leading-7 text-zinc-300">{option.description}</p>
-                    </button>
-                  ))}
-                </div>
-                </motion.div>
-              </motion.div>
-            ) : null}
-          </AnimatePresence>
-
-          <AnimatePresence mode="wait">
-            {mode === "summary" ? (
-              <motion.div
-                initial={prefersReducedMotion ? false : { opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={prefersReducedMotion ? {} : { opacity: 0 }}
-                transition={prefersReducedMotion ? { duration: 0.12 } : { duration: 0.24 }}
-                className="absolute inset-0 z-30 flex items-center justify-center bg-[#04050a]/88 px-6 backdrop-blur-sm"
-              >
-                <motion.div
-                  initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.96, y: 12 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  exit={prefersReducedMotion ? {} : { opacity: 0, scale: 0.985, y: 8 }}
-                  transition={
-                    prefersReducedMotion
-                      ? { duration: 0.12 }
-                      : { duration: 0.32, ease: motionEase }
-                  }
-                  className="w-full max-w-3xl rounded-[1.7rem] border border-white/[0.08] bg-[#111113] p-6 shadow-[0_24px_80px_rgba(0,0,0,0.44)] sm:p-8"
-                >
-                <p className="font-mono text-[0.68rem] uppercase tracking-[0.22em] text-[var(--color-accent-light)]">
-                  {t("game.summaryEyebrow")}
-                </p>
-                <div className="mt-4 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-                  <div>
-                    <h2 className="font-mono text-2xl font-semibold leading-9 text-white sm:text-3xl">
-                      {t("game.summaryTitle")}
-                    </h2>
-                    <p className="mt-3 max-w-2xl text-sm leading-8 text-zinc-300 sm:text-[0.98rem]">
-                      {summaryTone === "strong"
-                        ? t("game.summaryStrong")
-                        : summaryTone === "mixed"
-                          ? t("game.summaryMixed")
-                          : t("game.summaryPoor")}
-                    </p>
+                  <p className="text-xs font-bold uppercase tracking-wider text-red-400">
+                    {t("game.incidentEyebrow")}
+                  </p>
+                  <h2 className="mt-3 text-xl font-bold text-white sm:text-2xl">
+                    {t("game.incidentTitle")}
+                  </h2>
+                  <p className="mt-3 text-sm leading-relaxed text-zinc-400">
+                    {t("game.incidentPrompt")}
+                  </p>
+                  <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                    {incidentOptions.map((option) => (
+                      <button
+                        key={option.id}
+                        type="button"
+                        onClick={() => handleIncidentResolution(option.id)}
+                        className="rounded-lg border border-white/[0.06] bg-white/[0.02] p-4 text-left transition-colors hover:border-indigo-500/30 hover:bg-indigo-500/[0.06]"
+                      >
+                        <p className="text-sm font-semibold text-zinc-200">{option.label}</p>
+                        <p className="mt-2 text-xs leading-relaxed text-zinc-500">{option.description}</p>
+                      </button>
+                    ))}
                   </div>
-
-                  <span className="rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1.5 font-mono text-[0.68rem] uppercase tracking-[0.22em] text-zinc-300">
-                    {modeChip}
-                  </span>
-                </div>
-
-                <div className="mt-8">{renderMetrics(false)}</div>
-
-                <p className="mt-8 max-w-3xl text-sm leading-8 text-zinc-300 sm:text-[0.98rem]">
-                  {summaryNarrative}
-                </p>
-
-                <div className="mt-8 flex flex-wrap gap-3">
-                  <button
-                    type="button"
-                    onClick={handleReplay}
-                    className="inline-flex items-center justify-center rounded-full border border-[rgb(140_127_224/0.28)] bg-[rgb(95_98_184/0.14)] px-4 py-2 font-mono text-[0.78rem] uppercase tracking-[0.18em] text-zinc-100 transition-colors hover:bg-[rgb(95_98_184/0.24)]"
-                  >
-                    {t("game.replay")}
-                  </button>
-                  <Link
-                    href="/"
-                    className="inline-flex items-center justify-center rounded-full border border-white/[0.08] bg-white/[0.03] px-4 py-2 font-mono text-[0.78rem] uppercase tracking-[0.18em] text-zinc-300 transition-colors hover:border-[rgb(95_98_184/0.28)] hover:text-white"
-                  >
-                    {t("game.backHome")}
-                  </Link>
-                </div>
                 </motion.div>
               </motion.div>
-            ) : null}
+            )}
           </AnimatePresence>
-        </motion.div>
-      </section>
+
+          {/* ── Summary mode ───────────────────────────────── */}
+          <AnimatePresence mode="wait">
+            {mode === "summary" && (
+              <motion.div
+                initial={reduced ? false : { opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={reduced ? {} : { opacity: 0 }}
+                transition={{ duration: dur }}
+                className="absolute inset-0 z-30 flex items-center justify-center bg-black/85 px-4 backdrop-blur-sm"
+              >
+                <motion.div
+                  initial={reduced ? false : { opacity: 0, scale: 0.96, y: 12 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  transition={{ duration: 0.3, ease }}
+                  className="w-full max-w-2xl rounded-xl border border-white/[0.08] bg-[#12131a] p-6 shadow-2xl sm:p-8"
+                >
+                  <p className="text-xs font-bold uppercase tracking-wider text-indigo-400">
+                    {t("game.summaryEyebrow")}
+                  </p>
+                  <h2 className="mt-3 text-xl font-bold text-white sm:text-2xl">
+                    {t("game.summaryTitle")}
+                  </h2>
+                  <p className="mt-2 text-sm leading-relaxed text-zinc-400">
+                    {summaryTone === "strong"
+                      ? t("game.summaryStrong")
+                      : summaryTone === "mixed"
+                        ? t("game.summaryMixed")
+                        : t("game.summaryPoor")}
+                  </p>
+
+                  <div className="mt-6">{renderMetrics(false)}</div>
+
+                  <p className="mt-6 text-sm leading-relaxed text-zinc-400">{summaryNarrative}</p>
+
+                  <div className="mt-6 flex gap-2">
+                    <button
+                      type="button"
+                      onClick={handleReplay}
+                      className="rounded-lg bg-indigo-500/20 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-indigo-300 transition-colors hover:bg-indigo-500/30"
+                    >
+                      {t("game.replay")}
+                    </button>
+                    <Link
+                      href="/"
+                      className="rounded-lg border border-white/[0.06] bg-white/[0.03] px-4 py-2 text-xs font-semibold uppercase tracking-wider text-zinc-400 transition-colors hover:text-zinc-200"
+                    >
+                      {t("game.backHome")}
+                    </Link>
+                  </div>
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </div>
     </main>
   );
 }
