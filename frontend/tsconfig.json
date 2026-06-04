@@ -39,8 +39,7 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts",
-    ".next\\dev/types/**/*.ts",
-    "src/app/pages/contact/page.tsx.off"
+    ".next\\dev/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"

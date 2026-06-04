@@ -5,7 +5,29 @@ type SecurityHeader = {
   value: string;
 };
 
+function getCspReportDirective(): string {
+  // Next config headers are resolved at build time, so set this in the build environment.
+  const reportUri = process.env.NIWO_CSP_REPORT_URI;
+
+  if (!reportUri) {
+    return "";
+  }
+
+  try {
+    const url = new URL(reportUri);
+
+    if (url.protocol !== "https:") {
+      return "";
+    }
+
+    return `report-uri ${url.toString()};`;
+  } catch {
+    return "";
+  }
+}
+
 export function buildCspHeader(isDevelopment: boolean): string {
+  const reportDirective = getCspReportDirective();
   const connectSrc = [
     "'self'",
     ...(isDevelopment ? ["http:", "https:", "ws:", "wss:"] : []),
@@ -14,8 +36,7 @@ export function buildCspHeader(isDevelopment: boolean): string {
   const scriptSrc = [
     "'self'",
     "'unsafe-inline'",
-    "blob:",
-    ...(isDevelopment ? ["'unsafe-eval'"] : []),
+    ...(isDevelopment ? ["'unsafe-eval'", "blob:"] : []),
   ].join(" ");
 
   return `
@@ -28,11 +49,12 @@ export function buildCspHeader(isDevelopment: boolean): string {
     style-src 'self' 'unsafe-inline';
     img-src 'self' data: blob: https://${MEDIA_HOST};
     media-src 'self' blob: https://${MEDIA_HOST};
-    font-src 'self' data:;
+    font-src 'self';
     connect-src ${connectSrc};
     worker-src 'self' blob:;
     frame-src 'none';
     upgrade-insecure-requests;
+    ${reportDirective}
   `
     .replace(/\s{2,}/g, " ")
     .trim();
@@ -66,6 +88,10 @@ export function getSecurityHeaders(isDevelopment: boolean): SecurityHeader[] {
     },
     {
       key: "Cross-Origin-Opener-Policy",
+      value: "same-origin",
+    },
+    {
+      key: "Cross-Origin-Resource-Policy",
       value: "same-origin",
     },
   ];
