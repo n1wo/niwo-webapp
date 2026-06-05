@@ -18,14 +18,14 @@ export const serviceDefinitions: ServiceDefinition[] = [
     visual: "windows",
   },
   {
-    key: "penetrationTesting",
-    slug: "penetration-testing",
-    visual: "pulse",
-  },
-  {
     key: "secureDevelopment",
     slug: "secure-development",
     visual: "workflow",
+  },
+  {
+    key: "penetrationTesting",
+    slug: "penetration-testing",
+    visual: "pulse",
   },
 ];
 

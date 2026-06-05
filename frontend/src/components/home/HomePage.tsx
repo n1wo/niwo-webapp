@@ -41,7 +41,7 @@ export default function HomePage(): JSX.Element {
         eyebrow: serviceT(`items.${service.key}.card.eyebrow`),
         title: serviceT(`items.${service.key}.card.title`),
         text: serviceT(`items.${service.key}.card.text`),
-        accent: serviceT(`items.${service.key}.card.accent`),
+        tag: serviceT(`items.${service.key}.card.tag`),
       })),
     [serviceT],
   );
@@ -316,7 +316,7 @@ export default function HomePage(): JSX.Element {
                 eyebrow={card.eyebrow}
                 title={card.title}
                 text={card.text}
-                accent={card.accent}
+                tag={card.tag}
                 visual={card.visual}
                 prefersReducedMotion={prefersReducedMotion}
                 delay={index * 0.08}

@@ -11,7 +11,7 @@ type ServiceCardProps = {
   eyebrow: string;
   title: string;
   text: string;
-  accent: string;
+  tag: string;
   visual: ServiceVisualType;
   prefersReducedMotion: boolean;
   delay: number;
@@ -22,7 +22,7 @@ export default function ServiceCard({
   eyebrow,
   title,
   text,
-  accent,
+  tag,
   visual,
   prefersReducedMotion,
   delay,
@@ -57,11 +57,9 @@ export default function ServiceCard({
           <p className="mt-4 max-w-[40ch] font-mono text-[0.92rem] leading-7 text-zinc-300/88">
             {text}
           </p>
-          <div className="mt-auto pt-5">
-            <span className="inline-flex items-center rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1.5 font-mono text-[0.68rem] font-medium uppercase tracking-[0.18em] text-zinc-400">
-              {accent}
-            </span>
-          </div>
+          <p className="mt-auto max-w-[44ch] pt-5 font-mono text-[0.72rem] leading-6 text-zinc-500">
+            {tag}
+          </p>
         </div>
       </motion.article>
     </Link>

@@ -5,7 +5,7 @@ import PrimarySecondaryCta from "@/components/common/PrimarySecondaryCta";
 import ServiceVisual from "@/components/services/ServiceVisual";
 import { getServiceBySlug, serviceDefinitions, type ServiceDefinition } from "@/data/services";
 import { Link } from "@/i18n/navigation";
-import { getLocalizedAlternates } from "@/i18n/metadata";
+import { buildMetadata } from "@/i18n/metadata";
 
 type ServiceContent = {
   metadata: {
@@ -140,11 +140,12 @@ export async function generateMetadata({
   const t = await getTranslations({ locale });
   const content = getServiceContent(t, service);
 
-  return {
+  return buildMetadata({
+    locale,
     title: content.metadata.title,
     description: content.metadata.description,
-    alternates: getLocalizedAlternates(`/services/${slug}`),
-  };
+    path: `/services/${slug}`,
+  });
 }
 
 export default async function ServicePage({

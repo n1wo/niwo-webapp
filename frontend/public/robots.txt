@@ -6,8 +6,7 @@ Disallow: /_next/
 Disallow: /private/
 Allow: /
 
-# Sitemap (optional if you have one)
-# Sitemap: https://niwosystems.com/sitemap.xml
+Sitemap: https://niwosystems.com/sitemap.xml
 
 # Security contact
 # See also: https://niwosystems.com/.well-known/security.txt

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import LegalPageLayout from "@/components/legal/LegalPageLayout";
 import { getLegalDocGroups } from "@/data/legalDocs";
-import { getLocalizedAlternates } from "@/i18n/metadata";
+import { buildMetadata } from "@/i18n/metadata";
 
 export async function generateMetadata({
   params,
@@ -12,12 +12,12 @@ export async function generateMetadata({
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "Imprint.metadata" });
 
-  return {
+  return buildMetadata({
+    locale,
     title: t("title"),
     description: t("description"),
-    robots: { index: true, follow: true },
-    alternates: getLocalizedAlternates("/pages/imprint"),
-  };
+    path: "/pages/imprint",
+  });
 }
 
 export default async function ImprintPage({

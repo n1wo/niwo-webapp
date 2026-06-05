@@ -32,13 +32,13 @@
   "Home": {
     "metadata": {
       "title": "niwo | Cybersicherheit",
-      "description": "Nikita ist Cybersecurity-Student und freiberuflicher Ethical Hacker mit Fokus auf Web Application Security, Penetration Testing und digitale Verteidigung."
+      "description": "Nikita Wokurka — Cybersecurity-Student und Web-Security-Praktiker aus Bonn. Fokus auf Sicherheitsreviews von Webanwendungen, praktische Sicherheitsberatung und kleine Teams dabei zu unterstützen, ihr Risiko zu verstehen."
     },
     "heroEyebrow": "Cybersicherheitsberatung und Forschung für moderne Anwendungen",
-    "heroHeadline": "Schwachstellen warten nicht auf deinen nächsten Sprint. Deine Sicherheit sollte das auch nicht.",
-    "heroParagraph": "Ich helfe Startups, Entwicklern und kleinen Unternehmen dabei, Schwachstellen zu identifizieren, KI-gestützte Workflows abzusichern und moderne Anwendungen zu stärken, bevor Angreifer sie ausnutzen.",
-    "primaryCta": "Sicherheitsprüfung anfragen",
-    "secondaryCta": "Leistungen ansehen",
+    "heroHeadline": "Praktische Web-Sicherheit für Entwickler und kleine Teams",
+    "heroParagraph": "Ich helfe Entwicklern und kleinen Unternehmen, die Risiken ihrer Webanwendungen zu verstehen, die wichtigsten Probleme zu beheben und bessere Sicherheitsentscheidungen zu treffen — ohne Enterprise-Overhead. Ansässig in Bonn. Aktuell verfügbar für fokussierte Engagements.",
+    "primaryCta": "Kontakt aufnehmen",
+    "secondaryCta": "Was ich mache",
     "supportLine": "Web Application Security · DevSecOps · Agentische Sicherheit · Penetration Testing",
     "heroSignals": {
       "scope": "Klarer Scope",
@@ -46,12 +46,12 @@
       "remediation": "Praktische Behebung"
     },
     "servicesEyebrow": "Leistungen",
-    "servicesTitle": "Security-Unterstützung für moderne Webanwendungsrisiken",
+    "servicesTitle": "Security-Unterstützung für Entwickler und kleine Teams",
     "servicesDescription": "Fokussierte Engagements, die relevante Schwachstellen sichtbar machen, Risiken klar einordnen und Teams beim Beheben der wichtigsten Probleme unterstützen.",
     "approach": {
       "eyebrow": "Wie ich arbeite",
-      "title": "Ein ruhiger, praktischer Ansatz für Security-Arbeit",
-      "description": "Der Anspruch ist klar: Scope fokussieren, realistisch testen, verständlich kommunizieren und Teams mit Findings zurücklassen, die sich wirklich nutzen lassen.",
+      "title": "Ein ehrlicher, praktischer Ansatz für Sicherheit",
+      "description": "Ich bin Nikita — Cybersecurity-Student an der IU Internationalen Hochschule mit einem Hintergrund in Elektrotechnik und technischer Projektkoordination. NiwoSystems habe ich gestartet, um praktisches Lernen mit echter Praxis zu verbinden — das meiste, was ich weiß, kommt vom Bauen, vom kontrollierten Kaputtmachen im Labor und vom Verstehen, warum etwas kaputtgegangen ist. Am besten arbeite ich mit Entwicklern und kleinen Teams, die ehrliche, praktische Sicherheitsunterstützung wollen — kein angstgetriebenes Upselling und keine Berichte voller Fachjargon, den niemand liest.",
       "cardLabel": "Ansatz",
       "cards": {
         "scope": {
@@ -112,212 +112,215 @@
     "items": {
       "webAppSecurity": {
         "metadata": {
-          "title": "Web App Security | niwo",
-          "description": "Praxisnahe Web-App-Sicherheitspruefungen, die echte Schwachstellen aufdecken, erklaeren was zaehlt, und deinem Team einen klaren Weg zur Behebung geben."
+          "title": "Web App Security Review | niwo",
+          "description": "Ein praxisnaher Sicherheitsreview deiner Webanwendung aus Angreiferperspektive — klare Findings, verständliche Erklärungen und konkrete Schritte, um das Wichtige zu beheben."
         },
         "card": {
           "eyebrow": "Bewertung",
-          "title": "Web App Security",
-          "text": "Ich schaue mir deine Web-App so an, wie ein Angreifer es tun wuerde — und sage dir, was wirklich behoben werden muss und warum.",
-          "accent": "Attack Surface Review"
+          "title": "Web App Security Review",
+          "text": "Ich schaue mir deine Webanwendung aus Angreiferperspektive an — mit Fokus auf die Flows, Eingaben und Vertrauensgrenzen, die echtes Risiko tragen. Du bekommst klare Findings, verständlich erklärt, mit konkreten Schritten, um das Wichtige zu beheben.",
+          "accent": "Attack Surface Review",
+          "tag": "Gut geeignet für: Entwickler vor dem Launch, kleine Teams vor einem Release oder alle, die ein zweites Paar Augen wollen."
         },
         "hero": {
-          "eyebrow": "Anwendungsbewertung",
-          "title": "Finde die Luecken, bevor es jemand anderes tut",
-          "intro": "Ich schaue mir deine Webanwendung aus Angreiferperspektive an — Auth-Flows, Zugriffskontrolle, Eingabeverarbeitung und die Konfigurationsdetails, die gern uebersehen werden. Ziel ist, die Probleme sichtbar zu machen, die wirklich zaehlen — nicht einfach einen Scanner laufen lassen und ein PDF abliefern.",
+          "eyebrow": "Anwendungsreview",
+          "title": "Sieh deine App so, wie ein Angreifer sie sieht",
+          "intro": "Ich gehe deine Webanwendung aus Angreiferperspektive durch — mit Fokus auf die Flows, Eingaben und Vertrauensgrenzen, die tatsächlich Risiko tragen. Das Ziel ist kein Scanner-Auswurf, sondern ein klares Bild davon, wo du angreifbar bist und was sich zuerst zu beheben lohnt.",
           "outcomeLabel": "Was du davon hast",
-          "outcomeText": "Ein klares Bild davon, wo deine App angreifbar ist, welche Probleme Prioritaet haben und was zuerst behoben werden sollte — ohne Rauschen."
+          "outcomeText": "Klare Findings, verständlich erklärt, nach Wichtigkeit geordnet, mit konkreten Schritten, die dein Team sofort umsetzen kann."
         },
         "covers": {
           "title": "Was das abdeckt",
           "items": [
-            "Die Angriffsoberflaeche deiner App — User-Flows, exponierte Endpoints und alles, was oeffentlich erreichbar ist",
-            "Auth und Session-Handling: Login, Passwort-Reset, Token-Management und die Annahmen dahinter",
-            "Zugriffskontrollluecken — Privilege Escalation, fehlende Object-Level-Checks, vergessene Pruefungen",
-            "Eingabeverarbeitung: Injection-Vektoren, unsicheres Parsing, schwache Validierung",
-            "Konfigurations- und Deployment-Probleme, die die Angriffsflaeche still vergroessern"
+            "Die Flows, die echtes Risiko tragen — Login, Account-Aktionen, Zahlungen, alles Sensible",
+            "Authentifizierung und Session-Handling und die Annahmen dahinter",
+            "Zugriffskontrolllücken — Privilege Escalation und Broken Object-Level Access",
+            "Eingabeverarbeitung: Injection, unsicheres Parsing und schwache Validierung",
+            "Konfigurations- und Vertrauensgrenzen-Probleme, die die Angriffsfläche still vergrößern"
           ]
         },
         "process": {
           "title": "Wie ich arbeite",
           "steps": [
             {
-              "title": "Ueberblick verschaffen",
-              "text": "Ich starte damit, zu verstehen wie die App funktionieren soll — wo sensible Aktionen passieren, was die Vertrauensgrenzen sind und wo es schiefgehen kann."
+              "title": "Verstehen, wie es funktionieren soll",
+              "text": "Ich starte damit, wie sich die App verhalten soll — wo sensible Aktionen passieren und wo Vertrauen vorausgesetzt statt erzwungen wird."
             },
             {
-              "title": "Die Schwachstellen angehen",
-              "text": "Ich teste die Routen, Zustaende und Randfaelle, die in der Praxis echte Probleme verursachen — nicht nur das, was eine Checkliste abdecken wuerde."
+              "title": "Dort prüfen, wo das Risiko wirklich liegt",
+              "text": "Ich konzentriere mich auf die Flows, Eingaben und Randfälle, die echte Probleme verbergen — nicht nur auf das, was eine Checkliste flaggt."
             },
             {
               "title": "So dokumentieren, dass du handeln kannst",
-              "text": "Jeder Fund kommt mit Kontext, Auswirkung und konkreten naechsten Schritten. Keine vagen Risikobewertungen — nur was kaputt ist und wie es behoben wird."
+              "text": "Jeder Fund kommt in verständlicher Sprache mit Auswirkung und konkreter Behebung — keine vagen Risiko-Scores, nur was kaputt ist und was zu tun ist."
             }
           ]
         },
         "bestFor": {
-          "title": "Besonders passend fuer",
+          "title": "Besonders passend für",
           "items": [
-            "Startups, die kurz vor Release oder Skalierung stehen",
-            "Kleine Teams, die einen echten Security-Check wollen, ohne schweren Prozess",
+            "Entwickler, die ein Produkt startklar machen",
+            "Kleine Teams, die vor einem Release einen Sicherheitsblick wollen",
             "Produkte mit User-Accounts, Berechtigungen oder sensiblen Daten",
-            "Entwickler, die lieber umsetzbare Findings bekommen als einen 60-Seiten-Bericht, den niemand liest"
+            "Alle, die einfach ein ehrliches zweites Paar Augen wollen"
           ]
         },
         "deliverables": {
           "title": "Was du bekommst",
           "items": [
-            "Einen kurzen, fokussierten Bericht mit validierten Findings und Schwereeinordnung",
-            "Behebungshinweise fuer jedes Problem — konkret genug, um sie einem Entwickler direkt zu geben",
-            "Eine priorisierte Liste, damit du weisst, womit du anfangen solltest",
-            "Follow-up-Support, falls etwas im Bericht Klaerung braucht"
+            "Einen kurzen, fokussierten Bericht mit klaren, validierten Findings",
+            "Verständliche Erklärungen — kein Jargon, den niemand liest",
+            "Eine priorisierte Liste, damit du weißt, was du zuerst behebst",
+            "Follow-up, falls etwas im Bericht Klärung braucht"
           ]
         },
         "cta": {
           "title": "Willst du wissen, wo deine App angreifbar ist?",
-          "text": "Ob vor dem Launch, nach einer groesseren Aenderung oder einfach fuer ein zweites Paar Augen — ich kann mir das anschauen.",
-          "primary": "Sicherheitspruefung anfragen",
-          "secondary": "Zurueck zu den Leistungen"
+          "text": "Ob vor dem Launch oder einfach für ein zweites Paar Augen — ich schaue gern drüber.",
+          "primary": "Kontakt aufnehmen",
+          "secondary": "Zurück zu den Leistungen"
         }
       },
       "penetrationTesting": {
         "metadata": {
-          "title": "Penetration Testing | niwo",
-          "description": "Realistisches Penetration Testing fuer Webanwendungen — validierte Angriffspfade, klare Auswirkungen und Findings, mit denen du direkt arbeiten kannst."
+          "title": "Penetration Testing — Prozess & Vorbereitung | niwo",
+          "description": "Unterstützung, um dich auf einen Penetrationstest vorzubereiten — den Prozess verstehen, den Scope definieren, den Bericht lesen und einem Testanbieter die richtigen Fragen stellen. Kein vollständiges Pentest-Engagement."
         },
         "card": {
-          "eyebrow": "Offensive Tests",
-          "title": "Penetration Testing",
-          "text": "Ich versuche einzubrechen wie ein echter Angreifer — und zeige dir genau, was funktioniert hat und was du dagegen tun kannst.",
-          "accent": "Validierte Angriffspfade"
+          "eyebrow": "Vorbereitung",
+          "title": "Penetration Testing — Prozess & Vorbereitung",
+          "text": "Du denkst über einen Pentest nach, weißt aber nicht, wo du anfangen sollst? Ich zeige dir, wie der Prozess aussieht, helfe dir, deinen Scope vorzubereiten, zu verstehen, was du von einem Bericht erwarten kannst, und die richtigen Fragen zu stellen, wenn du mit einem Testanbieter sprichst.",
+          "accent": "Pentest-Vorbereitung",
+          "tag": "Hinweis: Das ist kein vollständiges Pentest-Engagement — es ist praktische Unterstützung, damit du das Beste aus einem herausholst."
         },
         "hero": {
-          "eyebrow": "Gezielte offensive Tests",
-          "title": "Finde heraus, was ein Angreifer wirklich erreichen wuerde",
-          "intro": "Das ist kein Checkbox-Security. Ich teste deine Anwendung so, wie jemand es tun wuerde, der wirklich einbrechen will — Schwachstellen verketten, Zugriff eskalieren, schauen wie weit es geht. Es geht darum zu zeigen, was tatsaechlich ausnutzbar ist, nicht nur was theoretisch falsch sein koennte.",
+          "eyebrow": "Prozess & Vorbereitung",
+          "title": "Bereite dich auf einen Pentest vor, bevor du dafür bezahlst",
+          "intro": "Du denkst über einen Pentest nach, weißt aber nicht, wo du anfangen sollst? Ich zeige dir, wie der Prozess wirklich aussieht, helfe dir, deinen Scope vorzubereiten, zu verstehen, was du von einem Bericht erwarten kannst, und die richtigen Fragen zu stellen, wenn du mit einem Testanbieter sprichst.",
           "outcomeLabel": "Was du davon hast",
-          "outcomeText": "Validierte Findings mit echtem Impact-Kontext, ein klares Bild davon, was zuerst behoben werden muss, und genug Detail, um die Ergebnisse direkt an dein Team weiterzugeben."
+          "outcomeText": "Ein klares Verständnis des Prozesses, einen Scope, bei dem du dich sicher fühlst, und die richtigen Fragen — damit du echten Wert aus dem Test ziehst, für den du bezahlst."
         },
         "covers": {
           "title": "Was das abdeckt",
           "items": [
-            "Hands-on Testing von exponierten Features, risikoreichen Workflows und kritischen Nutzeraktionen",
-            "Echte Exploitation — nicht nur potenzielle Probleme flaggen, sondern beweisen, was erreichbar ist",
-            "Angriffsketten untersuchen, in denen sich kleine Bugs zu groesseren Problemen addieren",
-            "Findings eingeordnet nach Risiko und Impact, nicht nach Scanner-Severity-Scores",
-            "Berichte, die fuer Menschen geschrieben sind, nicht fuer Compliance-Checkboxen"
+            "Was ein Penetrationstest tatsächlich umfasst, von Anfang bis Ende",
+            "Hilfe beim Definieren und Scopen dessen, was getestet werden soll",
+            "Was du von einem Bericht erwarten kannst — und wie du ihn liest",
+            "Die richtigen Fragen an einen Testanbieter",
+            "Wie du sicherstellst, dass du echten Wert aus dem Engagement ziehst"
           ]
         },
         "process": {
-          "title": "Wie ich arbeite",
+          "title": "Wie es abläuft",
           "steps": [
             {
-              "title": "Scope an dem ausrichten, was zaehlt",
-              "text": "Wir klaren gemeinsam, welche Systeme, Flows und Annahmen das meiste Risiko tragen — damit ich Zeit dort investiere, wo es zaehlt, nicht ueberall gleichzeitig."
+              "title": "Den Prozess verstehen",
+              "text": "Ich führe dich durch das, was ein Pentest umfasst — keine Überraschungen und kein Jargon, den du später entschlüsseln musst."
             },
             {
-              "title": "Realistisch angreifen, gruendlich dokumentieren",
-              "text": "Ich gehe Pfade an, die tatsaechlich ausnutzbar sind, und dokumentiere alles so klar, dass die Ergebnisse einer Pruefung standhalten."
+              "title": "Deinen Scope vorbereiten",
+              "text": "Wir klären, was sich zu testen lohnt, und definieren einen Scope, der zu deinem Produkt und deinem Budget passt."
             },
             {
-              "title": "Findings liefern, die sofort nutzbar sind",
-              "text": "Der Bericht ist darauf ausgelegt, Dinge zu beheben — Reproduktionsschritte, Impact-Kontext und priorisierte Empfehlungen ohne Fuellmaterial."
+              "title": "Informiert hineingehen",
+              "text": "Du gehst ins Engagement und weißt, was dich erwartet, was du fragen solltest und wie du die Ergebnisse einordnest."
             }
           ]
         },
         "bestFor": {
-          "title": "Besonders passend fuer",
+          "title": "Besonders passend für",
           "items": [
-            "Teams kurz vor Launch, Skalierung oder einer Kundenpruefung",
-            "Produkte, die jemanden von aussen brauchen, der wirklich versucht einzubrechen",
-            "Organisationen, die von lauten Scan-Ergebnissen genug haben und wissen wollen, was zaehlt",
-            "Anwendungen mit komplexer Zugriffskontrolle, sensibler Logik oder hochwertigen Daten"
+            "Teams, die über ihren ersten Penetrationstest nachdenken",
+            "Gründer, die eine Kunden- oder Compliance-Anforderung erfüllen müssen",
+            "Entwickler, die einen Test sauber scopen wollen, bevor sie dafür bezahlen",
+            "Alle, die unsicher sind, was sie von einem Testanbieter erwarten können"
           ]
         },
         "deliverables": {
           "title": "Was du bekommst",
           "items": [
-            "Einen Findings-Bericht mit Schwere, Impact und Reproduktionsschritten pro Problem",
-            "Behebungshinweise, die konkret genug sind, um daraus Tickets zu machen",
-            "Eine priorisierte Aufschluesselung, damit du weisst, wo du anfangen solltest",
-            "Einen Walkthrough-Call, wenn du die Findings gemeinsam durchgehen willst"
+            "Eine verständliche Erklärung des Pentest-Prozesses",
+            "Hilfe beim Definieren und Dokumentieren deines Scopes",
+            "Unterstützung beim Lesen und Umsetzen eines Berichts",
+            "Eine Liste der richtigen Fragen an einen Anbieter"
           ]
         },
         "cta": {
-          "title": "Willst du wissen, wie deine App unter echtem Druck abschneidet?",
-          "text": "Wenn du es lieber von mir erfaehrst als von einem Angreifer, lass uns einen Test aufsetzen.",
-          "primary": "Penetration Test anfragen",
-          "secondary": "Zurueck zu den Leistungen"
+          "title": "Denkst du über einen Pentest nach?",
+          "text": "Wenn du vorbereitet hineingehen und echten Wert daraus ziehen willst, lass uns zuerst über den Prozess sprechen.",
+          "primary": "Kontakt aufnehmen",
+          "secondary": "Zurück zu den Leistungen"
         }
       },
       "secureDevelopment": {
         "metadata": {
-          "title": "Secure Development | niwo",
-          "description": "Security-Support direkt in deinem Entwicklungsprozess — Probleme frueh erkennen, mit mehr Vertrauen ausliefern und Sicherheit nicht erst am Ende dranbasteln."
+          "title": "Sicherheitsberatung & Begleitung | niwo",
+          "description": "Fokussierte Sicherheitsberatung für Entwickler und kleine Teams — ehrliche Antworten, praktische Tipps zu Web-Sicherheit und sicherer Entwicklung und Hilfe beim Priorisieren."
         },
         "card": {
-          "eyebrow": "Umsetzung",
-          "title": "Secure Development",
-          "text": "Ich arbeite mit deinem Team waehrend der Entwicklung, damit Sicherheit frueh mitgedacht wird — nicht erst kurz vor Release.",
-          "accent": "Mit Leitplanken bauen"
+          "eyebrow": "Beratung",
+          "title": "Sicherheitsberatung & Begleitung",
+          "text": "Nicht jedes Team braucht einen vollständigen Pentest. Manchmal brauchst du jemanden, der sich dein Setup ansieht, deine Fragen ehrlich beantwortet und dir beim Priorisieren hilft. Ich biete fokussierte Gespräche und praktische Tipps zu Web-Sicherheit, sicherer Entwicklung und worauf du beim Bauen achten solltest.",
+          "accent": "Praktische Sicherheitsberatung",
+          "tag": "Gut geeignet für: Teams in der Frühphase, Solo-Entwickler, kleine Unternehmen, die online gehen."
         },
         "hero": {
-          "eyebrow": "Sicherheit in der Umsetzung",
-          "title": "Hoer auf, Sicherheitsprobleme zu fixen, die nie haetten shippen sollen",
-          "intro": "Die meisten Sicherheitsprobleme sind nicht schwer zu verhindern — sie passieren, weil zum richtigen Zeitpunkt niemand daran gedacht hat. Ich schalte mich frueh in den Entwicklungsprozess ein und helfe, die Muster zu erkennen, die spaeter Probleme machen: schwache Auth-Flows, fehlende Zugriffspruefungen, Vertrauensannahmen, die nicht halten.",
+          "eyebrow": "Beratung & Begleitung",
+          "title": "Ehrliche Antworten, ohne das volle Engagement",
+          "intro": "Nicht jedes Team braucht einen vollständigen Pentest. Manchmal brauchst du einfach jemanden, der sich dein Setup ansieht, deine Fragen ehrlich beantwortet und dir hilft zu entscheiden, worauf du dich konzentrierst. Ich biete fokussierte Gespräche und praktische Tipps zu Web-Sicherheit, sicherer Entwicklung und worauf du beim Bauen achten solltest.",
           "outcomeLabel": "Was du davon hast",
-          "outcomeText": "Weniger Ueberraschungen vor dem Release, staerkere Implementierungsmuster und ein Team, das mehr Vertrauen in die Sicherheit dessen hat, was es ausliefert."
+          "outcomeText": "Einen klareren Kopf zu deinen Risiken, gerade Antworten auf die Fragen, die du wirklich hast, und eine kurze Liste dessen, was als Nächstes sinnvoll ist."
         },
         "covers": {
-          "title": "Was das abdeckt",
+          "title": "Was wir abdecken können",
           "items": [
-            "Implementierungsmuster pruefen, die typischerweise Sicherheitsprobleme einfuehren",
-            "Security-Input bei Feature-Entwicklung, Architekturentscheidungen und Release-Vorbereitung",
-            "Fruehe Pruefung von Auth-Flows, Zugriffskontrolle, Vertrauensgrenzen und Datenhandling",
-            "Entwicklern helfen, mit sicheren Defaults und weniger Regressionen zu bauen",
-            "Sicherheit in Einklang mit der Art bringen, wie dein Team tatsaechlich baut und ausliefert"
+            "Einen Blick auf dein aktuelles Setup und wo die echten Risiken liegen",
+            "Ehrliche Antworten auf deine Sicherheitsfragen — kein Upselling",
+            "Praktische Tipps zu Web-Sicherheit und sicherer Entwicklung",
+            "Worauf du achten solltest, während du baust und wächst",
+            "Hilfe beim Priorisieren, damit du Aufwand dort investierst, wo er zählt"
           ]
         },
         "process": {
-          "title": "Wie ich arbeite",
+          "title": "Wie es abläuft",
           "steps": [
             {
-              "title": "Frueh einsteigen",
-              "text": "Ich schaue mir das Design, den geplanten Flow und die Vertrauensannahmen an, solange Aenderungen noch einfach sind — nicht nachdem alles feststeht."
+              "title": "Erzähl mir, woran du arbeitest",
+              "text": "Wir starten mit deinem Produkt, deinem Stack und dem, was dich wirklich beschäftigt — keine starre Checkliste."
             },
             {
-              "title": "Input geben, der in deinen Workflow passt",
-              "text": "Ich bin nicht da, um Prozess hinzuzufuegen. Ich konzentriere mich auf die Entscheidungen, Defaults und Implementierungsdetails, die am meisten zaehlen — so, dass es dich nicht ausbremst."
+              "title": "Es durchsprechen",
+              "text": "Ein fokussiertes Gespräch, in dem ich deine Fragen ehrlich beantworte und sage, worauf ich achten würde."
             },
             {
-              "title": "Mit Vertrauen ausliefern",
-              "text": "Am Ende steht Code, der von Grund auf sicherer ist — nicht weil jemand am Ende des Sprints noch ein Review drangebastelt hat."
+              "title": "Mit einem Plan rausgehen",
+              "text": "Du gehst mit klaren, praktischen nächsten Schritten, die du in deinem eigenen Tempo umsetzen kannst."
             }
           ]
         },
         "bestFor": {
-          "title": "Besonders passend fuer",
+          "title": "Besonders passend für",
           "items": [
-            "Teams, die etwas Neues bauen oder ein grosses Feature-Update ausliefern",
-            "Entwickler, die Security-Input wollen, den sie beim Coden direkt nutzen koennen",
-            "Startups, die es sich nicht leisten koennen, Security falsch zu machen — aber auch nicht, langsamer zu werden",
-            "Produkte, bei denen Auth, Berechtigungen und sensible Daten von Anfang an zentral sind"
+            "Teams in der Frühphase, die ihre Sicherheitsgrundlagen klären",
+            "Solo-Entwickler, die ihre Überlegungen gegenchecken lassen wollen",
+            "Kleine Unternehmen, die zum ersten Mal online gehen",
+            "Alle, die eher Beratung brauchen als ein volles Engagement"
           ]
         },
         "deliverables": {
           "title": "Was du bekommst",
           "items": [
-            "Guidance, die auf dein Produkt und die Arbeitsweise deines Teams zugeschnitten ist",
-            "Hinweise zu riskanten Mustern und Bereichen, die gehaertet werden sollten",
-            "Empfehlungen, die konkret genug sind, damit Entwickler sie direkt anwenden koennen",
-            "Eine staerkere Sicherheitshaltung, die traegt — nicht nur ein einmaliges Review"
+            "Fokussierte Gespräche, zugeschnitten auf dein Produkt",
+            "Ehrliche, jargonfreie Antworten auf deine Fragen",
+            "Praktische Empfehlungen, die du wirklich anwenden kannst",
+            "Ein priorisiertes Gefühl dafür, was du zuerst angehst"
           ]
         },
         "cta": {
-          "title": "Willst du Sicherheit von Anfang an einbauen?",
-          "text": "Wenn du Probleme lieber verhindern willst, statt sie hinterher zu finden, lass uns darueber reden, waehrend der Entwicklung zusammenzuarbeiten.",
-          "primary": "Secure Development besprechen",
-          "secondary": "Zurueck zu den Leistungen"
+          "title": "Nicht sicher, was du wirklich brauchst?",
+          "text": "Wenn du es lieber durchsprichst, statt dich gleich auf ein volles Engagement festzulegen, lass uns reden.",
+          "primary": "Kontakt aufnehmen",
+          "secondary": "Zurück zu den Leistungen"
         }
       }
     }
@@ -328,8 +331,8 @@
       "description": "Über Nikita, die Person hinter niwo, an der Schnittstelle von Security, KI, Systemen und Produktdesign."
     },
     "eyebrow": "ÜBER MICH",
-    "title": "Die Person hinter dem System",
-    "intro": "Hey, ich bin Nikita. Cybersicherheit, KI, Systeme und Produktdesign ziehen mich immer wieder an — vor allem, weil ich gern herausfinde, wie Dinge wirklich funktionieren, wenn man unter die Oberfläche schaut. Meistens endet das bei Fragen darüber, wo Dinge kaputtgehen, wo Vertrauen einfach vorausgesetzt statt verdient wird, und wie man etwas baut, das nicht auseinanderfällt, wenn es drauf ankommt.",
+    "title": "Die Person hinter NiwoSystems",
+    "intro": "Ich bin Nikita — Cybersecurity-Student an der IU Internationalen Hochschule mit einem Hintergrund in Elektrotechnik und technischer Projektkoordination. NiwoSystems habe ich gestartet, um mein praktisches Lernen mit echter Praxis zu verbinden. Das meiste, was ich weiß, kommt vom Bauen, vom kontrollierten Kaputtmachen im Labor und vom Verstehen, warum etwas kaputtgegangen ist. Am besten arbeite ich mit Entwicklern und kleinen Teams, die ehrliche, praktische Sicherheitsunterstützung wollen — kein angstgetriebenes Upselling und keine Berichte voller Fachjargon, den niemand liest. Wenn du eine Frage hast, ein Projekt, oder einfach dein Risiko besser verstehen willst — nimm Kontakt auf.",
     "profileLabel": "operator profile",
     "statusLabel": "status: building",
     "signalLabel": "Signal",

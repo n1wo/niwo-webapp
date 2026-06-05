@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-import { getLocalizedAlternates } from "@/i18n/metadata";
+import { buildMetadata } from "@/i18n/metadata";
 import PrimarySecondaryCta from "@/components/common/PrimarySecondaryCta";
 
 export async function generateMetadata({
@@ -11,11 +11,12 @@ export async function generateMetadata({
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "About.metadata" });
 
-  return {
+  return buildMetadata({
+    locale,
     title: t("title"),
     description: t("description"),
-    alternates: getLocalizedAlternates("/pages/about"),
-  };
+    path: "/pages/about",
+  });
 }
 
 export default async function AboutPage({

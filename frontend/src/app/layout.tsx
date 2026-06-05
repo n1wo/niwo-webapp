@@ -2,12 +2,21 @@ import { hasLocale } from "next-intl";
 import { headers } from "next/headers";
 import type { Metadata } from "next";
 import { routing } from "@/i18n/routing";
+import { SITE_NAME, SITE_URL } from "@/i18n/metadata";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   icons: {
     icon: "/icon.svg",
     shortcut: "/icon.svg",
+  },
+  openGraph: {
+    type: "website",
+    siteName: SITE_NAME,
+  },
+  twitter: {
+    card: "summary_large_image",
   },
 };
 
