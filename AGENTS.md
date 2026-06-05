@@ -6,7 +6,7 @@ owner's expectations without needing to rediscover the same rules every time.
 
 ## Purpose
 
-`niwo-webapp` is the public website for Niwo Systems. The site is not a generic
+`niwo-webapp` is the public website for niwo systems. The site is not a generic
 marketing template. It has a specific voice and a specific visual language:
 
 - dark, restrained, terminal-inspired

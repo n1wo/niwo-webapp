@@ -32,11 +32,11 @@
   "Home": {
     "metadata": {
       "title": "niwo | Cybersecurity",
-      "description": "Nikita Wokurka — Cybersecurity student and web security practitioner based in Bonn. Focused on web application security reviews, practical security guidance, and helping small teams understand their risk."
+      "description": "Nikita Wokurka, Cybersecurity student and web security practitioner based in Bonn. Focused on web application security reviews, practical security guidance, and helping small teams understand their risk."
     },
     "heroEyebrow": "Cybersecurity consulting and research for modern applications",
     "heroHeadline": "Practical cybersecurity for developers and small teams",
-    "heroParagraph": "I help developers and small businesses understand their web application risks, fix the issues that matter most, and make better security decisions — without the enterprise overhead. Based in Bonn. Currently available for focused engagements.",
+    "heroParagraph": "I help developers and small businesses understand their web application risks, fix the issues that matter most, and make better security decisions without the enterprise overhead. Based in Bonn. Currently available for focused engagements.",
     "primaryCta": "Get in touch",
     "secondaryCta": "See what I do",
     "supportLine": "Web Application Security · DevSecOps · Agentic Security · Penetration Testing",
@@ -51,7 +51,7 @@
     "approach": {
       "eyebrow": "How I work",
       "title": "An honest, practical approach to security",
-      "description": "I'm Nikita — a Cybersecurity student at IU International University with a background in electrical engineering and technical project coordination. I started NiwoSystems to combine hands-on learning with real-world practice — most of what I know comes from building things, breaking them in controlled lab environments, and figuring out why they broke. I work best with developers and small teams who want honest, practical security support, not fear-driven upselling or reports full of jargon nobody reads.",
+      "description": "I'm Nikita, a Cybersecurity student at IU International University with a background in electrical engineering and technical project coordination. I started niwo systems to combine hands-on learning with real-world practice. Most of what I know comes from building things, breaking them in controlled lab environments, and figuring out why they broke. I work best with developers and small teams who want honest, practical security support, not fear-driven upselling or reports full of jargon nobody reads.",
       "cardLabel": "Approach",
       "cards": {
         "scope": {
@@ -87,19 +87,19 @@
       "webAppSecurity": {
         "eyebrow": "Assessment",
         "title": "Web App Security",
-        "text": "I look at your web app the way an attacker would — then tell you what actually needs fixing and why.",
+        "text": "I look at your web app the way an attacker would, then tell you what actually needs fixing and why.",
         "accent": "Attack surface review"
       },
       "penetrationTesting": {
         "eyebrow": "Offensive testing",
         "title": "Penetration Testing",
-        "text": "I try to break in the same way a real attacker would — then show you exactly what worked and what to do about it.",
+        "text": "I try to break in the same way a real attacker would, then show you exactly what worked and what to do about it.",
         "accent": "Validated attack paths"
       },
       "secureDevelopment": {
         "eyebrow": "Delivery",
         "title": "Secure Development",
-        "text": "I work alongside your team during development so security gets handled early — not rushed in before release.",
+        "text": "I work alongside your team during development so security gets handled early, not rushed in before release.",
         "accent": "Build with guardrails"
       }
     }
@@ -113,28 +113,28 @@
       "webAppSecurity": {
         "metadata": {
           "title": "Web App Security Review | niwo",
-          "description": "A practical web application security review from an attacker's perspective — clear findings, plain-language explanations, and concrete steps to fix what matters."
+          "description": "A practical web application security review from an attacker's perspective with clear findings, plain-language explanations, and concrete steps to fix what matters."
         },
         "card": {
           "eyebrow": "Assessment",
           "title": "Web App Security Review",
-          "text": "I look at your web application from an attacker's perspective — focusing on the flows, inputs, and trust boundaries that carry real risk. You get clear findings, explained in plain language, with concrete steps to fix what matters.",
+          "text": "I look at your web application from an attacker's perspective, focusing on the flows, inputs, and trust boundaries that carry real risk. You get clear findings, explained in plain language, with concrete steps to fix what matters.",
           "accent": "Attack surface review",
           "tag": "Good for: developers launching a product, small teams before a release, or anyone who wants a second pair of eyes."
         },
         "hero": {
           "eyebrow": "Application review",
           "title": "See your app the way an attacker would",
-          "intro": "I go through your web application from an attacker's perspective — focusing on the flows, inputs, and trust boundaries that actually carry risk. The goal isn't a scanner dump; it's a clear picture of where you're exposed and what's worth fixing first.",
+          "intro": "I go through your web application from an attacker's perspective, focusing on the flows, inputs, and trust boundaries that actually carry risk. The goal isn't a scanner dump; it's a clear picture of where you're exposed and what's worth fixing first.",
           "outcomeLabel": "What you walk away with",
           "outcomeText": "Clear findings explained in plain language, ranked by what actually matters, with concrete steps your team can act on right away."
         },
         "covers": {
           "title": "What this covers",
           "items": [
-            "The flows that carry real risk — login, account actions, payments, anything sensitive",
+            "The flows that carry real risk: login, account actions, payments, anything sensitive",
             "Authentication and session handling, and the assumptions behind them",
-            "Access control gaps — privilege escalation and broken object-level access",
+            "Access control gaps: privilege escalation and broken object-level access",
             "Input handling: injection, unsafe parsing, and weak validation",
             "Configuration and trust-boundary issues that quietly widen your attack surface"
           ]
@@ -144,7 +144,7 @@
           "steps": [
             {
               "title": "Understand how it's meant to work",
-              "text": "I start with how the app is supposed to behave — where sensitive actions happen and where trust is assumed instead of enforced."
+              "text": "I start with how the app is supposed to behave, where sensitive actions happen and where trust is assumed instead of enforced."
             },
             {
               "title": "Probe where the risk actually is",
@@ -152,7 +152,7 @@
             },
             {
               "title": "Write it up so you can act",
-              "text": "Every finding comes in plain language with its impact and a concrete fix — no vague risk scores, just what's wrong and what to do about it."
+              "text": "Every finding comes in plain language with its impact and a concrete fix. No vague risk scores, just what's wrong and what to do about it."
             }
           ]
         },
@@ -169,7 +169,7 @@
           "title": "What you get",
           "items": [
             "A short, focused report with clear, validated findings",
-            "Plain-language explanations — no jargon nobody reads",
+            "Plain-language explanations without jargon nobody reads",
             "A prioritized list so you know what to fix first",
             "Follow-up if anything in the report needs clarifying"
           ]
@@ -183,29 +183,29 @@
       },
       "penetrationTesting": {
         "metadata": {
-          "title": "Penetration Testing — Process & Preparation | niwo",
-          "description": "Guidance to help you prepare for a penetration test — understand the process, define your scope, read the report, and ask a testing provider the right questions. Not a full pentest engagement."
+          "title": "Penetration Testing: Process & Preparation | niwo",
+          "description": "Guidance to help you prepare for a penetration test: understand the process, define your scope, read the report, and ask a testing provider the right questions. Not a full pentest engagement."
         },
         "card": {
           "eyebrow": "Preparation",
-          "title": "Penetration Testing — Process & Preparation",
+          "title": "Penetration Testing: Process & Preparation",
           "text": "Thinking about getting a pentest done but not sure where to start? I can walk you through what the process looks like, help you prepare your scope, understand what to expect from a report, and ask the right questions when talking to a testing provider.",
           "accent": "Pentest preparation",
-          "tag": "Note: This is not a full pentest engagement — it is practical guidance to help you get the most out of one."
+          "tag": "Note: This is not a full pentest engagement. It is practical guidance to help you get the most out of one."
         },
         "hero": {
           "eyebrow": "Process & preparation",
           "title": "Get ready for a pentest before you pay for one",
           "intro": "Thinking about getting a pentest done but not sure where to start? I can walk you through what the process actually looks like, help you prepare your scope, understand what to expect from a report, and ask the right questions when talking to a testing provider.",
           "outcomeLabel": "What you walk away with",
-          "outcomeText": "A clear understanding of the process, a scope you feel confident about, and the right questions to ask — so you get real value from the test you pay for."
+          "outcomeText": "A clear understanding of the process, a scope you feel confident about, and the right questions to ask, so you get real value from the test you pay for."
         },
         "covers": {
           "title": "What this covers",
           "items": [
             "What a penetration test actually involves, from start to finish",
             "Help defining and scoping what should be tested",
-            "What to expect from a report — and how to read one",
+            "What to expect from a report and how to read one",
             "The right questions to ask a testing provider",
             "How to make sure you get real value from the engagement"
           ]
@@ -255,7 +255,7 @@
       "secureDevelopment": {
         "metadata": {
           "title": "Security Guidance & Consultation | niwo",
-          "description": "Focused security guidance for developers and small teams — honest answers, practical advice on web security and secure development, and help prioritizing what actually matters."
+          "description": "Focused security guidance for developers and small teams with honest answers, practical advice on web security and secure development, and help prioritizing what actually matters."
         },
         "card": {
           "eyebrow": "Guidance",
@@ -275,7 +275,7 @@
           "title": "What we can cover",
           "items": [
             "A look at your current setup and where the real risks are",
-            "Honest answers to your security questions — no upselling",
+            "Honest answers to your security questions without upselling",
             "Practical advice on web security and secure development",
             "What to watch out for as you build and grow",
             "Help prioritizing, so you spend effort where it counts"
@@ -286,7 +286,7 @@
           "steps": [
             {
               "title": "Tell me what you're working on",
-              "text": "We start with your product, your stack, and what's actually worrying you — no rigid checklist."
+              "text": "We start with your product, your stack, and what's actually worrying you. No rigid checklist."
             },
             {
               "title": "Talk it through",
@@ -331,8 +331,8 @@
       "description": "About Nikita, the person behind niwo, working across security, AI, systems, and product design."
     },
     "eyebrow": "ABOUT",
-    "title": "The person behind NiwoSystems",
-    "intro": "I'm Nikita — a Cybersecurity student at IU International University with a background in electrical engineering and technical project coordination. I started NiwoSystems to combine my hands-on learning with real-world practice. Most of what I know comes from building things, breaking them in controlled lab environments, and figuring out why they broke. I work best with developers and small teams who want honest, practical security support — not fear-driven upselling or reports full of jargon nobody reads. If you have a question, a project, or just want to understand your risk better — get in touch.",
+    "title": "The person behind niwo systems",
+    "intro": "I'm Nikita, a Cybersecurity student at IU International University with a background in electrical engineering and technical project coordination. I started niwo systems to combine my hands-on learning with real-world practice. Most of what I know comes from building things, breaking them in controlled lab environments, and figuring out why they broke. I work best with developers and small teams who want honest, practical security support, not fear-driven upselling or reports full of jargon nobody reads. If you have a question, a project, or just want to understand your risk better, get in touch.",
     "profileLabel": "operator profile",
     "statusLabel": "status: building",
     "signalLabel": "Signal",
@@ -341,17 +341,17 @@
       "drives": {
         "eyebrow": "What drives me",
         "title": "Mostly just curious about how things work.",
-        "text": "I like following a system far enough that it starts showing its edges — where it breaks, where it gets fragile, where the assumptions stop being theoretical. That's usually where it gets interesting."
+        "text": "I like following a system far enough that it starts showing its edges: where it breaks, where it gets fragile, where the assumptions stop being theoretical. That's usually where it gets interesting."
       },
       "building": {
         "eyebrow": "What I'm building",
         "title": "Figuring out where security, AI, and design overlap.",
-        "text": "That's what I've been spending most of my time on lately. It's the kind of space where you can't get away with surface-level answers — you have to think about whether something actually works in practice, not just in theory. I've also been exploring agent-based workflows with tools like OpenClaw and Codex, trying to understand how software, automation, and reasoning can fit together in ways that are actually useful."
+        "text": "That's what I've been spending most of my time on lately. It's the kind of space where you can't get away with surface-level answers. You have to think about whether something actually works in practice, not just in theory. I've also been exploring agent-based workflows with tools like OpenClaw and Codex, trying to understand how software, automation, and reasoning can fit together in ways that are actually useful."
       },
       "outside": {
         "eyebrow": "Outside the screen",
         "title": "I tend to notice the small things.",
-        "text": "Things like clarity, pacing, and friction — they stand out to me because they're usually what decides whether something feels intuitive or just frustrating. I like clean interfaces, but only when they actually make something easier to use, not just nicer to look at."
+        "text": "Things like clarity, pacing, and friction stand out to me because they're usually what decides whether something feels intuitive or just frustrating. I like clean interfaces, but only when they actually make something easier to use, not just nicer to look at."
       }
     }
   },

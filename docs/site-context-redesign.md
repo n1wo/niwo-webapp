@@ -1,14 +1,14 @@
-# NIWO Systems Site Context Redesign
+# niwo systems Site Context Redesign
 
 Status: draft design direction
 Date: 2026-06-04
 
 ## Problem Framing
 
-The current website presents NIWO Systems as a security-focused independent
+The current website presents niwo systems as a security-focused independent
 business with strong visual identity, but the content still reads mostly like
 one individual expert offering direct help. The desired direction is broader:
-NIWO Systems should feel like a cybersecurity consulting and research company
+niwo systems should feel like a cybersecurity consulting and research company
 that explains security topics clearly in German and English, can grow into
 future penetration-testing offers, and has room for academic work, projects,
 and blog-style writing.
@@ -19,7 +19,7 @@ security thinking, and a credible path toward future services.
 
 ## Target State
 
-NIWO Systems becomes a bilingual cybersecurity consulting and research site.
+niwo systems becomes a bilingual cybersecurity consulting and research site.
 
 The first impression should be:
 
@@ -31,7 +31,7 @@ The first impression should be:
 
 Recommended positioning:
 
-> NIWO Systems is a cybersecurity consulting and research company focused on
+> niwo systems is a cybersecurity consulting and research company focused on
 > application security, security education, technical analysis, and future
 > penetration-testing services.
 
@@ -75,7 +75,7 @@ need every page to be fully built.
 
 ### Home
 
-Purpose: introduce NIWO Systems as a cybersecurity consulting and research
+Purpose: introduce niwo systems as a cybersecurity consulting and research
 company.
 
 Core sections:
@@ -83,12 +83,12 @@ Core sections:
 - hero: company identity and security focus
 - focus areas: application security, penetration testing direction, secure
   development, security explanations
-- explanation block: how NIWO Systems thinks about security
+- explanation block: how niwo systems thinks about security
 - featured research or paper placeholder
 - latest writing or project placeholder
 - call to action: contact or start a conversation
 
-Homepage should shift from "I help startups..." to "NIWO Systems helps teams
+Homepage should shift from "I help startups..." to "niwo systems helps teams
 understand, assess, and improve security."
 
 ### Services
@@ -174,12 +174,12 @@ Nikita is writing directly.
 
 ### About
 
-Purpose: explain NIWO Systems and Nikita without making the site only a
+Purpose: explain niwo systems and Nikita without making the site only a
 personal profile.
 
 Recommended angle:
 
-- NIWO Systems is the company/practice
+- niwo systems is the company/practice
 - Nikita is the founder/operator/researcher
 - cybersecurity, systems, AI, and product thinking are part of the background
 - credibility comes from clear thinking and technical work, not big-company
@@ -289,7 +289,7 @@ of the product.
 
 ## Assumptions
 
-- NIWO Systems should remain the public brand name.
+- niwo systems should remain the public brand name.
 - The site can use company voice even if the company is still small, as long as
   it avoids pretending to be a large team.
 - Penetration testing is a future or developing offer, not necessarily the
@@ -310,7 +310,7 @@ large empty structure.
 Second risk: using `we` can feel fake if the copy implies a large team.
 
 Recommended constraint: use `we` for the brand and process, but keep "about"
-copy transparent about NIWO Systems being founder-led.
+copy transparent about niwo systems being founder-led.
 
 Third risk: bilingual content can drift.
 

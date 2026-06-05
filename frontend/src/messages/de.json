@@ -32,11 +32,11 @@
   "Home": {
     "metadata": {
       "title": "niwo | Cybersicherheit",
-      "description": "Nikita Wokurka — Cybersecurity-Student und Web-Security-Praktiker aus Bonn. Fokus auf Sicherheitsreviews von Webanwendungen, praktische Sicherheitsberatung und kleine Teams dabei zu unterstützen, ihr Risiko zu verstehen."
+      "description": "Nikita Wokurka, Cybersecurity-Student und Web-Security-Praktiker aus Bonn. Fokus auf Sicherheitsreviews von Webanwendungen, praktische Sicherheitsberatung und kleine Teams dabei zu unterstützen, ihr Risiko zu verstehen."
     },
     "heroEyebrow": "Cybersicherheitsberatung und Forschung für moderne Anwendungen",
     "heroHeadline": "Praktische Cybersicherheit für Entwickler und kleine Teams",
-    "heroParagraph": "Ich helfe Entwicklern und kleinen Unternehmen, die Risiken ihrer Webanwendungen zu verstehen, die wichtigsten Probleme zu beheben und bessere Sicherheitsentscheidungen zu treffen — ohne Enterprise-Overhead. Ansässig in Bonn. Aktuell verfügbar für fokussierte Engagements.",
+    "heroParagraph": "Ich helfe Entwicklern und kleinen Unternehmen, die Risiken ihrer Webanwendungen zu verstehen, die wichtigsten Probleme zu beheben und bessere Sicherheitsentscheidungen zu treffen, ohne Enterprise-Overhead. Ansässig in Bonn. Aktuell verfügbar für fokussierte Engagements.",
     "primaryCta": "Kontakt aufnehmen",
     "secondaryCta": "Was ich mache",
     "supportLine": "Web Application Security · DevSecOps · Agentische Sicherheit · Penetration Testing",
@@ -51,7 +51,7 @@
     "approach": {
       "eyebrow": "Wie ich arbeite",
       "title": "Ein ehrlicher, praktischer Ansatz für Sicherheit",
-      "description": "Ich bin Nikita — Cybersecurity-Student an der IU Internationalen Hochschule mit einem Hintergrund in Elektrotechnik und technischer Projektkoordination. NiwoSystems habe ich gestartet, um praktisches Lernen mit echter Praxis zu verbinden — das meiste, was ich weiß, kommt vom Bauen, vom kontrollierten Kaputtmachen im Labor und vom Verstehen, warum etwas kaputtgegangen ist. Am besten arbeite ich mit Entwicklern und kleinen Teams, die ehrliche, praktische Sicherheitsunterstützung wollen — kein angstgetriebenes Upselling und keine Berichte voller Fachjargon, den niemand liest.",
+      "description": "Ich bin Nikita, Cybersecurity-Student an der IU Internationalen Hochschule mit einem Hintergrund in Elektrotechnik und technischer Projektkoordination. niwo systems habe ich gestartet, um praktisches Lernen mit echter Praxis zu verbinden. Das meiste, was ich weiß, kommt vom Bauen, vom kontrollierten Kaputtmachen im Labor und vom Verstehen, warum etwas kaputtgegangen ist. Am besten arbeite ich mit Entwicklern und kleinen Teams, die ehrliche, praktische Sicherheitsunterstützung wollen, kein angstgetriebenes Upselling und keine Berichte voller Fachjargon, den niemand liest.",
       "cardLabel": "Ansatz",
       "cards": {
         "scope": {
@@ -87,19 +87,19 @@
       "webAppSecurity": {
         "eyebrow": "Bewertung",
         "title": "Web App Security",
-        "text": "Ich schaue mir deine Web-App so an, wie ein Angreifer es tun wuerde — und sage dir, was wirklich behoben werden muss und warum.",
+        "text": "Ich schaue mir deine Web-App so an, wie ein Angreifer es tun wuerde, und sage dir, was wirklich behoben werden muss und warum.",
         "accent": "Attack Surface Review"
       },
       "penetrationTesting": {
         "eyebrow": "Offensive Tests",
         "title": "Penetration Testing",
-        "text": "Ich versuche einzubrechen wie ein echter Angreifer — und zeige dir genau, was funktioniert hat und was du dagegen tun kannst.",
+        "text": "Ich versuche einzubrechen wie ein echter Angreifer und zeige dir genau, was funktioniert hat und was du dagegen tun kannst.",
         "accent": "Validierte Angriffspfade"
       },
       "secureDevelopment": {
         "eyebrow": "Umsetzung",
         "title": "Secure Development",
-        "text": "Ich arbeite mit deinem Team waehrend der Entwicklung, damit Sicherheit frueh mitgedacht wird — nicht erst kurz vor Release.",
+        "text": "Ich arbeite mit deinem Team waehrend der Entwicklung, damit Sicherheit frueh mitgedacht wird, nicht erst kurz vor Release.",
         "accent": "Mit Leitplanken bauen"
       }
     }
@@ -113,28 +113,28 @@
       "webAppSecurity": {
         "metadata": {
           "title": "Web App Security Review | niwo",
-          "description": "Ein praxisnaher Sicherheitsreview deiner Webanwendung aus Angreiferperspektive — klare Findings, verständliche Erklärungen und konkrete Schritte, um das Wichtige zu beheben."
+          "description": "Ein praxisnaher Sicherheitsreview deiner Webanwendung aus Angreiferperspektive mit klaren Findings, verständlichen Erklärungen und konkreten Schritten, um das Wichtige zu beheben."
         },
         "card": {
           "eyebrow": "Bewertung",
           "title": "Web App Security Review",
-          "text": "Ich schaue mir deine Webanwendung aus Angreiferperspektive an — mit Fokus auf die Flows, Eingaben und Vertrauensgrenzen, die echtes Risiko tragen. Du bekommst klare Findings, verständlich erklärt, mit konkreten Schritten, um das Wichtige zu beheben.",
+          "text": "Ich schaue mir deine Webanwendung aus Angreiferperspektive an, mit Fokus auf die Flows, Eingaben und Vertrauensgrenzen, die echtes Risiko tragen. Du bekommst klare Findings, verständlich erklärt, mit konkreten Schritten, um das Wichtige zu beheben.",
           "accent": "Attack Surface Review",
           "tag": "Gut geeignet für: Entwickler vor dem Launch, kleine Teams vor einem Release oder alle, die ein zweites Paar Augen wollen."
         },
         "hero": {
           "eyebrow": "Anwendungsreview",
           "title": "Sieh deine App so, wie ein Angreifer sie sieht",
-          "intro": "Ich gehe deine Webanwendung aus Angreiferperspektive durch — mit Fokus auf die Flows, Eingaben und Vertrauensgrenzen, die tatsächlich Risiko tragen. Das Ziel ist kein Scanner-Auswurf, sondern ein klares Bild davon, wo du angreifbar bist und was sich zuerst zu beheben lohnt.",
+          "intro": "Ich gehe deine Webanwendung aus Angreiferperspektive durch, mit Fokus auf die Flows, Eingaben und Vertrauensgrenzen, die tatsächlich Risiko tragen. Das Ziel ist kein Scanner-Auswurf, sondern ein klares Bild davon, wo du angreifbar bist und was sich zuerst zu beheben lohnt.",
           "outcomeLabel": "Was du davon hast",
           "outcomeText": "Klare Findings, verständlich erklärt, nach Wichtigkeit geordnet, mit konkreten Schritten, die dein Team sofort umsetzen kann."
         },
         "covers": {
           "title": "Was das abdeckt",
           "items": [
-            "Die Flows, die echtes Risiko tragen — Login, Account-Aktionen, Zahlungen, alles Sensible",
+            "Die Flows, die echtes Risiko tragen: Login, Account-Aktionen, Zahlungen, alles Sensible",
             "Authentifizierung und Session-Handling und die Annahmen dahinter",
-            "Zugriffskontrolllücken — Privilege Escalation und Broken Object-Level Access",
+            "Zugriffskontrolllücken: Privilege Escalation und Broken Object-Level Access",
             "Eingabeverarbeitung: Injection, unsicheres Parsing und schwache Validierung",
             "Konfigurations- und Vertrauensgrenzen-Probleme, die die Angriffsfläche still vergrößern"
           ]
@@ -144,15 +144,15 @@
           "steps": [
             {
               "title": "Verstehen, wie es funktionieren soll",
-              "text": "Ich starte damit, wie sich die App verhalten soll — wo sensible Aktionen passieren und wo Vertrauen vorausgesetzt statt erzwungen wird."
+              "text": "Ich starte damit, wie sich die App verhalten soll, wo sensible Aktionen passieren und wo Vertrauen vorausgesetzt statt erzwungen wird."
             },
             {
               "title": "Dort prüfen, wo das Risiko wirklich liegt",
-              "text": "Ich konzentriere mich auf die Flows, Eingaben und Randfälle, die echte Probleme verbergen — nicht nur auf das, was eine Checkliste flaggt."
+              "text": "Ich konzentriere mich auf die Flows, Eingaben und Randfälle, die echte Probleme verbergen, nicht nur auf das, was eine Checkliste flaggt."
             },
             {
               "title": "So dokumentieren, dass du handeln kannst",
-              "text": "Jeder Fund kommt in verständlicher Sprache mit Auswirkung und konkreter Behebung — keine vagen Risiko-Scores, nur was kaputt ist und was zu tun ist."
+              "text": "Jeder Fund kommt in verständlicher Sprache mit Auswirkung und konkreter Behebung. Keine vagen Risiko-Scores, nur was kaputt ist und was zu tun ist."
             }
           ]
         },
@@ -169,43 +169,43 @@
           "title": "Was du bekommst",
           "items": [
             "Einen kurzen, fokussierten Bericht mit klaren, validierten Findings",
-            "Verständliche Erklärungen — kein Jargon, den niemand liest",
+            "Verständliche Erklärungen ohne Jargon, den niemand liest",
             "Eine priorisierte Liste, damit du weißt, was du zuerst behebst",
             "Follow-up, falls etwas im Bericht Klärung braucht"
           ]
         },
         "cta": {
           "title": "Willst du wissen, wo deine App angreifbar ist?",
-          "text": "Ob vor dem Launch oder einfach für ein zweites Paar Augen — ich schaue gern drüber.",
+          "text": "Ob vor dem Launch oder einfach für ein zweites Paar Augen, ich schaue gern drüber.",
           "primary": "Kontakt aufnehmen",
           "secondary": "Zurück zu den Leistungen"
         }
       },
       "penetrationTesting": {
         "metadata": {
-          "title": "Penetration Testing — Prozess & Vorbereitung | niwo",
-          "description": "Unterstützung, um dich auf einen Penetrationstest vorzubereiten — den Prozess verstehen, den Scope definieren, den Bericht lesen und einem Testanbieter die richtigen Fragen stellen. Kein vollständiges Pentest-Engagement."
+          "title": "Penetration Testing: Prozess & Vorbereitung | niwo",
+          "description": "Unterstützung, um dich auf einen Penetrationstest vorzubereiten: den Prozess verstehen, den Scope definieren, den Bericht lesen und einem Testanbieter die richtigen Fragen stellen. Kein vollständiges Pentest-Engagement."
         },
         "card": {
           "eyebrow": "Vorbereitung",
-          "title": "Penetration Testing — Prozess & Vorbereitung",
+          "title": "Penetration Testing: Prozess & Vorbereitung",
           "text": "Du denkst über einen Pentest nach, weißt aber nicht, wo du anfangen sollst? Ich zeige dir, wie der Prozess aussieht, helfe dir, deinen Scope vorzubereiten, zu verstehen, was du von einem Bericht erwarten kannst, und die richtigen Fragen zu stellen, wenn du mit einem Testanbieter sprichst.",
           "accent": "Pentest-Vorbereitung",
-          "tag": "Hinweis: Das ist kein vollständiges Pentest-Engagement — es ist praktische Unterstützung, damit du das Beste aus einem herausholst."
+          "tag": "Hinweis: Das ist kein vollständiges Pentest-Engagement. Es ist praktische Unterstützung, damit du das Beste aus einem herausholst."
         },
         "hero": {
           "eyebrow": "Prozess & Vorbereitung",
           "title": "Bereite dich auf einen Pentest vor, bevor du dafür bezahlst",
           "intro": "Du denkst über einen Pentest nach, weißt aber nicht, wo du anfangen sollst? Ich zeige dir, wie der Prozess wirklich aussieht, helfe dir, deinen Scope vorzubereiten, zu verstehen, was du von einem Bericht erwarten kannst, und die richtigen Fragen zu stellen, wenn du mit einem Testanbieter sprichst.",
           "outcomeLabel": "Was du davon hast",
-          "outcomeText": "Ein klares Verständnis des Prozesses, einen Scope, bei dem du dich sicher fühlst, und die richtigen Fragen — damit du echten Wert aus dem Test ziehst, für den du bezahlst."
+          "outcomeText": "Ein klares Verständnis des Prozesses, einen Scope, bei dem du dich sicher fühlst, und die richtigen Fragen, damit du echten Wert aus dem Test ziehst, für den du bezahlst."
         },
         "covers": {
           "title": "Was das abdeckt",
           "items": [
             "Was ein Penetrationstest tatsächlich umfasst, von Anfang bis Ende",
             "Hilfe beim Definieren und Scopen dessen, was getestet werden soll",
-            "Was du von einem Bericht erwarten kannst — und wie du ihn liest",
+            "Was du von einem Bericht erwarten kannst und wie du ihn liest",
             "Die richtigen Fragen an einen Testanbieter",
             "Wie du sicherstellst, dass du echten Wert aus dem Engagement ziehst"
           ]
@@ -215,7 +215,7 @@
           "steps": [
             {
               "title": "Den Prozess verstehen",
-              "text": "Ich führe dich durch das, was ein Pentest umfasst — keine Überraschungen und kein Jargon, den du später entschlüsseln musst."
+              "text": "Ich führe dich durch das, was ein Pentest umfasst. Keine Überraschungen und kein Jargon, den du später entschlüsseln musst."
             },
             {
               "title": "Deinen Scope vorbereiten",
@@ -255,7 +255,7 @@
       "secureDevelopment": {
         "metadata": {
           "title": "Sicherheitsberatung & Begleitung | niwo",
-          "description": "Fokussierte Sicherheitsberatung für Entwickler und kleine Teams — ehrliche Antworten, praktische Tipps zu Web-Sicherheit und sicherer Entwicklung und Hilfe beim Priorisieren."
+          "description": "Fokussierte Sicherheitsberatung für Entwickler und kleine Teams mit ehrlichen Antworten, praktischen Tipps zu Web-Sicherheit und sicherer Entwicklung und Hilfe beim Priorisieren."
         },
         "card": {
           "eyebrow": "Beratung",
@@ -275,7 +275,7 @@
           "title": "Was wir abdecken können",
           "items": [
             "Einen Blick auf dein aktuelles Setup und wo die echten Risiken liegen",
-            "Ehrliche Antworten auf deine Sicherheitsfragen — kein Upselling",
+            "Ehrliche Antworten auf deine Sicherheitsfragen ohne Upselling",
             "Praktische Tipps zu Web-Sicherheit und sicherer Entwicklung",
             "Worauf du achten solltest, während du baust und wächst",
             "Hilfe beim Priorisieren, damit du Aufwand dort investierst, wo er zählt"
@@ -286,7 +286,7 @@
           "steps": [
             {
               "title": "Erzähl mir, woran du arbeitest",
-              "text": "Wir starten mit deinem Produkt, deinem Stack und dem, was dich wirklich beschäftigt — keine starre Checkliste."
+              "text": "Wir starten mit deinem Produkt, deinem Stack und dem, was dich wirklich beschäftigt. Keine starre Checkliste."
             },
             {
               "title": "Es durchsprechen",
@@ -331,8 +331,8 @@
       "description": "Über Nikita, die Person hinter niwo, an der Schnittstelle von Security, KI, Systemen und Produktdesign."
     },
     "eyebrow": "ÜBER MICH",
-    "title": "Die Person hinter NiwoSystems",
-    "intro": "Ich bin Nikita — Cybersecurity-Student an der IU Internationalen Hochschule mit einem Hintergrund in Elektrotechnik und technischer Projektkoordination. NiwoSystems habe ich gestartet, um mein praktisches Lernen mit echter Praxis zu verbinden. Das meiste, was ich weiß, kommt vom Bauen, vom kontrollierten Kaputtmachen im Labor und vom Verstehen, warum etwas kaputtgegangen ist. Am besten arbeite ich mit Entwicklern und kleinen Teams, die ehrliche, praktische Sicherheitsunterstützung wollen — kein angstgetriebenes Upselling und keine Berichte voller Fachjargon, den niemand liest. Wenn du eine Frage hast, ein Projekt, oder einfach dein Risiko besser verstehen willst — nimm Kontakt auf.",
+    "title": "Die Person hinter niwo systems",
+    "intro": "Ich bin Nikita, Cybersecurity-Student an der IU Internationalen Hochschule mit einem Hintergrund in Elektrotechnik und technischer Projektkoordination. niwo systems habe ich gestartet, um mein praktisches Lernen mit echter Praxis zu verbinden. Das meiste, was ich weiß, kommt vom Bauen, vom kontrollierten Kaputtmachen im Labor und vom Verstehen, warum etwas kaputtgegangen ist. Am besten arbeite ich mit Entwicklern und kleinen Teams, die ehrliche, praktische Sicherheitsunterstützung wollen, kein angstgetriebenes Upselling und keine Berichte voller Fachjargon, den niemand liest. Wenn du eine Frage hast, ein Projekt, oder einfach dein Risiko besser verstehen willst, nimm Kontakt auf.",
     "profileLabel": "operator profile",
     "statusLabel": "status: building",
     "signalLabel": "Signal",
@@ -341,17 +341,17 @@
       "drives": {
         "eyebrow": "Was mich antreibt",
         "title": "Vor allem Neugier, wie Dinge funktionieren.",
-        "text": "Ich folge einem System gern so weit, bis es seine Kanten zeigt — wo es bricht, wo es fragil wird, wo die Annahmen aufhören, nur theoretisch zu sein. Da wird es meistens interessant."
+        "text": "Ich folge einem System gern so weit, bis es seine Kanten zeigt: wo es bricht, wo es fragil wird, wo die Annahmen aufhören, nur theoretisch zu sein. Da wird es meistens interessant."
       },
       "building": {
         "eyebrow": "Woran ich arbeite",
         "title": "Herausfinden, wo sich Security, KI und Design überschneiden.",
-        "text": "Damit beschäftige ich mich gerade am meisten. In dem Bereich kommt man mit oberflächlichen Antworten nicht weit — man muss sich fragen, ob etwas in der Praxis wirklich funktioniert, nicht nur in der Theorie. Nebenbei erkunde ich agentenbasierte Workflows mit Tools wie OpenClaw und Codex und versuche zu verstehen, wie Software, Automatisierung und Reasoning auf eine Weise zusammenspielen können, die tatsächlich nützlich ist."
+        "text": "Damit beschäftige ich mich gerade am meisten. In dem Bereich kommt man mit oberflächlichen Antworten nicht weit. Man muss sich fragen, ob etwas in der Praxis wirklich funktioniert, nicht nur in der Theorie. Nebenbei erkunde ich agentenbasierte Workflows mit Tools wie OpenClaw und Codex und versuche zu verstehen, wie Software, Automatisierung und Reasoning auf eine Weise zusammenspielen können, die tatsächlich nützlich ist."
       },
       "outside": {
         "eyebrow": "Außerhalb des Bildschirms",
         "title": "Mir fallen meistens die kleinen Dinge auf.",
-        "text": "Klarheit, Rhythmus, Widerstand — so etwas sticht mir ins Auge, weil es meistens darüber entscheidet, ob sich etwas intuitiv oder frustrierend anfühlt. Ich mag klare Interfaces, aber nur wenn sie wirklich etwas einfacher machen, nicht nur besser aussehen."
+        "text": "Klarheit, Rhythmus, Widerstand. So etwas sticht mir ins Auge, weil es meistens darüber entscheidet, ob sich etwas intuitiv oder frustrierend anfühlt. Ich mag klare Interfaces, aber nur wenn sie wirklich etwas einfacher machen, nicht nur besser aussehen."
       }
     }
   },

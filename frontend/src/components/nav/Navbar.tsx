@@ -37,7 +37,7 @@ export default function Navbar() {
                 width={220}
                 height={70}
                 className="h-8 w-auto dark:invert"
-                alt="Niwo Systems"
+                alt="niwo systems"
               />
             </Link>
 

@@ -1,6 +1,6 @@
 # niwo-webapp
 
-Codebase for the NIWO Systems website at [niwosystems.com](https://www.niwosystems.com).
+Codebase for the niwo systems website at [niwosystems.com](https://www.niwosystems.com).
 
 This repository is public for transparency, technical credibility, and easier inspection of how the site is built. It is the production-facing website codebase for a security-focused independent business, not a generic starter or white-label brand package.
 
@@ -51,6 +51,6 @@ The source code in this repository is available under the [MIT License](./LICENS
 
 ## Brand And Content Usage
 
-Code reuse is allowed under MIT. The NIWO Systems name, logos, written copy, business positioning, and site-specific visual identity are not intended for unrestricted reuse as your own brand or commercial identity.
+Code reuse is allowed under MIT. The niwo systems name, logos, written copy, business positioning, and site-specific visual identity are not intended for unrestricted reuse as your own brand or commercial identity.
 
 See [NOTICE.md](./NOTICE.md) for the concise usage note.

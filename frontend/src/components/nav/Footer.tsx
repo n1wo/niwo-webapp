@@ -38,7 +38,7 @@ export default function Footer() {
               src="/assets/logos/niwologo.svg"
               width={220}
               height={60}
-              alt="Niwo Systems"
+              alt="niwo systems"
               className="h-8 w-auto invert"
             />
           </Link>
