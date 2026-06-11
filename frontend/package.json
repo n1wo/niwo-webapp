@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
+    "check:routes": "npm run build && node scripts/check-routes.mjs",
     "start": "next start",
     "lint": "eslint"
   },
