@@ -376,7 +376,7 @@ export default function HomePage(): JSX.Element {
         </section>
 
         <section className="rounded-lg border border-white/[0.08] bg-[#111113] px-8 py-10 text-center sm:px-12 sm:py-11">
-          <h2 className="mx-auto max-w-3xl font-mono text-lg font-medium leading-8 tracking-[-0.01em] text-zinc-100 sm:text-xl">
+          <h2 className="mx-auto max-w-full font-mono text-lg font-medium leading-8 tracking-[-0.01em] text-zinc-100 sm:max-w-5xl sm:text-xl">
             {t("supportLine")}
           </h2>
           <PrimarySecondaryCta
