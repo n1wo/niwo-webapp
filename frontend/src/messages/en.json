@@ -45,9 +45,9 @@
       "reporting": "Clear reporting",
       "remediation": "Practical remediation"
     },
-    "servicesEyebrow": "Services",
+    "servicesEyebrow": "What I can help with",
     "servicesTitle": "Security support for developers and small teams",
-    "servicesDescription": "Focused engagements built to uncover meaningful weaknesses, explain risk clearly, and help teams fix the issues that matter first.",
+    "servicesDescription": "Focused engagements built to surface meaningful weaknesses, explain risk in plain language, and help teams fix what matters first.",
     "approach": {
       "eyebrow": "How I work",
       "title": "An honest, practical approach to security",
@@ -86,21 +86,21 @@
     "serviceCards": {
       "webAppSecurity": {
         "eyebrow": "Assessment",
-        "title": "Web App Security",
-        "text": "I look at your web app the way an attacker would, then tell you what actually needs fixing and why.",
+        "title": "Web App Security Review",
+        "text": "I review your web application with a focus on the flows, inputs, and trust boundaries that carry real risk.",
         "accent": "Attack surface review"
       },
       "penetrationTesting": {
-        "eyebrow": "Offensive testing",
-        "title": "Penetration Testing",
-        "text": "I try to break in the same way a real attacker would, then show you exactly what worked and what to do about it.",
-        "accent": "Validated attack paths"
+        "eyebrow": "Preparation",
+        "title": "Pentest Preparation & Guidance",
+        "text": "I can walk you through what the pentest process looks like and help you ask the right questions.",
+        "accent": "Pentest preparation"
       },
       "secureDevelopment": {
-        "eyebrow": "Delivery",
-        "title": "Secure Development",
-        "text": "I work alongside your team during development so security gets handled early, not rushed in before release.",
-        "accent": "Build with guardrails"
+        "eyebrow": "Guidance",
+        "title": "Security Guidance & Consultation",
+        "text": "I offer focused conversations and practical advice on web security and secure development.",
+        "accent": "Practical security advice"
       }
     }
   },
@@ -118,7 +118,7 @@
         "card": {
           "eyebrow": "Assessment",
           "title": "Web App Security Review",
-          "text": "I look at your web application from an attacker's perspective, focusing on the flows, inputs, and trust boundaries that carry real risk. You get clear findings, explained in plain language, with concrete steps to fix what matters.",
+          "text": "I review your web application with a focus on the flows, inputs, and trust boundaries that carry real risk. You get clear findings in plain language, with concrete steps to fix what matters most.",
           "accent": "Attack surface review",
           "tag": "Good for: developers launching a product, small teams before a release, or anyone who wants a second pair of eyes."
         },
@@ -188,10 +188,10 @@
         },
         "card": {
           "eyebrow": "Preparation",
-          "title": "Penetration Testing: Process & Preparation",
-          "text": "Thinking about getting a pentest done but not sure where to start? I can walk you through what the process looks like, help you prepare your scope, understand what to expect from a report, and ask the right questions when talking to a testing provider.",
+          "title": "Pentest Preparation & Guidance",
+          "text": "Thinking about getting a pentest done but not sure where to start? I can walk you through what the process looks like, help you define your scope, understand what a report should contain, and ask the right questions when choosing a testing provider.",
           "accent": "Pentest preparation",
-          "tag": "Note: This is not a full pentest engagement. It is practical guidance to help you get the most out of one."
+          "tag": "Note: This is guidance to help you get the most out of a pentest, not a full pentest engagement."
         },
         "hero": {
           "eyebrow": "Process & preparation",

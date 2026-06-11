@@ -45,9 +45,9 @@
       "reporting": "Klare Berichte",
       "remediation": "Praktische Behebung"
     },
-    "servicesEyebrow": "Leistungen",
+    "servicesEyebrow": "Womit ich helfen kann",
     "servicesTitle": "Security-Unterstützung für Entwickler und kleine Teams",
-    "servicesDescription": "Fokussierte Engagements, die relevante Schwachstellen sichtbar machen, Risiken klar einordnen und Teams beim Beheben der wichtigsten Probleme unterstützen.",
+    "servicesDescription": "Fokussierte Engagements, die relevante Schwachstellen sichtbar machen, Risiken verständlich erklären und Teams helfen, zuerst das Wichtigste zu beheben.",
     "approach": {
       "eyebrow": "Wie ich arbeite",
       "title": "Ein ehrlicher, praktischer Ansatz für Sicherheit",
@@ -85,22 +85,22 @@
     },
     "serviceCards": {
       "webAppSecurity": {
-        "eyebrow": "Bewertung",
-        "title": "Web App Security",
-        "text": "Ich schaue mir deine Web-App so an, wie ein Angreifer es tun wuerde, und sage dir, was wirklich behoben werden muss und warum.",
+        "eyebrow": "Assessment",
+        "title": "Web App Security Review",
+        "text": "Ich prüfe deine Webanwendung mit Fokus auf die Abläufe, Eingaben und Vertrauensgrenzen, die echtes Risiko tragen.",
         "accent": "Attack Surface Review"
       },
       "penetrationTesting": {
-        "eyebrow": "Offensive Tests",
-        "title": "Penetration Testing",
-        "text": "Ich versuche einzubrechen wie ein echter Angreifer und zeige dir genau, was funktioniert hat und was du dagegen tun kannst.",
-        "accent": "Validierte Angriffspfade"
+        "eyebrow": "Preparation",
+        "title": "Pentest-Vorbereitung & Begleitung",
+        "text": "Ich erkläre dir, wie der Pentest-Prozess abläuft und welche Fragen du stellen solltest.",
+        "accent": "Pentest-Vorbereitung"
       },
       "secureDevelopment": {
-        "eyebrow": "Umsetzung",
-        "title": "Secure Development",
-        "text": "Ich arbeite mit deinem Team waehrend der Entwicklung, damit Sicherheit frueh mitgedacht wird, nicht erst kurz vor Release.",
-        "accent": "Mit Leitplanken bauen"
+        "eyebrow": "Guidance",
+        "title": "Security-Beratung & Begleitung",
+        "text": "Ich biete fokussierte Gespräche und praxisnahe Beratung zu Web-Security und sicherer Entwicklung.",
+        "accent": "Praktische Sicherheitsberatung"
       }
     }
   },
@@ -116,11 +116,11 @@
           "description": "Ein praxisnaher Sicherheitsreview deiner Webanwendung aus Angreiferperspektive mit klaren Findings, verständlichen Erklärungen und konkreten Schritten, um das Wichtige zu beheben."
         },
         "card": {
-          "eyebrow": "Bewertung",
+          "eyebrow": "Assessment",
           "title": "Web App Security Review",
-          "text": "Ich schaue mir deine Webanwendung aus Angreiferperspektive an, mit Fokus auf die Flows, Eingaben und Vertrauensgrenzen, die echtes Risiko tragen. Du bekommst klare Findings, verständlich erklärt, mit konkreten Schritten, um das Wichtige zu beheben.",
+          "text": "Ich prüfe deine Webanwendung mit Fokus auf die Abläufe, Eingaben und Vertrauensgrenzen, die echtes Risiko tragen. Du bekommst klare Ergebnisse in verständlicher Sprache, mit konkreten Schritten, um das Wichtigste zu beheben.",
           "accent": "Attack Surface Review",
-          "tag": "Gut geeignet für: Entwickler vor dem Launch, kleine Teams vor einem Release oder alle, die ein zweites Paar Augen wollen."
+          "tag": "Gut für: Entwickler vor einem Produkt-Launch, kleine Teams vor einem Release oder alle, die ein zweites Paar Augen wollen."
         },
         "hero": {
           "eyebrow": "Anwendungsreview",
@@ -187,11 +187,11 @@
           "description": "Unterstützung, um dich auf einen Penetrationstest vorzubereiten: den Prozess verstehen, den Scope definieren, den Bericht lesen und einem Testanbieter die richtigen Fragen stellen. Kein vollständiges Pentest-Engagement."
         },
         "card": {
-          "eyebrow": "Vorbereitung",
-          "title": "Penetration Testing: Prozess & Vorbereitung",
-          "text": "Du denkst über einen Pentest nach, weißt aber nicht, wo du anfangen sollst? Ich zeige dir, wie der Prozess aussieht, helfe dir, deinen Scope vorzubereiten, zu verstehen, was du von einem Bericht erwarten kannst, und die richtigen Fragen zu stellen, wenn du mit einem Testanbieter sprichst.",
+          "eyebrow": "Preparation",
+          "title": "Pentest-Vorbereitung & Begleitung",
+          "text": "Du überlegst, einen Pentest durchführen zu lassen, weißt aber nicht, wo du anfangen sollst? Ich erkläre dir, wie der Prozess abläuft, helfe dir, deinen Scope zu definieren, zu verstehen, was ein Report enthalten sollte, und die richtigen Fragen zu stellen, wenn du einen Anbieter auswählst.",
           "accent": "Pentest-Vorbereitung",
-          "tag": "Hinweis: Das ist kein vollständiges Pentest-Engagement. Es ist praktische Unterstützung, damit du das Beste aus einem herausholst."
+          "tag": "Hinweis: Das ist Begleitung, um das Beste aus einem Pentest herauszuholen, kein vollständiger Pentest."
         },
         "hero": {
           "eyebrow": "Prozess & Vorbereitung",
@@ -258,11 +258,11 @@
           "description": "Fokussierte Sicherheitsberatung für Entwickler und kleine Teams mit ehrlichen Antworten, praktischen Tipps zu Web-Sicherheit und sicherer Entwicklung und Hilfe beim Priorisieren."
         },
         "card": {
-          "eyebrow": "Beratung",
-          "title": "Sicherheitsberatung & Begleitung",
-          "text": "Nicht jedes Team braucht einen vollständigen Pentest. Manchmal brauchst du jemanden, der sich dein Setup ansieht, deine Fragen ehrlich beantwortet und dir beim Priorisieren hilft. Ich biete fokussierte Gespräche und praktische Tipps zu Web-Sicherheit, sicherer Entwicklung und worauf du beim Bauen achten solltest.",
+          "eyebrow": "Guidance",
+          "title": "Security-Beratung & Begleitung",
+          "text": "Nicht jedes Team braucht einen vollen Pentest. Manchmal brauchst du einfach jemanden, der sich dein Setup ansieht, deine Fragen ehrlich beantwortet und dir hilft zu priorisieren. Ich biete fokussierte Gespräche und praxisnahe Beratung zu Web-Security, sicherer Entwicklung und worauf du beim Bauen achten solltest.",
           "accent": "Praktische Sicherheitsberatung",
-          "tag": "Gut geeignet für: Teams in der Frühphase, Solo-Entwickler, kleine Unternehmen, die online gehen."
+          "tag": "Gut für: Early-Stage-Teams, Solo-Entwickler, kleine Unternehmen, die online gehen."
         },
         "hero": {
           "eyebrow": "Beratung & Begleitung",
