@@ -8,8 +8,13 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   icons: {
-    icon: "/icon.svg",
-    shortcut: "/icon.svg",
+    icon: [
+      {
+        url: "/assets/logos/niwo-favicon.svg",
+        type: "image/svg+xml",
+      },
+    ],
+    shortcut: "/assets/logos/niwo-favicon.svg",
   },
   openGraph: {
     type: "website",
