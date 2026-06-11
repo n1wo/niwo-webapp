@@ -1,10 +1,10 @@
 # niwo-webapp
 
 [![Site](https://img.shields.io/badge/site-niwosystems.com-6b6ff5)](https://www.niwosystems.com)
-![Next.js](https://img.shields.io/badge/Next.js-15.5-black?logo=nextdotjs)
-![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=111)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?logo=typescript&logoColor=white)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.1-38B2AC?logo=tailwindcss&logoColor=white)
+![Next.js](https://img.shields.io/github/package-json/dependency-version/n1wo/niwo-webapp/next?filename=frontend/package.json&label=Next.js&logo=nextdotjs&color=black)
+![React](https://img.shields.io/github/package-json/dependency-version/n1wo/niwo-webapp/react?filename=frontend/package.json&label=React&logo=react&logoColor=111&color=61DAFB)
+![TypeScript](https://img.shields.io/github/package-json/dependency-version/n1wo/niwo-webapp/dev/typescript?filename=frontend/package.json&label=TypeScript&logo=typescript&logoColor=white&color=3178C6)
+![Tailwind CSS](https://img.shields.io/github/package-json/dependency-version/n1wo/niwo-webapp/dev/tailwindcss?filename=frontend/package.json&label=Tailwind%20CSS&logo=tailwindcss&logoColor=white&color=38B2AC)
 ![i18n](https://img.shields.io/badge/i18n-EN%20%2F%20DE-6b6ff5)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Scope](https://img.shields.io/badge/scope-public_website-orange)
