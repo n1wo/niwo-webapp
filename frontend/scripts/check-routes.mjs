@@ -1,4 +1,5 @@
 import { spawn } from "node:child_process";
+import { existsSync } from "node:fs";
 
 const HOST = "127.0.0.1";
 const PORT = Number(process.env.ROUTE_CHECK_PORT ?? 3020);
@@ -58,13 +59,20 @@ async function checkRoute({ path, statuses, location }) {
   console.log(`${path} -> ${response.status}${actualLocation ? ` ${actualLocation}` : ""}`);
 }
 
-const server = spawn(
-  process.execPath,
-  ["node_modules/next/dist/bin/next", "start", "--hostname", HOST, "--port", String(PORT)],
-  {
-    stdio: ["ignore", "pipe", "pipe"],
+const standaloneServer = ".next/standalone/server.js";
+const useStandaloneServer = existsSync(standaloneServer);
+const serverArgs = useStandaloneServer
+  ? [standaloneServer]
+  : ["node_modules/next/dist/bin/next", "start", "--hostname", HOST, "--port", String(PORT)];
+
+const server = spawn(process.execPath, serverArgs, {
+  env: {
+    ...process.env,
+    HOSTNAME: HOST,
+    PORT: String(PORT),
   },
-);
+  stdio: ["ignore", "pipe", "pipe"],
+});
 
 server.stdout.on("data", (chunk) => process.stdout.write(chunk));
 server.stderr.on("data", (chunk) => process.stderr.write(chunk));
