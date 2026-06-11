@@ -221,7 +221,7 @@ export default function HomePage(): JSX.Element {
               {t("heroEyebrow")}
             </p>
 
-            <h1 className="relative font-mono text-3xl font-bold leading-[1.1] tracking-tight text-white sm:text-4xl lg:text-5xl">
+            <h1 className="relative break-words hyphens-auto font-mono text-3xl font-bold leading-[1.1] tracking-tight text-white sm:text-4xl lg:text-5xl">
               <span aria-hidden="true" className="invisible block whitespace-pre-wrap">
                 {headline}
               </span>
@@ -287,7 +287,7 @@ export default function HomePage(): JSX.Element {
             <p className="text-sm font-medium tracking-wide text-[var(--color-accent-light)]">
               {t("servicesEyebrow")}
             </p>
-            <h2 className="relative font-mono text-3xl font-bold tracking-tight text-white sm:text-4xl">
+            <h2 className="relative break-words hyphens-auto font-mono text-3xl font-bold tracking-tight text-white sm:text-4xl">
               <span aria-hidden="true" className="invisible block whitespace-pre-wrap">
                 {servicesTitle}
               </span>
@@ -330,7 +330,7 @@ export default function HomePage(): JSX.Element {
             <p className="text-sm font-medium tracking-wide text-[var(--color-accent-light)]">
               {t("approach.eyebrow")}
             </p>
-            <h2 className="relative font-mono text-3xl font-bold tracking-tight text-white sm:text-4xl">
+            <h2 className="relative break-words hyphens-auto font-mono text-3xl font-bold tracking-tight text-white sm:text-4xl">
               <span aria-hidden="true" className="invisible block whitespace-pre-wrap">
                 {approachTitle}
               </span>

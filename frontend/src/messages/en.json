@@ -51,7 +51,7 @@
     "approach": {
       "eyebrow": "How I work",
       "title": "An honest, practical approach to security",
-      "description": "I'm Nikita, a Cybersecurity student at IU International University with a background in electrical engineering and technical project coordination. I started niwo systems to combine hands-on learning with real-world practice. Most of what I know comes from building things, breaking them in controlled lab environments, and figuring out why they broke. I work best with developers and small teams who want honest, practical security support, not fear-driven upselling or reports full of jargon nobody reads.",
+      "description": "I'm Nikita, a Cybersecurity student at IU International University with a background in electrical engineering and technical project coordination. I started niwo systems to combine hands-on learning with real-world practice. Most of what I know comes from building things, taking them apart in controlled lab environments, and figuring out why they fail. I work best with developers and small teams who want honest, practical security support, not fear-driven upselling or reports full of jargon nobody reads.",
       "cardLabel": "Approach",
       "cards": {
         "scope": {
@@ -113,7 +113,7 @@
       "webAppSecurity": {
         "metadata": {
           "title": "Web App Security Review | niwo",
-          "description": "A practical web application security review from an attacker's perspective with clear findings, plain-language explanations, and concrete steps to fix what matters."
+          "description": "A practical web application security review focused on the flows, inputs, and trust boundaries that carry real risk, with clear findings, plain-language explanations, and concrete steps to fix what matters."
         },
         "card": {
           "eyebrow": "Assessment",
@@ -124,8 +124,8 @@
         },
         "hero": {
           "eyebrow": "Application review",
-          "title": "See your app the way an attacker would",
-          "intro": "I go through your web application from an attacker's perspective, focusing on the flows, inputs, and trust boundaries that actually carry risk. The goal isn't a scanner dump; it's a clear picture of where you're exposed and what's worth fixing first.",
+          "title": "See where your web app is actually exposed",
+          "intro": "I go through your web application with a focus on the flows, inputs, and trust boundaries that actually carry risk. The goal isn't a scanner dump; it's a clear picture of where you're exposed and what's worth fixing first.",
           "outcomeLabel": "What you walk away with",
           "outcomeText": "Clear findings explained in plain language, ranked by what actually matters, with concrete steps your team can act on right away."
         },
@@ -183,7 +183,7 @@
       },
       "penetrationTesting": {
         "metadata": {
-          "title": "Penetration Testing: Process & Preparation | niwo",
+          "title": "Pentest Preparation & Guidance | niwo",
           "description": "Guidance to help you prepare for a penetration test: understand the process, define your scope, read the report, and ask a testing provider the right questions. Not a full pentest engagement."
         },
         "card": {
@@ -328,30 +328,51 @@
   "About": {
     "metadata": {
       "title": "About | niwo",
-      "description": "About Nikita, the person behind niwo, working across security, AI, systems, and product design."
+      "description": "About Nikita, a cybersecurity student in Bonn focused on practical web application security, secure development, and practical lab work."
     },
     "eyebrow": "ABOUT",
     "title": "The person behind niwo systems",
-    "intro": "I'm Nikita, a Cybersecurity student at IU International University with a background in electrical engineering and technical project coordination. I started niwo systems to combine my hands-on learning with real-world practice. Most of what I know comes from building things, breaking them in controlled lab environments, and figuring out why they broke. I work best with developers and small teams who want honest, practical security support, not fear-driven upselling or reports full of jargon nobody reads. If you have a question, a project, or just want to understand your risk better, get in touch.",
-    "profileLabel": "operator profile",
-    "statusLabel": "status: building",
+    "intro": "I'm Nikita. I came to cybersecurity through electrical engineering and technical project coordination, areas where you learn to take systems apart, trace where they fail, and take safety seriously. niwo systems is where I turn that mindset toward web security: studying it formally, building and testing things in controlled labs, and documenting what I learn along the way.",
+    "profileLabel": "Profile",
+    "statusLabel": "studying & building",
+    "factsLabel": "Snapshot",
+    "closingEyebrow": "Next step",
+    "closingLine": "If that sounds like the kind of help you're after, get in touch.",
     "signalLabel": "Signal",
-    "signalText": "I care about whether something actually holds up - whether it feels trustworthy, makes sense, and works the way it should when it matters.",
+    "signalText": "I care whether something actually holds up: whether it feels trustworthy, makes sense, and works the way it should when it matters.",
+    "facts": {
+      "base": {
+        "label": "Base",
+        "value": "Bonn, Germany"
+      },
+      "study": {
+        "label": "Study",
+        "value": "Cybersecurity at IU International University"
+      },
+      "focus": {
+        "label": "Focus",
+        "value": "Web application security, secure development, and practical lab work"
+      },
+      "mode": {
+        "label": "Mode",
+        "value": "Focused reviews, learning notes, research, and small projects"
+      }
+    },
     "cards": {
       "drives": {
         "eyebrow": "What drives me",
-        "title": "Mostly just curious about how things work.",
-        "text": "I like following a system far enough that it starts showing its edges: where it breaks, where it gets fragile, where the assumptions stop being theoretical. That's usually where it gets interesting."
+        "title": "I like following a system until it shows its edges.",
+        "text": "Where systems get fragile and assumptions stop being theoretical, that is usually where security becomes interesting. I would rather understand why something fails than memorize a checklist that says it should not."
       },
       "building": {
-        "eyebrow": "What I'm building",
-        "title": "Figuring out where security, AI, and design overlap.",
-        "text": "That's what I've been spending most of my time on lately. It's the kind of space where you can't get away with surface-level answers. You have to think about whether something actually works in practice, not just in theory. I've also been exploring agent-based workflows with tools like OpenClaw and Codex, trying to understand how software, automation, and reasoning can fit together in ways that are actually useful."
+        "eyebrow": "What I focus on",
+        "title": "Web application security, hands-on.",
+        "text": "My focus is the security of modern web applications: the flows, inputs, and trust boundaries where things actually go wrong. Alongside my studies, I build small labs and detection projects to understand attacks and defenses in practice, not just in theory. I also explore agent-based workflows with Codex and OpenClaw in isolated environments, especially where automation helps and where it needs guardrails."
       },
       "outside": {
-        "eyebrow": "Outside the screen",
-        "title": "I tend to notice the small things.",
-        "text": "Things like clarity, pacing, and friction stand out to me because they're usually what decides whether something feels intuitive or just frustrating. I like clean interfaces, but only when they actually make something easier to use, not just nicer to look at."
+        "eyebrow": "What I value",
+        "title": "Clarity over noise.",
+        "text": "I notice the small things: clarity, friction, and the gap between how something looks and how it actually behaves. In security that matters because a finding nobody understands does not get fixed. I try to explain risk in plain language, stay honest about scope, and leave people more confident, not more afraid."
       }
     }
   },
