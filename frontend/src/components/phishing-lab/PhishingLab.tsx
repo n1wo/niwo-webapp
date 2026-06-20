@@ -49,13 +49,35 @@ function initials(name: string): string {
   return (words[0][0] + words[1][0]).toUpperCase();
 }
 
-function sampleEmails(emails: LabEmail[], count: number): LabEmail[] {
-  const shuffled = [...emails];
-  for (let i = shuffled.length - 1; i > 0; i -= 1) {
+function fisherYates<T>(arr: T[]): T[] {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i -= 1) {
     const j = Math.floor(Math.random() * (i + 1));
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    [a[i], a[j]] = [a[j], a[i]];
   }
-  return shuffled.slice(0, Math.min(count, shuffled.length));
+  return a;
+}
+
+function sampleEmails(emails: LabEmail[], count: number): LabEmail[] {
+  const quotas: Array<['beginner' | 'intermediate' | 'advanced', number]> = [
+    ['beginner', 3],
+    ['intermediate', 2],
+    ['advanced', 3],
+  ];
+  const picked: LabEmail[] = [];
+  for (const [level, quota] of quotas) {
+    const pool = fisherYates(emails.filter(e => e.difficultyLevel === level));
+    const take = Math.min(quota, pool.length);
+    for (let i = 0; i < take; i++) picked.push(pool[i]);
+  }
+  if (picked.length < count) {
+    const pickedSet = new Set(picked);
+    const remaining = fisherYates(emails.filter(e => !pickedSet.has(e)));
+    for (let i = 0; i < remaining.length && picked.length < count; i++) {
+      picked.push(remaining[i]);
+    }
+  }
+  return fisherYates(picked.slice(0, count));
 }
 
 function useMediaQuery(query: string): boolean {
