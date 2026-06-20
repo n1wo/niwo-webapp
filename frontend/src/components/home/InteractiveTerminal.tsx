@@ -41,6 +41,7 @@ const PAGE_TARGETS: Record<string, string> = {
   privacy: "/pages/privacy-policy",
   "privacy-policy": "/pages/privacy-policy",
   imprint: "/pages/imprint",
+  "phishing-lab": "/pages/phishing-lab",
   contact: "mailto:info@niwosystems.com",
 };
 
@@ -71,6 +72,7 @@ export default function InteractiveTerminal({
       "cd vdp",
       "cd privacy-policy",
       "cd imprint",
+      "cd phishing-lab",
       "cd contact",
       "cat findings.txt",
       "scan",
@@ -180,7 +182,7 @@ export default function InteractiveTerminal({
       appendEntries([
         ...nextEntries,
         {
-          text: "home  services  about  vdp  privacy-policy  imprint  contact  findings.txt",
+          text: "home  services  about  vdp  privacy-policy  imprint  phishing-lab  contact  findings.txt",
           tone: "default",
         },
       ]);
