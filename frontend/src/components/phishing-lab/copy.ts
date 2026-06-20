@@ -12,6 +12,7 @@ export interface EmailBlock {
 
 export interface LabEmail {
   channel?: 'email' | 'sms' | 'qr';
+  difficultyLevel?: 'beginner' | 'intermediate' | 'advanced';
   category: string;
   difficulty: string;
   time: string;
@@ -168,6 +169,7 @@ const en: LabCopy = {
 
   emails: [
     {
+      difficultyLevel: 'beginner',
       category: 'Delivery', difficulty: 'Easy', time: '9:14 AM',
       fromName: 'DHL Express', fromAddr: 'noreply@dhl-delivery-support.com',
       subject: 'Your parcel is on hold — action required',
@@ -188,6 +190,7 @@ const en: LabCopy = {
       ],
     },
     {
+      difficultyLevel: 'beginner',
       category: 'Banking', difficulty: 'Medium', time: 'Yesterday',
       fromName: 'Online Banking Security', fromAddr: 'alerts@secure-bankverify.com',
       subject: 'Unusual sign-in detected on your account',
@@ -208,6 +211,7 @@ const en: LabCopy = {
       ],
     },
     {
+      difficultyLevel: 'beginner',
       category: 'IT Support', difficulty: 'Medium', time: '7:42 AM',
       fromName: 'IT Helpdesk', fromAddr: 'it-support@mail-quota-service.net',
       subject: '[Action Required] Your mailbox is almost full',
@@ -228,6 +232,7 @@ const en: LabCopy = {
       ],
     },
     {
+      difficultyLevel: 'advanced',
       category: 'Invoice', difficulty: 'Hard', time: '11:03 AM',
       fromName: 'Martina Weber · Hartmann GmbH', fromAddr: 'm.weber@hartmann-gmbh.co',
       subject: 'RE: Invoice 2024-0837 — updated bank details',
@@ -249,6 +254,7 @@ const en: LabCopy = {
       ],
     },
     {
+      difficultyLevel: 'beginner',
       category: 'Account', difficulty: 'Medium', time: '6:20 AM',
       fromName: 'Microsoft account team', fromAddr: 'account-security-noreply@accountprotection.microsoft.com',
       subject: 'New sign-in to your Microsoft account',
@@ -269,6 +275,7 @@ const en: LabCopy = {
       ],
     },
     {
+      difficultyLevel: 'beginner',
       category: 'Internal', difficulty: 'Easy', time: 'Mon 08:30',
       fromName: 'People Team', fromAddr: 'hr@northwind-tools.com',
       subject: 'Q3 benefits enrolment opens Monday',
@@ -289,6 +296,7 @@ const en: LabCopy = {
       ],
     },
     {
+      difficultyLevel: 'intermediate',
       category: 'CEO request', difficulty: 'Medium', time: '10:48 AM',
       fromName: 'Tom Becker (CEO)', fromAddr: 'tom.becker.office@gmail.com',
       subject: 'Quick favour',
@@ -309,6 +317,7 @@ const en: LabCopy = {
       ],
     },
     {
+      difficultyLevel: 'beginner',
       category: 'Receipt', difficulty: 'Easy', time: '2:15 AM',
       fromName: 'Stripe', fromAddr: 'receipts@stripe.com',
       subject: 'Your receipt from Northwind Tools [#2941-0058]',
@@ -410,6 +419,7 @@ const de: LabCopy = {
 
   emails: [
     {
+      difficultyLevel: 'beginner',
       category: 'Zustellung', difficulty: 'Einfach', time: '9:14 Uhr',
       fromName: 'DHL Express', fromAddr: 'noreply@dhl-delivery-support.com',
       subject: 'Ihr Paket liegt fest – bitte handeln Sie',
@@ -430,6 +440,7 @@ const de: LabCopy = {
       ],
     },
     {
+      difficultyLevel: 'beginner',
       category: 'Banking', difficulty: 'Mittel', time: 'Gestern',
       fromName: 'Online-Banking Sicherheit', fromAddr: 'alerts@secure-bankverify.com',
       subject: 'Unbekannte Anmeldung auf Ihrem Konto erkannt',
@@ -450,6 +461,7 @@ const de: LabCopy = {
       ],
     },
     {
+      difficultyLevel: 'beginner',
       category: 'IT-Support', difficulty: 'Mittel', time: '7:42 Uhr',
       fromName: 'IT-Helpdesk', fromAddr: 'it-support@mail-quota-service.net',
       subject: '[Handlung erforderlich] Ihr Postfach ist fast voll',
@@ -470,6 +482,7 @@ const de: LabCopy = {
       ],
     },
     {
+      difficultyLevel: 'advanced',
       category: 'Rechnung', difficulty: 'Schwer', time: '11:03 Uhr',
       fromName: 'Martina Weber · Hartmann GmbH', fromAddr: 'm.weber@hartmann-gmbh.co',
       subject: 'RE: Rechnung 2024-0837 – neue Bankverbindung',
@@ -491,6 +504,7 @@ const de: LabCopy = {
       ],
     },
     {
+      difficultyLevel: 'beginner',
       category: 'Konto', difficulty: 'Mittel', time: '6:20 Uhr',
       fromName: 'Microsoft-Kontoteam', fromAddr: 'account-security-noreply@accountprotection.microsoft.com',
       subject: 'Neue Anmeldung bei Ihrem Microsoft-Konto',
@@ -511,26 +525,28 @@ const de: LabCopy = {
       ],
     },
     {
+      difficultyLevel: 'beginner',
       category: 'Intern', difficulty: 'Einfach', time: 'Mo 08:30',
-      fromName: 'People Team', fromAddr: 'hr@northwind-tools.com',
-      subject: 'Anmeldezeitraum für Q3-Benefits startet Montag',
-      preview: 'Anmeldung läuft vom 1.–15. Juli…',
+      fromName: 'Personalabteilung', fromAddr: 'personal@northwind-tools.com',
+      subject: 'Personio: Betriebliche Altersvorsorge startet Montag',
+      preview: 'Eintragung läuft vom 1.–15. Juli…',
       isPhishing: false, damage: 120, lossType: '',
       body: [
         { type: 'text', text: 'Hallo Team,' },
-        { type: 'text', text: 'Der Anmeldezeitraum für Gesundheits- und Rentenleistungen läuft vom 1. bis 15. Juli. Bitte logge dich im gewohnten Workday-Portal ein (Lesezeichen oder Intranet-Link nutzen), um deine Optionen zu prüfen.' },
-        { type: 'text', text: 'Heute ist noch nichts zu tun – nur zur Vorabinformation. Bei Fragen wende dich gern an das People Team.' },
-        { type: 'text', text: '— People Team' },
+        { type: 'text', text: 'Der Eintragungszeitraum für die betriebliche Altersvorsorge läuft vom 1. bis 15. Juli. Bitte nutze wie gewohnt Personio über dein Lesezeichen oder das Intranet.' },
+        { type: 'text', text: 'Heute ist noch nichts zu tun – nur zur Vorabinformation. Bei Fragen wende dich gern an die Personalabteilung.' },
+        { type: 'text', text: '— Personalabteilung' },
       ],
-      explain: "Das ist eine normale interne Vorankündigung. Sie kommt von der eigenen Unternehmens-Domain, verlangt heute nichts und verweist darauf, das gewohnte Lesezeichen zu nutzen statt auf einen Link zu klicken – ein gutes Zeichen.",
+      explain: "Das ist eine normale interne Vorankündigung. Sie kommt von der eigenen Unternehmens-Domain, verlangt heute nichts und verweist darauf, Personio über das gewohnte Lesezeichen zu öffnen – ein gutes Zeichen.",
       clues: [
         'Von der eigenen Unternehmens-Domain (northwind-tools.com)',
-        'Kein Login-Link – Hinweis auf das gewohnte Lesezeichen',
+        'Kein Login-Link – Hinweis auf Personio über das gewohnte Lesezeichen',
         "Keine Dringlichkeit; 'heute ist noch nichts zu tun'",
         'Klare, spezifische Angaben (Daten, Team), die man überprüfen kann',
       ],
     },
     {
+      difficultyLevel: 'intermediate',
       category: 'GF-Anfrage', difficulty: 'Mittel', time: '10:48 Uhr',
       fromName: 'Tom Becker (Geschäftsführer)', fromAddr: 'tom.becker.office@gmail.com',
       subject: 'Kurze Bitte',
@@ -551,6 +567,7 @@ const de: LabCopy = {
       ],
     },
     {
+      difficultyLevel: 'beginner',
       category: 'Quittung', difficulty: 'Einfach', time: '2:15 Uhr',
       fromName: 'Stripe', fromAddr: 'receipts@stripe.com',
       subject: 'Deine Quittung von Northwind Tools [#2941-0058]',

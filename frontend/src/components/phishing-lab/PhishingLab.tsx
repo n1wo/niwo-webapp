@@ -321,6 +321,7 @@ function PlayScreen({
       'docusign.com',
       'docusign.net',
       'dropbox.com',
+      'sharepoint.com',
       'myworkday.com',
       'northwind-tools.com',
       'workday.com',

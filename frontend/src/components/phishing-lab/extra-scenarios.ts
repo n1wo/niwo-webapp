@@ -5,23 +5,25 @@ type Localized = [en: string, de: string];
 interface ScenarioSeed {
   category: Localized;
   channel?: 'email' | 'sms' | 'qr';
+  difficultyLevel: 'beginner' | 'intermediate' | 'advanced';
   difficulty: Localized;
   time: Localized;
   fromName: Localized;
-  fromAddr: string;
+  fromAddr: string | Localized;
   subject: Localized;
   preview: Localized;
   isPhishing: boolean;
   damage: number;
   lossType: Localized;
   body: [Localized, Localized, Localized?];
-  cta?: { text: Localized; url: string };
+  cta?: { text: Localized; url: string | Localized };
   explain: Localized;
   clues: [Localized, Localized, Localized, Localized];
 }
 
 const seeds: ScenarioSeed[] = [
   {
+    difficultyLevel: 'intermediate',
     category: ['Shared document', 'Geteiltes Dokument'], difficulty: ['Medium', 'Mittel'], time: ['8:06 AM', '8:06 Uhr'],
     fromName: ['Google Drive', 'Google Drive'], fromAddr: 'drive-share@google-docs-review.com',
     subject: ['Shared: Q3 hiring plan', 'Freigegeben: Einstellungsplan Q3'], preview: ['Nina shared a document with you...', 'Nina hat ein Dokument mit dir geteilt...'],
@@ -32,6 +34,7 @@ const seeds: ScenarioSeed[] = [
     clues: [['Sender domain is google-docs-review.com, not google.com', 'Absenderdomain ist google-docs-review.com, nicht google.com'], ['Expiry pressure is used to rush the login', 'Ablaufdruck soll die Anmeldung beschleunigen'], ['The link leads to a fake sign-in page', 'Der Link führt zu einer gefälschten Anmeldung'], ['Unexpected document shares should be verified in Drive directly', 'Unerwartete Freigaben direkt in Drive prüfen']],
   },
   {
+    difficultyLevel: 'beginner',
     category: ['Shared document', 'Geteiltes Dokument'], difficulty: ['Easy', 'Einfach'], time: ['9:31 AM', '9:31 Uhr'],
     fromName: ['Google Drive', 'Google Drive'], fromAddr: 'drive-shares-dm-noreply@google.com',
     subject: ['Shared with you: project notes', 'Für dich freigegeben: Projektnotizen'], preview: ['A file was shared from Google Drive...', 'Eine Datei wurde über Google Drive freigegeben...'],
@@ -42,6 +45,7 @@ const seeds: ScenarioSeed[] = [
     clues: [['Sender is a google.com notification address', 'Absender ist eine google.com-Benachrichtigungsadresse'], ['The link goes to drive.google.com', 'Der Link führt zu drive.google.com'], ['No countdown or account threat', 'Kein Countdown und keine Kontodrohung'], ['You can verify it by opening Drive directly', 'Du kannst es direkt in Drive prüfen']],
   },
   {
+    difficultyLevel: 'advanced',
     category: ['OAuth app', 'OAuth-App'], difficulty: ['Hard', 'Schwer'], time: ['10:12 AM', '10:12 Uhr'],
     fromName: ['Notion Workspace', 'Notion Workspace'], fromAddr: 'workspace@notion-integrations.app',
     subject: ['Approve the new Notion calendar sync', 'Neue Notion-Kalendersynchronisierung freigeben'], preview: ['Admin approval needed for calendar access...', 'Admin-Freigabe für Kalenderzugriff nötig...'],
@@ -52,6 +56,7 @@ const seeds: ScenarioSeed[] = [
     clues: [['Notion does not use notion-integrations.app for approval mail', 'Notion nutzt nicht notion-integrations.app für Freigaben'], ['OAuth approval can expose data without stealing a password', 'OAuth-Freigaben können Daten preisgeben, ohne ein Passwort zu stehlen'], ['Urgency is tied to business continuity', 'Dringlichkeit wird mit Arbeitsfähigkeit begründet'], ['Admin consent should be checked in the real admin console', 'Admin-Freigaben im echten Admin-Portal prüfen']],
   },
   {
+    difficultyLevel: 'advanced',
     category: ['Invoice', 'Rechnung'], difficulty: ['Hard', 'Schwer'], time: ['11:48 AM', '11:48 Uhr'],
     fromName: ['Keller Print GmbH', 'Keller Print GmbH'], fromAddr: 'billing@keller-prlnt.de',
     subject: ['RE: June print invoice - corrected IBAN', 'AW: Druckrechnung Juni - korrigierte IBAN'], preview: ['Please use the corrected bank details...', 'Bitte die korrigierte Bankverbindung nutzen...'],
@@ -61,6 +66,7 @@ const seeds: ScenarioSeed[] = [
     clues: [['Look-alike domain: keller-prlnt.de', 'Look-alike-Domain: keller-prlnt.de'], ['Bank detail changes are high-risk', 'Bankdatenänderungen sind Hochrisiko'], ['The request arrives inside a plausible invoice thread', 'Die Anfrage wirkt wie Teil eines echten Rechnungsverlaufs'], ['Payment changes need second-channel verification', 'Zahlungsänderungen brauchen eine zweite Bestätigung']],
   },
   {
+    difficultyLevel: 'intermediate',
     category: ['Procurement', 'Einkauf'], difficulty: ['Medium', 'Mittel'], time: ['1:04 PM', '13:04 Uhr'],
     fromName: ['Procurement Portal', 'Einkaufsportal'], fromAddr: 'no-reply@vendors.northwind-tools.com',
     subject: ['Supplier profile review due Friday', 'Lieferantenprofil bis Freitag prüfen'], preview: ['Please review your supplier contacts...', 'Bitte Lieferantenkontakte prüfen...'],
@@ -71,6 +77,7 @@ const seeds: ScenarioSeed[] = [
     clues: [['Internal vendor domain matches the company', 'Interne Vendor-Domain passt zum Unternehmen'], ['No new bank details are included', 'Es werden keine neuen Bankdaten mitgeschickt'], ['Asks for portal review, not reply-by-email', 'Fordert Portalprüfung statt Antwort per Mail'], ['Specific but low-pressure deadline', 'Konkrete, aber nicht panische Frist']],
   },
   {
+    difficultyLevel: 'beginner',
     channel: 'sms',
     category: ['SMS', 'SMS'], difficulty: ['Easy', 'Einfach'], time: ['2:20 PM', '14:20 Uhr'],
     fromName: ['SMS: Packstation', 'SMS: Packstation'], fromAddr: '+49 171 000 4421',
@@ -82,6 +89,7 @@ const seeds: ScenarioSeed[] = [
     clues: [['SMS sender is just a phone number', 'SMS-Absender ist nur eine Telefonnummer'], ['Fake DHL-like domain', 'Gefälschte DHL-ähnliche Domain'], ['Short deadline pushes mobile clicking', 'Kurze Frist drängt zum mobilen Klick'], ['Real delivery issues can be checked in the official app', 'Echte Zustellprobleme in der offiziellen App prüfen']],
   },
   {
+    difficultyLevel: 'intermediate',
     category: ['Callback', 'Rückruf'], difficulty: ['Medium', 'Mittel'], time: ['3:42 PM', '15:42 Uhr'],
     fromName: ['PayPal Billing', 'PayPal Abrechnung'], fromAddr: 'billing@paypal-casecenter.net',
     subject: ['Invoice created for EUR 489.00', 'Rechnung über 489,00 EUR erstellt'], preview: ['If this was not you, call support...', 'Wenn Sie das nicht waren, rufen Sie den Support an...'],
@@ -91,6 +99,7 @@ const seeds: ScenarioSeed[] = [
     clues: [['Domain is not paypal.com', 'Domain ist nicht paypal.com'], ['The main action is a phone call, not a link', 'Die Hauptaktion ist ein Anruf, kein Link'], ['Large fake invoice creates panic', 'Hohe Fake-Rechnung erzeugt Panik'], ['Use known support channels, never numbers from the alert', 'Nur bekannte Supportkanäle nutzen, nie Nummern aus der Warnung']],
   },
   {
+    difficultyLevel: 'intermediate',
     category: ['Voicemail', 'Mailbox'], difficulty: ['Medium', 'Mittel'], time: ['4:11 PM', '16:11 Uhr'],
     fromName: ['Teams Voicemail', 'Teams Voicemail'], fromAddr: 'voicemail@teams-messagehub.com',
     subject: ['New voicemail from +49 228 444 019', 'Neue Sprachnachricht von +49 228 444 019'], preview: ['Listen to the voicemail message...', 'Sprachnachricht anhören...'],
@@ -101,6 +110,7 @@ const seeds: ScenarioSeed[] = [
     clues: [['Teams notifications should come from Microsoft domains', 'Teams-Benachrichtigungen sollten von Microsoft-Domains kommen'], ['HTML voicemail files are suspicious', 'HTML-Voicemail-Dateien sind verdächtig'], ['Unknown phone number adds curiosity pressure', 'Unbekannte Nummer erzeugt Neugierdruck'], ['Open voicemail from Teams directly', 'Sprachnachrichten direkt in Teams öffnen']],
   },
   {
+    difficultyLevel: 'beginner',
     category: ['Password', 'Passwort'], difficulty: ['Easy', 'Einfach'], time: ['5:00 PM', '17:00 Uhr'],
     fromName: ['IT Security', 'IT-Sicherheit'], fromAddr: 'security@northwind-tools.com',
     subject: ['Password policy changes next week', 'Passwortrichtlinie ändert sich nächste Woche'], preview: ['No password reset is required today...', 'Heute ist kein Passwortwechsel nötig...'],
@@ -110,6 +120,7 @@ const seeds: ScenarioSeed[] = [
     clues: [['Internal security sender', 'Interner Sicherheitsabsender'], ['No link or password form', 'Kein Link und kein Passwortformular'], ['Tells users to use the normal portal', 'Verweist auf das normale Portal'], ['Calm timing and clear policy detail', 'Ruhiger Zeitplan und klare Richtlinie']],
   },
   {
+    difficultyLevel: 'advanced',
     category: ['MFA', 'MFA'], difficulty: ['Hard', 'Schwer'], time: ['7:18 AM', '7:18 Uhr'],
     fromName: ['Okta Verify', 'Okta Verify'], fromAddr: 'alerts@okta-verify-support.com',
     subject: ['MFA fatigue protection: confirm your device', 'MFA-Schutz: Gerät bestätigen'], preview: ['Confirm your current device to stop prompts...', 'Aktuelles Gerät bestätigen, um Prompts zu stoppen...'],
@@ -120,6 +131,7 @@ const seeds: ScenarioSeed[] = [
     clues: [['Fake Okta support domain', 'Gefälschte Okta-Support-Domain'], ['Security language is used as pressure', 'Sicherheitssprache wird als Druckmittel genutzt'], ['Asks you to fix MFA from an email link', 'MFA soll über E-Mail-Link repariert werden'], ['Use your SSO portal directly', 'SSO-Portal direkt öffnen']],
   },
   {
+    difficultyLevel: 'beginner',
     category: ['HR', 'HR'], difficulty: ['Medium', 'Mittel'], time: ['9:03 AM', '9:03 Uhr'],
     fromName: ['Workday', 'Workday'], fromAddr: 'notifications@myworkday.com',
     subject: ['Time off request approved', 'Abwesenheitsantrag genehmigt'], preview: ['Your manager approved your request...', 'Deine Führungskraft hat den Antrag genehmigt...'],
@@ -130,16 +142,18 @@ const seeds: ScenarioSeed[] = [
     clues: [['Sender and link are Workday domains', 'Absender und Link sind Workday-Domains'], ['No credentials requested in the email', 'Keine Zugangsdaten in der E-Mail verlangt'], ['No threat or secrecy', 'Keine Drohung oder Geheimhaltung'], ['Matches a normal HR workflow', 'Passt zu einem normalen HR-Ablauf']],
   },
   {
+    difficultyLevel: 'advanced',
     category: ['Payroll', 'Gehaltsabrechnung'], difficulty: ['Hard', 'Schwer'], time: ['8:55 AM', '8:55 Uhr'],
-    fromName: ['Payroll Services', 'Payroll Services'], fromAddr: 'payroll@northwind-payroll.co',
-    subject: ['Confirm salary deposit account', 'Gehaltskonto bestätigen'], preview: ['Payroll migration requires confirmation...', 'Payroll-Migration erfordert Bestätigung...'],
+    fromName: ['Payroll Services', 'Lohnbuchhaltung'], fromAddr: 'payroll@northwind-payroll.co',
+    subject: ['Confirm salary deposit account', 'Gehaltskonto bestätigen'], preview: ['Payroll migration requires confirmation...', 'Umstellung der Lohnbuchhaltung erfordert Bestätigung...'],
     isPhishing: true, damage: 6200, lossType: ['salary payment redirected to an attacker-controlled account', 'Gehaltszahlung auf ein fremdes Konto umgeleitet'],
-    body: [['We are migrating payroll records this month.', 'Wir migrieren diesen Monat Payroll-Daten.'], ['Confirm your salary deposit IBAN by 14:00 so payment is not delayed.', 'Bestätige deine IBAN bis 14:00 Uhr, damit die Auszahlung nicht verzögert wird.']],
+    body: [['We are migrating payroll records this month.', 'Wir stellen diesen Monat die Lohnbuchhaltung um.'], ['Confirm your salary deposit IBAN by 14:00 so payment is not delayed.', 'Bestätige deine IBAN bis 14:00 Uhr, damit die Auszahlung nicht verzögert wird.']],
     cta: { text: ['Confirm payroll account', 'Gehaltskonto bestätigen'], url: 'http://northwind-payroll.co/confirm' },
-    explain: ['Payroll diversion is a business-process attack. The domain is external and the message asks for bank data under deadline pressure.', 'Payroll-Diversion ist ein Prozessangriff. Die Domain ist extern und fordert Bankdaten unter Zeitdruck.'],
-    clues: [['External payroll look-alike domain', 'Externe Payroll-Look-alike-Domain'], ['Requests salary bank details', 'Fordert Gehaltsbankdaten'], ['Hard same-day deadline', 'Harte Frist am selben Tag'], ['Bank changes should use the HR portal directly', 'Bankänderungen direkt im HR-Portal durchführen']],
+    explain: ['Payroll diversion is a business-process attack. The domain is external and the message asks for bank data under deadline pressure.', 'Gehaltsumleitung ist ein Prozessangriff. Die Domain ist extern und fordert Bankdaten unter Zeitdruck.'],
+    clues: [['External payroll look-alike domain', 'Externe Look-alike-Domain für Gehaltsthemen'], ['Requests salary bank details', 'Fordert Gehaltsbankdaten'], ['Hard same-day deadline', 'Harte Frist am selben Tag'], ['Bank changes should use the HR portal directly', 'Bankänderungen direkt im Personalportal durchführen']],
   },
   {
+    difficultyLevel: 'intermediate',
     channel: 'qr',
     category: ['QR code', 'QR-Code'], difficulty: ['Medium', 'Mittel'], time: ['12:07 PM', '12:07 Uhr'],
     fromName: ['Facilities Desk', 'Facility Desk'], fromAddr: 'facilities@northwind-tools.com',
@@ -151,6 +165,7 @@ const seeds: ScenarioSeed[] = [
     clues: [['QR destination is not a company domain', 'QR-Ziel ist keine Firmendomain'], ['Printing a malicious QR spreads the attack', 'Ein gedruckter schädlicher QR verbreitet den Angriff'], ['Wi-Fi portals should be managed by IT', 'WLAN-Portale gehören in die IT-Verwaltung'], ['Internal-looking sender is not enough', 'Intern wirkender Absender reicht nicht']],
   },
   {
+    difficultyLevel: 'beginner',
     category: ['Calendar', 'Kalender'], difficulty: ['Easy', 'Einfach'], time: ['Mon 10:00', 'Mo 10:00'],
     fromName: ['Google Calendar', 'Google Kalender'], fromAddr: 'calendar-notification@google.com',
     subject: ['Updated invitation: Security review', 'Aktualisierte Einladung: Security Review'], preview: ['The meeting time changed...', 'Die Meetingzeit wurde geändert...'],
@@ -161,6 +176,7 @@ const seeds: ScenarioSeed[] = [
     clues: [['Real google.com sender', 'Echter google.com-Absender'], ['Destination is calendar.google.com', 'Ziel ist calendar.google.com'], ['Routine meeting change', 'Normale Terminänderung'], ['No risky action requested', 'Keine riskante Aktion gefordert']],
   },
   {
+    difficultyLevel: 'intermediate',
     category: ['Cloud storage', 'Cloud-Speicher'], difficulty: ['Medium', 'Mittel'], time: ['1:37 PM', '13:37 Uhr'],
     fromName: ['Dropbox Transfer', 'Dropbox Transfer'], fromAddr: 'no-reply@dropboxmail.com',
     subject: ['Files from external audit partner', 'Dateien vom externen Audit-Partner'], preview: ['Your transfer is ready...', 'Deine Übertragung ist bereit...'],
@@ -171,6 +187,7 @@ const seeds: ScenarioSeed[] = [
     clues: [['Dropbox-controlled sender domain', 'Von Dropbox kontrollierte Absenderdomain'], ['HTTPS Dropbox destination', 'HTTPS-Ziel bei Dropbox'], ['No password requested in the email', 'Kein Passwort in der E-Mail verlangt'], ['Download only if the transfer is expected', 'Nur herunterladen, wenn die Übergabe erwartet wird']],
   },
   {
+    difficultyLevel: 'intermediate',
     category: ['Attachment', 'Anhang'], difficulty: ['Medium', 'Mittel'], time: ['2:02 PM', '14:02 Uhr'],
     fromName: ['Scanner MFP-03', 'Scanner MFP-03'], fromAddr: 'scan@mfp-printer.localmail.net',
     subject: ['Scanned document from MFP-03', 'Gescanntes Dokument von MFP-03'], preview: ['Secure scan is attached...', 'Sicherer Scan ist angehängt...'],
@@ -181,6 +198,7 @@ const seeds: ScenarioSeed[] = [
     clues: [['Outside sender domain for an internal scanner', 'Externe Domain für internen Scanner'], ['ZIP file instead of a normal PDF', 'ZIP-Datei statt normalem PDF'], ['"Decrypt" language adds mystery', '"Entschlüsseln" erzeugt künstliche Wichtigkeit'], ['Unexpected scans should be confirmed before opening', 'Unerwartete Scans vor dem Öffnen bestätigen']],
   },
   {
+    difficultyLevel: 'intermediate',
     category: ['GitHub', 'GitHub'], difficulty: ['Hard', 'Schwer'], time: ['6:41 PM', '18:41 Uhr'],
     fromName: ['GitHub Security', 'GitHub Security'], fromAddr: 'noreply@github.com',
     subject: ['Security alert: deploy key added', 'Sicherheitswarnung: Deploy Key hinzugefügt'], preview: ['A deploy key was added to a repository...', 'Ein Deploy Key wurde zu einem Repository hinzugefügt...'],
@@ -191,6 +209,7 @@ const seeds: ScenarioSeed[] = [
     clues: [['Sender is github.com', 'Absender ist github.com'], ['Link stays on github.com', 'Link bleibt auf github.com'], ['Security alert matches admin responsibility', 'Sicherheitswarnung passt zur Admin-Rolle'], ['No attachment or password form', 'Kein Anhang und kein Passwortformular']],
   },
   {
+    difficultyLevel: 'advanced',
     category: ['GitHub', 'GitHub'], difficulty: ['Hard', 'Schwer'], time: ['6:44 PM', '18:44 Uhr'],
     fromName: ['GitHub Security', 'GitHub Security'], fromAddr: 'noreply@github-security-alerts.com',
     subject: ['Critical token exposure in private repo', 'Kritisches Token-Leak in privatem Repo'], preview: ['Rotate token immediately...', 'Token sofort rotieren...'],
@@ -201,6 +220,7 @@ const seeds: ScenarioSeed[] = [
     clues: [['github-security-alerts.com is not github.com', 'github-security-alerts.com ist nicht github.com'], ['Threatens suspension to rush action', 'Drohung mit Sperrung erzeugt Druck'], ['Token handling should happen inside GitHub directly', 'Token-Verwaltung direkt in GitHub durchführen'], ['Private repo wording increases relevance pressure', 'Private-Repos-Formulierung erhöht Relevanzdruck']],
   },
   {
+    difficultyLevel: 'beginner',
     category: ['Slack', 'Slack'], difficulty: ['Medium', 'Mittel'], time: ['8:19 AM', '8:19 Uhr'],
     fromName: ['Slack', 'Slack'], fromAddr: 'feedback@slack.com',
     subject: ['Your weekly Slack recap is ready', 'Dein wöchentlicher Slack-Rückblick ist bereit'], preview: ['See channels and mentions from last week...', 'Kanäle und Erwähnungen der letzten Woche ansehen...'],
@@ -211,6 +231,7 @@ const seeds: ScenarioSeed[] = [
     clues: [['Sender is slack.com', 'Absender ist slack.com'], ['Destination is slack.com over HTTPS', 'Ziel ist slack.com über HTTPS'], ['No threat or urgent deadline', 'Keine Drohung oder dringende Frist'], ['Can be verified by opening Slack directly', 'Direkt in Slack prüfbar']],
   },
   {
+    difficultyLevel: 'intermediate',
     category: ['Slack', 'Slack'], difficulty: ['Medium', 'Mittel'], time: ['8:26 AM', '8:26 Uhr'],
     fromName: ['Slack Admin', 'Slack Admin'], fromAddr: 'admin@slack-workspace-review.com',
     subject: ['Workspace deactivation scheduled', 'Workspace-Deaktivierung geplant'], preview: ['Confirm active users today...', 'Aktive Nutzer heute bestätigen...'],
@@ -221,6 +242,7 @@ const seeds: ScenarioSeed[] = [
     clues: [['Fake Slack-like domain', 'Falsche Slack-ähnliche Domain'], ['Threatens deactivation', 'Droht mit Deaktivierung'], ['Asks for admin action through email link', 'Fordert Admin-Aktion per E-Mail-Link'], ['Billing/user issues should be checked in Slack directly', 'Billing-/Nutzerfragen direkt in Slack prüfen']],
   },
   {
+    difficultyLevel: 'beginner',
     category: ['DocuSign', 'DocuSign'], difficulty: ['Easy', 'Einfach'], time: ['11:15 AM', '11:15 Uhr'],
     fromName: ['DocuSign', 'DocuSign'], fromAddr: 'dse@docusign.net',
     subject: ['Completed: NDA countersigned', 'Abgeschlossen: NDA gegengezeichnet'], preview: ['All parties have completed the envelope...', 'Alle Parteien haben den Umschlag abgeschlossen...'],
@@ -231,6 +253,7 @@ const seeds: ScenarioSeed[] = [
     clues: [['docusign.net is used for DocuSign envelope mail', 'docusign.net wird für DocuSign-Umschläge genutzt'], ['HTTPS DocuSign destination', 'HTTPS-Ziel bei DocuSign'], ['No surprise payment or password ask', 'Keine überraschende Zahlung oder Passwortforderung'], ['Completion notice matches a normal signing flow', 'Abschlussmail passt zu normalem Signaturablauf']],
   },
   {
+    difficultyLevel: 'advanced',
     category: ['DocuSign', 'DocuSign'], difficulty: ['Medium', 'Mittel'], time: ['11:18 AM', '11:18 Uhr'],
     fromName: ['DocuSign', 'DocuSign'], fromAddr: 'signature@docusign-securefiles.com',
     subject: ['Urgent signature required: payment authorization', 'Dringende Signatur nötig: Zahlungsfreigabe'], preview: ['Finance is waiting for approval...', 'Finance wartet auf Freigabe...'],
@@ -241,17 +264,19 @@ const seeds: ScenarioSeed[] = [
     clues: [['docusign-securefiles.com is fake', 'docusign-securefiles.com ist falsch'], ['Urgent payment authorization is high-risk', 'Dringende Zahlungsfreigabe ist Hochrisiko'], ['Pressure comes from "Finance"', 'Druck kommt angeblich von Finance'], ['Open DocuSign independently if unsure', 'DocuSign bei Zweifel unabhängig öffnen']],
   },
   {
+    difficultyLevel: 'beginner',
     category: ['Travel', 'Reise'], difficulty: ['Medium', 'Mittel'], time: ['7:52 PM', '19:52 Uhr'],
-    fromName: ['Travel Desk', 'Travel Desk'], fromAddr: 'travel@northwind-tools.com',
-    subject: ['Hotel booking policy update', 'Update zur Hotelbuchungsrichtlinie'], preview: ['New nightly cap starts next month...', 'Neue Nachtgrenze gilt ab nächstem Monat...'],
+    fromName: ['Travel Desk', 'Reisemanagement'], fromAddr: 'travel@northwind-tools.com',
+    subject: ['Hotel booking policy update', 'Neue Richtlinie für Hotelbuchungen'], preview: ['New nightly cap starts next month...', 'Neue Obergrenze pro Nacht gilt ab nächstem Monat...'],
     isPhishing: false, damage: 100, lossType: ['', ''],
     body: [['The hotel nightly cap changes next month for domestic travel.', 'Die Hotel-Nachtgrenze ändert sich nächsten Monat für Inlandsreisen.'], ['No action is needed for existing bookings. Use the travel portal for new trips.', 'Für bestehende Buchungen ist nichts zu tun. Nutze das Reiseportal für neue Reisen.']],
     explain: ['This is a normal internal policy notice. It asks for no credentials, payment, or immediate action.', 'Das ist eine normale interne Richtlinienmail. Sie fordert keine Zugangsdaten, Zahlung oder Sofortaktion.'],
     clues: [['Internal sender domain', 'Interne Absenderdomain'], ['No link needed to act', 'Kein Link für Handlung nötig'], ['No urgent threat', 'Keine dringende Drohung'], ['Specific policy detail can be checked internally', 'Konkrete Richtlinie intern prüfbar']],
   },
   {
+    difficultyLevel: 'advanced',
     category: ['Travel', 'Reise'], difficulty: ['Medium', 'Mittel'], time: ['7:58 PM', '19:58 Uhr'],
-    fromName: ['Travel Desk', 'Travel Desk'], fromAddr: 'travel@northwind-traveldesk.com',
+    fromName: ['Travel Desk', 'Reisemanagement'], fromAddr: 'travel@northwind-traveldesk.com',
     subject: ['Action required: rebook cancelled hotel', 'Handlung nötig: storniertes Hotel neu buchen'], preview: ['Card verification required tonight...', 'Kartenprüfung heute Abend nötig...'],
     isPhishing: true, damage: 1800, lossType: ['corporate card details captured on a fake travel page', 'Firmenkartendaten auf falscher Reiseseite abgegriffen'],
     body: [['Your hotel booking for next week was cancelled by the property.', 'Deine Hotelbuchung für nächste Woche wurde vom Hotel storniert.'], ['Verify the company card tonight so we can rebook before rates increase.', 'Bestätige die Firmenkarte heute Abend, damit wir vor Preiserhöhung neu buchen können.']],
@@ -260,8 +285,9 @@ const seeds: ScenarioSeed[] = [
     clues: [['External look-alike travel domain', 'Externe Look-alike-Reisedomain'], ['Requests company card details', 'Fordert Firmenkartendaten'], ['Evening deadline creates pressure', 'Abendfrist erzeugt Druck'], ['Travel changes should be handled in the known portal', 'Reiseänderungen im bekannten Portal bearbeiten']],
   },
   {
+    difficultyLevel: 'beginner',
     category: ['Survey', 'Umfrage'], difficulty: ['Easy', 'Einfach'], time: ['12:45 PM', '12:45 Uhr'],
-    fromName: ['People Team', 'People Team'], fromAddr: 'people@northwind-tools.com',
+    fromName: ['People Team', 'Personalabteilung'], fromAddr: 'people@northwind-tools.com',
     subject: ['Anonymous pulse survey opens today', 'Anonyme Pulse-Umfrage startet heute'], preview: ['Five questions, open until Friday...', 'Fünf Fragen, offen bis Freitag...'],
     isPhishing: false, damage: 80, lossType: ['', ''],
     body: [['Our anonymous pulse survey is open until Friday.', 'Unsere anonyme Pulse-Umfrage ist bis Freitag geöffnet.'], ['You can answer five questions from the intranet survey tile.', 'Du kannst fünf Fragen über die Umfrage-Kachel im Intranet beantworten.']],
@@ -269,8 +295,9 @@ const seeds: ScenarioSeed[] = [
     clues: [['Internal People sender', 'Interner People-Absender'], ['No external survey link', 'Kein externer Umfragelink'], ['No reward or threat', 'Keine Belohnung oder Drohung'], ['Uses the normal intranet path', 'Nutzt den normalen Intranet-Weg']],
   },
   {
+    difficultyLevel: 'advanced',
     category: ['Survey', 'Umfrage'], difficulty: ['Easy', 'Einfach'], time: ['12:51 PM', '12:51 Uhr'],
-    fromName: ['Employee Rewards', 'Employee Rewards'], fromAddr: 'rewards@survey-prizehub.com',
+    fromName: ['Employee Rewards', 'Mitarbeiter-Bonusprogramm'], fromAddr: 'rewards@survey-prizehub.com',
     subject: ['You were selected for a EUR 75 voucher', 'Du wurdest für einen 75-EUR-Gutschein ausgewählt'], preview: ['Complete the employee survey...', 'Mitarbeiterumfrage abschließen...'],
     isPhishing: true, damage: 760, lossType: ['personal data and card verification captured by a fake reward survey', 'Personendaten und Kartenprüfung durch Fake-Belohnungsumfrage abgegriffen'],
     body: [['You were selected for an employee reward voucher.', 'Du wurdest für einen Mitarbeiter-Gutschein ausgewählt.'], ['Complete the short survey and verify delivery details today.', 'Fülle die kurze Umfrage aus und bestätige heute die Lieferdaten.']],
@@ -279,6 +306,7 @@ const seeds: ScenarioSeed[] = [
     clues: [['External prize domain', 'Externe Gewinn-Domain'], ['Unexpected voucher reward', 'Unerwarteter Gutschein'], ['Personal details requested', 'Personendaten werden abgefragt'], ['Reward urgency lowers skepticism', 'Belohnungsdruck senkt Skepsis']],
   },
   {
+    difficultyLevel: 'beginner',
     category: ['Zoom', 'Zoom'], difficulty: ['Medium', 'Mittel'], time: ['9:50 AM', '9:50 Uhr'],
     fromName: ['Zoom', 'Zoom'], fromAddr: 'no-reply@zoom.us',
     subject: ['Cloud recording is now available', 'Cloud-Aufzeichnung ist verfügbar'], preview: ['Your meeting recording is ready...', 'Deine Meeting-Aufzeichnung ist bereit...'],
@@ -289,6 +317,7 @@ const seeds: ScenarioSeed[] = [
     clues: [['Sender is zoom.us', 'Absender ist zoom.us'], ['Link points to zoom.us', 'Link zeigt auf zoom.us'], ['Normal meeting-recording workflow', 'Normaler Meeting-Aufzeichnungsablauf'], ['No threat or invoice', 'Keine Drohung oder Rechnung']],
   },
   {
+    difficultyLevel: 'beginner',
     category: ['Zoom', 'Zoom'], difficulty: ['Medium', 'Mittel'], time: ['9:57 AM', '9:57 Uhr'],
     fromName: ['Zoom Cloud', 'Zoom Cloud'], fromAddr: 'recordings@zoom-cloudfiles.com',
     subject: ['Recording will be deleted in 2 hours', 'Aufzeichnung wird in 2 Stunden gelöscht'], preview: ['Download before deletion...', 'Vor Löschung herunterladen...'],
@@ -299,16 +328,18 @@ const seeds: ScenarioSeed[] = [
     clues: [['Fake Zoom-like domain', 'Falsche Zoom-ähnliche Domain'], ['Two-hour deletion pressure', 'Zwei-Stunden-Löschdruck'], ['Download link leads outside Zoom', 'Download-Link führt außerhalb von Zoom'], ['Open Zoom directly to verify recordings', 'Zoom direkt öffnen und Aufzeichnungen prüfen']],
   },
   {
+    difficultyLevel: 'intermediate',
     category: ['Tax', 'Steuer'], difficulty: ['Hard', 'Schwer'], time: ['6:33 AM', '6:33 Uhr'],
-    fromName: ['Bundeszentralamt', 'Bundeszentralamt'], fromAddr: 'service@bzst-rueckerstattung.de',
-    subject: ['Tax refund ready for confirmation', 'Steuerrückerstattung zur Bestätigung bereit'], preview: ['Confirm IBAN for refund...', 'IBAN für Rückerstattung bestätigen...'],
+    fromName: ['Tax Authority Portal', 'ELSTER Portal'], fromAddr: ['service@tax-refund-center.com', 'service@elster-rueckerstattung.de'],
+    subject: ['Tax refund ready for confirmation', 'ELSTER: Steuerrückerstattung zur Bestätigung bereit'], preview: ['Confirm bank details for refund...', 'IBAN für Rückerstattung bestätigen...'],
     isPhishing: true, damage: 2100, lossType: ['bank and identity details harvested on a fake tax refund page', 'Bank- und Identitätsdaten auf falscher Steuerseite abgegriffen'],
-    body: [['A tax refund of EUR 312.18 is ready for payout.', 'Eine Steuerrückerstattung über 312,18 EUR ist zur Auszahlung bereit.'], ['Confirm your IBAN and identity details within 48 hours.', 'Bestätige IBAN und Identitätsdaten innerhalb von 48 Stunden.']],
-    cta: { text: ['Confirm refund details', 'Rückerstattung bestätigen'], url: 'http://bzst-rueckerstattung.de/portal' },
-    explain: ['Refund lures ask for bank and identity data. The domain is not a trustworthy government domain and the deadline is pressure.', 'Rückerstattungsköder fragen Bank- und Identitätsdaten ab. Die Domain ist keine vertrauenswürdige Behörden-Domain und die Frist erzeugt Druck.'],
-    clues: [['Government-like but unofficial domain', 'Behördenähnliche, aber falsche Domain'], ['Asks for IBAN and identity data', 'Fragt IBAN und Identitätsdaten ab'], ['Refund reward reduces skepticism', 'Rückerstattung senkt Skepsis'], ['Use official portals manually', 'Offizielle Portale manuell öffnen']],
+    body: [['A tax refund of EUR 312.18 is ready for payout.', 'Für deine Steuer-ID liegt eine Rückerstattung über 312,18 EUR zur Auszahlung bereit.'], ['Confirm your bank details and identity within 48 hours.', 'Bestätige IBAN und Identitätsdaten innerhalb von 48 Stunden im angeblichen ELSTER-Portal.']],
+    cta: { text: ['Confirm refund details', 'Rückerstattung bestätigen'], url: ['http://tax-refund-center.com/portal', 'http://elster-rueckerstattung.de/portal'] },
+    explain: ['Refund lures ask for bank and identity data. The domain is not an official tax portal and the deadline is pressure.', 'Rückerstattungsköder fragen Bank- und Identitätsdaten ab. Die Domain ist keine offizielle elster.de- oder bund.de-Adresse und die Frist erzeugt Druck.'],
+    clues: [['Unofficial tax-refund domain', 'ELSTER-ähnliche, aber falsche Domain'], ['Asks for bank and identity data', 'Fragt Bank- und Identitätsdaten ab'], ['Refund reward reduces skepticism', 'Rückerstattung senkt Skepsis'], ['Use official portals manually', 'Offizielle Portale manuell öffnen']],
   },
   {
+    difficultyLevel: 'beginner',
     category: ['Banking', 'Banking'], difficulty: ['Easy', 'Einfach'], time: ['10:04 AM', '10:04 Uhr'],
     fromName: ['N26', 'N26'], fromAddr: 'no-reply@n26.com',
     subject: ['Card payment declined', 'Kartenzahlung abgelehnt'], preview: ['A payment was declined due to limits...', 'Eine Zahlung wurde wegen Limits abgelehnt...'],
@@ -318,6 +349,7 @@ const seeds: ScenarioSeed[] = [
     clues: [['Sender is the real bank domain', 'Absender ist die echte Bankdomain'], ['No email login link', 'Kein Login-Link in der E-Mail'], ['Tells you to use the app', 'Verweist auf die App'], ['States that PIN is never requested', 'Sagt klar, dass keine PIN abgefragt wird']],
   },
   {
+    difficultyLevel: 'advanced',
     category: ['Atlassian', 'Atlassian'], difficulty: ['Hard', 'Schwer'], time: ['2:29 PM', '14:29 Uhr'],
     fromName: ['Atlassian Access', 'Atlassian Access'], fromAddr: 'access@atlassian-security.net',
     subject: ['SSO policy mismatch detected', 'SSO-Richtlinienkonflikt erkannt'], preview: ['Re-authenticate workspace admins...', 'Workspace-Admins erneut authentifizieren...'],
@@ -328,6 +360,7 @@ const seeds: ScenarioSeed[] = [
     clues: [['Fake Atlassian security domain', 'Falsche Atlassian-Security-Domain'], ['Admin-targeted urgency', 'Admin-Zeitdruck'], ['SSO changes are high impact', 'SSO-Änderungen haben hohe Wirkung'], ['Use the known admin URL directly', 'Bekannte Admin-URL direkt nutzen']],
   },
   {
+    difficultyLevel: 'intermediate',
     category: ['Atlassian', 'Atlassian'], difficulty: ['Medium', 'Mittel'], time: ['2:36 PM', '14:36 Uhr'],
     fromName: ['Jira', 'Jira'], fromAddr: 'jira@atlassian.com',
     subject: ['Issue assigned to you: SEC-184', 'Vorgang zugewiesen: SEC-184'], preview: ['A Jira issue was assigned to you...', 'Ein Jira-Vorgang wurde dir zugewiesen...'],
@@ -337,16 +370,73 @@ const seeds: ScenarioSeed[] = [
     explain: ['This is a normal Jira notification from Atlassian. It points to a real Atlassian destination and asks for routine review.', 'Das ist eine normale Jira-Benachrichtigung von Atlassian. Sie verweist auf ein echtes Atlassian-Ziel und fordert normale Prüfung.'],
     clues: [['Sender is atlassian.com', 'Absender ist atlassian.com'], ['Routine ticket assignment', 'Normale Ticket-Zuweisung'], ['No attachment or money request', 'Kein Anhang oder Geldwunsch'], ['Can be verified in Jira directly', 'Direkt in Jira prüfbar']],
   },
+  {
+    difficultyLevel: 'advanced',
+    category: ['Thread hijack', 'Gekaperter Verlauf'], difficulty: ['Hard', 'Schwer'], time: ['3:08 PM', '15:08 Uhr'],
+    fromName: ['Martina Weber · Hartmann GmbH', 'Martina Weber · Hartmann GmbH'], fromAddr: 'm.weber@hartmann-gmbh.de',
+    subject: ['RE: Q3 maintenance contract - revised file', 'AW: Wartungsvertrag Q3 - aktualisierte Datei'], preview: ['I uploaded the revised version here...', 'Ich habe die aktualisierte Fassung hier abgelegt...'],
+    isPhishing: true, damage: 36000, lossType: ['supplier mailbox compromise leading to credential capture and invoice fraud', 'kompromittiertes Lieferantenpostfach mit Zugangsdaten- und Rechnungsbetrug'],
+    body: [['Hi, I added the two clauses we discussed below.', 'Hallo, ich habe die zwei besprochenen Klauseln ergänzt.'], ['Please use this shared version for approval so we do not work from the old PDF.', 'Bitte nutze diese freigegebene Version für die Freigabe, damit wir nicht mit dem alten PDF weiterarbeiten.'], ['Thanks again for the quick turnaround.', 'Danke dir für die schnelle Rückmeldung.']],
+    cta: { text: ['Open revised contract', 'Aktualisierten Vertrag öffnen'], url: 'https://hartmann-gmbh.sharepoint.com/:w:/s/contracts/EQ3-maintenance-review' },
+    explain: ['The sender and cloud host look legitimate because a real supplier mailbox may be compromised. The risk is the unexpected shared document inside an active invoice or contract thread.', 'Absender und Cloud-Host wirken legitim, weil ein echtes Lieferantenpostfach kompromittiert sein kann. Riskant ist das unerwartete geteilte Dokument in einem laufenden Vertrags- oder Rechnungsverlauf.'],
+    clues: [['Legitimate sender does not guarantee safe content', 'Ein legitimer Absender garantiert keinen sicheren Inhalt'], ['Unexpected shared-file step inside an existing thread', 'Unerwarteter Datei-Link mitten im bestehenden Verlauf'], ['Supplier compromise often reuses real language and timing', 'Kompromittierte Lieferanten nutzen echte Sprache und echtes Timing'], ['Verify contract-file changes through the known channel', 'Vertragsdateien über den bekannten Kanal gegenprüfen']],
+  },
+  {
+    difficultyLevel: 'advanced',
+    category: ['Open redirect', 'Open Redirect'], difficulty: ['Hard', 'Schwer'], time: ['8:44 AM', '8:44 Uhr'],
+    fromName: ['Google Workspace', 'Google Workspace'], fromAddr: 'no-reply@google.com',
+    subject: ['Review blocked Workspace sign-in', 'Blockierte Workspace-Anmeldung prüfen'], preview: ['A sign-in was blocked by your policy...', 'Eine Anmeldung wurde durch eure Richtlinie blockiert...'],
+    isPhishing: true, damage: 18500, lossType: ['credentials stolen after a trusted Google URL redirected to a fake sign-in', 'Zugangsdaten nach Weiterleitung von einer vertrauenswürdigen Google-URL gestohlen'],
+    body: [['A sign-in to your Workspace account was blocked by your organization policy.', 'Eine Anmeldung bei deinem Workspace-Konto wurde durch die Organisationsrichtlinie blockiert.'], ['Review the event and confirm whether it was expected.', 'Prüfe das Ereignis und bestätige, ob es erwartet war.']],
+    cta: { text: ['Review sign-in event', 'Anmeldeereignis prüfen'], url: 'https://accounts.google.com/o/oauth2/v2/auth?continue=https%3A%2F%2Fworkspace-review.example%2Fsession' },
+    explain: ['The visible domain is Google, but the URL carries a redirect parameter to a fake review page. Trusted domains can still be abused as launch points.', 'Die sichtbare Domain ist Google, aber die URL enthält einen Weiterleitungsparameter zu einer falschen Prüfseite. Vertrauenswürdige Domains können als Absprungpunkt missbraucht werden.'],
+    clues: [['Trusted host with a suspicious continue parameter', 'Vertrauenswürdiger Host mit verdächtigem continue-Parameter'], ['The final destination is outside Google', 'Das endgültige Ziel liegt außerhalb von Google'], ['Security-event wording creates fast compliance', 'Security-Event-Sprache erzeugt schnellen Gehorsam'], ['Open the admin console directly instead', 'Admin-Konsole direkt öffnen']],
+  },
+  {
+    difficultyLevel: 'advanced',
+    category: ['MFA session', 'MFA-Session'], difficulty: ['Hard', 'Schwer'], time: ['6:58 AM', '6:58 Uhr'],
+    fromName: ['Microsoft 365 Security', 'Microsoft 365 Sicherheit'], fromAddr: 'security@microsoft365-support.cloud',
+    subject: ['Session verification required after risky sign-in', 'Sitzungsprüfung nach riskanter Anmeldung erforderlich'], preview: ['Keep Teams and Outlook access active...', 'Teams- und Outlook-Zugriff aktiv halten...'],
+    isPhishing: true, damage: 28000, lossType: ['MFA session cookie stolen by an adversary-in-the-middle login page', 'MFA-Session-Cookie über eine Adversary-in-the-Middle-Anmeldeseite gestohlen'],
+    body: [['A risky sign-in was challenged by Conditional Access.', 'Eine riskante Anmeldung wurde durch Conditional Access abgefangen.'], ['Verify this browser session to keep Teams and Outlook active on this device.', 'Bestätige diese Browser-Sitzung, damit Teams und Outlook auf diesem Gerät aktiv bleiben.']],
+    cta: { text: ['Verify browser session', 'Browser-Sitzung bestätigen'], url: 'https://login.microsoftonline.com.security-check.cloud/common' },
+    explain: ['AiTM phishing does not just steal a password; it can proxy the login and capture a valid session after MFA. The Microsoft-looking hostname is actually under security-check.cloud.', 'AiTM-Phishing stiehlt nicht nur ein Passwort; es kann die Anmeldung weiterleiten und nach MFA eine gültige Session abgreifen. Der Microsoft-ähnliche Host liegt tatsächlich unter security-check.cloud.'],
+    clues: [['The real registrable domain is security-check.cloud', 'Die echte registrierbare Domain ist security-check.cloud'], ['MFA language is used to make the request feel safe', 'MFA-Sprache soll die Anfrage sicher wirken lassen'], ['Session verification from email is unusual', 'Sitzungsprüfung per E-Mail ist ungewöhnlich'], ['Use your bookmark or typed Microsoft URL', 'Microsoft per Lesezeichen oder getippter URL öffnen']],
+  },
+  {
+    difficultyLevel: 'advanced',
+    channel: 'qr',
+    category: ['QR invoice', 'QR-Rechnung'], difficulty: ['Hard', 'Schwer'], time: ['11:22 AM', '11:22 Uhr'],
+    fromName: ['Accounting Partner', 'DATEV Unternehmen online'], fromAddr: ['billing@ledger-partner.co', 'service@datev-freigabe.de'],
+    subject: ['Invoice approval via QR code', 'Belegfreigabe per QR-Code'], preview: ['Scan to approve the pending supplier invoice...', 'Scanne zur Freigabe der offenen Lieferantenrechnung...'],
+    isPhishing: true, damage: 19500, lossType: ['invoice approval and accounting credentials captured through a QR phishing page', 'Rechnungsfreigabe und Buchhaltungszugang über eine QR-Phishing-Seite abgegriffen'],
+    body: [['A supplier invoice is waiting for approval in the accounting portal.', 'Eine Lieferantenrechnung wartet in Unternehmen online auf Freigabe.'], ['For mobile approval, scan the QR code and sign in with your accounting account.', 'Für die mobile Freigabe scanne den QR-Code und melde dich mit deinem Buchhaltungskonto an.']],
+    cta: { text: ['Preview QR destination', 'QR-Ziel anzeigen'], url: ['http://ledger-approval-qr.com/invoice', 'http://datev-freigabe.de/beleg'] },
+    explain: ['QR phishing moves the suspicious URL away from the email body and onto a mobile device. Invoice approval plus accounting access is a high-value target.', 'QR-Phishing verlagert die verdächtige URL aus der E-Mail auf ein mobiles Gerät. Rechnungsfreigabe plus Buchhaltungszugang ist ein hochwertiges Ziel.'],
+    clues: [['QR code hides the destination until scanned', 'QR-Code versteckt das Ziel bis zum Scan'], ['Accounting approval is high impact', 'Buchhaltungsfreigabe hat hohe Wirkung'], ['The destination is not the known accounting portal', 'Das Ziel ist nicht das bekannte Buchhaltungsportal'], ['Open DATEV or the accounting tool directly', 'DATEV oder Buchhaltungstool direkt öffnen']],
+  },
+  {
+    difficultyLevel: 'advanced',
+    category: ['Telecom billing', 'Telekom-Rechnung'], difficulty: ['Hard', 'Schwer'], time: ['7:36 PM', '19:36 Uhr'],
+    fromName: ['Telekom Geschäftskunden', 'Telekom Geschäftskunden'], fromAddr: 'rechnung@telekom-geschaeftskunden.com',
+    subject: ['Business connection: failed SEPA collection', 'Geschäftsanschluss: SEPA-Einzug fehlgeschlagen'], preview: ['Avoid service restriction by updating payment details...', 'Zahlungsdaten aktualisieren, um Einschränkung zu vermeiden...'],
+    isPhishing: true, damage: 8200, lossType: ['company payment details and admin credentials captured on a fake telecom portal', 'Firmenzahlungsdaten und Admin-Zugangsdaten auf einem falschen Telekom-Portal abgegriffen'],
+    body: [['The SEPA collection for your business connection could not be completed.', 'Der SEPA-Einzug für Ihren Geschäftskundenanschluss konnte nicht abgeschlossen werden.'], ['Update the payment mandate before 21:00 to avoid temporary restriction of booked services.', 'Aktualisieren Sie das Zahlungsmandat bis 21:00 Uhr, um eine vorübergehende Einschränkung gebuchter Dienste zu vermeiden.']],
+    cta: { text: ['Update payment mandate', 'Zahlungsmandat aktualisieren'], url: 'https://telekom-geschaeftskunden.com/mandat' },
+    explain: ['This is a polished DACH-style utility lure. The domain is close to a real brand but not the official Telekom domain, and it combines payment pressure with service interruption.', 'Das ist ein sauberer DACH-typischer Versorger-Köder. Die Domain wirkt markennah, ist aber keine offizielle Telekom-Domain, und kombiniert Zahlungsdruck mit drohender Sperre.'],
+    clues: [['Brand-like but unofficial domain', 'Markennahe, aber inoffizielle Domain'], ['Payment-mandate update is sensitive', 'Zahlungsmandat ist sensibel'], ['Evening deadline creates pressure', 'Abendfrist erzeugt Druck'], ['Use the known customer portal or contract contact', 'Bekanntes Kundenportal oder Vertragskontakt nutzen']],
+  },
 ];
 
 function localize(seed: ScenarioSeed, localeIndex: 0 | 1): LabEmail {
   return {
     channel: seed.channel,
+    difficultyLevel: seed.difficultyLevel,
     category: seed.category[localeIndex],
     difficulty: seed.difficulty[localeIndex],
     time: seed.time[localeIndex],
     fromName: seed.fromName[localeIndex],
-    fromAddr: seed.fromAddr,
+    fromAddr: Array.isArray(seed.fromAddr) ? seed.fromAddr[localeIndex] : seed.fromAddr,
     subject: seed.subject[localeIndex],
     preview: seed.preview[localeIndex],
     isPhishing: seed.isPhishing,
@@ -356,7 +446,7 @@ function localize(seed: ScenarioSeed, localeIndex: 0 | 1): LabEmail {
       { type: 'text', text: seed.body[0][localeIndex] },
       { type: 'text', text: seed.body[1][localeIndex] },
       ...(seed.body[2] ? [{ type: 'text' as const, text: seed.body[2][localeIndex] }] : []),
-      ...(seed.cta ? [{ type: 'cta' as const, text: seed.cta.text[localeIndex], url: seed.cta.url }] : []),
+      ...(seed.cta ? [{ type: 'cta' as const, text: seed.cta.text[localeIndex], url: Array.isArray(seed.cta.url) ? seed.cta.url[localeIndex] : seed.cta.url }] : []),
     ],
     explain: seed.explain[localeIndex],
     clues: seed.clues.map(clue => clue[localeIndex]),
