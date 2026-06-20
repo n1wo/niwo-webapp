@@ -50,9 +50,12 @@ function initials(name: string): string {
 }
 
 function sampleEmails(emails: LabEmail[], count: number): LabEmail[] {
-  return [...emails]
-    .sort(() => Math.random() - 0.5)
-    .slice(0, Math.min(count, emails.length));
+  const shuffled = [...emails];
+  for (let i = shuffled.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled.slice(0, Math.min(count, shuffled.length));
 }
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
@@ -322,6 +325,7 @@ function PlayScreen({
       'northwind-tools.com',
       'workday.com',
       'atlassian.com',
+      'atlassian.net',
     ];
     try {
       const { hostname } = new URL(url);
