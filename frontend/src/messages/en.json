@@ -72,6 +72,12 @@
         }
       }
     },
+    "phishingLab": {
+      "eyebrow": "Free tool · Training",
+      "title": "Learn how to spot email scammers",
+      "description": "A hands-on inbox simulation. Review eight realistic emails and decide: scam or legitimate? Takes about five minutes — no account needed.",
+      "cta": "Launch the training"
+    },
     "terminal": {
       "label": "root@niwo: ~",
       "complete": "scan complete",

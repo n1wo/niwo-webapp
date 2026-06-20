@@ -8,6 +8,7 @@ import PrimarySecondaryCta from "@/components/common/PrimarySecondaryCta";
 import InteractiveTerminal from "@/components/home/InteractiveTerminal";
 import ServiceCard from "@/components/services/ServiceCard";
 import { serviceDefinitions } from "@/data/services";
+import { Link as IntlLink } from "@/i18n/navigation";
 
 const VIDEO_SRC = "https://d2k0ncl90mug6s.cloudfront.net/bvideo-20251020.mp4";
 const HEADLINE_TYPING_DELAY_MS = 52;
@@ -373,6 +374,35 @@ export default function HomePage(): JSX.Element {
               </motion.article>
             ))}
           </div>
+        </section>
+
+        <section>
+          <motion.div
+            initial={prefersReducedMotion ? false : { opacity: 0, y: 18 }}
+            whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.25 }}
+            transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <IntlLink
+              href="/pages/phishing-lab"
+              className="group flex flex-col gap-5 rounded-lg border border-white/[0.08] bg-[#111113] px-8 py-8 transition-colors duration-200 hover:border-[rgb(95_98_184/0.35)] sm:flex-row sm:items-center sm:justify-between sm:px-10 sm:py-9"
+            >
+              <div className="space-y-2">
+                <p className="font-mono text-xs font-medium tracking-widest text-[var(--color-accent-light)] uppercase">
+                  {t("phishingLab.eyebrow")}
+                </p>
+                <h2 className="font-mono text-xl font-bold tracking-tight text-white sm:text-2xl">
+                  {t("phishingLab.title")}
+                </h2>
+                <p className="max-w-xl text-sm leading-7 text-zinc-400">
+                  {t("phishingLab.description")}
+                </p>
+              </div>
+              <span className="inline-flex shrink-0 items-center gap-2 rounded-lg border border-white/[0.12] bg-white/[0.04] px-5 py-2.5 font-mono text-sm font-semibold text-zinc-100 transition-colors duration-150 group-hover:border-[rgb(95_98_184/0.5)] group-hover:bg-[rgb(95_98_184/0.08)] group-hover:text-[var(--color-accent-light)]">
+                {t("phishingLab.cta")} →
+              </span>
+            </IntlLink>
+          </motion.div>
         </section>
 
         <section className="rounded-lg border border-white/[0.08] bg-[#111113] px-8 py-10 text-center sm:px-12 sm:py-11">
