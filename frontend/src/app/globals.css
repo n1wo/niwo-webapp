@@ -306,3 +306,28 @@ body {
     transition: none;
   }
 }
+
+/* ── phishing lab animations ── */
+
+@keyframes niwoBlink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes niwoUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+

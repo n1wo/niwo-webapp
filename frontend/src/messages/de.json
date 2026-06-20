@@ -72,6 +72,12 @@
         }
       }
     },
+    "phishingLab": {
+      "eyebrow": "Kostenloses Tool · Training",
+      "title": "Lerne, wie man E-Mail-Scammer erkennt",
+      "description": "Eine praxisnahe Posteingangs-Simulation. Prüfe acht realistische E-Mails und entscheide: Scam oder legitim? Dauert etwa fünf Minuten — kein Account nötig.",
+      "cta": "Training starten"
+    },
     "terminal": {
       "label": "root@niwo: ~",
       "complete": "scan abgeschlossen",
