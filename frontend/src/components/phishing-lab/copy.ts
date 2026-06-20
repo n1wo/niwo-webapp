@@ -56,6 +56,7 @@ export interface LabCopy {
   inboxLabel: string;
   reviewed: (done: number, total: number) => string;
   linkTip: string;
+  linkTapTip: string;
   linkArrow: string;
   question: string;
   reportPhishing: string;
@@ -113,6 +114,7 @@ const en: LabCopy = {
   inboxLabel: 'Inbox',
   reviewed: (done, total) => `${done} / ${total} reviewed`,
   linkTip: 'Tip: hover a link to preview where it really points.',
+  linkTapTip: 'Tip: tap a link or button to preview where it really points.',
   linkArrow: 'link',
   question: "What's your call on this email?",
   reportPhishing: 'Report as phishing',
@@ -363,6 +365,7 @@ const de: LabCopy = {
   inboxLabel: 'Posteingang',
   reviewed: (done, total) => `${done} / ${total} geprüft`,
   linkTip: 'Tipp: Fahre über einen Link, um zu sehen, wohin er wirklich führt.',
+  linkTapTip: 'Tipp: Tippe auf einen Link oder Button, um zu sehen, wohin er wirklich führt.',
   linkArrow: 'Link',
   question: 'Was ist deine Einschätzung zu dieser E-Mail?',
   reportPhishing: 'Als Phishing melden',

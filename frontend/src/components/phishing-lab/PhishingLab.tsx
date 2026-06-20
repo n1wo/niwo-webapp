@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, type CSSProperties } from 'react';
+import { useEffect, useState, type CSSProperties } from 'react';
 import { useLocale } from 'next-intl';
 import { labCopy, type LabCopy, type LabEmail } from './copy';
 
@@ -58,6 +58,20 @@ function sampleEmails(emails: LabEmail[], count: number): LabEmail[] {
   return shuffled.slice(0, Math.min(count, shuffled.length));
 }
 
+function useMediaQuery(query: string): boolean {
+  const [matches, setMatches] = useState(false);
+
+  useEffect(() => {
+    const media = window.matchMedia(query);
+    const update = () => setMatches(media.matches);
+    update();
+    media.addEventListener('change', update);
+    return () => media.removeEventListener('change', update);
+  }, [query]);
+
+  return matches;
+}
+
 // ─── Sub-components ───────────────────────────────────────────────────────────
 
 function Btn({
@@ -83,6 +97,7 @@ function Btn({
     display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
     fontFamily: SANS, fontWeight: 600, lineHeight: 1, borderRadius: '8px',
     cursor: 'pointer', border: '1px solid transparent', textDecoration: 'none',
+    minHeight: '44px',
     whiteSpace: 'nowrap', transition: 'background 150ms ease, border-color 150ms ease, box-shadow 150ms ease, color 150ms ease',
     ...sz,
   };
@@ -118,10 +133,12 @@ function IntroScreen({ onStart, c }: {
   onStart: () => void;
   c: LabCopy;
 }) {
+  const isMobile = useMediaQuery('(max-width: 640px)');
 
   return (
     <div style={{ minHeight: 'calc(100vh - 4rem)', display: 'flex', alignItems: 'center',
-      justifyContent: 'center', padding: '7rem 24px 56px', background: '#0a0a0a' }}>
+      justifyContent: 'center', padding: isMobile ? '5.5rem 16px 40px' : '7rem 24px 56px',
+      background: '#0a0a0a', overflowX: 'hidden' }}>
       <div style={{ width: '100%', maxWidth: '660px', animation: 'niwoUp 0.5s ease both' }}>
 
         <div style={{ fontFamily: MONO, fontSize: '0.7rem', letterSpacing: '0.22em',
@@ -129,19 +146,24 @@ function IntroScreen({ onStart, c }: {
           {c.eyebrow}
         </div>
 
-        <h1 style={{ fontFamily: MONO, fontWeight: 700, fontSize: 'clamp(2rem, 5vw, 2.7rem)',
-          lineHeight: 1.1, letterSpacing: '-0.02em', margin: '0 0 18px', color: TP }}>
+        <h1 style={{ fontFamily: MONO, fontWeight: 700,
+          fontSize: isMobile ? 'clamp(1.85rem, 9vw, 2.35rem)' : 'clamp(2rem, 5vw, 2.7rem)',
+          lineHeight: 1.1, letterSpacing: isMobile ? 0 : '-0.02em', margin: '0 0 18px',
+          color: TP, overflowWrap: 'anywhere' }}>
           {c.title}
           <span style={{ color: ACCENT_LIGHT, animation: 'niwoBlink 1.1s steps(1) infinite' }}>_</span>
         </h1>
 
-        <p style={{ fontSize: '1.05rem', lineHeight: 1.7, color: TS, margin: '0 0 28px', maxWidth: '56ch' }}>
+        <p style={{ fontSize: isMobile ? '0.98rem' : '1.05rem', lineHeight: 1.7,
+          color: TS, margin: '0 0 28px', maxWidth: '56ch' }}>
           {c.description}
         </p>
 
         <div style={{ border: `1px solid ${BORDER}`, borderRadius: '1.05rem', background: SURFACE,
-          padding: '18px 20px', fontFamily: MONO, fontSize: '0.84rem', lineHeight: 1.85,
-          marginBottom: '28px', boxShadow: '0 20px 56px rgb(0 0 0 / 0.42)' }}>
+          padding: isMobile ? '15px 14px' : '18px 20px', fontFamily: MONO,
+          fontSize: isMobile ? '0.77rem' : '0.84rem', lineHeight: 1.85,
+          marginBottom: '28px', boxShadow: '0 20px 56px rgb(0 0 0 / 0.42)',
+          overflowX: 'auto' }}>
           <div>
             <span style={{ color: GREEN }}>&#9484;&#9472;&#9472;(</span>
             <span style={{ color: ACCENT_LIGHT }}>root@niwo</span>
@@ -190,13 +212,21 @@ function ScenarioBody({
   email: LabEmail;
   setHoverUrl: (url: string | null) => void;
 }) {
+  const isMobile = useMediaQuery('(max-width: 640px)');
   const renderAction = (block: LabEmail['body'][number], key: string | number) => (
-    <a key={key} href="#" onClick={e => e.preventDefault()}
+    <a key={key} href="#" onClick={e => {
+      e.preventDefault();
+      setHoverUrl(block.url ?? null);
+    }}
       onMouseEnter={() => setHoverUrl(block.url ?? null)}
       onMouseLeave={() => setHoverUrl(null)}
-      style={{ display: 'inline-block', margin: '4px 0 18px', padding: '11px 20px',
+      onFocus={() => setHoverUrl(block.url ?? null)}
+      onBlur={() => setHoverUrl(null)}
+      style={{ display: 'inline-flex', alignItems: 'center', minHeight: '44px',
+        maxWidth: '100%', margin: '4px 0 18px', padding: '11px 20px',
         borderRadius: '6px', background: ACCENT, color: '#fff', fontFamily: MONO,
-        fontSize: '0.85rem', fontWeight: 600, textDecoration: 'none', cursor: 'pointer' }}>
+        fontSize: '0.85rem', fontWeight: 600, textDecoration: 'none', cursor: 'pointer',
+        whiteSpace: 'normal', overflowWrap: 'anywhere' }}>
       {block.text}
     </a>
   );
@@ -206,8 +236,8 @@ function ScenarioBody({
 
   if (email.channel === 'sms') {
     return (
-      <div style={{ padding: '22px 30px 8px', flex: 1 }}>
-        <div style={{ maxWidth: '390px', border: `1px solid ${BORDER}`, borderRadius: '18px',
+      <div style={{ padding: isMobile ? '18px 18px 4px' : '22px 30px 8px', flex: 1, minWidth: 0 }}>
+        <div style={{ width: '100%', maxWidth: '390px', border: `1px solid ${BORDER}`, borderRadius: '18px',
           background: '#0f0f12', padding: '16px', boxShadow: 'inset 0 1px 0 rgb(255 255 255 / 0.04)' }}>
           <div style={{ fontFamily: MONO, fontSize: '0.72rem', color: TM, marginBottom: '12px',
             textAlign: 'center' }}>
@@ -229,16 +259,17 @@ function ScenarioBody({
 
   if (email.channel === 'qr') {
     return (
-      <div style={{ padding: '22px 30px 8px', flex: 1 }}>
+      <div style={{ padding: isMobile ? '18px 18px 4px' : '22px 30px 8px', flex: 1, minWidth: 0 }}>
         {textBlocks.map((block, bi) => (
           <p key={bi} style={{ margin: '0 0 14px', fontSize: '0.95rem', lineHeight: 1.75, color: TS }}>
             {block.text}
           </p>
         ))}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '18px', flexWrap: 'wrap',
+        <div style={{ display: 'flex', alignItems: isMobile ? 'stretch' : 'center',
+          flexDirection: isMobile ? 'column' : 'row', gap: '18px', flexWrap: 'wrap',
           border: `1px solid ${BORDER}`, background: '#f4f4f5', color: '#111113',
           borderRadius: '10px', padding: '18px', maxWidth: '520px', margin: '8px 0 18px' }}>
-          <div style={{ width: '132px', height: '132px', display: 'grid',
+          <div style={{ width: isMobile ? '112px' : '132px', height: isMobile ? '112px' : '132px', display: 'grid',
             gridTemplateColumns: 'repeat(9, 1fr)', gap: '4px', background: '#fff',
             border: '8px solid #fff' }}>
             {Array.from({ length: 81 }).map((_, i) => {
@@ -265,7 +296,7 @@ function ScenarioBody({
   }
 
   return (
-    <div style={{ padding: '22px 30px 8px', flex: 1 }}>
+    <div style={{ padding: isMobile ? '18px 18px 4px' : '22px 30px 8px', flex: 1, minWidth: 0 }}>
       {email.body.map((block, bi) => {
         if (block.type === 'text') {
           return (
@@ -300,6 +331,9 @@ function PlayScreen({
   fmt: (n: number) => string;
 }) {
   const [hoverUrl, setHoverUrl] = useState<string | null>(null);
+  const isMobile = useMediaQuery('(max-width: 640px)');
+  const isStacked = useMediaQuery('(max-width: 860px)');
+  const canHover = useMediaQuery('(hover: hover) and (pointer: fine)');
   const total = emails.length;
   const email = emails[index];
   const answered = results.length > index;
@@ -339,16 +373,21 @@ function PlayScreen({
   const nextLabel = index + 1 >= total ? c.seeResults : c.nextEmail;
 
   return (
-    <div style={{ minHeight: 'calc(100vh - 4rem)', padding: '7rem 24px 56px',
-      display: 'flex', flexDirection: 'column', alignItems: 'center', background: '#0a0a0a' }}>
+    <div style={{ minHeight: 'calc(100vh - 4rem)',
+      padding: isMobile ? '5.25rem 10px 32px' : '7rem 24px 56px',
+      display: 'flex', flexDirection: 'column', alignItems: 'center',
+      background: '#0a0a0a', overflowX: 'hidden' }}>
 
       {/* status row */}
       <div style={{ width: '100%', maxWidth: '1040px', display: 'flex', alignItems: 'center',
-        justifyContent: 'space-between', gap: '16px', marginBottom: '18px', flexWrap: 'wrap' }}>
-        <div style={{ fontFamily: MONO, fontSize: '0.78rem', letterSpacing: '0.06em', color: TM }}>
+        justifyContent: 'space-between', gap: isMobile ? '10px' : '16px',
+        marginBottom: '18px', flexWrap: 'wrap' }}>
+        <div style={{ fontFamily: MONO, fontSize: '0.78rem', letterSpacing: '0.06em', color: TM,
+          minWidth: 0, overflowWrap: 'anywhere' }}>
           <span style={{ color: ACCENT_LIGHT }}>niwo</span> {c.statusLabel}
         </div>
-        <div style={{ display: 'flex', gap: '18px', fontFamily: MONO, fontSize: '0.78rem' }}>
+        <div style={{ display: 'flex', gap: isMobile ? '10px' : '18px', flexWrap: 'wrap',
+          fontFamily: MONO, fontSize: '0.78rem' }}>
           <span style={{ color: TM }}>{c.caughtLabel} <span style={{ color: SUCCESS }}>{liveCaught}</span></span>
           <span style={{ color: TM }}>{c.missedLabel} <span style={{ color: DANGER }}>{liveMissed}</span></span>
           <span style={{ color: TM }}>{c.exposureLabel} <span style={{ color: DANGER }}>{fmt(liveLost)}</span></span>
@@ -357,7 +396,8 @@ function PlayScreen({
 
       {/* mail window */}
       <div style={{ width: '100%', maxWidth: '1040px', border: `1px solid ${BORDER}`,
-        borderRadius: '14px', background: SURFACE, boxShadow: SHADOW_FLOAT, overflow: 'hidden' }}>
+        borderRadius: isMobile ? '10px' : '14px', background: SURFACE, boxShadow: SHADOW_FLOAT,
+        overflow: 'hidden' }}>
 
         {/* chrome bar */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '11px 16px',
@@ -375,10 +415,14 @@ function PlayScreen({
             background: 'rgb(95 98 184 / 0.4)', border: `1px solid ${ACCENT}` }} />
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '262px 1fr' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: isStacked ? 'minmax(0, 1fr)' : '262px minmax(0, 1fr)' }}>
 
           {/* inbox sidebar */}
-          <div style={{ borderRight: `1px solid ${BORDER}`, background: SURFACE_INSET, minHeight: '560px' }}>
+          <div style={{ borderRight: isStacked ? 'none' : `1px solid ${BORDER}`,
+            borderBottom: isStacked ? `1px solid ${BORDER}` : 'none',
+            background: SURFACE_INSET, minHeight: isStacked ? 'auto' : '560px',
+            maxHeight: isStacked ? (isMobile ? '218px' : '260px') : undefined,
+            overflowY: isStacked ? 'auto' : 'visible' }}>
             <div style={{ padding: '16px 18px 12px', borderBottom: `1px solid ${BORDER_SOFT}` }}>
               <div style={{ fontFamily: MONO, fontSize: '0.74rem', letterSpacing: '0.16em',
                 textTransform: 'uppercase', color: TS }}>{c.inboxLabel}</div>
@@ -426,16 +470,18 @@ function PlayScreen({
           </div>
 
           {/* reading pane */}
-          <div style={{ display: 'flex', flexDirection: 'column', minHeight: '560px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', minHeight: isStacked ? 'auto' : '560px',
+            minWidth: 0 }}>
 
             {/* header */}
-            <div style={{ padding: '26px 30px 0' }}>
-              <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '16px' }}>
+            <div style={{ padding: isMobile ? '20px 18px 0' : '26px 30px 0' }}>
+              <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between',
+                flexDirection: isMobile ? 'column' : 'row', gap: isMobile ? '12px' : '16px' }}>
                 <h2 style={{ fontFamily: MONO, fontSize: '1.18rem', fontWeight: 600, lineHeight: 1.4,
-                  margin: 0, color: TP }}>
+                  margin: 0, color: TP, minWidth: 0, overflowWrap: 'anywhere' }}>
                   {email.subject}
                 </h2>
-                <div style={{ display: 'flex', gap: '6px', flex: 'none' }}>
+                <div style={{ display: 'flex', gap: '6px', flex: 'none', flexWrap: 'wrap' }}>
                   <span style={{ display: 'inline-flex', alignItems: 'center', padding: '4px 9px',
                     borderRadius: '6px', background: ACCENT_WASH, border: '1px solid rgb(95 98 184 / 0.3)',
                     fontFamily: MONO, fontSize: '0.66rem', letterSpacing: '0.06em',
@@ -451,7 +497,8 @@ function PlayScreen({
                 </div>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px', margin: '18px 0 0',
-                paddingBottom: '20px', borderBottom: `1px solid ${BORDER_SOFT}` }}>
+                paddingBottom: '20px', borderBottom: `1px solid ${BORDER_SOFT}`,
+                flexWrap: isMobile ? 'wrap' : 'nowrap' }}>
                 <div style={{ width: '40px', height: '40px', borderRadius: '50%',
                   background: '#18181b', border: `1px solid ${BORDER_HOVER}`,
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -465,7 +512,7 @@ function PlayScreen({
                     &lt;{email.fromAddr}&gt;
                   </div>
                 </div>
-                <div style={{ marginLeft: 'auto', fontFamily: MONO, fontSize: '0.74rem',
+                <div style={{ marginLeft: isMobile ? '52px' : 'auto', fontFamily: MONO, fontSize: '0.74rem',
                   color: TF, flex: 'none' }}>
                   {email.time}
                 </div>
@@ -476,9 +523,10 @@ function PlayScreen({
             <ScenarioBody email={email} setHoverUrl={setHoverUrl} />
 
             {/* link preview bar */}
-            <div style={{ padding: '9px 30px', borderTop: `1px solid ${BORDER_SOFT}`,
+            <div style={{ padding: isMobile ? '10px 18px' : '9px 30px', borderTop: `1px solid ${BORDER_SOFT}`,
               background: SURFACE_INSET, fontFamily: MONO, fontSize: '0.74rem',
-              minHeight: '36px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+              minHeight: '44px', display: 'flex', alignItems: 'center', gap: '8px',
+              flexWrap: 'wrap' }}>
               {hoverUrl ? (
                 <>
                   <span style={{ color: TF }}>{c.linkArrow} &rarr;</span>
@@ -487,18 +535,18 @@ function PlayScreen({
                   </span>
                 </>
               ) : (
-                <span style={{ color: TF }}>{c.linkTip}</span>
+                <span style={{ color: TF }}>{canHover ? c.linkTip : c.linkTapTip}</span>
               )}
             </div>
 
             {/* action area */}
-            <div style={{ padding: '20px 30px 26px', borderTop: `1px solid ${BORDER}` }}>
+            <div style={{ padding: isMobile ? '18px' : '20px 30px 26px', borderTop: `1px solid ${BORDER}` }}>
               {!answered ? (
                 <>
                   <div style={{ fontFamily: MONO, fontSize: '0.82rem', color: TS, marginBottom: '14px' }}>
                     {c.question}
                   </div>
-                  <div style={{ display: 'flex', gap: '12px' }}>
+                  <div style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', gap: '12px' }}>
                     <Btn variant="secondary" size="lg" onClick={() => onAnswer(true)}
                       style={{ flex: 1, justifyContent: 'center',
                         borderColor: 'rgb(248 113 113 / 0.45)', color: DANGER }}>
@@ -530,6 +578,7 @@ function VerdictBox({ email, result, onNext, nextLabel, c, fmt }: {
   c: LabCopy;
   fmt: (n: number) => string;
 }) {
+  const isMobile = useMediaQuery('(max-width: 640px)');
   const ok = result.correct;
   const boxBorder = ok ? 'rgb(95 191 118 / 0.32)' : 'rgb(248 113 113 / 0.32)';
   const boxBg = ok ? 'rgb(95 191 118 / 0.05)' : 'rgb(248 113 113 / 0.05)';
@@ -546,13 +595,15 @@ function VerdictBox({ email, result, onNext, nextLabel, c, fmt }: {
 
   return (
     <>
-      <div style={{ border: `1px solid ${boxBorder}`, background: boxBg, borderRadius: '10px', padding: '18px 20px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '10px' }}>
+      <div style={{ border: `1px solid ${boxBorder}`, background: boxBg, borderRadius: '10px',
+        padding: isMobile ? '16px' : '18px 20px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '10px',
+          flexWrap: 'wrap' }}>
           <span style={{ color: titleColor, fontFamily: MONO, fontSize: '1.05rem', fontWeight: 700 }}>
             {ok ? '✓' : '✗'}
           </span>
           <span style={{ fontFamily: MONO, fontWeight: 600, fontSize: '1rem', color: titleColor }}>{title}</span>
-          <span style={{ fontFamily: MONO, fontSize: '0.78rem', color: TM }}>&mdash; {sub}</span>
+          <span style={{ fontFamily: MONO, fontSize: '0.78rem', color: TM, overflowWrap: 'anywhere' }}>&mdash; {sub}</span>
         </div>
         <p style={{ margin: '0 0 14px', fontSize: '0.92rem', lineHeight: 1.7, color: TS }}>{email.explain}</p>
         <div style={{ fontFamily: MONO, fontSize: '0.7rem', letterSpacing: '0.12em', textTransform: 'uppercase',
@@ -568,7 +619,7 @@ function VerdictBox({ email, result, onNext, nextLabel, c, fmt }: {
         {!ok && (
           <div style={{ marginTop: '14px', padding: '11px 14px', borderRadius: '8px', fontFamily: MONO,
             fontSize: '0.82rem', lineHeight: 1.55, background: lossBg,
-            border: `1px solid ${lossBorder}`, color: lossColor }}>
+            border: `1px solid ${lossBorder}`, color: lossColor, overflowWrap: 'anywhere' }}>
             {lossText}
           </div>
         )}
@@ -591,6 +642,8 @@ function DoneScreen({ results, emails, onRestart, c, fmt }: {
   c: LabCopy;
   fmt: (n: number) => string;
 }) {
+  const isMobile = useMediaQuery('(max-width: 640px)');
+  const isTablet = useMediaQuery('(max-width: 760px)');
   const total = emails.length;
   const correctCount = results.filter(r => r.correct).length;
   const lost = results.filter(r => !r.correct).reduce((s, r) => s + r.damage, 0);
@@ -603,19 +656,21 @@ function DoneScreen({ results, emails, onRestart, c, fmt }: {
                    c.grades.risk;
 
   return (
-    <div style={{ minHeight: 'calc(100vh - 4rem)', padding: '7rem 24px 56px', display: 'flex',
-      justifyContent: 'center', background: '#0a0a0a' }}>
+    <div style={{ minHeight: 'calc(100vh - 4rem)',
+      padding: isMobile ? '5.25rem 16px 40px' : '7rem 24px 56px', display: 'flex',
+      justifyContent: 'center', background: '#0a0a0a', overflowX: 'hidden' }}>
       <div style={{ width: '100%', maxWidth: '760px', animation: 'niwoUp 0.5s ease both' }}>
 
         <div style={{ fontFamily: MONO, fontSize: '0.7rem', letterSpacing: '0.22em',
           textTransform: 'uppercase', color: ACCENT_LIGHT, marginBottom: '14px' }}>{c.resultsEyebrow}</div>
 
-        <h1 style={{ fontFamily: MONO, fontWeight: 700, fontSize: '2.2rem', lineHeight: 1.15,
-          margin: '0 0 6px', color: grade.color }}>{grade.label}</h1>
+        <h1 style={{ fontFamily: MONO, fontWeight: 700, fontSize: isMobile ? '1.85rem' : '2.2rem',
+          lineHeight: 1.15, margin: '0 0 6px', color: grade.color, overflowWrap: 'anywhere' }}>{grade.label}</h1>
         <p style={{ fontSize: '1.02rem', lineHeight: 1.65, color: TS, margin: '0 0 28px' }}>{grade.blurb}</p>
 
         {/* stat cards */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '14px', marginBottom: '30px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: isTablet ? '1fr' : 'repeat(3,1fr)',
+          gap: '14px', marginBottom: '30px' }}>
           <div style={{ border: `1px solid ${BORDER}`, borderRadius: '10px', background: SURFACE, padding: '20px' }}>
             <div style={{ fontFamily: MONO, fontSize: '1.9rem', fontWeight: 700, color: TP }}>
               {correctCount} / {total}
@@ -651,21 +706,22 @@ function DoneScreen({ results, emails, onRestart, c, fmt }: {
             const email = emails[i];
             const wrong = !r.correct;
             return (
-              <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '14px',
+              <div key={i} style={{ display: 'flex', alignItems: isMobile ? 'flex-start' : 'center',
+                flexDirection: isMobile ? 'column' : 'row', gap: isMobile ? '8px' : '14px',
                 padding: '13px 20px', borderBottom: `1px solid ${BORDER_SOFT}` }}>
                 <span style={{ fontFamily: MONO, fontSize: '0.85rem', fontWeight: 700,
                   color: r.correct ? SUCCESS : DANGER, flex: 'none', width: '16px', textAlign: 'center' }}>
                   {r.correct ? '✓' : '✗'}
                 </span>
-                <div style={{ minWidth: 0, flex: 1 }}>
-                  <div style={{ fontSize: '0.88rem', color: TP, whiteSpace: 'nowrap',
+                <div style={{ minWidth: 0, flex: 1, width: isMobile ? '100%' : undefined }}>
+                  <div style={{ fontSize: '0.88rem', color: TP, whiteSpace: isMobile ? 'normal' : 'nowrap',
                     overflow: 'hidden', textOverflow: 'ellipsis' }}>{email.subject}</div>
                   <div style={{ fontFamily: MONO, fontSize: '0.72rem', color: TM, marginTop: '2px' }}>
                     {c.breakdownMeta(r.category, r.chosePhishing, r.isPhishing)}
                   </div>
                 </div>
                 <span style={{ fontFamily: MONO, fontSize: '0.8rem', fontWeight: 600, flex: 'none',
-                  color: wrong ? DANGER : TM }}>
+                  color: wrong ? DANGER : TM, alignSelf: isMobile ? 'flex-start' : 'center' }}>
                   {wrong ? `−${fmt(r.damage)}` : (r.isPhishing ? c.threatStopped : c.keptCorrectly)}
                 </span>
               </div>
@@ -675,7 +731,7 @@ function DoneScreen({ results, emails, onRestart, c, fmt }: {
 
         {/* tips */}
         <div style={{ border: `1px solid ${BORDER}`, borderRadius: '12px', background: SURFACE,
-          padding: '24px 26px', marginBottom: '22px' }}>
+          padding: isMobile ? '20px 18px' : '24px 26px', marginBottom: '22px' }}>
           <div style={{ fontFamily: MONO, fontSize: '0.74rem', letterSpacing: '0.14em',
             textTransform: 'uppercase', color: ACCENT_LIGHT, marginBottom: '16px' }}>
             {c.tipsTitle}
@@ -695,7 +751,7 @@ function DoneScreen({ results, emails, onRestart, c, fmt }: {
 
         {/* next steps */}
         <div style={{ border: `1px solid ${BORDER}`, borderRadius: '12px', background: SURFACE,
-          padding: '24px 26px', marginBottom: '30px' }}>
+          padding: isMobile ? '20px 18px' : '24px 26px', marginBottom: '30px' }}>
           <div style={{ fontFamily: MONO, fontSize: '0.74rem', letterSpacing: '0.14em',
             textTransform: 'uppercase', color: TS, marginBottom: '14px' }}>{c.nextStepsTitle}</div>
           <ul style={{ margin: 0, padding: 0, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '11px' }}>
