@@ -13,7 +13,7 @@
     "@fontsource/ibm-plex-mono": "^5.2.7",
     "@fontsource/inter": "^5.2.7",
     "@swc/helpers": "0.5.23",
-    "framer-motion": "^12.40.0",
+    "framer-motion": "^12.42.0",
     "next": "16.2.9",
     "next-intl": "^4.13.0",
     "react": "19.2.7",
