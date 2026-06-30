@@ -216,6 +216,10 @@
             "Wie du sicherstellst, dass du echten Wert aus dem Engagement ziehst"
           ]
         },
+        "reassurance": {
+          "title": "Kontrolliert, nicht chaotisch",
+          "text": "Ein Penetrationstest ist nicht dasselbe wie ein echter Angriff. Sauber durchgeführt sollte er deine Systeme nicht beschädigen und deine Daten nicht gefährden. Es gibt keinen echten Schaden, von dem du dich erholen musst, und keine Bußgelder, vor denen du Angst haben musst. Alles, was ein Pentester findet, dient nur einem Zweck: deine Sicherheit stärker zu machen."
+        },
         "process": {
           "title": "Wie es abläuft",
           "steps": [
