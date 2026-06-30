@@ -29,6 +29,10 @@ type ServiceContent = {
     title: string;
     items: string[];
   };
+  reassurance?: {
+    title: string;
+    text: string;
+  };
   process: {
     title: string;
     steps: { title: string; text: string }[];
@@ -100,6 +104,13 @@ function getServiceContent(
       title: t(`${prefix}.covers.title`),
       items: asStringArray(t.raw(`${prefix}.covers.items`)),
     },
+    reassurance:
+      service.key === "penetrationTesting"
+        ? {
+            title: t(`${prefix}.reassurance.title`),
+            text: t(`${prefix}.reassurance.text`),
+          }
+        : undefined,
     process: {
       title: t(`${prefix}.process.title`),
       steps: asStepArray(t.raw(`${prefix}.process.steps`)),
@@ -242,6 +253,19 @@ export default async function ServicePage({
             </ul>
           </div>
         </section>
+
+        {content.reassurance ? (
+          <section className="rounded-lg border border-[rgb(95_98_184/0.24)] bg-[rgb(95_98_184/0.08)] px-6 py-7 sm:px-8">
+            <div className="grid gap-4 lg:grid-cols-[minmax(12rem,0.38fr)_minmax(0,1fr)] lg:items-start">
+              <p className="font-mono text-[0.68rem] font-medium uppercase tracking-[0.22em] text-[var(--color-accent-light)]">
+                {content.reassurance.title}
+              </p>
+              <p className="max-w-4xl text-sm leading-7 text-zinc-300 sm:text-base">
+                {content.reassurance.text}
+              </p>
+            </div>
+          </section>
+        ) : null}
 
         {/* ── process + deliverables ── */}
         <section className="grid gap-6 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">

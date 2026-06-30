@@ -383,10 +383,7 @@ export default function HomePage(): JSX.Element {
             viewport={{ once: true, amount: 0.25 }}
             transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
           >
-            <IntlLink
-              href="/pages/phishing-lab"
-              className="group flex flex-col gap-5 rounded-lg border border-white/[0.08] bg-[#111113] px-8 py-8 transition-colors duration-200 hover:border-[rgb(95_98_184/0.35)] sm:flex-row sm:items-center sm:justify-between sm:px-10 sm:py-9"
-            >
+            <div className="flex flex-col gap-5 rounded-lg border border-white/[0.08] bg-[#111113] px-8 py-8 sm:flex-row sm:items-center sm:justify-between sm:px-10 sm:py-9">
               <div className="space-y-2">
                 <p className="font-mono text-xs font-medium tracking-widest text-[var(--color-accent-light)] uppercase">
                   {t("phishingLab.eyebrow")}
@@ -398,10 +395,13 @@ export default function HomePage(): JSX.Element {
                   {t("phishingLab.description")}
                 </p>
               </div>
-              <span className="inline-flex shrink-0 items-center gap-2 rounded-lg border border-white/[0.12] bg-white/[0.04] px-5 py-2.5 font-mono text-sm font-semibold text-zinc-100 transition-colors duration-150 group-hover:border-[rgb(95_98_184/0.5)] group-hover:bg-[rgb(95_98_184/0.08)] group-hover:text-[var(--color-accent-light)]">
+              <IntlLink
+                href="/pages/phishing-lab"
+                className="inline-flex shrink-0 items-center gap-2 rounded-lg border border-white/[0.12] bg-white/[0.04] px-5 py-2.5 font-mono text-sm font-semibold text-zinc-100 transition-colors duration-150 hover:border-[rgb(95_98_184/0.5)] hover:bg-[rgb(95_98_184/0.08)] hover:text-[var(--color-accent-light)]"
+              >
                 {t("phishingLab.cta")} →
-              </span>
-            </IntlLink>
+              </IntlLink>
+            </div>
           </motion.div>
         </section>
 

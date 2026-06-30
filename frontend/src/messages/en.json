@@ -216,6 +216,10 @@
             "How to make sure you get real value from the engagement"
           ]
         },
+        "reassurance": {
+          "title": "Controlled, not chaotic",
+          "text": "A penetration test is not the same as an actual breach. Done properly, it should not harm your systems or put your data at risk. There is no real damage to recover from, and no fines to worry about. Anything a pentester finds is used for one purpose only: making your security stronger."
+        },
         "process": {
           "title": "How it works",
           "steps": [
