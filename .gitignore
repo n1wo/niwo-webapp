@@ -1,0 +1,4 @@
+
+# Local planning docs & private files (CV etc.) — never commit
+projects/
+.DS_Store
