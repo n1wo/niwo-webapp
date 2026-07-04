@@ -10,7 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/pages/privacy-policy",
     "/pages/vdp",
     "/pages/imprint",
-    ...serviceDefinitions.map((service) => `/services/${service.slug}`),
+    ...serviceDefinitions.map((service) => `/topics/${service.slug}`),
   ];
 
   const lastModified = new Date();

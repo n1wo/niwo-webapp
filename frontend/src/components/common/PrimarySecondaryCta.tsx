@@ -16,7 +16,7 @@ export default function PrimarySecondaryCta({
   primaryLabel,
   secondaryLabel,
   primaryHref = "mailto:info@niwosystems.com",
-  secondaryHref = "/#what-i-do",
+  secondaryHref = "/#topics",
   className = "",
 }: PrimarySecondaryCtaProps): JSX.Element {
   return (
