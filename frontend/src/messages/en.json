@@ -8,7 +8,7 @@
     "security": "Security"
   },
   "Navbar": {
-    "services": "Services",
+    "services": "Topics",
     "about": "About",
     "contact": "Contact"
   },
@@ -32,31 +32,31 @@
   "Home": {
     "metadata": {
       "title": "niwo | Cybersecurity",
-      "description": "Nikita Wokurka, Cybersecurity student and web security practitioner based in Bonn. Focused on web application security reviews, practical security guidance, and helping small teams understand their risk."
+      "description": "Nikita Wokurka's personal web and security project. Practical notes on web security, secure development, understandable explanations, and hands-on security labs."
     },
     "heroEyebrow": "Web Application Security · Secure Development · Security Learning",
-    "heroHeadline": "Practical cybersecurity for developers and small teams",
-    "heroParagraph": "I'm Nikita — a cybersecurity student in Bonn doing focused, hands-on web security work. I help developers and small teams understand their application risks, fix what matters most, and make better security decisions — without enterprise overhead or jargon nobody reads. Currently available for focused reviews and security questions.",
-    "primaryCta": "Get in touch",
-    "secondaryCta": "See what I do",
-    "supportLine": "Web Application Security · Secure Development · Agentic Security · Pentest Preparation",
+    "heroHeadline": "Practical web security, explained through projects and labs",
+    "heroParagraph": "I'm Nikita — a cybersecurity student in Bonn building niwo systems as a personal web and security project. I use this site to document practical security work, explain web security in plain language, and collect small labs around secure development, application risk, and defensive thinking.",
+    "primaryCta": "Ask a security question",
+    "secondaryCta": "Explore topics",
+    "supportLine": "Web Application Security · Secure Development · Security Learning · Practical Labs",
     "heroSignals": {
-      "scope": "Focused scope",
-      "reporting": "Clear reporting",
-      "remediation": "Practical remediation"
+      "scope": "Web security",
+      "reporting": "Clear explanations",
+      "remediation": "Practical labs"
     },
-    "servicesEyebrow": "What I can help with",
-    "servicesTitle": "Security support for developers and small teams",
-    "servicesDescription": "Focused engagements built to surface meaningful weaknesses, explain risk in plain language, and help teams fix what matters first.",
+    "servicesEyebrow": "Security Topics",
+    "servicesTitle": "Topics I'm exploring in web security",
+    "servicesDescription": "Practical notes, experiments, and topic areas around web security, secure development, and how real weaknesses show up in applications.",
     "approach": {
       "eyebrow": "How I work",
       "title": "An honest, practical approach to security",
-      "description": "I'm Nikita, a Cybersecurity student at IU International University with a background in electrical engineering and technical project coordination. I started niwo systems to combine hands-on learning with real-world practice. Most of what I know comes from building things, taking them apart in controlled lab environments, and figuring out why they fail. I work best with developers and small teams who want honest, practical security support, not fear-driven upselling or reports full of jargon nobody reads.",
+      "description": "I'm Nikita, a Cybersecurity student at IU International University with a background in electrical engineering and technical project coordination. I started niwo systems to combine hands-on learning with real-world practice. Most of what I know comes from building things, taking them apart in controlled lab environments, and figuring out why they fail. This site is where I document that work in a way developers, learners, and small teams can actually use.",
       "cardLabel": "Approach",
       "cards": {
         "scope": {
           "title": "Focused scope",
-          "text": "Engagements stay centered on the flows, trust boundaries, and actions that carry real application risk."
+          "text": "Notes stay centered on the flows, trust boundaries, and actions that carry real application risk."
         },
         "testing": {
           "title": "Realistic testing",
@@ -64,11 +64,11 @@
         },
         "reporting": {
           "title": "Clear reporting",
-          "text": "Findings are written to be understandable, defensible, and useful to both technical and non-technical stakeholders."
+          "text": "Findings and notes are written to be understandable, defensible, and useful without turning into jargon."
         },
         "remediation": {
           "title": "Practical remediation",
-          "text": "Each engagement is meant to help teams fix issues with confidence, not just collect another report."
+          "text": "Each topic is meant to make fixes and tradeoffs easier to understand, not just add another checklist."
         }
       }
     },
@@ -82,7 +82,7 @@
       "label": "root@niwo: ~",
       "complete": "scan complete",
       "lines": {
-        "command": "┌──(root㉿niwo)-[~/engagement]",
+        "command": "┌──(root㉿niwo)-[~/topics]",
         "scanning": "└─# ./security_scan --target webapp && cat findings.txt",
         "findings": "[+] vulnerabilities found: 3",
         "severity": "[!] severity: high",
@@ -91,52 +91,52 @@
     },
     "serviceCards": {
       "webAppSecurity": {
-        "eyebrow": "Assessment",
-        "title": "Web App Security Review",
-        "text": "I review your web application with a focus on the flows, inputs, and trust boundaries that carry real risk.",
-        "accent": "Attack surface review"
+        "eyebrow": "Topic",
+        "title": "Web App Security",
+        "text": "Notes on the flows, inputs, and trust boundaries that carry real risk in modern web applications.",
+        "accent": "Attack surface notes"
       },
       "penetrationTesting": {
-        "eyebrow": "Preparation",
-        "title": "Pentest Preparation & Guidance",
-        "text": "I can walk you through what the pentest process looks like and help you ask the right questions.",
+        "eyebrow": "Topic",
+        "title": "Pentest Preparation",
+        "text": "Plain-language notes on how pentests work, what good scope looks like, and which questions matter before a test.",
         "accent": "Pentest preparation"
       },
       "secureDevelopment": {
-        "eyebrow": "Guidance",
-        "title": "Security Guidance & Consultation",
-        "text": "I offer focused conversations and practical advice on web security and secure development.",
-        "accent": "Practical security advice"
+        "eyebrow": "Topic",
+        "title": "Secure Development",
+        "text": "Practical secure-development notes for building, reviewing, and thinking about web applications with fewer sharp edges.",
+        "accent": "Practical security notes"
       }
     }
   },
-  "Services": {
+  "Topics": {
     "common": {
-      "backToServices": "Back to services",
-      "relatedServices": "Related services"
+      "backToTopics": "Back to topics",
+      "relatedTopics": "Related topics"
     },
     "items": {
       "webAppSecurity": {
         "metadata": {
-          "title": "Web App Security Review | niwo",
-          "description": "A practical web application security review focused on the flows, inputs, and trust boundaries that carry real risk, with clear findings, plain-language explanations, and concrete steps to fix what matters."
+          "title": "Web App Security | niwo",
+          "description": "A practical topic page on web application security: flows, inputs, trust boundaries, common weaknesses, and plain-language notes on what matters."
         },
         "card": {
-          "eyebrow": "Assessment",
-          "title": "Web App Security Review",
-          "text": "I review your web application with a focus on the flows, inputs, and trust boundaries that carry real risk. You get clear findings in plain language, with concrete steps to fix what matters most.",
-          "accent": "Attack surface review",
-          "tag": "Good for: developers launching a product, small teams before a release, or anyone who wants a second pair of eyes."
+          "eyebrow": "Topic",
+          "title": "Web App Security",
+          "text": "A practical look at the flows, inputs, and trust boundaries that carry real risk in web applications, with notes on how issues show up and how to reason about fixes.",
+          "accent": "Attack surface notes",
+          "tag": "Good for: developers, learners, and small teams who want a clearer mental model of web application risk."
         },
         "hero": {
-          "eyebrow": "Application review",
-          "title": "See where your web app is actually exposed",
-          "intro": "I go through your web application with a focus on the flows, inputs, and trust boundaries that actually carry risk. The goal isn't a scanner dump; it's a clear picture of where you're exposed and what's worth fixing first.",
-          "outcomeLabel": "What you walk away with",
-          "outcomeText": "Clear findings explained in plain language, ranked by what actually matters, with concrete steps your team can act on right away."
+          "eyebrow": "Application security",
+          "title": "How web apps become exposed",
+          "intro": "This topic collects practical notes on how modern web applications become exposed: weak flows, missing access checks, unsafe input handling, session mistakes, and trust boundaries that are assumed instead of enforced.",
+          "outcomeLabel": "What this page is for",
+          "outcomeText": "A clear, plain-language map of where web application risk tends to appear and how to think about fixing it."
         },
         "covers": {
-          "title": "What this covers",
+          "title": "What this topic covers",
           "items": [
             "The flows that carry real risk: login, account actions, payments, anything sensitive",
             "Authentication and session handling, and the assumptions behind them",
@@ -146,74 +146,74 @@
           ]
         },
         "process": {
-          "title": "How I work",
+          "title": "How I explore it",
           "steps": [
             {
-              "title": "Understand how it's meant to work",
-              "text": "I start with how the app is supposed to behave, where sensitive actions happen and where trust is assumed instead of enforced."
+              "title": "Understand how the system is meant to work",
+              "text": "Start with the intended behavior: where sensitive actions happen, what data matters, and where the application assumes trust."
             },
             {
-              "title": "Probe where the risk actually is",
-              "text": "I focus on the flows, inputs, and edge cases that tend to hide real issues, not just what a checklist would flag."
+              "title": "Look at where risk actually collects",
+              "text": "Focus on the flows, inputs, and edge cases that tend to hide real issues, not just what a checklist would flag."
             },
             {
-              "title": "Write it up so you can act",
-              "text": "Every finding comes in plain language with its impact and a concrete fix. No vague risk scores, just what's wrong and what to do about it."
+              "title": "Write it so it can be understood",
+              "text": "Good security notes explain impact and fixes in plain language. No vague risk scores; just what is wrong, why it matters, and what would improve it."
             }
           ]
         },
         "bestFor": {
-          "title": "Best for",
+          "title": "Useful for",
           "items": [
-            "Developers getting a product ready to launch",
-            "Small teams who want a security look before a release",
-            "Products handling user accounts, permissions, or sensitive data",
-            "Anyone who just wants an honest second pair of eyes"
+            "Developers building products with accounts, permissions, or sensitive data",
+            "Learners trying to understand where web security issues come from",
+            "Small teams who want a clearer view of application risk",
+            "Anyone who wants an honest second pair of eyes on their security thinking"
           ]
         },
         "deliverables": {
-          "title": "What you get",
+          "title": "What I document",
           "items": [
-            "A short, focused report with clear, validated findings",
+            "Short notes on common web application failure modes",
             "Plain-language explanations without jargon nobody reads",
-            "A prioritized list so you know what to fix first",
-            "Follow-up if anything in the report needs clarifying"
+            "Practical fix patterns and tradeoffs",
+            "Examples from labs, reviews, and controlled test setups"
           ]
         },
         "cta": {
-          "title": "Want to know where your app is exposed?",
-          "text": "Whether you're getting ready to launch or just want a second pair of eyes, I'm happy to take a look.",
-          "primary": "Get in touch",
-          "secondary": "Back to services"
+          "title": "Have a web security question?",
+          "text": "If this topic connects to something you are building or learning, you can ask a concrete question and I will take a look when I can.",
+          "primary": "Ask a security question",
+          "secondary": "Back to topics"
         }
       },
       "penetrationTesting": {
         "metadata": {
-          "title": "Pentest Preparation & Guidance | niwo",
-          "description": "Guidance to help you prepare for a penetration test: understand the process, define your scope, read the report, and ask a testing provider the right questions. Not a full pentest engagement."
+          "title": "Pentest Preparation | niwo",
+          "description": "Plain-language notes on preparing for a penetration test: understanding the process, defining scope, reading reports, and asking a testing provider better questions."
         },
         "card": {
-          "eyebrow": "Preparation",
-          "title": "Pentest Preparation & Guidance",
-          "text": "Thinking about getting a pentest done but not sure where to start? I can walk you through what the process looks like, help you define your scope, understand what a report should contain, and ask the right questions when choosing a testing provider.",
+          "eyebrow": "Topic",
+          "title": "Pentest Preparation",
+          "text": "Plain-language notes on what a penetration test is, how scope works, what a useful report should contain, and which questions are worth asking before you choose a testing provider.",
           "accent": "Pentest preparation",
-          "tag": "Note: This is guidance to help you get the most out of a pentest, not a full pentest engagement."
+          "tag": "Note: This is a learning and preparation topic, not a claim to sell full penetration tests."
         },
         "hero": {
           "eyebrow": "Process & preparation",
-          "title": "Get ready for a pentest before you pay for one",
-          "intro": "Thinking about getting a pentest done but not sure where to start? I can walk you through what the process actually looks like, help you prepare your scope, understand what to expect from a report, and ask the right questions when talking to a testing provider.",
-          "outcomeLabel": "What you walk away with",
-          "outcomeText": "A clear understanding of the process, a scope you feel confident about, and the right questions to ask, so you get real value from the test you pay for."
+          "title": "Understand pentests before you pay for one",
+          "intro": "This topic explains what a pentest usually involves, how to think about scope, what a report can and cannot tell you, and how to have a more informed conversation with a testing provider.",
+          "outcomeLabel": "What this page is for",
+          "outcomeText": "A clearer understanding of the process, better scoping instincts, and a practical list of questions to ask before commissioning a test."
         },
         "covers": {
-          "title": "What this covers",
+          "title": "What this topic covers",
           "items": [
             "What a penetration test actually involves, from start to finish",
             "Help defining and scoping what should be tested",
             "What to expect from a report and how to read one",
             "The right questions to ask a testing provider",
-            "How to make sure you get real value from the engagement"
+            "How to make sure you get real value from the test"
           ]
         },
         "reassurance": {
@@ -221,7 +221,7 @@
           "text": "A penetration test is not the same as an actual breach. Done properly, it should not harm your systems or put your data at risk. There is no real damage to recover from, and no fines to worry about. Anything a pentester finds is used for one purpose only: making your security stronger."
         },
         "process": {
-          "title": "How it works",
+          "title": "How I break it down",
           "steps": [
             {
               "title": "Understand the process",
@@ -233,12 +233,12 @@
             },
             {
               "title": "Go in informed",
-              "text": "You head into the engagement knowing what to expect, what to ask, and how to judge the results."
+              "text": "You head into the test knowing what to expect, what to ask, and how to judge the results."
             }
           ]
         },
         "bestFor": {
-          "title": "Best for",
+          "title": "Useful for",
           "items": [
             "Teams considering their first penetration test",
             "Founders who need to meet a customer or compliance requirement",
@@ -247,90 +247,90 @@
           ]
         },
         "deliverables": {
-          "title": "What you get",
+          "title": "What I document",
           "items": [
-            "A plain-language walkthrough of the pentest process",
-            "Help defining and documenting your scope",
-            "Guidance on reading and acting on a report",
-            "A list of the right questions to ask a provider"
+            "Plain-language walkthroughs of the pentest process",
+            "Scope examples and questions to clarify early",
+            "Notes on reading and acting on reports",
+            "A list of useful questions to ask a provider"
           ]
         },
         "cta": {
           "title": "Thinking about a pentest?",
-          "text": "If you want to go in prepared and get real value from it, let's talk through the process first.",
-          "primary": "Get in touch",
-          "secondary": "Back to services"
+          "text": "If you are trying to understand scope, reports, or provider questions, ask a concrete security question and I can point you in a practical direction.",
+          "primary": "Ask a security question",
+          "secondary": "Back to topics"
         }
       },
       "secureDevelopment": {
         "metadata": {
-          "title": "Security Guidance & Consultation | niwo",
-          "description": "Focused security guidance for developers and small teams with honest answers, practical advice on web security and secure development, and help prioritizing what actually matters."
+          "title": "Secure Development | niwo",
+          "description": "Practical secure-development notes for developers and learners: web security basics, defensive decisions, risk prioritization, and safer implementation patterns."
         },
         "card": {
-          "eyebrow": "Guidance",
-          "title": "Security Guidance & Consultation",
-          "text": "Not every team needs a full pentest. Sometimes you need someone to look at your setup, answer your questions honestly, and help you prioritize. I offer focused conversations and practical advice on web security, secure development, and what to watch out for as you build.",
-          "accent": "Practical security advice",
-          "tag": "Good for: early-stage teams, solo developers, small businesses moving things online."
+          "eyebrow": "Topic",
+          "title": "Secure Development",
+          "text": "Practical notes on building web applications with fewer security surprises: how to think about auth, input handling, data exposure, dependencies, and tradeoffs while you build.",
+          "accent": "Practical security notes",
+          "tag": "Good for: learners, solo developers, and small teams building web applications."
         },
         "hero": {
-          "eyebrow": "Guidance & consultation",
-          "title": "Honest answers, without the full engagement",
-          "intro": "Not every team needs a full pentest. Sometimes you just need someone to look at your setup, answer your questions honestly, and help you decide what to focus on. I offer focused conversations and practical advice on web security, secure development, and what to watch out for as you build.",
-          "outcomeLabel": "What you walk away with",
-          "outcomeText": "A clearer head about your risks, straight answers to the questions you actually have, and a short list of what's worth doing next."
+          "eyebrow": "Secure development",
+          "title": "Build with security in mind, without drowning in checklists",
+          "intro": "This topic is about practical secure development: the small design and implementation choices that reduce risk before an app needs a formal review or a long report.",
+          "outcomeLabel": "What this page is for",
+          "outcomeText": "A practical way to think through security decisions while building: what matters, what can wait, and where mistakes tend to become real risk."
         },
         "covers": {
-          "title": "What we can cover",
+          "title": "What this topic covers",
           "items": [
-            "A look at your current setup and where the real risks are",
-            "Honest answers to your security questions without upselling",
-            "Practical advice on web security and secure development",
-            "What to watch out for as you build and grow",
-            "Help prioritizing, so you spend effort where it counts"
+            "How to spot risky assumptions in your current setup",
+            "Authentication, authorization, session, and data-flow decisions",
+            "Practical web security and secure-development patterns",
+            "What to watch out for as an application grows",
+            "How to prioritize effort where it actually reduces risk"
           ]
         },
         "process": {
-          "title": "How it works",
+          "title": "How I explore it",
           "steps": [
             {
-              "title": "Tell me what you're working on",
-              "text": "We start with your product, your stack, and what's actually worrying you. No rigid checklist."
+              "title": "Start from the thing being built",
+              "text": "Good security thinking starts with the product, stack, data, and real user actions, not a generic checklist."
             },
             {
-              "title": "Talk it through",
-              "text": "A focused conversation where I answer your questions honestly and point out what I'd pay attention to."
+              "title": "Trace the risky decisions",
+              "text": "Follow where trust, identity, input, permissions, and external dependencies enter the system."
             },
             {
-              "title": "Leave with a plan",
-              "text": "You walk away with clear, practical next steps you can act on at your own pace."
+              "title": "Turn it into practical next steps",
+              "text": "The useful output is not fear. It is a clearer list of tradeoffs, fixes, and next things to learn."
             }
           ]
         },
         "bestFor": {
-          "title": "Best for",
+          "title": "Useful for",
           "items": [
             "Early-stage teams figuring out their security basics",
             "Solo developers who want someone to sanity-check their thinking",
             "Small businesses moving things online for the first time",
-            "Anyone who needs guidance more than a full engagement"
+            "Anyone trying to learn secure development in a practical way"
           ]
         },
         "deliverables": {
-          "title": "What you get",
+          "title": "What I document",
           "items": [
-            "Focused conversations tailored to your product",
-            "Honest, jargon-free answers to your questions",
-            "Practical recommendations you can actually apply",
-            "A prioritized sense of what to tackle first"
+            "Practical notes tied to real web-development decisions",
+            "Honest, jargon-free explanations of common risks",
+            "Fix patterns you can actually apply",
+            "A prioritized sense of what to learn or improve first"
           ]
         },
         "cta": {
-          "title": "Not sure what you actually need?",
-          "text": "If you'd rather talk it through than commit to a full engagement, let's have a conversation.",
-          "primary": "Get in touch",
-          "secondary": "Back to services"
+          "title": "Not sure how to reason about a security decision?",
+          "text": "Ask a concrete question about what you are building, reading, or testing, and I can help you think it through.",
+          "primary": "Ask a security question",
+          "secondary": "Back to topics"
         }
       }
     }
@@ -389,7 +389,7 @@
   "Imprint": {
     "metadata": {
       "title": "Imprint | niwo systems",
-      "description": "Legal notice for niwo systems. Non-commercial informational website. Professional offers handled privately, outside this platform."
+      "description": "Legal notice for niwo systems. Non-commercial informational website. Professional collaboration is handled privately, outside this platform."
     },
     "eyebrow": "Legal",
     "title": "Imprint",
@@ -403,13 +403,13 @@
       },
       "nature": {
         "title": "2. Nature of the Website",
-        "body": "This website is a non-commercial informational project focused on technology and security research. No goods or services are sold directly through this platform.",
+        "body": "This website is a non-commercial informational project focused on technology and security research. No paid work is booked or sold directly through this platform.",
         "disclaimerTitle": "Disclaimer:",
-        "disclaimerText": "This website does not directly offer paid services. Any professional collaboration or offer resulting from private contact is handled outside this platform, for example by email or a separate contract."
+        "disclaimerText": "This website does not directly sell paid work. Any professional collaboration resulting from private contact is handled outside this platform, for example by email or a separate agreement."
       },
       "contact": {
         "title": "3. Contact",
-        "body": "For legal notices or formal correspondence, please reach out via legal@niwosystems.com. If a physical mailing address is required for formal service, it will be provided upon request."
+        "body": "For legal notices or formal correspondence, please reach out via legal@niwosystems.com. If a physical mailing address is required for formal delivery, it will be provided upon request."
       },
       "liability": {
         "title": "4. Liability for Content",
@@ -439,7 +439,7 @@
         "items": [
           "Do not exploit vulnerabilities beyond what is necessary to demonstrate them.",
           "Do not access or modify user data without consent.",
-          "Do not disrupt or degrade our services.",
+          "Do not disrupt or degrade our systems.",
           "Provide sufficient detail so we can reproduce and validate the issue."
         ]
       },
@@ -510,8 +510,8 @@
         "body": "We retain personal data only for as long as necessary to fulfill the purpose for which it was collected, to communicate with you, or to comply with legal obligations. Email correspondence may be retained where needed to document communication or handle follow-up requests."
       },
       "thirdParties": {
-        "navTitle": "6. Use of Third-Party Services",
-        "title": "6. Use of Third-Party Services",
+        "navTitle": "6. Use of Third-Party Providers",
+        "title": "6. Use of Third-Party Providers",
         "hostingTitle": "Hosting",
         "hostingBody": "This website is hosted using AWS infrastructure. Hosting providers may process technical connection data and server logs as required to deliver the website securely and reliably.",
         "fontsTitle": "Fonts",

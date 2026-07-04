@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import PrimarySecondaryCta from "@/components/common/PrimarySecondaryCta";
 import InteractiveTerminal from "@/components/home/InteractiveTerminal";
+import PhishingTrainerVisual from "@/components/home/PhishingTrainerVisual";
 import ServiceCard from "@/components/services/ServiceCard";
 import { serviceDefinitions } from "@/data/services";
 import { Link as IntlLink } from "@/i18n/navigation";
@@ -16,7 +17,7 @@ const SECTION_HEADING_TYPING_DELAY_MS = 34;
 
 export default function HomePage(): JSX.Element {
   const t = useTranslations("Home");
-  const serviceT = useTranslations("Services");
+  const serviceT = useTranslations("Topics");
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const servicesHeadingRef = useRef<HTMLDivElement | null>(null);
   const approachHeadingRef = useRef<HTMLDivElement | null>(null);
@@ -38,7 +39,7 @@ export default function HomePage(): JSX.Element {
     () =>
       serviceDefinitions.map((service) => ({
         ...service,
-        href: `/services/${service.slug}`,
+        href: `/topics/${service.slug}`,
         eyebrow: serviceT(`items.${service.key}.card.eyebrow`),
         title: serviceT(`items.${service.key}.card.title`),
         text: serviceT(`items.${service.key}.card.text`),
@@ -283,7 +284,7 @@ export default function HomePage(): JSX.Element {
           />
         </section>
 
-        <section id="what-i-do" className="space-y-10">
+        <section id="topics" className="space-y-10">
           <div ref={servicesHeadingRef} className="max-w-3xl space-y-4">
             <p className="text-sm font-medium tracking-wide text-[var(--color-accent-light)]">
               {t("servicesEyebrow")}
@@ -383,7 +384,7 @@ export default function HomePage(): JSX.Element {
             viewport={{ once: true, amount: 0.25 }}
             transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
           >
-            <div className="flex flex-col gap-5 rounded-lg border border-white/[0.08] bg-[#111113] px-8 py-8 sm:flex-row sm:items-center sm:justify-between sm:px-10 sm:py-9">
+            <div className="grid gap-6 rounded-lg border border-white/[0.08] bg-[#111113] px-8 py-8 sm:px-10 sm:py-9 lg:grid-cols-[minmax(0,1fr)_minmax(17rem,20rem)_auto] lg:items-center">
               <div className="space-y-2">
                 <p className="font-mono text-xs font-medium tracking-widest text-[var(--color-accent-light)] uppercase">
                   {t("phishingLab.eyebrow")}
@@ -395,6 +396,10 @@ export default function HomePage(): JSX.Element {
                   {t("phishingLab.description")}
                 </p>
               </div>
+              <PhishingTrainerVisual
+                key={prefersReducedMotion ? "static-phishing-visual" : "animated-phishing-visual"}
+                prefersReducedMotion={prefersReducedMotion}
+              />
               <IntlLink
                 href="/pages/phishing-lab"
                 className="inline-flex shrink-0 items-center gap-2 rounded-lg border border-white/[0.12] bg-white/[0.04] px-5 py-2.5 font-mono text-sm font-semibold text-zinc-100 transition-colors duration-150 hover:border-[rgb(95_98_184/0.5)] hover:bg-[rgb(95_98_184/0.08)] hover:text-[var(--color-accent-light)]"

@@ -35,7 +35,8 @@ const PAGE_TARGETS: Record<string, string> = {
   "/": "/",
   "~": "/",
   home: "/",
-  services: "/#what-i-do",
+  topics: "/#topics",
+  services: "/#topics",
   about: "/pages/about",
   vdp: "/pages/vdp",
   privacy: "/pages/privacy-policy",
@@ -67,7 +68,7 @@ export default function InteractiveTerminal({
       "pwd",
       "ls",
       "cd home",
-      "cd services",
+      "cd topics",
       "cd about",
       "cd vdp",
       "cd privacy-policy",
@@ -84,10 +85,10 @@ export default function InteractiveTerminal({
 
   const menuLinks = useMemo(
     () => [
-      { label: "Session", href: "/#what-i-do", external: false },
+      { label: "Session", href: "/#topics", external: false },
       { label: "Actions", href: "mailto:info@niwosystems.com", external: true },
       { label: "Edit", href: "/pages/about", external: false },
-      { label: "View", href: "/#what-i-do", external: false },
+      { label: "View", href: "/#topics", external: false },
       { label: "Help", href: "/pages/vdp", external: false },
     ],
     [],
@@ -182,7 +183,7 @@ export default function InteractiveTerminal({
       appendEntries([
         ...nextEntries,
         {
-          text: "home  services  about  vdp  privacy-policy  imprint  phishing-lab  contact  findings.txt",
+          text: "home  topics  about  vdp  privacy-policy  imprint  phishing-lab  contact  findings.txt",
           tone: "default",
         },
       ]);

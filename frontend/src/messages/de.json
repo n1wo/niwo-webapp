@@ -8,7 +8,7 @@
     "security": "Sicherheit"
   },
   "Navbar": {
-    "services": "Leistungen",
+    "services": "Themen",
     "about": "Über mich",
     "contact": "Kontakt"
   },
@@ -32,31 +32,31 @@
   "Home": {
     "metadata": {
       "title": "niwo | Cybersicherheit",
-      "description": "Nikita Wokurka, Cybersecurity-Student und Web-Security-Praktiker aus Bonn. Fokus auf Sicherheitsreviews von Webanwendungen, praktische Sicherheitsberatung und kleine Teams dabei zu unterstützen, ihr Risiko zu verstehen."
+      "description": "Nikita Wokurkas persönliches Web- und Security-Projekt. Praktische Notizen zu Web Security, sicherer Entwicklung, verständlichen Erklärungen und kleinen Security-Labs."
     },
     "heroEyebrow": "Web Application Security · Sichere Entwicklung · Security Learning",
-    "heroHeadline": "Praktische Cybersicherheit für Entwickler und kleine Teams",
-    "heroParagraph": "Ich bin Nikita — Cybersecurity-Student in Bonn und mache fokussierte, praktische Web-Security-Arbeit. Ich helfe Entwicklern und kleinen Teams, ihre Anwendungsrisiken zu verstehen, das zu beheben, was wirklich zählt, und bessere Sicherheitsentscheidungen zu treffen — ohne Enterprise-Overhead oder Jargon, den niemand liest. Aktuell verfügbar für fokussierte Reviews und Sicherheitsfragen.",
-    "primaryCta": "Kontakt aufnehmen",
-    "secondaryCta": "Was ich mache",
-    "supportLine": "Web Application Security · Sichere Entwicklung · Agentische Sicherheit · Pentest-Vorbereitung",
+    "heroHeadline": "Praktische Web Security, erklärt mit Projekten und Labs",
+    "heroParagraph": "Ich bin Nikita — Cybersecurity-Student in Bonn und baue niwo systems als persönliches Web- und Security-Projekt. Auf dieser Seite dokumentiere ich praktische Security-Arbeit, erkläre Web Security verständlich und sammle kleine Labs zu sicherer Entwicklung, Anwendungsrisiken und defensivem Denken.",
+    "primaryCta": "Security-Frage stellen",
+    "secondaryCta": "Themen ansehen",
+    "supportLine": "Web Application Security · Sichere Entwicklung · Security Learning · Praktische Labs",
     "heroSignals": {
-      "scope": "Klarer Scope",
-      "reporting": "Klare Berichte",
-      "remediation": "Praktische Behebung"
+      "scope": "Web Security",
+      "reporting": "Klare Erklärungen",
+      "remediation": "Praktische Labs"
     },
-    "servicesEyebrow": "Womit ich helfen kann",
-    "servicesTitle": "Security-Unterstützung für Entwickler und kleine Teams",
-    "servicesDescription": "Fokussierte Engagements, die relevante Schwachstellen sichtbar machen, Risiken verständlich erklären und Teams helfen, zuerst das Wichtigste zu beheben.",
+    "servicesEyebrow": "Security-Themen",
+    "servicesTitle": "Themen, die ich in Web Security erkunde",
+    "servicesDescription": "Praktische Notizen, Experimente und Themenbereiche rund um Web Security, sichere Entwicklung und die Frage, wie echte Schwachstellen in Anwendungen entstehen.",
     "approach": {
       "eyebrow": "Wie ich arbeite",
       "title": "Ein ehrlicher, praktischer Ansatz für Sicherheit",
-      "description": "Ich bin Nikita, Cybersecurity-Student an der IU Internationalen Hochschule mit einem Hintergrund in Elektrotechnik und technischer Projektkoordination. niwo systems habe ich gestartet, um praktisches Lernen mit echter Praxis zu verbinden. Das meiste, was ich weiß, kommt vom Bauen, vom kontrollierten Auseinandernehmen im Labor und vom Verstehen, warum etwas versagt. Am besten arbeite ich mit Entwicklern und kleinen Teams, die ehrliche, praktische Sicherheitsunterstützung wollen, kein angstgetriebenes Upselling und keine Berichte voller Fachjargon, den niemand liest.",
+      "description": "Ich bin Nikita, Cybersecurity-Student an der IU Internationalen Hochschule mit einem Hintergrund in Elektrotechnik und technischer Projektkoordination. niwo systems habe ich gestartet, um praktisches Lernen mit echter Praxis zu verbinden. Das meiste, was ich weiß, kommt vom Bauen, vom kontrollierten Auseinandernehmen im Labor und vom Verstehen, warum etwas versagt. Diese Seite ist der Ort, an dem ich diese Arbeit so dokumentiere, dass Entwickler, Lernende und kleine Teams etwas damit anfangen können.",
       "cardLabel": "Ansatz",
       "cards": {
         "scope": {
           "title": "Fokussierter Scope",
-          "text": "Engagements bleiben auf die Flows, Vertrauensgrenzen und Aktionen ausgerichtet, die echtes Anwendungsrisiko tragen."
+          "text": "Notizen bleiben auf die Flows, Vertrauensgrenzen und Aktionen ausgerichtet, die echtes Anwendungsrisiko tragen."
         },
         "testing": {
           "title": "Realistisches Testing",
@@ -64,11 +64,11 @@
         },
         "reporting": {
           "title": "Klare Berichte",
-          "text": "Findings werden so aufbereitet, dass sie für technische und nicht-technische Beteiligte nachvollziehbar und belastbar sind."
+          "text": "Findings und Notizen werden so geschrieben, dass sie verständlich und belastbar sind, ohne in Jargon zu kippen."
         },
         "remediation": {
           "title": "Praktische Behebung",
-          "text": "Jedes Engagement soll Teams dabei helfen, Probleme mit mehr Sicherheit zu beheben, nicht nur einen weiteren Bericht zu sammeln."
+          "text": "Jedes Thema soll Fixes und Tradeoffs verständlicher machen, nicht einfach eine weitere Checkliste liefern."
         }
       }
     },
@@ -82,7 +82,7 @@
       "label": "root@niwo: ~",
       "complete": "scan abgeschlossen",
       "lines": {
-        "command": "┌──(root㉿niwo)-[~/einsatz]",
+        "command": "┌──(root㉿niwo)-[~/topics]",
         "scanning": "└─# ./security_scan --target webapp && cat findings.txt",
         "findings": "[+] Schwachstellen gefunden: 3",
         "severity": "[!] Schweregrad: hoch",
@@ -91,247 +91,22 @@
     },
     "serviceCards": {
       "webAppSecurity": {
-        "eyebrow": "Assessment",
-        "title": "Web App Security Review",
-        "text": "Ich prüfe deine Webanwendung mit Fokus auf die Abläufe, Eingaben und Vertrauensgrenzen, die echtes Risiko tragen.",
-        "accent": "Attack Surface Review"
+        "eyebrow": "Thema",
+        "title": "Web App Security",
+        "text": "Notizen zu Abläufen, Eingaben und Vertrauensgrenzen, die in modernen Webanwendungen echtes Risiko tragen.",
+        "accent": "Attack-Surface-Notizen"
       },
       "penetrationTesting": {
-        "eyebrow": "Preparation",
-        "title": "Pentest-Vorbereitung & Begleitung",
-        "text": "Ich erkläre dir, wie der Pentest-Prozess abläuft und welche Fragen du stellen solltest.",
+        "eyebrow": "Thema",
+        "title": "Pentest-Vorbereitung",
+        "text": "Verständliche Notizen dazu, wie Pentests ablaufen, wie guter Scope aussieht und welche Fragen vor einem Test wichtig sind.",
         "accent": "Pentest-Vorbereitung"
       },
       "secureDevelopment": {
-        "eyebrow": "Guidance",
-        "title": "Security-Beratung & Begleitung",
-        "text": "Ich biete fokussierte Gespräche und praxisnahe Beratung zu Web-Security und sicherer Entwicklung.",
-        "accent": "Praktische Sicherheitsberatung"
-      }
-    }
-  },
-  "Services": {
-    "common": {
-      "backToServices": "Zur\u00fcck zu den Leistungen",
-      "relatedServices": "Verwandte Leistungen"
-    },
-    "items": {
-      "webAppSecurity": {
-        "metadata": {
-          "title": "Web App Security Review | niwo",
-          "description": "Ein praxisnaher Sicherheitsreview deiner Webanwendung mit Fokus auf die Abläufe, Eingaben und Vertrauensgrenzen, die echtes Risiko tragen, mit klaren Findings, verständlichen Erklärungen und konkreten Schritten, um das Wichtige zu beheben."
-        },
-        "card": {
-          "eyebrow": "Assessment",
-          "title": "Web App Security Review",
-          "text": "Ich prüfe deine Webanwendung mit Fokus auf die Abläufe, Eingaben und Vertrauensgrenzen, die echtes Risiko tragen. Du bekommst klare Ergebnisse in verständlicher Sprache, mit konkreten Schritten, um das Wichtigste zu beheben.",
-          "accent": "Attack Surface Review",
-          "tag": "Gut für: Entwickler vor einem Produkt-Launch, kleine Teams vor einem Release oder alle, die ein zweites Paar Augen wollen."
-        },
-        "hero": {
-          "eyebrow": "Anwendungsreview",
-          "title": "Sieh, wo deine Web-App wirklich angreifbar ist",
-          "intro": "Ich gehe deine Webanwendung mit Fokus auf die Flows, Eingaben und Vertrauensgrenzen durch, die tatsächlich Risiko tragen. Das Ziel ist kein Scanner-Auswurf, sondern ein klares Bild davon, wo du angreifbar bist und was sich zuerst zu beheben lohnt.",
-          "outcomeLabel": "Was du davon hast",
-          "outcomeText": "Klare Findings, verständlich erklärt, nach Wichtigkeit geordnet, mit konkreten Schritten, die dein Team sofort umsetzen kann."
-        },
-        "covers": {
-          "title": "Was das abdeckt",
-          "items": [
-            "Die Flows, die echtes Risiko tragen: Login, Account-Aktionen, Zahlungen, alles Sensible",
-            "Authentifizierung und Session-Handling und die Annahmen dahinter",
-            "Zugriffskontrolllücken: Privilege Escalation und Broken Object-Level Access",
-            "Eingabeverarbeitung: Injection, unsicheres Parsing und schwache Validierung",
-            "Konfigurations- und Vertrauensgrenzen-Probleme, die die Angriffsfläche still vergrößern"
-          ]
-        },
-        "process": {
-          "title": "Wie ich arbeite",
-          "steps": [
-            {
-              "title": "Verstehen, wie es funktionieren soll",
-              "text": "Ich starte damit, wie sich die App verhalten soll, wo sensible Aktionen passieren und wo Vertrauen vorausgesetzt statt erzwungen wird."
-            },
-            {
-              "title": "Dort prüfen, wo das Risiko wirklich liegt",
-              "text": "Ich konzentriere mich auf die Flows, Eingaben und Randfälle, die echte Probleme verbergen, nicht nur auf das, was eine Checkliste flaggt."
-            },
-            {
-              "title": "So dokumentieren, dass du handeln kannst",
-              "text": "Jeder Fund kommt in verständlicher Sprache mit Auswirkung und konkreter Behebung. Keine vagen Risiko-Scores, nur was kaputt ist und was zu tun ist."
-            }
-          ]
-        },
-        "bestFor": {
-          "title": "Besonders passend für",
-          "items": [
-            "Entwickler, die ein Produkt startklar machen",
-            "Kleine Teams, die vor einem Release einen Sicherheitsblick wollen",
-            "Produkte mit User-Accounts, Berechtigungen oder sensiblen Daten",
-            "Alle, die einfach ein ehrliches zweites Paar Augen wollen"
-          ]
-        },
-        "deliverables": {
-          "title": "Was du bekommst",
-          "items": [
-            "Einen kurzen, fokussierten Bericht mit klaren, validierten Findings",
-            "Verständliche Erklärungen ohne Jargon, den niemand liest",
-            "Eine priorisierte Liste, damit du weißt, was du zuerst behebst",
-            "Follow-up, falls etwas im Bericht Klärung braucht"
-          ]
-        },
-        "cta": {
-          "title": "Willst du wissen, wo deine App angreifbar ist?",
-          "text": "Ob vor dem Launch oder einfach für ein zweites Paar Augen, ich schaue gern drüber.",
-          "primary": "Kontakt aufnehmen",
-          "secondary": "Zurück zu den Leistungen"
-        }
-      },
-      "penetrationTesting": {
-        "metadata": {
-          "title": "Pentest-Vorbereitung & Begleitung | niwo",
-          "description": "Unterstützung, um dich auf einen Penetrationstest vorzubereiten: den Prozess verstehen, den Scope definieren, den Bericht lesen und einem Testanbieter die richtigen Fragen stellen. Kein vollständiges Pentest-Engagement."
-        },
-        "card": {
-          "eyebrow": "Preparation",
-          "title": "Pentest-Vorbereitung & Begleitung",
-          "text": "Du überlegst, einen Pentest durchführen zu lassen, weißt aber nicht, wo du anfangen sollst? Ich erkläre dir, wie der Prozess abläuft, helfe dir, deinen Scope zu definieren, zu verstehen, was ein Report enthalten sollte, und die richtigen Fragen zu stellen, wenn du einen Anbieter auswählst.",
-          "accent": "Pentest-Vorbereitung",
-          "tag": "Hinweis: Das ist Begleitung, um das Beste aus einem Pentest herauszuholen, kein vollständiger Pentest."
-        },
-        "hero": {
-          "eyebrow": "Prozess & Vorbereitung",
-          "title": "Bereite dich auf einen Pentest vor, bevor du dafür bezahlst",
-          "intro": "Du denkst über einen Pentest nach, weißt aber nicht, wo du anfangen sollst? Ich zeige dir, wie der Prozess wirklich aussieht, helfe dir, deinen Scope vorzubereiten, zu verstehen, was du von einem Bericht erwarten kannst, und die richtigen Fragen zu stellen, wenn du mit einem Testanbieter sprichst.",
-          "outcomeLabel": "Was du davon hast",
-          "outcomeText": "Ein klares Verständnis des Prozesses, einen Scope, bei dem du dich sicher fühlst, und die richtigen Fragen, damit du echten Wert aus dem Test ziehst, für den du bezahlst."
-        },
-        "covers": {
-          "title": "Was das abdeckt",
-          "items": [
-            "Was ein Penetrationstest tatsächlich umfasst, von Anfang bis Ende",
-            "Hilfe beim Definieren und Scopen dessen, was getestet werden soll",
-            "Was du von einem Bericht erwarten kannst und wie du ihn liest",
-            "Die richtigen Fragen an einen Testanbieter",
-            "Wie du sicherstellst, dass du echten Wert aus dem Engagement ziehst"
-          ]
-        },
-        "reassurance": {
-          "title": "Kontrolliert, nicht chaotisch",
-          "text": "Ein Penetrationstest ist nicht dasselbe wie ein echter Angriff. Sauber durchgeführt sollte er deine Systeme nicht beschädigen und deine Daten nicht gefährden. Es gibt keinen echten Schaden, von dem du dich erholen musst, und keine Bußgelder, vor denen du Angst haben musst. Alles, was ein Pentester findet, dient nur einem Zweck: deine Sicherheit stärker zu machen."
-        },
-        "process": {
-          "title": "Wie es abläuft",
-          "steps": [
-            {
-              "title": "Den Prozess verstehen",
-              "text": "Ich führe dich durch das, was ein Pentest umfasst. Keine Überraschungen und kein Jargon, den du später entschlüsseln musst."
-            },
-            {
-              "title": "Deinen Scope vorbereiten",
-              "text": "Wir klären, was sich zu testen lohnt, und definieren einen Scope, der zu deinem Produkt und deinem Budget passt."
-            },
-            {
-              "title": "Informiert hineingehen",
-              "text": "Du gehst ins Engagement und weißt, was dich erwartet, was du fragen solltest und wie du die Ergebnisse einordnest."
-            }
-          ]
-        },
-        "bestFor": {
-          "title": "Besonders passend für",
-          "items": [
-            "Teams, die über ihren ersten Penetrationstest nachdenken",
-            "Gründer, die eine Kunden- oder Compliance-Anforderung erfüllen müssen",
-            "Entwickler, die einen Test sauber scopen wollen, bevor sie dafür bezahlen",
-            "Alle, die unsicher sind, was sie von einem Testanbieter erwarten können"
-          ]
-        },
-        "deliverables": {
-          "title": "Was du bekommst",
-          "items": [
-            "Eine verständliche Erklärung des Pentest-Prozesses",
-            "Hilfe beim Definieren und Dokumentieren deines Scopes",
-            "Unterstützung beim Lesen und Umsetzen eines Berichts",
-            "Eine Liste der richtigen Fragen an einen Anbieter"
-          ]
-        },
-        "cta": {
-          "title": "Denkst du über einen Pentest nach?",
-          "text": "Wenn du vorbereitet hineingehen und echten Wert daraus ziehen willst, lass uns zuerst über den Prozess sprechen.",
-          "primary": "Kontakt aufnehmen",
-          "secondary": "Zurück zu den Leistungen"
-        }
-      },
-      "secureDevelopment": {
-        "metadata": {
-          "title": "Sicherheitsberatung & Begleitung | niwo",
-          "description": "Fokussierte Sicherheitsberatung für Entwickler und kleine Teams mit ehrlichen Antworten, praktischen Tipps zu Web-Sicherheit und sicherer Entwicklung und Hilfe beim Priorisieren."
-        },
-        "card": {
-          "eyebrow": "Guidance",
-          "title": "Security-Beratung & Begleitung",
-          "text": "Nicht jedes Team braucht einen vollen Pentest. Manchmal brauchst du einfach jemanden, der sich dein Setup ansieht, deine Fragen ehrlich beantwortet und dir hilft zu priorisieren. Ich biete fokussierte Gespräche und praxisnahe Beratung zu Web-Security, sicherer Entwicklung und worauf du beim Bauen achten solltest.",
-          "accent": "Praktische Sicherheitsberatung",
-          "tag": "Gut für: Early-Stage-Teams, Solo-Entwickler, kleine Unternehmen, die online gehen."
-        },
-        "hero": {
-          "eyebrow": "Beratung & Begleitung",
-          "title": "Ehrliche Antworten, ohne das volle Engagement",
-          "intro": "Nicht jedes Team braucht einen vollständigen Pentest. Manchmal brauchst du einfach jemanden, der sich dein Setup ansieht, deine Fragen ehrlich beantwortet und dir hilft zu entscheiden, worauf du dich konzentrierst. Ich biete fokussierte Gespräche und praktische Tipps zu Web-Sicherheit, sicherer Entwicklung und worauf du beim Bauen achten solltest.",
-          "outcomeLabel": "Was du davon hast",
-          "outcomeText": "Einen klareren Kopf zu deinen Risiken, gerade Antworten auf die Fragen, die du wirklich hast, und eine kurze Liste dessen, was als Nächstes sinnvoll ist."
-        },
-        "covers": {
-          "title": "Was wir abdecken können",
-          "items": [
-            "Einen Blick auf dein aktuelles Setup und wo die echten Risiken liegen",
-            "Ehrliche Antworten auf deine Sicherheitsfragen ohne Upselling",
-            "Praktische Tipps zu Web-Sicherheit und sicherer Entwicklung",
-            "Worauf du achten solltest, während du baust und wächst",
-            "Hilfe beim Priorisieren, damit du Aufwand dort investierst, wo er zählt"
-          ]
-        },
-        "process": {
-          "title": "Wie es abläuft",
-          "steps": [
-            {
-              "title": "Erzähl mir, woran du arbeitest",
-              "text": "Wir starten mit deinem Produkt, deinem Stack und dem, was dich wirklich beschäftigt. Keine starre Checkliste."
-            },
-            {
-              "title": "Es durchsprechen",
-              "text": "Ein fokussiertes Gespräch, in dem ich deine Fragen ehrlich beantworte und sage, worauf ich achten würde."
-            },
-            {
-              "title": "Mit einem Plan rausgehen",
-              "text": "Du gehst mit klaren, praktischen nächsten Schritten, die du in deinem eigenen Tempo umsetzen kannst."
-            }
-          ]
-        },
-        "bestFor": {
-          "title": "Besonders passend für",
-          "items": [
-            "Teams in der Frühphase, die ihre Sicherheitsgrundlagen klären",
-            "Solo-Entwickler, die ihre Überlegungen gegenchecken lassen wollen",
-            "Kleine Unternehmen, die zum ersten Mal online gehen",
-            "Alle, die eher Beratung brauchen als ein volles Engagement"
-          ]
-        },
-        "deliverables": {
-          "title": "Was du bekommst",
-          "items": [
-            "Fokussierte Gespräche, zugeschnitten auf dein Produkt",
-            "Ehrliche, jargonfreie Antworten auf deine Fragen",
-            "Praktische Empfehlungen, die du wirklich anwenden kannst",
-            "Ein priorisiertes Gefühl dafür, was du zuerst angehst"
-          ]
-        },
-        "cta": {
-          "title": "Nicht sicher, was du wirklich brauchst?",
-          "text": "Wenn du es lieber durchsprichst, statt dich gleich auf ein volles Engagement festzulegen, lass uns reden.",
-          "primary": "Kontakt aufnehmen",
-          "secondary": "Zurück zu den Leistungen"
-        }
+        "eyebrow": "Thema",
+        "title": "Sichere Entwicklung",
+        "text": "Praktische Secure-Development-Notizen zum Bauen, Prüfen und Durchdenken von Webanwendungen mit weniger scharfen Kanten.",
+        "accent": "Praktische Security-Notizen"
       }
     }
   },
@@ -389,7 +164,7 @@
   "Imprint": {
     "metadata": {
       "title": "Impressum | niwo systems",
-      "description": "Rechtliche Hinweise für niwo systems. Nicht-kommerzielle Informationswebsite. Professionelle Angebote werden privat außerhalb dieser Plattform abgewickelt."
+      "description": "Rechtliche Hinweise für niwo systems. Nicht-kommerzielle Informationswebsite. Berufliche Zusammenarbeit wird privat außerhalb dieser Plattform abgewickelt."
     },
     "eyebrow": "Rechtliches",
     "title": "Impressum",
@@ -403,9 +178,9 @@
       },
       "nature": {
         "title": "2. Art der Website",
-        "body": "Diese Website ist ein nicht-kommerzielles Informationsprojekt mit Fokus auf Technologie- und Sicherheitsforschung. Über diese Plattform werden keine Waren oder Dienstleistungen direkt verkauft.",
+        "body": "Diese Website ist ein nicht-kommerzielles Informationsprojekt mit Fokus auf Technologie- und Sicherheitsforschung. Über diese Plattform wird keine bezahlte Arbeit direkt gebucht oder verkauft.",
         "disclaimerTitle": "Hinweis:",
-        "disclaimerText": "Diese Website bietet keine kostenpflichtigen Leistungen direkt an. Jede berufliche Zusammenarbeit oder jedes Angebot, das aus privatem Kontakt entsteht, wird außerhalb dieser Plattform abgewickelt, zum Beispiel per E-Mail oder über einen separaten Vertrag."
+        "disclaimerText": "Diese Website verkauft keine bezahlte Arbeit direkt. Jede berufliche Zusammenarbeit, die aus privatem Kontakt entsteht, wird außerhalb dieser Plattform abgewickelt, zum Beispiel per E-Mail oder über eine separate Vereinbarung."
       },
       "contact": {
         "title": "3. Kontakt",
@@ -554,6 +329,231 @@
         "navTitle": "12. Kontakt",
         "title": "12. Kontakt",
         "body": "Wenn du Fragen zu dieser Datenschutzerklärung oder zur Verarbeitung deiner personenbezogenen Daten hast, kontaktiere legal@niwosystems.com."
+      }
+    }
+  },
+  "Topics": {
+    "common": {
+      "backToTopics": "Zurück zu den Themen",
+      "relatedTopics": "Verwandte Themen"
+    },
+    "items": {
+      "webAppSecurity": {
+        "metadata": {
+          "title": "Web App Security | niwo",
+          "description": "Eine praktische Themenseite zu Web Application Security: Flows, Eingaben, Vertrauensgrenzen, typische Schwachstellen und verständliche Notizen dazu, was wirklich zählt."
+        },
+        "card": {
+          "eyebrow": "Thema",
+          "title": "Web App Security",
+          "text": "Ein praktischer Blick auf Flows, Eingaben und Vertrauensgrenzen, die in Webanwendungen echtes Risiko tragen, mit Notizen dazu, wie Probleme entstehen und wie man über Fixes nachdenkt.",
+          "accent": "Attack-Surface-Notizen",
+          "tag": "Gut für: Entwickler, Lernende und kleine Teams, die Web-App-Risiko klarer verstehen wollen."
+        },
+        "hero": {
+          "eyebrow": "Application Security",
+          "title": "Wie Web-Apps angreifbar werden",
+          "intro": "Dieses Thema sammelt praktische Notizen dazu, wie moderne Webanwendungen angreifbar werden: schwache Flows, fehlende Zugriffskontrollen, unsichere Eingabeverarbeitung, Session-Fehler und Vertrauensgrenzen, die nur angenommen statt erzwungen werden.",
+          "outcomeLabel": "Wofür diese Seite da ist",
+          "outcomeText": "Eine klare, verständliche Karte davon, wo Web-App-Risiken typischerweise entstehen und wie man über passende Fixes nachdenkt."
+        },
+        "covers": {
+          "title": "Was dieses Thema abdeckt",
+          "items": [
+            "Die Flows, die echtes Risiko tragen: Login, Account-Aktionen, Zahlungen, alles Sensible",
+            "Authentifizierung und Session-Handling und die Annahmen dahinter",
+            "Zugriffskontrolllücken: Privilege Escalation und Broken Object-Level Access",
+            "Eingabeverarbeitung: Injection, unsicheres Parsing und schwache Validierung",
+            "Konfigurations- und Vertrauensgrenzen-Probleme, die die Angriffsfläche still vergrößern"
+          ]
+        },
+        "process": {
+          "title": "Wie ich es erkunde",
+          "steps": [
+            {
+              "title": "Verstehen, wie das System funktionieren soll",
+              "text": "Am Anfang steht das gewünschte Verhalten: wo sensible Aktionen passieren, welche Daten wichtig sind und wo die Anwendung Vertrauen annimmt."
+            },
+            {
+              "title": "Dort hinschauen, wo Risiko entsteht",
+              "text": "Fokus auf Flows, Eingaben und Randfälle, in denen echte Probleme stecken können, nicht nur auf das, was eine Checkliste melden würde."
+            },
+            {
+              "title": "So schreiben, dass es verständlich bleibt",
+              "text": "Gute Security-Notizen erklären Auswirkung und Fixes verständlich. Keine vagen Risiko-Scores, sondern was falsch läuft, warum es zählt und was besser wäre."
+            }
+          ]
+        },
+        "bestFor": {
+          "title": "Nützlich für",
+          "items": [
+            "Entwickler, die Produkte mit Accounts, Berechtigungen oder sensiblen Daten bauen",
+            "Lernende, die verstehen wollen, wo Web-Security-Probleme entstehen",
+            "Kleine Teams, die Anwendungsrisiko klarer einordnen wollen",
+            "Alle, die einen ehrlichen zweiten Blick auf ihre Security-Überlegungen wollen"
+          ]
+        },
+        "deliverables": {
+          "title": "Was ich dokumentiere",
+          "items": [
+            "Kurze Notizen zu typischen Web-App-Fehlermodi",
+            "Verständliche Erklärungen ohne Jargon, den niemand liest",
+            "Praktische Fix-Muster und Tradeoffs",
+            "Beispiele aus Labs, Reviews und kontrollierten Test-Setups"
+          ]
+        },
+        "cta": {
+          "title": "Hast du eine Web-Security-Frage?",
+          "text": "Wenn dieses Thema zu etwas passt, das du baust oder lernst, kannst du eine konkrete Frage stellen und ich schaue sie mir an, wenn ich kann.",
+          "primary": "Security-Frage stellen",
+          "secondary": "Zurück zu den Themen"
+        }
+      },
+      "penetrationTesting": {
+        "metadata": {
+          "title": "Pentest-Vorbereitung | niwo",
+          "description": "Verständliche Notizen zur Vorbereitung auf einen Penetrationstest: Prozess verstehen, Scope definieren, Berichte lesen und einem Testanbieter bessere Fragen stellen."
+        },
+        "card": {
+          "eyebrow": "Thema",
+          "title": "Pentest-Vorbereitung",
+          "text": "Verständliche Notizen dazu, was ein Penetrationstest ist, wie Scope funktioniert, was ein nützlicher Bericht enthalten sollte und welche Fragen vor der Auswahl eines Testanbieters wichtig sind.",
+          "accent": "Pentest-Vorbereitung",
+          "tag": "Hinweis: Das ist ein Lern- und Vorbereitungsthema, kein Verkauf vollständiger Penetrationstests."
+        },
+        "hero": {
+          "eyebrow": "Prozess & Vorbereitung",
+          "title": "Pentests verstehen, bevor du dafür bezahlst",
+          "intro": "Dieses Thema erklärt, was ein Pentest normalerweise umfasst, wie man über Scope nachdenkt, was ein Bericht leisten kann und was nicht, und wie du informierter mit einem Testanbieter sprichst.",
+          "outcomeLabel": "Wofür diese Seite da ist",
+          "outcomeText": "Ein klareres Verständnis des Prozesses, bessere Scoping-Instinkte und eine praktische Liste von Fragen, die vor einem Test sinnvoll sind."
+        },
+        "covers": {
+          "title": "Was dieses Thema abdeckt",
+          "items": [
+            "Was ein Penetrationstest tatsächlich umfasst, von Anfang bis Ende",
+            "Hilfe beim Definieren und Scopen dessen, was getestet werden soll",
+            "Was du von einem Bericht erwarten kannst und wie du ihn liest",
+            "Die richtigen Fragen an einen Testanbieter",
+            "Wie du sicherstellst, dass du echten Wert aus dem Test ziehst"
+          ]
+        },
+        "reassurance": {
+          "title": "Kontrolliert, nicht chaotisch",
+          "text": "Ein Penetrationstest ist nicht dasselbe wie ein echter Angriff. Sauber durchgeführt sollte er deine Systeme nicht beschädigen und deine Daten nicht gefährden. Es gibt keinen echten Schaden, von dem du dich erholen musst, und keine Bußgelder, vor denen du Angst haben musst. Alles, was ein Pentester findet, dient nur einem Zweck: deine Sicherheit stärker zu machen."
+        },
+        "process": {
+          "title": "Wie ich es aufschlüssele",
+          "steps": [
+            {
+              "title": "Den Prozess verstehen",
+              "text": "Ich führe dich durch das, was ein Pentest umfasst. Keine Überraschungen und kein Jargon, den du später entschlüsseln musst."
+            },
+            {
+              "title": "Deinen Scope vorbereiten",
+              "text": "Wir klären, was sich zu testen lohnt, und definieren einen Scope, der zu deinem Produkt und deinem Budget passt."
+            },
+            {
+              "title": "Informiert hineingehen",
+              "text": "Du gehst in den Test und weißt, was dich erwartet, was du fragen solltest und wie du die Ergebnisse einordnest."
+            }
+          ]
+        },
+        "bestFor": {
+          "title": "Nützlich für",
+          "items": [
+            "Teams, die über ihren ersten Penetrationstest nachdenken",
+            "Gründer, die eine Kunden- oder Compliance-Anforderung erfüllen müssen",
+            "Entwickler, die einen Test sauber scopen wollen, bevor sie dafür bezahlen",
+            "Alle, die unsicher sind, was sie von einem Testanbieter erwarten können"
+          ]
+        },
+        "deliverables": {
+          "title": "Was ich dokumentiere",
+          "items": [
+            "Verständliche Erklärungen zum Pentest-Prozess",
+            "Scope-Beispiele und Fragen, die man früh klären sollte",
+            "Notizen zum Lesen und Einordnen von Berichten",
+            "Eine Liste sinnvoller Fragen an einen Anbieter"
+          ]
+        },
+        "cta": {
+          "title": "Denkst du über einen Pentest nach?",
+          "text": "Wenn du Scope, Berichte oder Anbieterfragen besser verstehen willst, stell eine konkrete Security-Frage und ich zeige dir eine praktische Richtung.",
+          "primary": "Security-Frage stellen",
+          "secondary": "Zurück zu den Themen"
+        }
+      },
+      "secureDevelopment": {
+        "metadata": {
+          "title": "Sichere Entwicklung | niwo",
+          "description": "Praktische Secure-Development-Notizen für Entwickler und Lernende: Web-Security-Grundlagen, defensive Entscheidungen, Risikopriorisierung und sicherere Umsetzungsmuster."
+        },
+        "card": {
+          "eyebrow": "Thema",
+          "title": "Sichere Entwicklung",
+          "text": "Praktische Notizen zum Bauen von Webanwendungen mit weniger Security-Überraschungen: Auth, Eingaben, Datenflüsse, Abhängigkeiten und Tradeoffs während der Entwicklung.",
+          "accent": "Praktische Security-Notizen",
+          "tag": "Gut für: Lernende, Solo-Entwickler und kleine Teams, die Webanwendungen bauen."
+        },
+        "hero": {
+          "eyebrow": "Sichere Entwicklung",
+          "title": "Mit Security im Kopf bauen, ohne in Checklisten zu ertrinken",
+          "intro": "Dieses Thema dreht sich um praktische sichere Entwicklung: die kleinen Design- und Implementierungsentscheidungen, die Risiko reduzieren, bevor eine App ein formales Review oder einen langen Bericht braucht.",
+          "outcomeLabel": "Wofür diese Seite da ist",
+          "outcomeText": "Eine praktische Art, Security-Entscheidungen beim Bauen zu durchdenken: was zählt, was warten kann und wo Fehler schnell zu echtem Risiko werden."
+        },
+        "covers": {
+          "title": "Was dieses Thema abdeckt",
+          "items": [
+            "Wie du riskante Annahmen in deinem Setup erkennst",
+            "Entscheidungen rund um Authentifizierung, Autorisierung, Sessions und Datenflüsse",
+            "Praktische Web-Security- und Secure-Development-Muster",
+            "Worauf du achten solltest, wenn eine Anwendung wächst",
+            "Wie du Aufwand dort priorisierst, wo er wirklich Risiko reduziert"
+          ]
+        },
+        "process": {
+          "title": "Wie ich es erkunde",
+          "steps": [
+            {
+              "title": "Bei dem starten, was gebaut wird",
+              "text": "Gutes Security-Denken beginnt beim Produkt, Stack, Daten und echten Nutzeraktionen, nicht bei einer generischen Checkliste."
+            },
+            {
+              "title": "Riskante Entscheidungen nachzeichnen",
+              "text": "Nachverfolgen, wo Vertrauen, Identität, Eingaben, Berechtigungen und externe Abhängigkeiten ins System kommen."
+            },
+            {
+              "title": "In praktische nächste Schritte übersetzen",
+              "text": "Der sinnvolle Output ist keine Angst. Er ist eine klarere Liste von Tradeoffs, Fixes und Dingen, die man als Nächstes lernen sollte."
+            }
+          ]
+        },
+        "bestFor": {
+          "title": "Nützlich für",
+          "items": [
+            "Teams in der Frühphase, die ihre Sicherheitsgrundlagen klären",
+            "Solo-Entwickler, die ihre Überlegungen gegenchecken lassen wollen",
+            "Kleine Unternehmen, die zum ersten Mal online gehen",
+            "Alle, die sichere Entwicklung praktisch lernen wollen"
+          ]
+        },
+        "deliverables": {
+          "title": "Was ich dokumentiere",
+          "items": [
+            "Praktische Notizen zu echten Web-Development-Entscheidungen",
+            "Ehrliche, jargonfreie Erklärungen häufiger Risiken",
+            "Fix-Muster, die man wirklich anwenden kann",
+            "Ein priorisiertes Gefühl dafür, was man zuerst lernen oder verbessern sollte"
+          ]
+        },
+        "cta": {
+          "title": "Nicht sicher, wie du über eine Security-Entscheidung nachdenken sollst?",
+          "text": "Stell eine konkrete Frage zu dem, was du baust, liest oder testest, und ich helfe dir beim Durchdenken.",
+          "primary": "Security-Frage stellen",
+          "secondary": "Zurück zu den Themen"
+        }
       }
     }
   }

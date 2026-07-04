@@ -25,7 +25,7 @@ export default function Navbar() {
                   <LinkAnimation href="/pages/about">{t("about")}</LinkAnimation>
                 </li>
                 <li>
-                  <LinkAnimation href="/#what-i-do">{t("services")}</LinkAnimation>
+                  <LinkAnimation href="/#topics">{t("services")}</LinkAnimation>
                 </li>
               </ul>
             </div>
@@ -86,7 +86,7 @@ export default function Navbar() {
                   <LinkAnimation href="/pages/about">{t("about")}</LinkAnimation>
                 </li>
                 <li onClick={() => setIsOpen(false)}>
-                  <LinkAnimation href="/#what-i-do">{t("services")}</LinkAnimation>
+                  <LinkAnimation href="/#topics">{t("services")}</LinkAnimation>
                 </li>
               </ul>
             </div>
