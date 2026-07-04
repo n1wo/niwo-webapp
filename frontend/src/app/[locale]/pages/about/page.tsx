@@ -237,7 +237,7 @@ export default async function AboutPage({
           <p className="font-mono text-[0.68rem] uppercase tracking-[0.24em] text-zinc-500">
             {t("signalLabel")}
           </p>
-          <p className="mt-3 max-w-2xl font-mono text-sm leading-7 text-zinc-400">
+          <p className="mt-3 font-mono text-sm leading-7 text-zinc-400">
             {t("signalText")}
           </p>
         </div>
