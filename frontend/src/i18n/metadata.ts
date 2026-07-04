@@ -2,7 +2,7 @@ import type {Metadata} from "next";
 import {routing} from "./routing";
 
 export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://niwosystems.com";
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.niwosystems.com";
 
 export const SITE_NAME = "niwo systems";
 
