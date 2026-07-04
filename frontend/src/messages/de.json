@@ -370,6 +370,8 @@
         "value": "Fokussierte Reviews, Lernnotizen, Forschung und kleine Projekte"
       }
     },
+    "signalLabel": "Signal",
+    "signalText": "Ich möchte Menschen in einer immer schneller werdenden digitalen Welt mehr Orientierung geben: verständlich erklären, wo Risiken liegen, was Sicherheit bedeutet und wie man Systeme bewusster nutzt.",
     "proof": {
       "eyebrow": "PROOF OF WORK",
       "heading": "Was ich wirklich gebaut habe",

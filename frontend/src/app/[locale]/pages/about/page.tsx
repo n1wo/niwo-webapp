@@ -233,6 +233,15 @@ export default async function AboutPage({
           </div>
         </section>
 
+        <div className="border-l-2 border-[rgb(95_98_184/0.35)] py-1 pl-6">
+          <p className="font-mono text-[0.68rem] uppercase tracking-[0.24em] text-zinc-500">
+            {t("signalLabel")}
+          </p>
+          <p className="mt-3 max-w-2xl font-mono text-sm leading-7 text-zinc-400">
+            {t("signalText")}
+          </p>
+        </div>
+
         <section aria-labelledby="proof-of-work">
           <p className="font-mono text-[0.72rem] font-medium uppercase tracking-[0.3em] text-[var(--color-accent-light)]">
             {t("proof.eyebrow")}

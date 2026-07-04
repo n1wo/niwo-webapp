@@ -370,6 +370,8 @@
         "value": "Focused reviews, learning notes, research, and small projects"
       }
     },
+    "signalLabel": "Signal",
+    "signalText": "In a digital world that keeps moving faster, I want to give people more orientation: explaining clearly where the risks lie, what security really means, and how to use systems more consciously.",
     "proof": {
       "eyebrow": "PROOF OF WORK",
       "heading": "What I've actually built",
