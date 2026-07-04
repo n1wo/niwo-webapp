@@ -340,14 +340,29 @@
       "title": "Über mich | niwo",
       "description": "Über Nikita, Cybersecurity-Student in Bonn, der Niwo Systems öffentlich aufbaut: echte Security-Arbeit, ehrlich dokumentiert, mit klar abgesteckter Hilfe, wo es passt."
     },
-    "eyebrow": "WER ICH BIN",
-    "title": "Über mich",
-    "intro": {
-      "paragraphs": [
-        "Hi, ich bin Nikita. Ich mache Cybersecurity — die meisten kennen es als Hacken, das ist ein Teil davon. Ich suche Schwachstellen in der IT und helfe, sie zu erkennen und zu beheben.",
-        "Ich gebe nicht vor, eine voll etablierte Firma zu sein. Niwo ist jung, ich studiere noch, und ich bau das hier Schritt für Schritt auf — öffentlich und ehrlich. Was du hier findest, ist echte Arbeit: Tools, die ich gebaut habe, ein Lab, das ich betreibe, und Writeups darüber, was funktioniert hat und was nicht.",
-        "Security-Websites sind oft schwer zugänglich, wenn man nicht aus der Branche kommt. Ich will das anders machen. Gerade heute sollten wir gucken, dass wir alle abholen — nicht nur die, die eh schon Bescheid wissen."
-      ]
+    "eyebrow": "ÜBER MICH",
+    "title": "Die Person hinter niwo systems",
+    "intro": "Ich bin Nikita. Zur Cybersecurity bin ich über Elektrotechnik und technische Projektkoordination gekommen, Bereiche, in denen man lernt, Systeme auseinanderzunehmen, Fehler einzugrenzen und Sicherheit ernst zu nehmen. niwo systems ist der Ort, an dem ich diese Denkweise auf Web-Security richte: sie im Studium vertiefen, Dinge bauen und in kontrollierten Labs testen und dokumentieren, was ich dabei lerne.",
+    "profileLabel": "Profil",
+    "statusLabel": "Studium & Aufbau",
+    "factsLabel": "Kurzprofil",
+    "facts": {
+      "base": {
+        "label": "Basis",
+        "value": "Bonn, Deutschland"
+      },
+      "study": {
+        "label": "Studium",
+        "value": "Cybersecurity an der IU Internationalen Hochschule"
+      },
+      "focus": {
+        "label": "Fokus",
+        "value": "Web Application Security, sichere Entwicklung und praktische Lab-Arbeit"
+      },
+      "mode": {
+        "label": "Modus",
+        "value": "Fokussierte Reviews, Lernnotizen, Forschung und kleine Projekte"
+      }
     },
     "proof": {
       "eyebrow": "PROOF OF WORK",

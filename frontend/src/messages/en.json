@@ -340,13 +340,29 @@
       "title": "About | niwo",
       "description": "About Nikita, a cybersecurity student in Bonn building Niwo Systems in public: real security work, documented honestly, with carefully scoped help where it fits."
     },
-    "eyebrow": "WHO I AM",
-    "title": "About",
-    "intro": {
-      "paragraphs": [
-        "Hi, I'm Nikita. I'm a cybersecurity student based in Bonn, and Niwo Systems is the company I'm building alongside my studies — step by step, in public.",
-        "I'm not going to pretend this is an established firm. It isn't. What it is: a place where I do real security work, document it honestly, and offer carefully scoped help where I can genuinely deliver. If something is beyond my current level, I'll tell you — and usually point you to what you actually need."
-      ]
+    "eyebrow": "ABOUT",
+    "title": "The person behind niwo systems",
+    "intro": "I'm Nikita. I came to cybersecurity through electrical engineering and technical project coordination, areas where you learn to take systems apart, trace where they fail, and take safety seriously. niwo systems is where I turn that mindset toward web security: studying it formally, building and testing things in controlled labs, and documenting what I learn along the way.",
+    "profileLabel": "Profile",
+    "statusLabel": "studying & building",
+    "factsLabel": "Snapshot",
+    "facts": {
+      "base": {
+        "label": "Base",
+        "value": "Bonn, Germany"
+      },
+      "study": {
+        "label": "Study",
+        "value": "Cybersecurity at IU International University"
+      },
+      "focus": {
+        "label": "Focus",
+        "value": "Web application security, secure development, and practical lab work"
+      },
+      "mode": {
+        "label": "Mode",
+        "value": "Focused reviews, learning notes, research, and small projects"
+      }
     },
     "proof": {
       "eyebrow": "PROOF OF WORK",

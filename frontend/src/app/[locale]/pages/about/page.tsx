@@ -77,7 +77,24 @@ export default async function AboutPage({
 }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "About" });
-  const introParagraphs = t.raw("intro.paragraphs") as string[];
+  const profileItems = [
+    {
+      label: t("facts.base.label"),
+      value: t("facts.base.value"),
+    },
+    {
+      label: t("facts.study.label"),
+      value: t("facts.study.value"),
+    },
+    {
+      label: t("facts.focus.label"),
+      value: t("facts.focus.value"),
+    },
+    {
+      label: t("facts.mode.label"),
+      value: t("facts.mode.value"),
+    },
+  ];
 
   const proofCards: {
     key: string;
@@ -168,23 +185,44 @@ export default async function AboutPage({
           <div className="border-b border-white/[0.06] px-5 py-3 font-mono text-[0.68rem] uppercase tracking-[0.24em] text-zinc-500 sm:px-8">
             /about
           </div>
-          <div className="px-6 py-10 sm:px-8 sm:py-12 lg:px-10 lg:py-14">
-            <p className="font-mono text-[0.72rem] font-medium uppercase tracking-[0.3em] text-[var(--color-accent-light)]">
-              {t("eyebrow")}
-            </p>
-            <h1 className="mt-4 max-w-3xl break-words hyphens-auto font-mono text-4xl font-bold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-6xl">
-              {t("title")}
-            </h1>
-            <div className="mt-6 max-w-3xl space-y-5">
-              {introParagraphs.map((paragraph) => (
-                <p
-                  key={paragraph.slice(0, 32)}
-                  className="text-base leading-8 text-zinc-300 sm:text-lg"
-                >
-                  {paragraph}
-                </p>
-              ))}
+          <div className="grid gap-8 px-6 py-10 sm:px-8 sm:py-12 lg:grid-cols-[minmax(0,1.25fr)_minmax(18rem,0.75fr)] lg:px-10 lg:py-14">
+            <div>
+              <p className="font-mono text-[0.72rem] font-medium uppercase tracking-[0.3em] text-[var(--color-accent-light)]">
+                {t("eyebrow")}
+              </p>
+              <h1 className="mt-4 max-w-3xl break-words hyphens-auto font-mono text-4xl font-bold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-6xl">
+                {t("title")}
+              </h1>
+              <p className="mt-6 max-w-2xl text-base leading-8 text-zinc-300 sm:text-lg">
+                {t("intro")}
+              </p>
+              <div className="mt-8 flex flex-wrap items-center gap-3 font-mono">
+                <span className="rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1.5 text-[0.68rem] uppercase tracking-[0.22em] text-zinc-400">
+                  {t("profileLabel")}
+                </span>
+                <span className="rounded-full border border-[rgb(140_127_224/0.28)] bg-[rgb(95_98_184/0.14)] px-3 py-1.5 text-[0.68rem] uppercase tracking-[0.22em] text-zinc-200">
+                  {t("statusLabel")}
+                </span>
+              </div>
             </div>
+
+            <aside className="border-t border-white/[0.08] pt-6 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
+              <p className="font-mono text-[0.68rem] uppercase tracking-[0.24em] text-zinc-500">
+                {t("factsLabel")}
+              </p>
+              <dl className="mt-5 space-y-5">
+                {profileItems.map((item) => (
+                  <div key={item.label}>
+                    <dt className="font-mono text-[0.68rem] uppercase tracking-[0.2em] text-[var(--color-accent-light)]">
+                      {item.label}
+                    </dt>
+                    <dd className="mt-1 text-sm leading-6 text-zinc-300">
+                      {item.value}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            </aside>
           </div>
         </section>
 
