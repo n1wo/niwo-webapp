@@ -1,5 +1,5 @@
 import { spawn } from "node:child_process";
-import { existsSync } from "node:fs";
+import { cpSync, existsSync } from "node:fs";
 
 const HOST = "127.0.0.1";
 const PORT = Number(process.env.ROUTE_CHECK_PORT ?? 3020);
@@ -11,6 +11,7 @@ const requiredRoutes = [
   { path: "/de", statuses: [200] },
   { path: "/robots.txt", statuses: [200] },
   { path: "/.well-known/security.txt", statuses: [200] },
+  { path: "/assets/logos/niwologo.svg", statuses: [200] },
 ];
 
 const optionalRoutes = [
@@ -89,6 +90,13 @@ async function checkRoute({ path, statuses, location }) {
 
 const standaloneServer = ".next/standalone/server.js";
 const useStandaloneServer = existsSync(standaloneServer);
+
+if (useStandaloneServer) {
+  // The standalone output does not include static assets; copy them in the
+  // same way a real deployment does, so asset routes can be checked.
+  cpSync("public", ".next/standalone/public", { recursive: true });
+  cpSync(".next/static", ".next/standalone/.next/static", { recursive: true });
+}
 const serverArgs = useStandaloneServer
   ? [standaloneServer]
   : ["node_modules/next/dist/bin/next", "start", "--hostname", HOST, "--port", String(PORT)];
