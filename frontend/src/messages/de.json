@@ -342,7 +342,13 @@
     },
     "eyebrow": "ÜBER MICH",
     "title": "Die Person hinter niwo systems",
-    "intro": "Ich bin Nikita. Zur Cybersecurity bin ich über Elektrotechnik und technische Projektkoordination gekommen, Bereiche, in denen man lernt, Systeme auseinanderzunehmen, Fehler einzugrenzen und Sicherheit ernst zu nehmen. niwo systems ist der Ort, an dem ich diese Denkweise auf Web-Security richte: sie im Studium vertiefen, Dinge bauen und in kontrollierten Labs testen und dokumentieren, was ich dabei lerne.",
+    "intro": {
+      "paragraphs": [
+        "Hi, ich bin Nikita — Cybersecurity-Student mit technischem Hintergrund in Elektrotechnik und Projektarbeit.",
+        "Mit niwo systems baue ich mein eigenes Web- und Security-Projekt auf. Dabei möchte ich Cybersecurity-Themen so erklären, dass sie verständlich, praktisch und nachvollziehbar werden.",
+        "Hier dokumentiere ich, was ich baue, teste, kaputt mache, verbessere und dabei lerne."
+      ]
+    },
     "profileLabel": "Profil",
     "statusLabel": "Studium & Aufbau",
     "factsLabel": "Kurzprofil",

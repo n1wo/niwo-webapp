@@ -342,7 +342,13 @@
     },
     "eyebrow": "ABOUT",
     "title": "The person behind niwo systems",
-    "intro": "I'm Nikita. I came to cybersecurity through electrical engineering and technical project coordination, areas where you learn to take systems apart, trace where they fail, and take safety seriously. niwo systems is where I turn that mindset toward web security: studying it formally, building and testing things in controlled labs, and documenting what I learn along the way.",
+    "intro": {
+      "paragraphs": [
+        "Hi, I'm Nikita — a cybersecurity student with a technical background in electrical engineering and project work.",
+        "With niwo systems I'm building my own web and security project. Along the way, I want to explain cybersecurity topics in a way that makes them understandable, practical, and easy to follow.",
+        "This is where I document what I build, test, break, improve — and what I learn doing it."
+      ]
+    },
     "profileLabel": "Profile",
     "statusLabel": "studying & building",
     "factsLabel": "Snapshot",

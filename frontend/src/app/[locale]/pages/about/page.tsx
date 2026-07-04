@@ -193,9 +193,16 @@ export default async function AboutPage({
               <h1 className="mt-4 max-w-3xl break-words hyphens-auto font-mono text-4xl font-bold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-6xl">
                 {t("title")}
               </h1>
-              <p className="mt-6 max-w-2xl text-base leading-8 text-zinc-300 sm:text-lg">
-                {t("intro")}
-              </p>
+              <div className="mt-6 max-w-2xl space-y-4">
+                {(t.raw("intro.paragraphs") as string[]).map((paragraph) => (
+                  <p
+                    key={paragraph.slice(0, 32)}
+                    className="text-base leading-8 text-zinc-300 sm:text-lg"
+                  >
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
               <div className="mt-8 flex flex-wrap items-center gap-3 font-mono">
                 <span className="rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1.5 text-[0.68rem] uppercase tracking-[0.22em] text-zinc-400">
                   {t("profileLabel")}
