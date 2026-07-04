@@ -338,18 +338,20 @@
   "About": {
     "metadata": {
       "title": "About | niwo",
-      "description": "About Nikita, a cybersecurity student in Bonn focused on practical web application security, secure development, and practical lab work."
+      "description": "About Nikita, a cybersecurity student in Bonn building Niwo Systems in public: real security work, documented honestly, with carefully scoped help where it fits."
     },
     "eyebrow": "ABOUT",
-    "title": "The person behind niwo systems",
-    "intro": "I'm Nikita. I came to cybersecurity through electrical engineering and technical project coordination, areas where you learn to take systems apart, trace where they fail, and take safety seriously. niwo systems is where I turn that mindset toward web security: studying it formally, building and testing things in controlled labs, and documenting what I learn along the way.",
+    "title": "whoami",
+    "intro": {
+      "paragraphs": [
+        "Hi, I'm Nikita — a cybersecurity student with a technical background in electrical engineering and project work.",
+        "With niwo systems I'm building my own web and security project. Along the way, I want to explain cybersecurity topics in a way that makes them understandable, practical, and easy to follow.",
+        "This is where I document what I build, test, break, improve — and what I learn doing it."
+      ]
+    },
     "profileLabel": "Profile",
     "statusLabel": "studying & building",
     "factsLabel": "Snapshot",
-    "closingEyebrow": "Next step",
-    "closingLine": "If that sounds like the kind of help you're after, get in touch.",
-    "signalLabel": "Signal",
-    "signalText": "I care whether something actually holds up: whether it feels trustworthy, makes sense, and works the way it should when it matters.",
     "facts": {
       "base": {
         "label": "Base",
@@ -360,29 +362,59 @@
         "value": "Cybersecurity at IU International University"
       },
       "focus": {
-        "label": "Focus",
-        "value": "Web application security, secure development, and practical lab work"
+        "label": "Area of interest",
+        "value": "Web application security, secure development, AI-assisted DevSecOps, and security hardening"
       },
       "mode": {
         "label": "Mode",
         "value": "Focused reviews, learning notes, research, and small projects"
       }
     },
-    "cards": {
-      "drives": {
-        "eyebrow": "What drives me",
-        "title": "I like following a system until it shows its edges.",
-        "text": "Where systems get fragile and assumptions stop being theoretical, that is usually where security becomes interesting. I would rather understand why something fails than memorize a checklist that says it should not."
+    "signalLabel": "Signal",
+    "signalText": "In a digital world that keeps moving faster, I want to give people more orientation: explaining clearly where the risks lie, what security really means, and how to use systems more consciously.",
+    "proof": {
+      "eyebrow": "PROOF OF WORK",
+      "heading": "Projects",
+      "cards": {
+        "phishing": {
+          "title": "Phishing Defense Lab",
+          "text": "An interactive training tool that teaches you to spot phishing in five minutes — no account, no tracking. Built with Next.js; the detection scenarios use stratified difficulty sampling so easy rounds don't repeat.",
+          "linkLabel": "Try it"
+        },
+        "owasp": {
+          "title": "OWASP Lab Detection Engine",
+          "text": "A local-only lab pairing a deliberately vulnerable Flask app with a Python detection engine: twelve OWASP-oriented scenarios (SQLi, XSS, SSRF, broken access control, insecure deserialization, and more), each with a documented detection rule ID, structured JSONL telemetry, secure/insecure lab modes, and pytest coverage in CI.",
+          "linkLabel": "GitHub"
+        },
+        "website": {
+          "title": "This website",
+          "text": "Niwo Systems is open source. If you want to know how I work, read the code — security headers, i18n, legal compliance and all.",
+          "linkLabel": "GitHub repository"
+        },
+        "foundations": {
+          "title": "Foundations",
+          "text": "Alongside security work, I study at IU International University. My object-oriented programming course project — a CLI habit tracker with a layered architecture, salted PBKDF2 password hashing and full pytest coverage — was graded 100%.",
+          "linkLabel": "GitHub"
+        }
+      }
+    },
+    "now": {
+      "eyebrow": "AVAILABILITY",
+      "heading": "Right now",
+      "paragraphs": [
+        "I'm studying cybersecurity at IU while building practical experience in web security, IT support, and secure development.",
+        "Right now I'm looking for working student, internship, or part-time roles in IT, security, or technical support — especially where I get to work with real systems, documentation, troubleshooting, and security topics.",
+        "On the side, I take on small, clearly scoped web and security projects when the fit is right."
+      ],
+      "recruiters": {
+        "label": "If you're hiring",
+        "profileCta": "get in IT profile",
+        "githubCta": "GitHub"
       },
-      "building": {
-        "eyebrow": "What I focus on",
-        "title": "Web application security, hands-on.",
-        "text": "My focus is the security of modern web applications: the flows, inputs, and trust boundaries where things actually go wrong. Alongside my studies, I build small labs and detection projects to understand attacks and defenses in practice, not just in theory. I also explore agent-based workflows with Codex and OpenClaw in isolated environments, especially where automation helps and where it needs guardrails."
-      },
-      "outside": {
-        "eyebrow": "What I value",
-        "title": "Clarity over noise.",
-        "text": "I notice the small things: clarity, friction, and the gap between how something looks and how it actually behaves. In security that matters because a finding nobody understands does not get fixed. I try to explain risk in plain language, stay honest about scope, and leave people more confident, not more afraid."
+      "business": {
+        "label": "If you have a security question for your business",
+        "text": "The first conversation costs nothing.",
+        "cta": "Email me"
       }
     }
   },
