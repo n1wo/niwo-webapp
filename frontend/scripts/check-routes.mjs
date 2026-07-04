@@ -11,6 +11,26 @@ const requiredRoutes = [
   { path: "/de", statuses: [200] },
   { path: "/robots.txt", statuses: [200] },
   { path: "/.well-known/security.txt", statuses: [200] },
+  {
+    path: "/en/pages/about",
+    statuses: [200],
+    contains: [
+      "Phishing Defense Lab",
+      "OWASP Lab Detection Engine",
+      "This website",
+      "Foundations",
+    ],
+  },
+  {
+    path: "/de/pages/about",
+    statuses: [200],
+    contains: [
+      "Phishing Defense Lab",
+      "OWASP Lab Detection Engine",
+      "Diese Website",
+      "Grundlagen",
+    ],
+  },
   { path: "/assets/logos/niwologo.svg", statuses: [200] },
 ];
 
@@ -69,7 +89,7 @@ async function waitForServer() {
   throw new Error(`Timed out waiting for ${BASE_URL}`);
 }
 
-async function checkRoute({ path, statuses, location }) {
+async function checkRoute({ path, statuses, location, contains }) {
   const response = await fetch(`${BASE_URL}${path}`, { redirect: "manual" });
   const actualLocation = response.headers.get("location") ?? "";
 
@@ -83,6 +103,15 @@ async function checkRoute({ path, statuses, location }) {
     throw new Error(
       `${path} redirected to ${actualLocation || "(no location)"}, expected ${location}`,
     );
+  }
+
+  if (contains?.length) {
+    const body = await response.text();
+    for (const needle of contains) {
+      if (!body.includes(needle)) {
+        throw new Error(`${path} is missing expected content: "${needle}"`);
+      }
+    }
   }
 
   console.log(`${path} -> ${response.status}${actualLocation ? ` ${actualLocation}` : ""}`);

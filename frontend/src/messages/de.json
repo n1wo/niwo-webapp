@@ -112,7 +112,7 @@
   },
   "Services": {
     "common": {
-      "backToServices": "Zur\u00fcck zu den Leistungen",
+      "backToServices": "Zurück zu den Leistungen",
       "relatedServices": "Verwandte Leistungen"
     },
     "items": {
@@ -338,18 +338,20 @@
   "About": {
     "metadata": {
       "title": "Über mich | niwo",
-      "description": "Über Nikita, Cybersecurity-Student in Bonn mit Fokus auf praktische Web Application Security, sichere Entwicklung und praktische Lab-Arbeit."
+      "description": "Über Nikita, Cybersecurity-Student in Bonn, der Niwo Systems öffentlich aufbaut: echte Security-Arbeit, ehrlich dokumentiert, mit klar abgesteckter Hilfe, wo es passt."
     },
     "eyebrow": "ÜBER MICH",
-    "title": "Die Person hinter niwo systems",
-    "intro": "Ich bin Nikita. Zur Cybersecurity bin ich über Elektrotechnik und technische Projektkoordination gekommen, Bereiche, in denen man lernt, Systeme auseinanderzunehmen, Fehler einzugrenzen und Sicherheit ernst zu nehmen. niwo systems ist der Ort, an dem ich diese Denkweise auf Web-Security richte: sie im Studium vertiefen, Dinge bauen und in kontrollierten Labs testen und dokumentieren, was ich dabei lerne.",
+    "title": "whoami",
+    "intro": {
+      "paragraphs": [
+        "Hi, ich bin Nikita — Cybersecurity-Student mit technischem Hintergrund in Elektrotechnik und Projektarbeit.",
+        "Mit niwo systems baue ich mein eigenes Web- und Security-Projekt auf. Dabei möchte ich Cybersecurity-Themen so erklären, dass sie verständlich, praktisch und nachvollziehbar werden.",
+        "Hier dokumentiere ich, was ich baue, teste, kaputt mache, verbessere und dabei lerne."
+      ]
+    },
     "profileLabel": "Profil",
     "statusLabel": "Studium & Aufbau",
     "factsLabel": "Kurzprofil",
-    "closingEyebrow": "Nächster Schritt",
-    "closingLine": "Klingt das nach der Art Unterstützung, die du suchst? Schreib mir.",
-    "signalLabel": "Signal",
-    "signalText": "Mir ist wichtig, ob etwas wirklich standhält: ob es vertrauenswürdig wirkt, Sinn ergibt und genau dann funktioniert, wenn es darauf ankommt.",
     "facts": {
       "base": {
         "label": "Basis",
@@ -360,29 +362,59 @@
         "value": "Cybersecurity an der IU Internationalen Hochschule"
       },
       "focus": {
-        "label": "Fokus",
-        "value": "Web Application Security, sichere Entwicklung und praktische Lab-Arbeit"
+        "label": "Interessengebiet",
+        "value": "Web Application Security, sichere Entwicklung, AI-gestütztes DevSecOps und Security Hardening"
       },
       "mode": {
         "label": "Modus",
         "value": "Fokussierte Reviews, Lernnotizen, Forschung und kleine Projekte"
       }
     },
-    "cards": {
-      "drives": {
-        "eyebrow": "Was mich antreibt",
-        "title": "Ich verfolge ein System gern, bis es seine Kanten zeigt.",
-        "text": "Wo Systeme fragil werden und Annahmen aufhören, theoretisch zu sein, wird Security für mich interessant. Ich verstehe lieber, warum etwas versagt, als eine Checkliste auswendig zu lernen, die sagt, dass es nicht versagen sollte."
+    "signalLabel": "Signal",
+    "signalText": "Ich möchte Menschen in einer immer schneller werdenden digitalen Welt mehr Orientierung geben: verständlich erklären, wo Risiken liegen, was Sicherheit bedeutet und wie man Systeme bewusster nutzt.",
+    "proof": {
+      "eyebrow": "PROOF OF WORK",
+      "heading": "Projekte",
+      "cards": {
+        "phishing": {
+          "title": "Phishing Defense Lab",
+          "text": "Ein interaktives Training, mit dem du in fünf Minuten lernst, Phishing zu erkennen — kein Account, kein Tracking. Gebaut mit Next.js; die Szenarien sind nach Schwierigkeit gestaffelt, damit sich leichte Runden nicht wiederholen.",
+          "linkLabel": "Ausprobieren"
+        },
+        "owasp": {
+          "title": "OWASP Lab Detection Engine",
+          "text": "Ein lokales Lab: eine absichtlich verwundbare Flask-App plus eine Detection Engine in Python. Zwölf OWASP-Szenarien (SQLi, XSS, SSRF, Broken Access Control und mehr), jedes mit dokumentierter Detection-Regel, strukturierten JSONL-Logs und Tests in der CI.",
+          "linkLabel": "GitHub"
+        },
+        "website": {
+          "title": "Diese Website",
+          "text": "Niwo Systems ist Open Source. Wenn du wissen willst, wie ich arbeite: Lies den Code — Security-Header, Zweisprachigkeit, Impressum und alles.",
+          "linkLabel": "GitHub-Repository"
+        },
+        "foundations": {
+          "title": "Grundlagen",
+          "text": "Neben der Security-Arbeit studiere ich an der IU. Mein Projekt im Programmierkurs — ein CLI-Habit-Tracker mit sauberer Architektur, gesalzenem PBKDF2-Passwort-Hashing und vollständigen Tests — wurde mit 100 % bewertet.",
+          "linkLabel": "GitHub"
+        }
+      }
+    },
+    "now": {
+      "eyebrow": "STATUS",
+      "heading": "Gerade jetzt",
+      "paragraphs": [
+        "Ich studiere Cybersecurity an der IU und baue parallel praktische Erfahrung in Web Security, IT-Support und sicherer Entwicklung auf.",
+        "Aktuell suche ich Werkstudenten-, Praktikums- oder Teilzeitrollen im Bereich IT, Security oder technischem Support — besonders dort, wo ich mit echten Systemen, Dokumentation, Fehlersuche und Security-Themen arbeiten kann.",
+        "Nebenbei arbeite ich an kleinen, klar abgegrenzten Web- und Security-Projekten, wenn der Rahmen passt."
+      ],
+      "recruiters": {
+        "label": "Wenn du einstellst",
+        "profileCta": "get in IT Profil",
+        "githubCta": "GitHub"
       },
-      "building": {
-        "eyebrow": "Worauf ich mich konzentriere",
-        "title": "Web Application Security, praktisch.",
-        "text": "Mein Fokus liegt auf der Sicherheit moderner Webanwendungen: den Abläufen, Eingaben und Vertrauensgrenzen, an denen Dinge tatsächlich schiefgehen. Neben dem Studium baue ich kleine Labs und Detection-Projekte, um Angriffe und Verteidigung praktisch zu verstehen, nicht nur in der Theorie. Außerdem erkunde ich Agent-Workflows mit Tools wie Codex und OpenClaw in isolierten Umgebungen, besonders dort, wo Automatisierung hilft und wo sie Leitplanken braucht."
-      },
-      "outside": {
-        "eyebrow": "Worauf es mir ankommt",
-        "title": "Klarheit statt Lärm.",
-        "text": "Ich achte auf die kleinen Dinge: Klarheit, Reibung und die Lücke zwischen dem, wie etwas aussieht, und dem, wie es sich tatsächlich verhält. In der Security ist das entscheidend, weil ein Finding, das niemand versteht, nicht behoben wird. Ich erkläre Risiken verständlich, bleibe ehrlich beim Scope und hinterlasse Leute sicherer, nicht ängstlicher."
+      "business": {
+        "label": "Wenn du eine Security-Frage für dein Business hast",
+        "text": "Das erste Gespräch kostet nichts.",
+        "cta": "Schreib mir"
       }
     }
   },
