@@ -256,9 +256,16 @@ export default async function AboutPage({
           >
             {t("now.heading")}
           </h2>
-          <p className="mt-5 max-w-3xl text-sm leading-7 text-zinc-300 sm:text-[0.95rem]">
-            {t("now.text")}
-          </p>
+          <div className="mt-5 max-w-3xl space-y-4">
+            {(t.raw("now.paragraphs") as string[]).map((paragraph) => (
+              <p
+                key={paragraph.slice(0, 32)}
+                className="text-sm leading-7 text-zinc-300 sm:text-[0.95rem]"
+              >
+                {paragraph}
+              </p>
+            ))}
+          </div>
           <div className="mt-8 grid gap-8 sm:grid-cols-2">
             <div>
               <p className="font-mono text-[0.68rem] uppercase tracking-[0.22em] text-zinc-500">

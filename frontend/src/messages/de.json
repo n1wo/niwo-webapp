@@ -401,7 +401,11 @@
     "now": {
       "eyebrow": "STATUS",
       "heading": "Gerade jetzt",
-      "text": "Ich mache gerade meinen Abschluss und suche praktische Erfahrung — Werkstudentenstellen, Praktika oder Junior-Rollen in AppSec, DevSecOps oder Detection Engineering. Nebenbei nehme ich kleine, klar abgesteckte Projekte an, wenn's passt.",
+      "paragraphs": [
+        "Ich studiere Cybersecurity an der IU und baue parallel praktische Erfahrung in Web Security, IT-Support und sicherer Entwicklung auf.",
+        "Aktuell suche ich Werkstudenten-, Praktikums- oder Teilzeitrollen im Bereich IT, Security oder technischem Support — besonders dort, wo ich mit echten Systemen, Dokumentation, Fehlersuche und Security-Themen arbeiten kann.",
+        "Nebenbei arbeite ich an kleinen, klar abgegrenzten Web- und Security-Projekten, wenn der Rahmen passt."
+      ],
       "recruiters": {
         "label": "Wenn du einstellst",
         "profileCta": "get in IT Profil",

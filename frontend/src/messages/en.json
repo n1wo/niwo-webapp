@@ -401,7 +401,11 @@
     "now": {
       "eyebrow": "AVAILABILITY",
       "heading": "Right now",
-      "text": "I'm completing my degree and looking for hands-on roles in security — working student positions, internships, or junior roles in AppSec, DevSecOps or detection engineering — while taking on small, well-scoped independent work when it fits.",
+      "paragraphs": [
+        "I'm studying cybersecurity at IU while building practical experience in web security, IT support, and secure development.",
+        "Right now I'm looking for working student, internship, or part-time roles in IT, security, or technical support — especially where I get to work with real systems, documentation, troubleshooting, and security topics.",
+        "On the side, I take on small, clearly scoped web and security projects when the fit is right."
+      ],
       "recruiters": {
         "label": "If you're hiring",
         "profileCta": "get in IT profile",
