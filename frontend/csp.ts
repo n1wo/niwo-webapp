@@ -1,5 +1,16 @@
 export const MEDIA_HOST = "d2k0ncl90mug6s.cloudfront.net";
 
+// HTTPS-only directives (upgrade-insecure-requests, HSTS) break asset loading
+// when a production build is served over plain HTTP, e.g. `next start` on
+// localhost. They stay on by default in every production build and are only
+// dropped via the explicit LOCAL_PREVIEW=1 opt-out or in `next dev` — never
+// implicitly. Next config headers are resolved at build time and the
+// middleware re-applies them per request, so the flag must be set for both
+// `next build` and the server process.
+function isLocalPreview(): boolean {
+  return process.env.LOCAL_PREVIEW === "1";
+}
+
 type SecurityHeader = {
   key: string;
   value: string;
@@ -28,6 +39,8 @@ function getCspReportDirective(): string {
 
 export function buildCspHeader(isDevelopment: boolean): string {
   const reportDirective = getCspReportDirective();
+  const upgradeDirective =
+    isDevelopment || isLocalPreview() ? "" : "upgrade-insecure-requests;";
   const connectSrc = [
     "'self'",
     ...(isDevelopment ? ["http:", "https:", "ws:", "wss:"] : []),
@@ -53,7 +66,7 @@ export function buildCspHeader(isDevelopment: boolean): string {
     connect-src ${connectSrc};
     worker-src 'self' blob:;
     frame-src 'none';
-    upgrade-insecure-requests;
+    ${upgradeDirective}
     ${reportDirective}
   `
     .replace(/\s{2,}/g, " ")
@@ -66,10 +79,14 @@ export function getSecurityHeaders(isDevelopment: boolean): SecurityHeader[] {
       key: "Content-Security-Policy",
       value: buildCspHeader(isDevelopment),
     },
-    {
-      key: "Strict-Transport-Security",
-      value: "max-age=63072000; includeSubDomains; preload",
-    },
+    ...(isDevelopment || isLocalPreview()
+      ? []
+      : [
+          {
+            key: "Strict-Transport-Security",
+            value: "max-age=63072000; includeSubDomains; preload",
+          },
+        ]),
     {
       key: "Referrer-Policy",
       value: "strict-origin-when-cross-origin",

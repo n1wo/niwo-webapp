@@ -1,5 +1,5 @@
 import { spawn } from "node:child_process";
-import { existsSync } from "node:fs";
+import { cpSync, existsSync } from "node:fs";
 
 const HOST = "127.0.0.1";
 const PORT = Number(process.env.ROUTE_CHECK_PORT ?? 3020);
@@ -31,11 +31,40 @@ const requiredRoutes = [
       "Grundlagen",
     ],
   },
+  { path: "/assets/logos/niwologo.svg", statuses: [200] },
 ];
 
 const optionalRoutes = [
   { path: "/security.txt", statuses: [200, 301, 302, 307, 308, 404] },
 ];
+
+// HTTPS-only headers are the secure default; they may only be dropped by the
+// explicit LOCAL_PREVIEW=1 build-time opt-out. When the flag is unset, assert
+// they are present so a regression of the secure default fails CI.
+async function checkSecurityHeaders() {
+  if (process.env.LOCAL_PREVIEW === "1") {
+    console.log("security headers -> skipped (LOCAL_PREVIEW=1)");
+    return;
+  }
+
+  const response = await fetch(`${BASE_URL}/en`, { redirect: "manual" });
+  const csp = response.headers.get("content-security-policy") ?? "";
+  const hsts = response.headers.get("strict-transport-security");
+
+  if (!csp.includes("upgrade-insecure-requests")) {
+    throw new Error(
+      "CSP is missing upgrade-insecure-requests — secure default regressed (was the build run with LOCAL_PREVIEW=1?)",
+    );
+  }
+
+  if (!hsts) {
+    throw new Error(
+      "Strict-Transport-Security header is missing — secure default regressed (was the build run with LOCAL_PREVIEW=1?)",
+    );
+  }
+
+  console.log("security headers -> HSTS + upgrade-insecure-requests present");
+}
 
 function wait(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -90,6 +119,13 @@ async function checkRoute({ path, statuses, location, contains }) {
 
 const standaloneServer = ".next/standalone/server.js";
 const useStandaloneServer = existsSync(standaloneServer);
+
+if (useStandaloneServer) {
+  // The standalone output does not include static assets; copy them in the
+  // same way a real deployment does, so asset routes can be checked.
+  cpSync("public", ".next/standalone/public", { recursive: true });
+  cpSync(".next/static", ".next/standalone/.next/static", { recursive: true });
+}
 const serverArgs = useStandaloneServer
   ? [standaloneServer]
   : ["node_modules/next/dist/bin/next", "start", "--hostname", HOST, "--port", String(PORT)];
@@ -116,6 +152,8 @@ try {
   for (const route of optionalRoutes) {
     await checkRoute(route);
   }
+
+  await checkSecurityHeaders();
 } finally {
   server.kill();
 }
