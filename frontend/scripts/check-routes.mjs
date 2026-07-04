@@ -17,6 +17,34 @@ const optionalRoutes = [
   { path: "/security.txt", statuses: [200, 301, 302, 307, 308, 404] },
 ];
 
+// HTTPS-only headers are the secure default; they may only be dropped by the
+// explicit LOCAL_PREVIEW=1 build-time opt-out. When the flag is unset, assert
+// they are present so a regression of the secure default fails CI.
+async function checkSecurityHeaders() {
+  if (process.env.LOCAL_PREVIEW === "1") {
+    console.log("security headers -> skipped (LOCAL_PREVIEW=1)");
+    return;
+  }
+
+  const response = await fetch(`${BASE_URL}/en`, { redirect: "manual" });
+  const csp = response.headers.get("content-security-policy") ?? "";
+  const hsts = response.headers.get("strict-transport-security");
+
+  if (!csp.includes("upgrade-insecure-requests")) {
+    throw new Error(
+      "CSP is missing upgrade-insecure-requests — secure default regressed (was the build run with LOCAL_PREVIEW=1?)",
+    );
+  }
+
+  if (!hsts) {
+    throw new Error(
+      "Strict-Transport-Security header is missing — secure default regressed (was the build run with LOCAL_PREVIEW=1?)",
+    );
+  }
+
+  console.log("security headers -> HSTS + upgrade-insecure-requests present");
+}
+
 function wait(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
@@ -87,6 +115,8 @@ try {
   for (const route of optionalRoutes) {
     await checkRoute(route);
   }
+
+  await checkSecurityHeaders();
 } finally {
   server.kill();
 }
