@@ -375,7 +375,6 @@
     "proof": {
       "eyebrow": "PROOF OF WORK",
       "heading": "Projekte",
-      "writeupPending": "Writeup folgt",
       "cards": {
         "phishing": {
           "title": "Phishing Defense Lab",
@@ -392,36 +391,10 @@
           "text": "Niwo Systems ist Open Source. Wenn du wissen willst, wie ich arbeite: Lies den Code — Security-Header, Zweisprachigkeit, Impressum und alles.",
           "linkLabel": "GitHub-Repository"
         },
-        "wazuh": {
-          "title": "Security-Lab zu Hause",
-          "text": "Ich betreibe ein Wazuh-SIEM in einem selbst gehosteten Lab, um Detection Engineering praktisch zu üben — inklusive der Fehler, die ich beim Absichern gemacht habe. Die schreib ich gerade auf."
-        },
-        "email": {
-          "title": "Forschung zu E-Mail-Authentifizierung",
-          "text": "Ein Uni-Projekt über logische Schlussketten bei DKIM/DMARC-Prüfung. Beim Live-Testen hab ich eine Typosquatting-Domain erwischt (inkedin.com), die LinkedIn imitiert — der Moment, in dem sich die Theorie bezahlt gemacht hat."
-        },
         "foundations": {
           "title": "Grundlagen",
           "text": "Neben der Security-Arbeit studiere ich an der IU. Mein Projekt im Programmierkurs — ein CLI-Habit-Tracker mit sauberer Architektur, gesalzenem PBKDF2-Passwort-Hashing und vollständigen Tests — wurde mit 100 % bewertet.",
           "linkLabel": "GitHub"
-        }
-      }
-    },
-    "how": {
-      "eyebrow": "PRINZIPIEN",
-      "heading": "Wie ich arbeite",
-      "items": {
-        "scoped": {
-          "title": "Ehrlich abgesteckt.",
-          "text": "Ich sag dir, was ein Auftrag ist — und was nicht. Beratung heißt bei mir Beratung, nicht Pentest."
-        },
-        "documented": {
-          "title": "Dokumentiert.",
-          "text": "Alles, was ich mache, gibt's zum Nachlesen: als Writeup, Report oder Code."
-        },
-        "noFear": {
-          "title": "Keine Panikmache.",
-          "text": "Ich erzähl dir nicht, dass die Welt untergeht, nur um einen Auftrag zu kriegen."
         }
       }
     },

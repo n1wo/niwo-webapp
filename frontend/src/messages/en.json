@@ -375,7 +375,6 @@
     "proof": {
       "eyebrow": "PROOF OF WORK",
       "heading": "Projects",
-      "writeupPending": "Writeup coming",
       "cards": {
         "phishing": {
           "title": "Phishing Defense Lab",
@@ -392,36 +391,10 @@
           "text": "Niwo Systems is open source. If you want to know how I work, read the code — security headers, i18n, legal compliance and all.",
           "linkLabel": "GitHub repository"
         },
-        "wazuh": {
-          "title": "Home security lab",
-          "text": "I run a Wazuh SIEM in a self-hosted lab environment for detection engineering practice — including the mistakes I made hardening it, which I'm writing up."
-        },
-        "email": {
-          "title": "Email authentication research",
-          "text": "A university research project applying formal logical inference to DKIM/DMARC verification. During live testing I caught a typosquatted domain (inkedin.com) impersonating LinkedIn — the moment the theory earned its keep."
-        },
         "foundations": {
           "title": "Foundations",
           "text": "Alongside security work, I study at IU International University. My object-oriented programming course project — a CLI habit tracker with a layered architecture, salted PBKDF2 password hashing and full pytest coverage — was graded 100%.",
           "linkLabel": "GitHub"
-        }
-      }
-    },
-    "how": {
-      "eyebrow": "PRINCIPLES",
-      "heading": "How I work",
-      "items": {
-        "scoped": {
-          "title": "Scoped honestly.",
-          "text": "I say what an engagement is and isn't. Guidance is labeled guidance, not a pentest."
-        },
-        "documented": {
-          "title": "Documented.",
-          "text": "Everything I do produces a writeup, a report, or code you can inspect."
-        },
-        "noFear": {
-          "title": "No fear-selling.",
-          "text": "I won't tell you the sky is falling to win work."
         }
       }
     },

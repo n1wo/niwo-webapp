@@ -18,8 +18,7 @@ const requiredRoutes = [
       "Phishing Defense Lab",
       "OWASP Lab Detection Engine",
       "This website",
-      "Home security lab",
-      "Email authentication research",
+      "Foundations",
     ],
   },
   {
@@ -29,8 +28,7 @@ const requiredRoutes = [
       "Phishing Defense Lab",
       "OWASP Lab Detection Engine",
       "Diese Website",
-      "Security-Lab zu Hause",
-      "Forschung zu E-Mail-Authentifizierung",
+      "Grundlagen",
     ],
   },
 ];

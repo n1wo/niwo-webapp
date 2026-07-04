@@ -33,13 +33,7 @@ export async function generateMetadata({
   });
 }
 
-function ProofLinkRow({
-  links,
-  pendingLabel,
-}: {
-  links: ProofLink[];
-  pendingLabel?: string;
-}) {
+function ProofLinkRow({ links }: { links: ProofLink[] }) {
   return (
     <p className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-sm">
       {links.map((link) =>
@@ -63,9 +57,6 @@ function ProofLinkRow({
           </Link>
         ),
       )}
-      {pendingLabel ? (
-        <span className="text-zinc-500">→ {pendingLabel}</span>
-      ) : null}
     </p>
   );
 }
@@ -101,7 +92,6 @@ export default async function AboutPage({
     title: string;
     text: string;
     links: ProofLink[];
-    pending?: boolean;
   }[] = [
     {
       key: "phishing",
@@ -140,20 +130,6 @@ export default async function AboutPage({
       ],
     },
     {
-      key: "wazuh",
-      title: t("proof.cards.wazuh.title"),
-      text: t("proof.cards.wazuh.text"),
-      links: [],
-      pending: true,
-    },
-    {
-      key: "email",
-      title: t("proof.cards.email.title"),
-      text: t("proof.cards.email.text"),
-      links: [],
-      pending: true,
-    },
-    {
       key: "foundations",
       title: t("proof.cards.foundations.title"),
       text: t("proof.cards.foundations.text"),
@@ -166,12 +142,6 @@ export default async function AboutPage({
       ],
     },
   ];
-
-  const howItems = (["scoped", "documented", "noFear"] as const).map((key) => ({
-    key,
-    title: t(`how.items.${key}.title`),
-    text: t(`how.items.${key}.text`),
-  }));
 
   const ctaButtonPrimary =
     "inline-flex items-center justify-center rounded-lg bg-[var(--color-accent)] px-5 py-2.5 text-sm font-semibold text-white shadow-[0_0_24px_var(--color-accent-glow)] transition-all duration-200 hover:bg-[var(--color-accent-light)] hover:shadow-[0_0_32px_rgb(140_127_224/0.34)]";
@@ -267,40 +237,10 @@ export default async function AboutPage({
                 <p className="mt-4 flex-1 text-sm leading-7 text-zinc-300 sm:text-[0.95rem]">
                   {card.text}
                 </p>
-                <ProofLinkRow
-                  links={card.links}
-                  pendingLabel={
-                    card.pending ? t("proof.writeupPending") : undefined
-                  }
-                />
+                <ProofLinkRow links={card.links} />
               </article>
             ))}
           </div>
-        </section>
-
-        <section
-          aria-labelledby="how-i-work"
-          className="border-l-2 border-[rgb(95_98_184/0.35)] py-1 pl-6"
-        >
-          <p className="font-mono text-[0.68rem] uppercase tracking-[0.24em] text-zinc-500">
-            {t("how.eyebrow")}
-          </p>
-          <h2
-            id="how-i-work"
-            className="mt-3 font-mono text-2xl font-bold tracking-tight text-white sm:text-3xl"
-          >
-            {t("how.heading")}
-          </h2>
-          <ul className="mt-6 max-w-3xl space-y-5">
-            {howItems.map((item) => (
-              <li key={item.key} className="text-sm leading-7 text-zinc-300">
-                <span className="font-mono font-semibold text-white">
-                  {item.title}
-                </span>{" "}
-                {item.text}
-              </li>
-            ))}
-          </ul>
         </section>
 
         <section
