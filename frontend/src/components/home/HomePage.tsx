@@ -6,7 +6,6 @@ import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import PrimarySecondaryCta from "@/components/common/PrimarySecondaryCta";
 import InteractiveTerminal from "@/components/home/InteractiveTerminal";
-import PhishingTrainerVisual from "@/components/home/PhishingTrainerVisual";
 import ServiceCard from "@/components/services/ServiceCard";
 import { serviceDefinitions } from "@/data/services";
 import { Link as IntlLink } from "@/i18n/navigation";
@@ -384,8 +383,17 @@ export default function HomePage(): JSX.Element {
             viewport={{ once: true, amount: 0.25 }}
             transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
           >
-            <div className="grid gap-6 rounded-lg border border-white/[0.08] bg-[#111113] px-8 py-8 sm:px-10 sm:py-9 lg:grid-cols-[minmax(0,1fr)_minmax(17rem,20rem)_auto] lg:items-center">
-              <div className="space-y-2">
+            <div className="relative isolate overflow-hidden rounded-lg border border-white/[0.08] bg-[#111113] px-8 py-8 sm:px-10 sm:py-9 lg:min-h-[22rem]">
+              <div
+                aria-hidden="true"
+                className="absolute inset-px -z-10 rounded-[calc(0.5rem-1px)] bg-cover bg-right opacity-90"
+                style={{
+                  backgroundImage: "url('/assets/graphics/phishing-trainer-background.png')",
+                }}
+              />
+              <div className="absolute inset-px -z-10 rounded-[calc(0.5rem-1px)] bg-linear-to-r from-[#111113] via-[#111113]/78 to-[#111113]/12" />
+              <div className="absolute inset-px -z-10 rounded-[calc(0.5rem-1px)] bg-linear-to-b from-black/18 via-transparent to-black/24" />
+              <div className="relative max-w-xl space-y-2">
                 <p className="font-mono text-xs font-medium tracking-widest text-[var(--color-accent-light)] uppercase">
                   {t("phishingLab.eyebrow")}
                 </p>
@@ -395,17 +403,14 @@ export default function HomePage(): JSX.Element {
                 <p className="max-w-xl text-sm leading-7 text-zinc-400">
                   {t("phishingLab.description")}
                 </p>
+                <IntlLink
+                  href="/pages/phishing-lab"
+                  className="mt-5 inline-flex shrink-0 items-center gap-2 rounded-lg border border-white/[0.12] bg-white/[0.04] px-5 py-2.5 font-mono text-sm font-semibold text-zinc-100 transition-colors duration-150 hover:border-[rgb(95_98_184/0.5)] hover:bg-[rgb(95_98_184/0.08)] hover:text-[var(--color-accent-light)]"
+                >
+                  {t("phishingLab.cta")}
+                  <span aria-hidden="true">&rarr;</span>
+                </IntlLink>
               </div>
-              <PhishingTrainerVisual
-                key={prefersReducedMotion ? "static-phishing-visual" : "animated-phishing-visual"}
-                prefersReducedMotion={prefersReducedMotion}
-              />
-              <IntlLink
-                href="/pages/phishing-lab"
-                className="inline-flex shrink-0 items-center gap-2 rounded-lg border border-white/[0.12] bg-white/[0.04] px-5 py-2.5 font-mono text-sm font-semibold text-zinc-100 transition-colors duration-150 hover:border-[rgb(95_98_184/0.5)] hover:bg-[rgb(95_98_184/0.08)] hover:text-[var(--color-accent-light)]"
-              >
-                {t("phishingLab.cta")} →
-              </IntlLink>
             </div>
           </motion.div>
         </section>
