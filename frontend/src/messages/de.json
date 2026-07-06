@@ -41,6 +41,12 @@
     "primaryCta": "Security-Frage stellen",
     "secondaryCta": "Themen ansehen",
     "supportLine": "Web Application Security · Sichere Entwicklung · Security Learning · Praktische Labs",
+    "whoamiLink": {
+      "eyebrow": "whoami",
+      "title": "Zur whoami-Seite",
+      "text": "Ein kurzes Profil zu meinem Hintergrund, aktuellem Fokus und wie ich über praktische Security-Arbeit nachdenke.",
+      "cta": "whoami öffnen"
+    },
     "hiringNotice": "Offen für Werkstudenten- & Teilzeitstellen — IT-Security · IT-Support · Softwareentwicklung",
     "servicesEyebrow": "Security-Themen",
     "servicesTitle": "Themen, die ich in Web Security erkunde",
