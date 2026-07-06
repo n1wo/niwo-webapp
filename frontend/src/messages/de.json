@@ -10,7 +10,8 @@
   "Navbar": {
     "services": "Themen",
     "about": "Whoami",
-    "contact": "Kontakt"
+    "contact": "Kontakt",
+    "allTopics": "Alle Themen"
   },
   "Footer": {
     "about": "Über mich",

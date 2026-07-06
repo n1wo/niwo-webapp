@@ -6,10 +6,18 @@ import { Link } from "@/i18n/navigation";
 import LinkAnimation from "./LinkAnimation";
 import Image from "next/image";
 import LanguageSwitcher from "./LanguageSwitcher";
+import TopicsDropdown from "./TopicsDropdown";
+import { serviceDefinitions } from "@/data/services";
 
 export default function Navbar() {
   const t = useTranslations("Navbar");
+  const topicsT = useTranslations("Topics");
   const [isOpen, setIsOpen] = useState(false);
+
+  const topicLinks = serviceDefinitions.map((service) => ({
+    href: `/topics/${service.slug}`,
+    title: topicsT(`items.${service.key}.card.title`),
+  }));
 
   return (
     <header>
@@ -25,7 +33,7 @@ export default function Navbar() {
                   <LinkAnimation href="/pages/about">{t("about")}</LinkAnimation>
                 </li>
                 <li>
-                  <LinkAnimation href="/#topics">{t("services")}</LinkAnimation>
+                  <TopicsDropdown />
                 </li>
               </ul>
             </div>
@@ -88,6 +96,15 @@ export default function Navbar() {
                 <li onClick={() => setIsOpen(false)}>
                   <LinkAnimation href="/#topics">{t("services")}</LinkAnimation>
                 </li>
+                {topicLinks.map((topic) => (
+                  <li
+                    key={topic.href}
+                    onClick={() => setIsOpen(false)}
+                    className="border-l border-white/[0.1] pl-4"
+                  >
+                    <LinkAnimation href={topic.href}>{topic.title}</LinkAnimation>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>

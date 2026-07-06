@@ -10,7 +10,8 @@
   "Navbar": {
     "services": "Topics",
     "about": "Whoami",
-    "contact": "Contact"
+    "contact": "Contact",
+    "allTopics": "All topics"
   },
   "Footer": {
     "about": "About",
