@@ -10,7 +10,8 @@
   "Navbar": {
     "services": "Themen",
     "about": "Whoami",
-    "contact": "Kontakt"
+    "contact": "Kontakt",
+    "allTopics": "Alle Themen"
   },
   "Footer": {
     "about": "Über mich",
@@ -106,7 +107,7 @@
       }
     }
   },
-    "About": {
+  "About": {
     "metadata": {
       "title": "Über mich | niwo",
       "description": "Über Nikita, Cybersecurity-Student in Bonn, der Niwo Systems öffentlich aufbaut: echte Security-Arbeit, ehrlich dokumentiert, mit klar abgesteckter Hilfe, wo es passt."
