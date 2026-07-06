@@ -45,6 +45,7 @@
       "reporting": "Clear explanations",
       "remediation": "Practical labs"
     },
+    "hiringNotice": "Open to working student & part-time roles — IT-Security / IT-Support",
     "servicesEyebrow": "Security Topics",
     "servicesTitle": "Topics I'm exploring in web security",
     "servicesDescription": "Practical notes, experiments, and topic areas around web security, secure development, and how real weaknesses show up in applications.",
@@ -409,7 +410,8 @@
       "recruiters": {
         "label": "If you're hiring",
         "profileCta": "get in IT profile",
-        "githubCta": "GitHub"
+        "githubCta": "GitHub",
+        "emailCta": "Email me"
       },
       "business": {
         "label": "If you have a security question for your business",
