@@ -374,21 +374,25 @@
       "cards": {
         "phishing": {
           "title": "Phishing Defense Lab",
+          "meta": "2026 · Next.js · TypeScript",
           "text": "An interactive training tool that teaches you to spot phishing in five minutes — no account, no tracking. Built with Next.js; the detection scenarios use stratified difficulty sampling so easy rounds don't repeat.",
           "linkLabel": "Try it"
         },
         "owasp": {
           "title": "OWASP Lab Detection Engine",
+          "meta": "2026 · Python · Flask · 12 scenarios · CI",
           "text": "A local-only lab pairing a deliberately vulnerable Flask app with a Python detection engine: twelve OWASP-oriented scenarios (SQLi, XSS, SSRF, broken access control, insecure deserialization, and more), each with a documented detection rule ID, structured JSONL telemetry, secure/insecure lab modes, and pytest coverage in CI.",
           "linkLabel": "GitHub"
         },
         "website": {
           "title": "This website",
+          "meta": "Next.js 15 · TypeScript · EN/DE",
           "text": "Niwo Systems is open source. If you want to know how I work, read the code — security headers, i18n, legal compliance and all.",
           "linkLabel": "GitHub repository"
         },
         "foundations": {
-          "title": "Foundations",
+          "title": "Coursework: Habit Tracker CLI",
+          "meta": "2026 · Python · SQLite · graded 100%",
           "text": "Alongside security work, I study at IU International University. My object-oriented programming course project — a CLI habit tracker with a layered architecture, salted PBKDF2 password hashing and full pytest coverage — was graded 100%.",
           "linkLabel": "GitHub"
         }

@@ -91,12 +91,14 @@ export default async function AboutPage({
   const proofCards: {
     key: string;
     title: string;
+    meta: string;
     text: string;
     links: ProofLink[];
   }[] = [
     {
       key: "phishing",
       title: t("proof.cards.phishing.title"),
+      meta: t("proof.cards.phishing.meta"),
       text: t("proof.cards.phishing.text"),
       links: [
         {
@@ -109,6 +111,7 @@ export default async function AboutPage({
     {
       key: "owasp",
       title: t("proof.cards.owasp.title"),
+      meta: t("proof.cards.owasp.meta"),
       text: t("proof.cards.owasp.text"),
       links: [
         {
@@ -121,6 +124,7 @@ export default async function AboutPage({
     {
       key: "website",
       title: t("proof.cards.website.title"),
+      meta: t("proof.cards.website.meta"),
       text: t("proof.cards.website.text"),
       links: [
         {
@@ -133,6 +137,7 @@ export default async function AboutPage({
     {
       key: "foundations",
       title: t("proof.cards.foundations.title"),
+      meta: t("proof.cards.foundations.meta"),
       text: t("proof.cards.foundations.text"),
       links: [
         {
@@ -235,6 +240,9 @@ export default async function AboutPage({
                 <h3 className="break-words hyphens-auto font-mono text-lg font-semibold leading-7 text-white sm:text-xl">
                   {card.title}
                 </h3>
+                <p className="mt-2 font-mono text-[0.7rem] uppercase tracking-[0.14em] text-zinc-500">
+                  {card.meta}
+                </p>
                 <p className="mt-4 flex-1 text-sm leading-7 text-zinc-300 sm:text-[0.95rem]">
                   {card.text}
                 </p>
