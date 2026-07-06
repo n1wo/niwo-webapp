@@ -11,8 +11,8 @@ import { serviceDefinitions } from "@/data/services";
 import { Link as IntlLink } from "@/i18n/navigation";
 
 const VIDEO_SRC = "https://d2k0ncl90mug6s.cloudfront.net/bvideo-20251020.mp4";
-const HEADLINE_TYPING_DELAY_MS = 52;
-const SECTION_HEADING_TYPING_DELAY_MS = 34;
+const HEADLINE_TYPING_DELAY_MS = 28;
+const SECTION_HEADING_TYPING_DELAY_MS = 22;
 
 export default function HomePage(): JSX.Element {
   const t = useTranslations("Home");
@@ -33,6 +33,31 @@ export default function HomePage(): JSX.Element {
   const headline = t("heroHeadline");
   const servicesTitle = t("servicesTitle");
   const approachTitle = t("approach.title");
+
+  const renderTypedText = (text: string, length: number, showCursor: boolean) => {
+    const visibleText = text.slice(0, length);
+    const textBeforeCursor = visibleText.slice(0, -1);
+    const finalCharacter = visibleText.slice(-1);
+
+    if (!showCursor || visibleText.length === 0) {
+      return visibleText;
+    }
+
+    return (
+      <>
+        {textBeforeCursor}
+        <span className="inline-flex whitespace-nowrap">
+          {finalCharacter}
+          <span
+            aria-hidden="true"
+            className="terminal-cursor ml-1 inline-block text-[var(--color-accent-light)]"
+          >
+            _
+          </span>
+        </span>
+      </>
+    );
+  };
 
   const serviceCards = useMemo(
     () =>
@@ -227,15 +252,7 @@ export default function HomePage(): JSX.Element {
                 {headline}
               </span>
               <span aria-label={headline} className="absolute inset-0 block">
-                {headline.slice(0, headlineLength)}
-                {!prefersReducedMotion && showHeadlineCursor ? (
-                  <span
-                    aria-hidden="true"
-                    className="terminal-cursor ml-1 inline-block text-[var(--color-accent-light)]"
-                  >
-                    _
-                  </span>
-                ) : null}
+                {renderTypedText(headline, headlineLength, !prefersReducedMotion && showHeadlineCursor)}
               </span>
             </h1>
 
@@ -281,24 +298,20 @@ export default function HomePage(): JSX.Element {
         </section>
 
         <section id="topics" className="space-y-10">
-          <div ref={servicesHeadingRef} className="max-w-3xl space-y-4">
+          <div ref={servicesHeadingRef} className="max-w-5xl space-y-4">
             <p className="text-sm font-medium tracking-wide text-[var(--color-accent-light)]">
               {t("servicesEyebrow")}
             </p>
-            <h2 className="relative break-words hyphens-auto font-mono text-3xl font-bold tracking-tight text-white sm:text-4xl">
-              <span aria-hidden="true" className="invisible block whitespace-pre-wrap">
+            <h2 className="relative break-words hyphens-auto font-mono text-3xl font-bold tracking-tight text-white sm:text-4xl lg:whitespace-nowrap">
+              <span aria-hidden="true" className="invisible block whitespace-pre-wrap lg:whitespace-nowrap">
                 {servicesTitle}
               </span>
               <span aria-label={servicesTitle} className="absolute inset-0 block">
-                {servicesTitle.slice(0, servicesTitleLength)}
-                {!prefersReducedMotion && showServicesTitleCursor ? (
-                  <span
-                    aria-hidden="true"
-                    className="terminal-cursor ml-1 inline-block text-[var(--color-accent-light)]"
-                  >
-                    _
-                  </span>
-                ) : null}
+                {renderTypedText(
+                  servicesTitle,
+                  servicesTitleLength,
+                  !prefersReducedMotion && showServicesTitleCursor,
+                )}
               </span>
             </h2>
             <p className="text-base leading-7 text-zinc-400">
@@ -333,15 +346,11 @@ export default function HomePage(): JSX.Element {
                 {approachTitle}
               </span>
               <span aria-label={approachTitle} className="absolute inset-0 block">
-                {approachTitle.slice(0, approachTitleLength)}
-                {!prefersReducedMotion && showApproachTitleCursor ? (
-                  <span
-                    aria-hidden="true"
-                    className="terminal-cursor ml-1 inline-block text-[var(--color-accent-light)]"
-                  >
-                    _
-                  </span>
-                ) : null}
+                {renderTypedText(
+                  approachTitle,
+                  approachTitleLength,
+                  !prefersReducedMotion && showApproachTitleCursor,
+                )}
               </span>
             </h2>
             <p className="text-base leading-7 text-zinc-400">

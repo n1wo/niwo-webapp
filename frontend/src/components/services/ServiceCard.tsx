@@ -42,12 +42,12 @@ export default function ServiceCard({
           delay,
           ease: [0.22, 1, 0.36, 1],
         }}
-        className="service-card flex h-full min-h-[26rem] flex-col rounded-lg border border-white/[0.08] bg-[#111113] p-6"
+        className="service-card flex h-full min-h-[26rem] flex-col overflow-hidden rounded-lg border border-white/[0.08] bg-[#111113]"
       >
-        <div className="mb-6 h-44">
+        <div className="h-64 w-full shrink-0">
           <ServiceVisual visual={visual} />
         </div>
-        <div className="flex flex-1 flex-col border-t border-white/[0.06] pt-5">
+        <div className="flex flex-1 flex-col border-t border-white/[0.06] px-6 pt-5 pb-6">
           <p className="mb-3 font-mono text-[0.68rem] font-medium uppercase tracking-[0.22em] text-[var(--color-accent-light)]">
             {eyebrow}
           </p>
