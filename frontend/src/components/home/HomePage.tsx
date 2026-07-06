@@ -244,15 +244,12 @@ export default function HomePage(): JSX.Element {
             </p>
 
             <div className="flex flex-wrap items-center gap-3 text-xs font-medium tracking-wide text-zinc-400">
-              <span className="rounded-full border border-white/[0.08] bg-white/[0.05] px-3 py-1.5">
-                {t("heroSignals.scope")}
-              </span>
-              <span className="rounded-full border border-white/[0.08] bg-white/[0.05] px-3 py-1.5">
-                {t("heroSignals.reporting")}
-              </span>
-              <span className="rounded-full border border-white/[0.08] bg-white/[0.05] px-3 py-1.5">
-                {t("heroSignals.remediation")}
-              </span>
+              <IntlLink
+                href="/pages/about"
+                className="rounded-full border border-[rgb(140_127_224/0.28)] bg-[rgb(95_98_184/0.14)] px-3 py-1.5 text-zinc-200 transition-colors duration-150 hover:border-[rgb(140_127_224/0.5)] hover:text-[var(--color-accent-light)]"
+              >
+                {t("hiringNotice")} <span aria-hidden="true">&rarr;</span>
+              </IntlLink>
             </div>
 
             <PrimarySecondaryCta

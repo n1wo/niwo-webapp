@@ -10,6 +10,7 @@ const HABIT_TRACKER_URL = "https://github.com/n1wo/habit-tracker";
 const GET_IN_IT_PROFILE_URL =
   "https://www.get-in-it.de/profil/plU9FgZHrsbCQuQ1QE4zWX3EPR2Hf9QN";
 const CONTACT_MAILTO = "mailto:info@niwosystems.com";
+const JOBS_MAILTO = "mailto:info@nikitawokurka.com";
 
 type ProofLink = {
   label: string;
@@ -287,6 +288,9 @@ export default async function AboutPage({
                   className={ctaButtonSecondary}
                 >
                   {t("now.recruiters.githubCta")}
+                </a>
+                <a href={JOBS_MAILTO} className={ctaButtonSecondary}>
+                  {t("now.recruiters.emailCta")}
                 </a>
               </div>
             </div>
