@@ -5,7 +5,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { serviceDefinitions } from "@/data/services";
-import BottomBorderAnimation from "../animations/BottomBorderAnimation";
 
 const CLOSE_DELAY_MS = 140;
 
@@ -75,7 +74,7 @@ export default function TopicsDropdown() {
         aria-expanded={isOpen}
         aria-haspopup="menu"
         onClick={() => setIsOpen((open) => !open)}
-        className="relative flex h-fit w-fit cursor-pointer items-center gap-1.5 font-mono"
+        className="flex h-fit w-fit cursor-pointer items-center gap-1.5 font-mono"
       >
         <p>{t("services")}</p>
         <svg
@@ -94,7 +93,6 @@ export default function TopicsDropdown() {
             strokeLinejoin="round"
           />
         </svg>
-        <BottomBorderAnimation />
       </button>
 
       <AnimatePresence>
