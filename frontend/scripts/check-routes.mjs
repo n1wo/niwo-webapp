@@ -18,7 +18,7 @@ const requiredRoutes = [
       "Phishing Defense Lab",
       "OWASP Lab Detection Engine",
       "This website",
-      "Foundations",
+      "Software Development",
     ],
   },
   {
@@ -28,7 +28,7 @@ const requiredRoutes = [
       "Phishing Defense Lab",
       "OWASP Lab Detection Engine",
       "Diese Website",
-      "Grundlagen",
+      "Softwareentwicklung",
     ],
   },
   { path: "/assets/logos/niwologo.svg", statuses: [200] },
