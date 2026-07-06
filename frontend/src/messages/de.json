@@ -106,7 +106,7 @@
       }
     }
   },
-    "About": {
+  "About": {
     "metadata": {
       "title": "Über mich | niwo",
       "description": "Über Nikita, Cybersecurity-Student in Bonn, der Niwo Systems öffentlich aufbaut: echte Security-Arbeit, ehrlich dokumentiert, mit klar abgesteckter Hilfe, wo es passt."
@@ -163,7 +163,7 @@
           "linkLabel": "GitHub-Repository"
         },
         "foundations": {
-          "title": "Grundlagen",
+          "title": "Softwareentwicklung",
           "text": "Neben der Security-Arbeit studiere ich an der IU. Mein Projekt im Programmierkurs — ein CLI-Habit-Tracker mit sauberer Architektur, gesalzenem PBKDF2-Passwort-Hashing und vollständigen Tests — wurde mit 100 % bewertet.",
           "linkLabel": "GitHub"
         }
