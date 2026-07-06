@@ -41,6 +41,12 @@
     "primaryCta": "Ask a security question",
     "secondaryCta": "Explore topics",
     "supportLine": "Web Application Security · Secure Development · Security Learning · Practical Labs",
+    "whoamiLink": {
+      "eyebrow": "whoami",
+      "title": "Read the whoami page",
+      "text": "A short profile of my background, current focus, and how I think about practical security work.",
+      "cta": "Open whoami"
+    },
     "hiringNotice": "Open to working student & part-time roles — IT-Security · IT-Support · Software Development",
     "servicesEyebrow": "Security Topics",
     "servicesTitle": "Topics I'm exploring in web security",

@@ -209,11 +209,11 @@ export default async function ServicePage({
               </div>
             </div>
 
-            <div className="rounded-lg border border-white/[0.08] bg-[#111113] p-6">
-              <div className="h-52">
+            <div className="overflow-hidden rounded-lg border border-white/[0.08] bg-[#111113]">
+              <div className="h-64 w-full shrink-0">
                 <ServiceVisual visual={service.visual} />
               </div>
-              <div className="mt-6 border-t border-white/[0.06] pt-4">
+              <div className="border-t border-white/[0.06] px-6 pt-5 pb-6">
                 <p className="font-mono text-[0.68rem] font-medium uppercase tracking-[0.22em] text-[var(--color-accent-light)]">
                   {content.card.eyebrow}
                 </p>

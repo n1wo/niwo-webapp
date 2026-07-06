@@ -36,11 +36,17 @@
       "description": "Nikita Wokurkas persönliches Web- und Security-Projekt. Praktische Notizen zu Web Security, sicherer Entwicklung, verständlichen Erklärungen und kleinen Security-Labs."
     },
     "heroEyebrow": "Web Application Security · Sichere Entwicklung · Security Learning",
-    "heroHeadline": "Praktische Web Security, erklärt mit Projekten und Labs",
+    "heroHeadline": "Willkommen in meiner kleinen Ecke im Cyberspace.",
     "heroParagraph": "Ich bin Nikita — Cybersecurity-Student in Bonn und baue niwo systems als persönliches Web- und Security-Projekt. Auf dieser Seite dokumentiere ich praktische Security-Arbeit, erkläre Web Security verständlich und sammle kleine Labs zu sicherer Entwicklung, Anwendungsrisiken und defensivem Denken.",
     "primaryCta": "Security-Frage stellen",
     "secondaryCta": "Themen ansehen",
     "supportLine": "Web Application Security · Sichere Entwicklung · Security Learning · Praktische Labs",
+    "whoamiLink": {
+      "eyebrow": "whoami",
+      "title": "Zur whoami-Seite",
+      "text": "Ein kurzes Profil zu meinem Hintergrund, aktuellem Fokus und wie ich über praktische Security-Arbeit nachdenke.",
+      "cta": "whoami öffnen"
+    },
     "hiringNotice": "Offen für Werkstudenten- & Teilzeitstellen — IT-Security · IT-Support · Softwareentwicklung",
     "servicesEyebrow": "Security-Themen",
     "servicesTitle": "Themen, die ich in Web Security erkunde",

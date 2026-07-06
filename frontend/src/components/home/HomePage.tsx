@@ -11,28 +11,48 @@ import { serviceDefinitions } from "@/data/services";
 import { Link as IntlLink } from "@/i18n/navigation";
 
 const VIDEO_SRC = "https://d2k0ncl90mug6s.cloudfront.net/bvideo-20251020.mp4";
-const HEADLINE_TYPING_DELAY_MS = 52;
-const SECTION_HEADING_TYPING_DELAY_MS = 34;
+const HEADLINE_TYPING_DELAY_MS = 28;
+const SECTION_HEADING_TYPING_DELAY_MS = 22;
 
 export default function HomePage(): JSX.Element {
   const t = useTranslations("Home");
   const serviceT = useTranslations("Topics");
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const servicesHeadingRef = useRef<HTMLDivElement | null>(null);
-  const approachHeadingRef = useRef<HTMLDivElement | null>(null);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const [headlineLength, setHeadlineLength] = useState(0);
   const [showHeadlineCursor, setShowHeadlineCursor] = useState(false);
   const [servicesTitleLength, setServicesTitleLength] = useState(0);
-  const [approachTitleLength, setApproachTitleLength] = useState(0);
   const [servicesTitleTypingStarted, setServicesTitleTypingStarted] = useState(false);
-  const [approachTitleTypingStarted, setApproachTitleTypingStarted] = useState(false);
   const [showServicesTitleCursor, setShowServicesTitleCursor] = useState(false);
-  const [showApproachTitleCursor, setShowApproachTitleCursor] = useState(false);
 
   const headline = t("heroHeadline");
   const servicesTitle = t("servicesTitle");
-  const approachTitle = t("approach.title");
+
+  const renderTypedText = (text: string, length: number, showCursor: boolean) => {
+    const visibleText = text.slice(0, length);
+    const textBeforeCursor = visibleText.slice(0, -1);
+    const finalCharacter = visibleText.slice(-1);
+
+    if (!showCursor || visibleText.length === 0) {
+      return visibleText;
+    }
+
+    return (
+      <>
+        {textBeforeCursor}
+        <span className="inline-flex whitespace-nowrap">
+          {finalCharacter}
+          <span
+            aria-hidden="true"
+            className="terminal-cursor ml-1 inline-block text-[var(--color-accent-light)]"
+          >
+            _
+          </span>
+        </span>
+      </>
+    );
+  };
 
   const serviceCards = useMemo(
     () =>
@@ -45,28 +65,6 @@ export default function HomePage(): JSX.Element {
         tag: serviceT(`items.${service.key}.card.tag`),
       })),
     [serviceT],
-  );
-
-  const approachCards = useMemo(
-    () => [
-      {
-        title: t("approach.cards.scope.title"),
-        text: t("approach.cards.scope.text"),
-      },
-      {
-        title: t("approach.cards.testing.title"),
-        text: t("approach.cards.testing.text"),
-      },
-      {
-        title: t("approach.cards.reporting.title"),
-        text: t("approach.cards.reporting.text"),
-      },
-      {
-        title: t("approach.cards.remediation.title"),
-        text: t("approach.cards.remediation.text"),
-      },
-    ],
-    [t],
   );
 
   useEffect(() => {
@@ -88,27 +86,21 @@ export default function HomePage(): JSX.Element {
         setHeadlineLength(headline.length);
         setShowHeadlineCursor(false);
         setServicesTitleLength(servicesTitle.length);
-        setApproachTitleLength(approachTitle.length);
         setServicesTitleTypingStarted(true);
-        setApproachTitleTypingStarted(true);
         setShowServicesTitleCursor(false);
-        setShowApproachTitleCursor(false);
       } else {
         setHeadlineLength(0);
         setShowHeadlineCursor(false);
         setServicesTitleLength(0);
-        setApproachTitleLength(0);
         setServicesTitleTypingStarted(false);
-        setApproachTitleTypingStarted(false);
         setShowServicesTitleCursor(false);
-        setShowApproachTitleCursor(false);
       }
     };
 
     apply();
     mq.addEventListener("change", apply);
     return () => mq.removeEventListener("change", apply);
-  }, [approachTitle, headline, servicesTitle]);
+  }, [headline, servicesTitle]);
 
   useEffect(() => {
     if (prefersReducedMotion) return;
@@ -145,25 +137,6 @@ export default function HomePage(): JSX.Element {
   }, [prefersReducedMotion, servicesTitleTypingStarted]);
 
   useEffect(() => {
-    if (prefersReducedMotion || approachTitleTypingStarted) return;
-    const heading = approachHeadingRef.current;
-    if (!heading) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry?.isIntersecting) {
-          setApproachTitleTypingStarted(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0, rootMargin: "0px 0px 18% 0px" },
-    );
-
-    observer.observe(heading);
-    return () => observer.disconnect();
-  }, [approachTitleTypingStarted, prefersReducedMotion]);
-
-  useEffect(() => {
     if (prefersReducedMotion || !servicesTitleTypingStarted) return;
 
     const timers: ReturnType<typeof setTimeout>[] = [];
@@ -178,22 +151,6 @@ export default function HomePage(): JSX.Element {
 
     return () => timers.forEach((timer) => clearTimeout(timer));
   }, [prefersReducedMotion, servicesTitle, servicesTitleTypingStarted]);
-
-  useEffect(() => {
-    if (prefersReducedMotion || !approachTitleTypingStarted) return;
-
-    const timers: ReturnType<typeof setTimeout>[] = [];
-    for (let i = 1; i <= approachTitle.length; i += 1) {
-      timers.push(
-        setTimeout(() => setApproachTitleLength(i), i * SECTION_HEADING_TYPING_DELAY_MS),
-      );
-    }
-
-    const doneAt = approachTitle.length * SECTION_HEADING_TYPING_DELAY_MS;
-    timers.push(setTimeout(() => setShowApproachTitleCursor(true), doneAt + 100));
-
-    return () => timers.forEach((timer) => clearTimeout(timer));
-  }, [approachTitle, approachTitleTypingStarted, prefersReducedMotion]);
 
   return (
     <div className="flex flex-col items-center">
@@ -227,15 +184,7 @@ export default function HomePage(): JSX.Element {
                 {headline}
               </span>
               <span aria-label={headline} className="absolute inset-0 block">
-                {headline.slice(0, headlineLength)}
-                {!prefersReducedMotion && showHeadlineCursor ? (
-                  <span
-                    aria-hidden="true"
-                    className="terminal-cursor ml-1 inline-block text-[var(--color-accent-light)]"
-                  >
-                    _
-                  </span>
-                ) : null}
+                {renderTypedText(headline, headlineLength, !prefersReducedMotion && showHeadlineCursor)}
               </span>
             </h1>
 
@@ -257,8 +206,6 @@ export default function HomePage(): JSX.Element {
               primaryLabel={t("primaryCta")}
               secondaryLabel={t("secondaryCta")}
             />
-
-            <p className="text-sm text-zinc-400">{t("supportLine")}</p>
           </div>
         </div>
       </header>
@@ -281,24 +228,20 @@ export default function HomePage(): JSX.Element {
         </section>
 
         <section id="topics" className="space-y-10">
-          <div ref={servicesHeadingRef} className="max-w-3xl space-y-4">
+          <div ref={servicesHeadingRef} className="max-w-5xl space-y-4">
             <p className="text-sm font-medium tracking-wide text-[var(--color-accent-light)]">
               {t("servicesEyebrow")}
             </p>
-            <h2 className="relative break-words hyphens-auto font-mono text-3xl font-bold tracking-tight text-white sm:text-4xl">
-              <span aria-hidden="true" className="invisible block whitespace-pre-wrap">
+            <h2 className="relative break-words hyphens-auto font-mono text-3xl font-bold tracking-tight text-white sm:text-4xl lg:whitespace-nowrap">
+              <span aria-hidden="true" className="invisible block whitespace-pre-wrap lg:whitespace-nowrap">
                 {servicesTitle}
               </span>
               <span aria-label={servicesTitle} className="absolute inset-0 block">
-                {servicesTitle.slice(0, servicesTitleLength)}
-                {!prefersReducedMotion && showServicesTitleCursor ? (
-                  <span
-                    aria-hidden="true"
-                    className="terminal-cursor ml-1 inline-block text-[var(--color-accent-light)]"
-                  >
-                    _
-                  </span>
-                ) : null}
+                {renderTypedText(
+                  servicesTitle,
+                  servicesTitleLength,
+                  !prefersReducedMotion && showServicesTitleCursor,
+                )}
               </span>
             </h2>
             <p className="text-base leading-7 text-zinc-400">
@@ -319,56 +262,6 @@ export default function HomePage(): JSX.Element {
                 prefersReducedMotion={prefersReducedMotion}
                 delay={index * 0.08}
               />
-            ))}
-          </div>
-        </section>
-
-        <section className="space-y-10">
-          <div ref={approachHeadingRef} className="max-w-3xl space-y-4">
-            <p className="text-sm font-medium tracking-wide text-[var(--color-accent-light)]">
-              {t("approach.eyebrow")}
-            </p>
-            <h2 className="relative break-words hyphens-auto font-mono text-3xl font-bold tracking-tight text-white sm:text-4xl">
-              <span aria-hidden="true" className="invisible block whitespace-pre-wrap">
-                {approachTitle}
-              </span>
-              <span aria-label={approachTitle} className="absolute inset-0 block">
-                {approachTitle.slice(0, approachTitleLength)}
-                {!prefersReducedMotion && showApproachTitleCursor ? (
-                  <span
-                    aria-hidden="true"
-                    className="terminal-cursor ml-1 inline-block text-[var(--color-accent-light)]"
-                  >
-                    _
-                  </span>
-                ) : null}
-              </span>
-            </h2>
-            <p className="text-base leading-7 text-zinc-400">
-              {t("approach.description")}
-            </p>
-          </div>
-
-          <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
-            {approachCards.map((card, index) => (
-              <motion.article
-                key={card.title}
-                initial={prefersReducedMotion ? false : { opacity: 0, y: 18, scale: 0.97 }}
-                whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: true, amount: 0.25 }}
-                transition={{
-                  duration: 0.38,
-                  delay: index * 0.08,
-                  ease: [0.22, 1, 0.36, 1],
-                }}
-                className="group rounded-lg border border-white/[0.08] bg-[#111113] p-6 transition-colors duration-200 hover:border-[rgb(95_98_184/0.3)]"
-              >
-                <div className="mb-4 flex h-8 w-8 items-center justify-center rounded-md border border-white/[0.08] bg-white/[0.03] text-sm font-semibold text-[var(--color-accent-light)]">
-                  {index + 1}
-                </div>
-                <h3 className="text-base font-semibold text-white">{card.title}</h3>
-                <p className="mt-3 text-sm leading-7 text-zinc-400">{card.text}</p>
-              </motion.article>
             ))}
           </div>
         </section>
@@ -412,15 +305,33 @@ export default function HomePage(): JSX.Element {
           </motion.div>
         </section>
 
-        <section className="rounded-lg border border-white/[0.08] bg-[#111113] px-8 py-10 text-center sm:px-12 sm:py-11">
-          <h2 className="mx-auto max-w-full font-mono text-lg font-medium leading-8 tracking-[-0.01em] text-zinc-100 sm:max-w-5xl sm:text-xl">
-            {t("supportLine")}
-          </h2>
-          <PrimarySecondaryCta
-            className="mt-6 justify-center font-mono"
-            primaryLabel={t("primaryCta")}
-            secondaryLabel={t("secondaryCta")}
-          />
+        <section>
+          <div className="relative isolate overflow-hidden rounded-lg border border-white/[0.08] bg-[#111113] px-8 py-9 sm:px-10 sm:py-10">
+            <div
+              aria-hidden="true"
+              className="absolute inset-x-8 top-0 h-px bg-linear-to-r from-transparent via-[rgb(140_127_224/0.42)] to-transparent"
+            />
+            <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
+              <div className="max-w-3xl space-y-3">
+                <p className="font-mono text-xs font-medium tracking-[0.24em] text-[var(--color-accent-light)] uppercase">
+                  {t("whoamiLink.eyebrow")}
+                </p>
+                <h2 className="font-mono text-xl font-bold leading-8 tracking-tight text-white sm:text-2xl">
+                  {t("whoamiLink.title")}
+                </h2>
+                <p className="text-sm leading-7 text-zinc-400 sm:text-base">
+                  {t("whoamiLink.text")}
+                </p>
+              </div>
+              <IntlLink
+                href="/pages/about"
+                className="inline-flex shrink-0 items-center gap-2 self-start rounded-lg border border-white/[0.12] bg-white/[0.04] px-5 py-2.5 font-mono text-sm font-semibold text-zinc-100 transition-colors duration-150 hover:border-[rgb(95_98_184/0.5)] hover:bg-[rgb(95_98_184/0.08)] hover:text-[var(--color-accent-light)] focus-visible:ring-2 focus-visible:ring-[rgb(140_127_224/0.74)] focus-visible:ring-offset-2 focus-visible:ring-offset-[#111113] focus-visible:outline-none md:self-center"
+              >
+                {t("whoamiLink.cta")}
+                <span aria-hidden="true">&rarr;</span>
+              </IntlLink>
+            </div>
+          </div>
         </section>
       </div>
     </div>
