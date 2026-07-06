@@ -206,8 +206,6 @@ export default function HomePage(): JSX.Element {
               primaryLabel={t("primaryCta")}
               secondaryLabel={t("secondaryCta")}
             />
-
-            <p className="text-sm text-zinc-400">{t("supportLine")}</p>
           </div>
         </div>
       </header>
@@ -308,13 +306,10 @@ export default function HomePage(): JSX.Element {
         </section>
 
         <section>
-          <IntlLink
-            href="/pages/about"
-            className="group relative isolate block overflow-hidden rounded-lg border border-white/[0.08] bg-[#111113] px-8 py-9 transition-colors duration-200 hover:border-[rgb(95_98_184/0.36)] hover:bg-[rgb(95_98_184/0.06)] focus-visible:ring-2 focus-visible:ring-[rgb(140_127_224/0.74)] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a] focus-visible:outline-none sm:px-10 sm:py-10"
-          >
+          <div className="relative isolate overflow-hidden rounded-lg border border-white/[0.08] bg-[#111113] px-8 py-9 sm:px-10 sm:py-10">
             <div
               aria-hidden="true"
-              className="absolute inset-x-8 top-0 h-px bg-linear-to-r from-transparent via-[rgb(140_127_224/0.45)] to-transparent opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+              className="absolute inset-x-8 top-0 h-px bg-linear-to-r from-transparent via-[rgb(140_127_224/0.42)] to-transparent"
             />
             <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
               <div className="max-w-3xl space-y-3">
@@ -328,12 +323,15 @@ export default function HomePage(): JSX.Element {
                   {t("whoamiLink.text")}
                 </p>
               </div>
-              <span className="inline-flex shrink-0 items-center gap-2 self-start rounded-lg border border-white/[0.12] bg-white/[0.04] px-5 py-2.5 font-mono text-sm font-semibold text-zinc-100 transition-colors duration-150 group-hover:border-[rgb(95_98_184/0.5)] group-hover:text-[var(--color-accent-light)] md:self-center">
+              <IntlLink
+                href="/pages/about"
+                className="inline-flex shrink-0 items-center gap-2 self-start rounded-lg border border-white/[0.12] bg-white/[0.04] px-5 py-2.5 font-mono text-sm font-semibold text-zinc-100 transition-colors duration-150 hover:border-[rgb(95_98_184/0.5)] hover:bg-[rgb(95_98_184/0.08)] hover:text-[var(--color-accent-light)] focus-visible:ring-2 focus-visible:ring-[rgb(140_127_224/0.74)] focus-visible:ring-offset-2 focus-visible:ring-offset-[#111113] focus-visible:outline-none md:self-center"
+              >
                 {t("whoamiLink.cta")}
                 <span aria-hidden="true">&rarr;</span>
-              </span>
+              </IntlLink>
             </div>
-          </IntlLink>
+          </div>
         </section>
       </div>
     </div>
