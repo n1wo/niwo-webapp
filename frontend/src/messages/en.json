@@ -388,7 +388,7 @@
           "linkLabel": "GitHub repository"
         },
         "foundations": {
-          "title": "Foundations",
+          "title": "Software Development",
           "text": "Alongside security work, I study at IU International University. My object-oriented programming course project — a CLI habit tracker with a layered architecture, salted PBKDF2 password hashing and full pytest coverage — was graded 100%.",
           "linkLabel": "GitHub"
         }
