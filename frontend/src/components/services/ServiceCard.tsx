@@ -2,6 +2,7 @@
 
 import type { JSX } from "react";
 import { motion } from "framer-motion";
+import CardShell from "@/components/common/CardShell";
 import type { ServiceVisualType } from "@/data/services";
 import { Link } from "@/i18n/navigation";
 import ServiceVisual from "./ServiceVisual";
@@ -33,7 +34,9 @@ export default function ServiceCard({
       aria-label={title}
       className="group block h-full rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(140_127_224/0.74)] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a]"
     >
-      <motion.article
+      <CardShell
+        as={motion.article}
+        variant="interactive"
         initial={prefersReducedMotion ? false : { opacity: 0, y: 24 }}
         whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.35 }}
@@ -42,7 +45,7 @@ export default function ServiceCard({
           delay,
           ease: [0.22, 1, 0.36, 1],
         }}
-        className="service-card flex h-full min-h-[26rem] flex-col overflow-hidden rounded-lg border border-white/[0.08] bg-[#111113]"
+        className="flex h-full min-h-[26rem] flex-col"
       >
         <div className="h-64 w-full shrink-0">
           <ServiceVisual visual={visual} />
@@ -61,7 +64,7 @@ export default function ServiceCard({
             {tag}
           </p>
         </div>
-      </motion.article>
+      </CardShell>
     </Link>
   );
 }
