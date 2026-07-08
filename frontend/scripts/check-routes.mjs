@@ -7,10 +7,17 @@ const BASE_URL = `http://${HOST}:${PORT}`;
 
 const requiredRoutes = [
   { path: "/", statuses: [307, 308], location: "/en" },
-  { path: "/en", statuses: [200] },
-  { path: "/de", statuses: [200] },
+  { path: "/en", statuses: [200], notContains: ["/terminal-closed"] },
+  { path: "/de", statuses: [200], notContains: ["/terminal-closed"] },
   { path: "/robots.txt", statuses: [200] },
+  {
+    path: "/sitemap.xml",
+    statuses: [200],
+    contains: ["/en/pages/phishing-lab", "/de/pages/phishing-lab"],
+  },
   { path: "/.well-known/security.txt", statuses: [200] },
+  { path: "/en/pages/phishing-lab", statuses: [200] },
+  { path: "/de/pages/phishing-lab", statuses: [200] },
   {
     path: "/en/pages/about",
     statuses: [200],
@@ -89,7 +96,7 @@ async function waitForServer() {
   throw new Error(`Timed out waiting for ${BASE_URL}`);
 }
 
-async function checkRoute({ path, statuses, location, contains }) {
+async function checkRoute({ path, statuses, location, contains, notContains }) {
   const response = await fetch(`${BASE_URL}${path}`, { redirect: "manual" });
   const actualLocation = response.headers.get("location") ?? "";
 
@@ -105,11 +112,18 @@ async function checkRoute({ path, statuses, location, contains }) {
     );
   }
 
-  if (contains?.length) {
+  if (contains?.length || notContains?.length) {
     const body = await response.text();
-    for (const needle of contains) {
+
+    for (const needle of contains ?? []) {
       if (!body.includes(needle)) {
         throw new Error(`${path} is missing expected content: "${needle}"`);
+      }
+    }
+
+    for (const needle of notContains ?? []) {
+      if (body.includes(needle)) {
+        throw new Error(`${path} contains forbidden content: "${needle}"`);
       }
     }
   }
