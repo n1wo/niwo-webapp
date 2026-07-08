@@ -1,8 +1,9 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import type { MouseEvent } from "react";
 import { useEffect, useState } from "react";
-import { Link } from "@/i18n/navigation";
+import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import LinkAnimation from "./LinkAnimation";
 import Image from "next/image";
 import LanguageSwitcher from "./LanguageSwitcher";
@@ -13,6 +14,8 @@ import styles from "./NavChrome.module.css";
 export default function Navbar() {
   const t = useTranslations("Navbar");
   const topicsT = useTranslations("Topics");
+  const pathname = usePathname();
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [isPinned, setIsPinned] = useState(false);
 
@@ -39,6 +42,19 @@ export default function Navbar() {
   const mobileMenuPaddingClass = isPinned ? "px-0" : "px-4";
   const mobileMenuStateClass = isPinned ? styles.mobileMenuPinned : styles.mobileMenuFloating;
 
+  const handleLogoClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    setIsOpen(false);
+
+    if (pathname === "/") {
+      event.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+
+    event.preventDefault();
+    router.push("/");
+  };
+
   return (
     <header>
       <nav>
@@ -63,7 +79,7 @@ export default function Navbar() {
             </div>
 
             {/* Logo */}
-            <Link className="md:flex my-auto md:mx-auto h-fit w-fit" href="/">
+            <Link className="md:flex my-auto md:mx-auto h-fit w-fit" href="/" onClick={handleLogoClick}>
               <Image
                 src="/assets/logos/niwologo.svg"
                 width={220}
