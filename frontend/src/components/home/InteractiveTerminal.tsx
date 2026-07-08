@@ -309,7 +309,7 @@ export default function InteractiveTerminal({
 
   return (
     <div
-      className="overflow-hidden rounded-[1.05rem] border border-white/[0.08] bg-[#111113] shadow-[0_20px_56px_rgb(0_0_0/0.42)]"
+      className="overflow-hidden rounded-[1.05rem] border border-white/[0.08] bg-[var(--color-surface)] shadow-[0_20px_56px_rgb(0_0_0/0.42)]"
       onClick={focusInput}
     >
       <div className="relative flex items-center justify-between border-b border-white/[0.06] bg-[linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.01)),#17171c] px-4 py-2 text-[0.72rem] text-zinc-200">
@@ -365,7 +365,7 @@ export default function InteractiveTerminal({
         id={TERMINAL_BODY_ID}
         hidden={isCollapsed}
         ref={scrollRef}
-        className="terminal-scrollbar min-h-[12.5rem] max-h-[18rem] overflow-y-auto bg-[#111113] p-5 font-mono text-sm leading-7 text-zinc-100 [scrollbar-color:rgba(95,98,184,0.45)_#151519] [scrollbar-width:thin] sm:min-h-[13.25rem] sm:text-[0.95rem]"
+        className="terminal-scrollbar min-h-[12.5rem] max-h-[18rem] overflow-y-auto bg-[var(--color-surface)] p-5 font-mono text-sm leading-7 text-zinc-100 [scrollbar-color:rgba(95,98,184,0.45)_#151519] [scrollbar-width:thin] sm:min-h-[13.25rem] sm:text-[0.95rem]"
         style={{
           scrollbarGutter: "stable",
         }}

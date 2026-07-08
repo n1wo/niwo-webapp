@@ -150,9 +150,9 @@ export default async function AboutPage({
     "inline-flex items-center justify-center rounded-lg border border-white/[0.15] bg-white/[0.05] px-5 py-2.5 text-sm font-semibold text-zinc-100 backdrop-blur-sm transition-colors duration-200 hover:border-white/[0.25] hover:bg-white/[0.1]";
 
   return (
-    <main className="min-h-[75vh] bg-[#0a0a0a] px-6 pb-24 pt-28 text-foreground sm:px-10 lg:px-16">
+    <main className="min-h-[75vh] bg-[var(--background)] px-6 pb-24 pt-28 text-foreground sm:px-10 lg:px-16">
       <div className="mx-auto max-w-6xl space-y-10">
-        <section className="overflow-hidden rounded-[1.75rem] border border-white/[0.08] bg-[#111113] shadow-[0_24px_80px_rgba(0,0,0,0.42)]">
+        <section className="overflow-hidden rounded-[1.75rem] border border-white/[0.08] bg-[var(--color-surface)] shadow-[0_24px_80px_rgba(0,0,0,0.42)]">
           <div className="border-b border-white/[0.06] px-5 py-3 font-mono text-[0.68rem] uppercase tracking-[0.24em] text-zinc-500 sm:px-8">
             /about
           </div>
@@ -227,7 +227,7 @@ export default async function AboutPage({
             {proofCards.map((card, index) => (
               <article
                 key={card.key}
-                className="group flex flex-col rounded-2xl border border-white/[0.08] bg-[#111113] p-6 shadow-[0_18px_50px_rgba(0,0,0,0.24)] transition-all duration-200 hover:border-[rgb(95_98_184/0.32)] hover:shadow-[0_0_40px_rgb(95_98_184/0.1)]"
+                className="group flex flex-col rounded-2xl border border-white/[0.08] bg-[var(--color-surface)] p-6 shadow-[0_18px_50px_rgba(0,0,0,0.24)] transition-all duration-200 hover:border-[rgb(95_98_184/0.32)] hover:shadow-[0_0_40px_rgb(95_98_184/0.1)]"
               >
                 <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl border border-[rgb(95_98_184/0.2)] bg-[rgb(95_98_184/0.08)] font-mono text-sm font-semibold text-[var(--color-accent-light)] shadow-[0_0_16px_rgb(95_98_184/0.12)]">
                   0{index + 1}
@@ -246,7 +246,7 @@ export default async function AboutPage({
 
         <section
           aria-labelledby="right-now"
-          className="rounded-2xl border border-white/[0.08] bg-[#111113] px-8 py-10 sm:px-12 sm:py-11"
+          className="rounded-2xl border border-white/[0.08] bg-[var(--color-surface)] px-8 py-10 sm:px-12 sm:py-11"
         >
           <p className="font-mono text-[0.68rem] uppercase tracking-[0.24em] text-[var(--color-accent-light)]">
             {t("now.eyebrow")}

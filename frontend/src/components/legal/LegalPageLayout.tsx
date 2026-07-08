@@ -65,9 +65,9 @@ export default function LegalPageLayout({
   }, [sections]);
 
   return (
-    <main className="min-h-[75vh] bg-[#0a0a0a] px-6 pb-24 pt-28 text-foreground sm:px-10 lg:px-16">
+    <main className="min-h-[75vh] bg-[var(--background)] px-6 pb-24 pt-28 text-foreground sm:px-10 lg:px-16">
       <div className="mx-auto max-w-[88rem]">
-        <div className="mb-8 overflow-hidden rounded-2xl border border-white/[0.08] bg-[#111113] lg:hidden">
+        <div className="mb-8 overflow-hidden rounded-2xl border border-white/[0.08] bg-[var(--color-surface)] lg:hidden">
           <div className="border-b border-white/[0.06] px-5 py-3 font-mono text-[0.68rem] uppercase tracking-[0.24em] text-zinc-500">
             {docsNavLabel}
           </div>
@@ -104,7 +104,7 @@ export default function LegalPageLayout({
 
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-[15rem_minmax(0,1fr)_13rem] lg:gap-12 xl:grid-cols-[16rem_minmax(0,46rem)_14rem]">
           <aside className="hidden lg:block">
-            <div className="sticky top-28 overflow-hidden rounded-2xl border border-white/[0.08] bg-[#111113]">
+            <div className="sticky top-28 overflow-hidden rounded-2xl border border-white/[0.08] bg-[var(--color-surface)]">
               <div className="border-b border-white/[0.06] px-4 py-3 font-mono text-[0.68rem] uppercase tracking-[0.24em] text-zinc-500">
                 {docsNavLabel}
               </div>

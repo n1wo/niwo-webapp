@@ -6,7 +6,7 @@ import { labCopy, type LabCopy, type LabEmail } from './copy';
 
 // ─── Design tokens ────────────────────────────────────────────────────────────
 
-const SURFACE = '#111113';
+const SURFACE = 'var(--color-surface)';
 const SURFACE_CHROME = '#17171c';
 const SURFACE_INSET = '#151519';
 const BORDER = 'rgb(255 255 255 / 0.08)';
@@ -26,6 +26,7 @@ const SUCCESS = '#5fbf76';
 const SHADOW_FLOAT = '0 24px 80px rgb(0 0 0 / 0.5)';
 const MONO = '"IBM Plex Mono","SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace';
 const SANS = '"Inter",ui-sans-serif,system-ui,-apple-system,sans-serif';
+const BACKGROUND = 'var(--background)';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -160,7 +161,7 @@ function IntroScreen({ onStart, c }: {
   return (
     <div style={{ minHeight: 'calc(100vh - 4rem)', display: 'flex', alignItems: 'center',
       justifyContent: 'center', padding: isMobile ? '5.5rem 16px 40px' : '7rem 24px 56px',
-      background: '#0a0a0a', overflowX: 'hidden' }}>
+      background: BACKGROUND, overflowX: 'hidden' }}>
       <div style={{ width: '100%', maxWidth: '660px', animation: 'niwoUp 0.5s ease both' }}>
 
         <div style={{ fontFamily: MONO, fontSize: '0.7rem', letterSpacing: '0.22em',
@@ -397,7 +398,7 @@ function PlayScreen({
     <div style={{ minHeight: 'calc(100vh - 4rem)',
       padding: isMobile ? '5.25rem 10px 32px' : '7rem 24px 56px',
       display: 'flex', flexDirection: 'column', alignItems: 'center',
-      background: '#0a0a0a', overflowX: 'hidden' }}>
+      background: BACKGROUND, overflowX: 'hidden' }}>
 
       {/* status row */}
       <div style={{ width: '100%', maxWidth: '1040px', display: 'flex', alignItems: 'center',
@@ -679,7 +680,7 @@ function DoneScreen({ results, emails, onRestart, c, fmt }: {
   return (
     <div style={{ minHeight: 'calc(100vh - 4rem)',
       padding: isMobile ? '5.25rem 16px 40px' : '7rem 24px 56px', display: 'flex',
-      justifyContent: 'center', background: '#0a0a0a', overflowX: 'hidden' }}>
+      justifyContent: 'center', background: BACKGROUND, overflowX: 'hidden' }}>
       <div style={{ width: '100%', maxWidth: '760px', animation: 'niwoUp 0.5s ease both' }}>
 
         <div style={{ fontFamily: MONO, fontSize: '0.7rem', letterSpacing: '0.22em',

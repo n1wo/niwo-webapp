@@ -8,10 +8,10 @@
 
 /* ── design tokens ── */
 :root {
-  --background: #0a0a0a;
+  --background: #252525;
   --foreground: #f4f4f5;
 
-  --color-surface: #111113;
+  --color-surface: #202020;
   --color-surface-raised: #18181b;
   --color-border: rgb(255 255 255 / 0.08);
   --color-border-hover: rgb(255 255 255 / 0.16);

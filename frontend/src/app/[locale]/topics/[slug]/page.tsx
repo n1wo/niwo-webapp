@@ -344,7 +344,7 @@ export default async function ServicePage({
                 <Link
                   key={relatedService.slug}
                   href={`/topics/${relatedService.slug}`}
-                  className="group block rounded-lg focus-visible:ring-2 focus-visible:ring-[rgb(140_127_224/0.74)] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a] focus-visible:outline-none"
+                  className="group block rounded-lg focus-visible:ring-2 focus-visible:ring-[rgb(140_127_224/0.74)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--background)] focus-visible:outline-none"
                 >
                   <CardShell variant="interactive" className="overflow-hidden">
                     <div className="aspect-[3/2] w-full shrink-0">

@@ -39,7 +39,7 @@ export default async function RootLayout({
 
   return (
     <html lang={locale}>
-      <body className="flex min-h-screen flex-col bg-[#0a0a0a] text-zinc-100 font-sans antialiased">
+      <body className="flex min-h-screen flex-col bg-[var(--background)] text-zinc-100 font-sans antialiased">
         {children}
       </body>
     </html>

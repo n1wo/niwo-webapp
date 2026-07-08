@@ -172,7 +172,7 @@ export default function HomePage(): JSX.Element {
             <source src={VIDEO_SRC} type="video/mp4" />
           </video>
           <div className="absolute inset-0 bg-black/50" />
-          <div className="absolute inset-x-0 bottom-0 h-48 bg-linear-to-b from-transparent via-black/70 to-[#0a0a0a]" />
+          <div className="absolute inset-x-0 bottom-0 h-48 bg-linear-to-b from-transparent via-[var(--background)]/70 to-[var(--background)]" />
         </div>
 
         <Surface
@@ -283,7 +283,7 @@ export default function HomePage(): JSX.Element {
                   backgroundImage: "url('/assets/graphics/phishing-trainer-background.png')",
                 }}
               />
-              <div className="absolute inset-px -z-10 rounded-[calc(0.5rem-1px)] bg-linear-to-r from-[#111113] via-[#111113]/78 to-[#111113]/12" />
+              <div className="absolute inset-px -z-10 rounded-[calc(0.5rem-1px)] bg-linear-to-r from-[var(--color-surface)] via-[var(--color-surface)]/78 to-[var(--color-surface)]/12" />
               <div className="absolute inset-px -z-10 rounded-[calc(0.5rem-1px)] bg-linear-to-b from-black/18 via-transparent to-black/24" />
               <div className="relative max-w-xl space-y-2">
                 <p className="font-mono text-xs font-medium tracking-widest text-[var(--color-accent-light)] uppercase">
