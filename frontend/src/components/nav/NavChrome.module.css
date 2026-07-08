@@ -14,9 +14,9 @@
 
 .navPanel {
   background:
-    linear-gradient(180deg, rgb(255 255 255 / 0.01), rgb(255 255 255 / 0.045)),
+    linear-gradient(180deg, rgb(255 255 255 / 0.00), rgb(255 255 255 / 0.045)),
     rgb(41 41 41 / 0.58);
-  backdrop-filter: blur(6px) saturate(140%);
+  backdrop-filter: blur(3px) saturate(140%);
   transition:
     border-radius 300ms ease-out,
     background-color 300ms ease-out,

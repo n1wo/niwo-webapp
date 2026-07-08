@@ -2,7 +2,7 @@
 
 import type { JSX } from "react";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useTranslations } from "next-intl";
 import ActionLink from "@/components/common/ActionLink";
 import CardShell from "@/components/common/CardShell";
@@ -21,6 +21,8 @@ export default function HomePage(): JSX.Element {
   const serviceT = useTranslations("Topics");
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const servicesHeadingRef = useRef<HTMLDivElement | null>(null);
+  const { scrollY } = useScroll();
+  const videoParallaxY = useTransform(scrollY, [0, 800], [0, 280]);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const [headlineLength, setHeadlineLength] = useState(0);
   const [showHeadlineCursor, setShowHeadlineCursor] = useState(false);
@@ -157,22 +159,28 @@ export default function HomePage(): JSX.Element {
   return (
     <div className="flex flex-col items-center">
       <header className="relative flex min-h-screen w-full items-center justify-center px-6 pt-10 pb-14 sm:px-12 md:px-20">
-        <div className="absolute inset-0">
-          <video
-            ref={videoRef}
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
+        <div className="absolute inset-0 overflow-hidden">
+          <motion.div
             aria-hidden="true"
-            poster="/assets/video/poster.jpg"
-            className="h-full w-full object-cover"
+            className="absolute inset-x-0 -top-36 -bottom-36"
+            style={prefersReducedMotion ? undefined : { y: videoParallaxY }}
           >
-            <source src={VIDEO_SRC} type="video/mp4" />
-          </video>
+            <video
+              ref={videoRef}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              aria-hidden="true"
+              poster="/assets/video/poster.jpg"
+              className="h-full w-full object-cover"
+            >
+              <source src={VIDEO_SRC} type="video/mp4" />
+            </video>
+          </motion.div>
           <div className="absolute inset-0 bg-black/50" />
-          <div className="absolute inset-x-0 bottom-0 h-48 bg-linear-to-b from-transparent via-[var(--background)]/70 to-[var(--background)]" />
+          <div className="absolute inset-x-0 bottom-0 h-px bg-white/[0.1]" />
         </div>
 
         <Surface
