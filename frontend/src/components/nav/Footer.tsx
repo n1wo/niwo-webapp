@@ -1,7 +1,6 @@
-import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/navigation";
 import LinkAnimation from "./LinkAnimation";
+import HomeLogoLink from "./HomeLogoLink";
 
 export default function Footer() {
   const t = useTranslations("Footer");
@@ -33,15 +32,7 @@ export default function Footer() {
         </div>
 
         <div className="flex w-fit">
-          <Link className="flex h-fit w-fit" href="/">
-            <Image
-              src="/assets/logos/niwologo.svg"
-              width={220}
-              height={60}
-              alt="niwo systems"
-              className="h-8 w-auto invert"
-            />
-          </Link>
+          <HomeLogoLink />
         </div>
       </div>
     </footer>
