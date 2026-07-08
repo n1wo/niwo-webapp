@@ -25,6 +25,12 @@
     "en": "EN",
     "de": "DE"
   },
+  "ThemeSwitcher": {
+    "label": "Theme",
+    "system": "System",
+    "light": "Light",
+    "dark": "Dark"
+  },
   "NotFound": {
     "title": "Not Found",
     "description": "Could not find the requested resource.",

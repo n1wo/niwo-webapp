@@ -25,6 +25,12 @@
     "en": "EN",
     "de": "DE"
   },
+  "ThemeSwitcher": {
+    "label": "Darstellung",
+    "system": "System",
+    "light": "Hell",
+    "dark": "Dunkel"
+  },
   "NotFound": {
     "title": "Nicht gefunden",
     "description": "Die angeforderte Ressource konnte nicht gefunden werden.",

@@ -173,7 +173,7 @@ export default function HomePage(): JSX.Element {
           <div className="absolute inset-x-0 bottom-0 h-48 bg-linear-to-b from-transparent via-black/70 to-[#0a0a0a]" />
         </div>
 
-        <div className="hero-panel relative z-10 w-full max-w-5xl rounded-2xl bg-black/15 px-8 py-12 shadow-[0_24px_80px_rgba(0,0,0,0.5)] backdrop-blur-sm sm:px-12 sm:py-16 lg:px-14">
+        <div className="dark-panel hero-panel relative z-10 w-full max-w-5xl rounded-2xl bg-black/15 px-8 py-12 shadow-[0_24px_80px_rgba(0,0,0,0.5)] backdrop-blur-sm sm:px-12 sm:py-16 lg:px-14">
           <div className="max-w-4xl space-y-8">
             <p className="text-sm font-medium tracking-wide text-[var(--color-accent-light)]">
               {t("heroEyebrow")}
@@ -273,7 +273,7 @@ export default function HomePage(): JSX.Element {
             viewport={{ once: true, amount: 0.25 }}
             transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
           >
-            <div className="relative isolate overflow-hidden rounded-lg border border-white/[0.08] bg-[#111113] px-8 py-8 sm:px-10 sm:py-9 lg:min-h-[22rem]">
+            <div className="dark-panel relative isolate overflow-hidden rounded-lg border border-white/[0.08] bg-[#111113] px-8 py-8 sm:px-10 sm:py-9 lg:min-h-[22rem]">
               <div
                 aria-hidden="true"
                 className="absolute inset-px -z-10 rounded-[calc(0.5rem-1px)] bg-cover bg-right opacity-90"
@@ -306,7 +306,7 @@ export default function HomePage(): JSX.Element {
         </section>
 
         <section>
-          <div className="relative isolate overflow-hidden rounded-lg border border-white/[0.08] bg-[#111113] px-8 py-9 sm:px-10 sm:py-10">
+          <div className="dark-panel relative isolate overflow-hidden rounded-lg border border-white/[0.08] bg-[#111113] px-8 py-9 sm:px-10 sm:py-10">
             <div
               aria-hidden="true"
               className="absolute inset-x-8 top-0 h-px bg-linear-to-r from-transparent via-[rgb(140_127_224/0.42)] to-transparent"

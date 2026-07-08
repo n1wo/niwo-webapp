@@ -8,6 +8,7 @@ import Image from "next/image";
 import LanguageSwitcher from "./LanguageSwitcher";
 import TopicsDropdown from "./TopicsDropdown";
 import { serviceDefinitions } from "@/data/services";
+import ThemeSwitcher from "./ThemeSwitcher";
 
 export default function Navbar() {
   const t = useTranslations("Navbar");
@@ -44,7 +45,7 @@ export default function Navbar() {
                 src="/assets/logos/niwologo.svg"
                 width={220}
                 height={70}
-                className="h-8 w-auto dark:invert"
+                className="theme-logo h-8 w-auto"
                 alt="niwo systems"
               />
             </Link>
@@ -52,6 +53,7 @@ export default function Navbar() {
             {/* Right side */}
             <div className="flex items-center justify-self-end w-fit">
               <div className="hidden sm:flex items-center gap-4">
+                <ThemeSwitcher />
                 <LanguageSwitcher />
               </div>
               {/* Mobile menu button */}
@@ -63,15 +65,15 @@ export default function Navbar() {
                 aria-label={isOpen ? "Close menu" : "Open menu"}
               >
                 <span
-                  className={`bg-white block transition-all duration-300 ease-out
+                  className={`block bg-[var(--color-text-primary)] transition-all duration-300 ease-out
                   h-0.5 w-6 rounded-sm ${isOpen ? "rotate-45 translate-y-1" : "-translate-y-0.5"}`}
                 ></span>
                 <span
-                  className={`bg-white block transition-all duration-300 ease-out
+                  className={`block bg-[var(--color-text-primary)] transition-all duration-300 ease-out
                   h-0.5 w-6 rounded-sm my-0.5 ${isOpen ? "opacity-0" : "opacity-100"}`}
                 ></span>
                 <span
-                  className={`bg-white block transition-all duration-300 ease-out
+                  className={`block bg-[var(--color-text-primary)] transition-all duration-300 ease-out
                   h-0.5 w-6 rounded-sm ${isOpen ? "-rotate-45 -translate-y-1" : "translate-y-0.5"}`}
                 ></span>
               </button>
@@ -86,6 +88,9 @@ export default function Navbar() {
               <ul className="flex flex-col gap-4 font-sans">
                 <li>
                   <LanguageSwitcher />
+                </li>
+                <li>
+                  <ThemeSwitcher />
                 </li>
                 <li onClick={() => setIsOpen(false)}>
                   <LinkAnimation href="mailto:info@niwosystems.com">{t("contact")}</LinkAnimation>
