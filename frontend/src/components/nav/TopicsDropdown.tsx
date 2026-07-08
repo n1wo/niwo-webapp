@@ -97,10 +97,10 @@ export default function TopicsDropdown() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -6, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -6, scale: 0.98 }}
-            transition={{ duration: 0.16, ease: [0.22, 1, 0.36, 1] }}
+            initial={{ opacity: 0, y: -12, clipPath: "inset(0 0 100% 0)" }}
+            animate={{ opacity: 1, y: 0, clipPath: "inset(0 0 0% 0)" }}
+            exit={{ opacity: 0, y: -10, clipPath: "inset(0 0 100% 0)" }}
+            transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
             className={`absolute left-1/2 top-full z-50 w-64 -translate-x-1/2 ${styles.dropdownMenuFrame}`}
           >
             <div
