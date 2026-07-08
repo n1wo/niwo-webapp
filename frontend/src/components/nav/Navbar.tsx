@@ -1,29 +1,69 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { useState } from "react";
-import { Link } from "@/i18n/navigation";
+import type { MouseEvent } from "react";
+import { useEffect, useState } from "react";
+import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import LinkAnimation from "./LinkAnimation";
 import Image from "next/image";
 import LanguageSwitcher from "./LanguageSwitcher";
 import TopicsDropdown from "./TopicsDropdown";
 import { serviceDefinitions } from "@/data/services";
+import styles from "./NavChrome.module.css";
 
 export default function Navbar() {
   const t = useTranslations("Navbar");
   const topicsT = useTranslations("Topics");
+  const pathname = usePathname();
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
+  const [isPinned, setIsPinned] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsPinned(window.scrollY > 16);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const topicLinks = serviceDefinitions.map((service) => ({
     href: `/topics/${service.slug}`,
     title: topicsT(`items.${service.key}.card.title`),
   }));
 
+  const framePaddingClass = isPinned ? "px-0 sm:px-0" : "px-4 sm:px-6";
+  const panelStateClass = isPinned ? styles.navPanelPinned : styles.navPanelFloating;
+  const mobileMenuPaddingClass = isPinned ? "px-0" : "px-4";
+  const mobileMenuStateClass = isPinned ? styles.mobileMenuPinned : styles.mobileMenuFloating;
+
+  const handleLogoClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    setIsOpen(false);
+
+    if (pathname === "/") {
+      event.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+
+    event.preventDefault();
+    router.push("/");
+  };
+
   return (
     <header>
       <nav>
-        <div className="fixed inset-x-0 top-4 z-50 px-4 sm:px-6">
-          <div className="grid h-18 w-full grid-cols-2 justify-items-stretch rounded-2xl border border-white/[0.08] bg-black/60 px-8 shadow-[0_24px_80px_rgba(0,0,0,0.42)] backdrop-blur-md md:grid-cols-3 sm:px-10 font-mono">
+        <div
+          className={`fixed inset-x-0 z-50 ${styles.navFrame} ${isPinned ? styles.navFramePinned : styles.navFrameFloating} ${framePaddingClass}`}
+        >
+          <div
+            className={`grid h-18 w-full grid-cols-2 justify-items-stretch px-8 font-mono md:grid-cols-3 sm:px-10 ${styles.navPanel} ${panelStateClass}`}
+          >
             <div className="hidden md:flex items-center">
               <ul className="flex my-auto w-fit h-fit gap-6">
                 <li>
@@ -39,7 +79,7 @@ export default function Navbar() {
             </div>
 
             {/* Logo */}
-            <Link className="md:flex my-auto md:mx-auto h-fit w-fit" href="/">
+            <Link className="md:flex my-auto md:mx-auto h-fit w-fit" href="/" onClick={handleLogoClick}>
               <Image
                 src="/assets/logos/niwologo.svg"
                 width={220}
@@ -81,8 +121,10 @@ export default function Navbar() {
 
         {/* Mobile menu */}
         {isOpen && (
-          <div className="fixed inset-x-0 top-[5.75rem] z-40 px-4 md:hidden">
-            <div className="w-full rounded-2xl border border-white/[0.08] bg-black/30 px-6 pb-6 pt-4 shadow-[0_24px_80px_rgba(0,0,0,0.38)] backdrop-blur-md">
+          <div
+            className={`fixed inset-x-0 z-40 md:hidden ${styles.mobileMenuFrame} ${mobileMenuStateClass} ${mobileMenuPaddingClass}`}
+          >
+            <div className={`w-full px-6 pb-6 pt-4 ${styles.mobileMenuPanel}`}>
               <ul className="flex flex-col gap-4 font-sans">
                 <li>
                   <LanguageSwitcher />

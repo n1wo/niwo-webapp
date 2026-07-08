@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { serviceDefinitions } from "@/data/services";
+import styles from "./NavChrome.module.css";
 
 const CLOSE_DELAY_MS = 140;
 
@@ -74,15 +75,13 @@ export default function TopicsDropdown() {
         aria-expanded={isOpen}
         aria-haspopup="menu"
         onClick={() => setIsOpen((open) => !open)}
-        className="flex h-fit w-fit cursor-pointer items-center gap-1.5 font-mono"
+        className={`flex h-fit w-fit cursor-pointer items-center font-mono ${styles.dropdownTrigger}`}
       >
         <p>{t("services")}</p>
         <svg
           aria-hidden="true"
           viewBox="0 0 10 6"
-          className={`h-1.5 w-2.5 text-zinc-400 transition-transform duration-200 ${
-            isOpen ? "text-[var(--color-accent-light)]" : "rotate-180"
-          }`}
+          className={`h-1.5 w-2.5 ${styles.dropdownChevron} ${isOpen ? styles.dropdownChevronOpen : ""}`}
         >
           <path
             d="M1 1l4 4 4-4"
@@ -102,11 +101,11 @@ export default function TopicsDropdown() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -6, scale: 0.98 }}
             transition={{ duration: 0.16, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute left-1/2 top-full z-50 w-64 -translate-x-1/2 pt-4"
+            className={`absolute left-1/2 top-full z-50 w-64 -translate-x-1/2 ${styles.dropdownMenuFrame}`}
           >
             <div
               role="menu"
-              className="overflow-hidden rounded-xl border border-white/[0.08] bg-[#111113]/95 p-2 font-mono shadow-[0_24px_80px_rgba(0,0,0,0.55)] backdrop-blur-md"
+              className={`p-2 font-mono ${styles.dropdownMenuPanel}`}
             >
               {items.map((item) => (
                 <Link
@@ -114,12 +113,12 @@ export default function TopicsDropdown() {
                   role="menuitem"
                   href={item.href}
                   onClick={() => setIsOpen(false)}
-                  className="group flex items-center justify-between gap-3 rounded-lg px-3 py-2.5 text-sm text-zinc-300 transition-colors duration-150 hover:bg-[rgb(95_98_184/0.12)] hover:text-white"
+                  className={`group flex items-center justify-between gap-3 rounded-lg px-3 py-2.5 text-sm text-zinc-300 ${styles.dropdownItem}`}
                 >
                   <span>{item.title}</span>
                   <span
                     aria-hidden="true"
-                    className="text-[var(--color-accent-light)] opacity-0 transition-opacity duration-150 group-hover:opacity-100"
+                    className={styles.dropdownItemArrow}
                   >
                     &rarr;
                   </span>
@@ -130,7 +129,7 @@ export default function TopicsDropdown() {
                 role="menuitem"
                 href="/#topics"
                 onClick={() => setIsOpen(false)}
-                className="flex items-center gap-2 rounded-lg px-3 py-2 text-xs tracking-wide text-zinc-500 transition-colors duration-150 hover:text-[var(--color-accent-light)]"
+                className={`flex items-center gap-2 rounded-lg px-3 py-2 text-xs tracking-wide text-zinc-500 ${styles.dropdownFooterLink}`}
               >
                 {t("allTopics")} <span aria-hidden="true">&rarr;</span>
               </Link>
