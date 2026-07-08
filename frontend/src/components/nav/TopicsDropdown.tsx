@@ -81,7 +81,7 @@ export default function TopicsDropdown() {
           aria-hidden="true"
           viewBox="0 0 10 6"
           className={`h-1.5 w-2.5 text-zinc-400 transition-transform duration-200 ${
-            isOpen ? "text-[var(--color-accent-light)]" : "rotate-180"
+            isOpen ? "rotate-180 text-[var(--color-accent-light)]" : ""
           }`}
         >
           <path
