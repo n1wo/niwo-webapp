@@ -1,0 +1,51 @@
+.base {
+  overflow: hidden;
+  border: 1px solid rgb(255 255 255 / 0.08);
+  border-radius: 0.5rem;
+  background: #111113;
+}
+
+.interactive {
+  transition:
+    border-color 200ms ease,
+    background-color 200ms ease,
+    box-shadow 200ms ease;
+}
+
+.interactive:hover {
+  border-color: rgb(95 98 184 / 0.32);
+  background-color: rgb(95 98 184 / 0.06);
+  box-shadow: 0 0 40px rgb(95 98 184 / 0.14);
+}
+
+.promo {
+  position: relative;
+  isolation: isolate;
+}
+
+.promoAccent::before {
+  content: "";
+  position: absolute;
+  inset-inline: 2rem;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgb(140 127 224 / 0.42),
+    transparent
+  );
+}
+
+.focusable:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px rgb(140 127 224 / 0.74),
+    0 0 0 4px #0a0a0a;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .interactive {
+    transition: none;
+  }
+}

@@ -4,11 +4,13 @@ import type { JSX } from "react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
+import ActionLink from "@/components/common/ActionLink";
+import CardShell from "@/components/common/CardShell";
 import PrimarySecondaryCta from "@/components/common/PrimarySecondaryCta";
+import Surface from "@/components/common/Surface";
 import InteractiveTerminal from "@/components/home/InteractiveTerminal";
 import ServiceCard from "@/components/services/ServiceCard";
 import { serviceDefinitions } from "@/data/services";
-import { Link as IntlLink } from "@/i18n/navigation";
 
 const VIDEO_SRC = "https://d2k0ncl90mug6s.cloudfront.net/bvideo-20251020.mp4";
 const HEADLINE_TYPING_DELAY_MS = 28;
@@ -173,7 +175,10 @@ export default function HomePage(): JSX.Element {
           <div className="absolute inset-x-0 bottom-0 h-48 bg-linear-to-b from-transparent via-black/70 to-[#0a0a0a]" />
         </div>
 
-        <div className="hero-panel relative z-10 w-full max-w-5xl rounded-2xl bg-black/15 px-8 py-12 shadow-[0_24px_80px_rgba(0,0,0,0.5)] backdrop-blur-sm sm:px-12 sm:py-16 lg:px-14">
+        <Surface
+          variant="hero"
+          className="relative z-10 w-full max-w-5xl px-8 py-12 sm:px-12 sm:py-16 lg:px-14"
+        >
           <div className="max-w-4xl space-y-8">
             <p className="text-sm font-medium tracking-wide text-[var(--color-accent-light)]">
               {t("heroEyebrow")}
@@ -193,12 +198,9 @@ export default function HomePage(): JSX.Element {
             </p>
 
             <div className="flex flex-wrap items-center gap-3 text-xs font-medium tracking-wide text-zinc-400">
-              <IntlLink
-                href="/pages/about"
-                className="rounded-full border border-[rgb(140_127_224/0.28)] bg-[rgb(95_98_184/0.14)] px-3 py-1.5 text-zinc-200 transition-colors duration-150 hover:border-[rgb(140_127_224/0.5)] hover:text-[var(--color-accent-light)]"
-              >
-                {t("hiringNotice")} <span aria-hidden="true">&rarr;</span>
-              </IntlLink>
+              <ActionLink href="/pages/about" variant="pill" withArrow>
+                {t("hiringNotice")}
+              </ActionLink>
             </div>
 
             <PrimarySecondaryCta
@@ -207,7 +209,7 @@ export default function HomePage(): JSX.Element {
               secondaryLabel={t("secondaryCta")}
             />
           </div>
-        </div>
+        </Surface>
       </header>
 
       <div className="w-full max-w-7xl space-y-28 px-6 pt-16 pb-32 sm:px-12 sm:space-y-36 md:px-20 2xl:max-w-[88rem]">
@@ -273,7 +275,7 @@ export default function HomePage(): JSX.Element {
             viewport={{ once: true, amount: 0.25 }}
             transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
           >
-            <div className="relative isolate overflow-hidden rounded-lg border border-white/[0.08] bg-[#111113] px-8 py-8 sm:px-10 sm:py-9 lg:min-h-[22rem]">
+            <CardShell variant="promo" className="px-8 py-8 sm:px-10 sm:py-9 lg:min-h-[22rem]">
               <div
                 aria-hidden="true"
                 className="absolute inset-px -z-10 rounded-[calc(0.5rem-1px)] bg-cover bg-right opacity-90"
@@ -293,24 +295,22 @@ export default function HomePage(): JSX.Element {
                 <p className="max-w-xl text-sm leading-7 text-zinc-400">
                   {t("phishingLab.description")}
                 </p>
-                <IntlLink
+                <ActionLink
                   href="/pages/phishing-lab"
-                  className="mt-5 inline-flex shrink-0 items-center gap-2 rounded-lg border border-white/[0.12] bg-white/[0.04] px-5 py-2.5 font-mono text-sm font-semibold text-zinc-100 transition-colors duration-150 hover:border-[rgb(95_98_184/0.5)] hover:bg-[rgb(95_98_184/0.08)] hover:text-[var(--color-accent-light)]"
+                  variant="subtle"
+                  font="mono"
+                  withArrow
+                  className="mt-5 shrink-0"
                 >
                   {t("phishingLab.cta")}
-                  <span aria-hidden="true">&rarr;</span>
-                </IntlLink>
+                </ActionLink>
               </div>
-            </div>
+            </CardShell>
           </motion.div>
         </section>
 
         <section>
-          <div className="relative isolate overflow-hidden rounded-lg border border-white/[0.08] bg-[#111113] px-8 py-9 sm:px-10 sm:py-10">
-            <div
-              aria-hidden="true"
-              className="absolute inset-x-8 top-0 h-px bg-linear-to-r from-transparent via-[rgb(140_127_224/0.42)] to-transparent"
-            />
+          <CardShell variant="promoAccent" className="px-8 py-9 sm:px-10 sm:py-10">
             <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
               <div className="max-w-3xl space-y-3">
                 <p className="font-mono text-xs font-medium tracking-[0.24em] text-[var(--color-accent-light)] uppercase">
@@ -323,15 +323,17 @@ export default function HomePage(): JSX.Element {
                   {t("whoamiLink.text")}
                 </p>
               </div>
-              <IntlLink
+              <ActionLink
                 href="/pages/about"
-                className="inline-flex shrink-0 items-center gap-2 self-start rounded-lg border border-white/[0.12] bg-white/[0.04] px-5 py-2.5 font-mono text-sm font-semibold text-zinc-100 transition-colors duration-150 hover:border-[rgb(95_98_184/0.5)] hover:bg-[rgb(95_98_184/0.08)] hover:text-[var(--color-accent-light)] focus-visible:ring-2 focus-visible:ring-[rgb(140_127_224/0.74)] focus-visible:ring-offset-2 focus-visible:ring-offset-[#111113] focus-visible:outline-none md:self-center"
+                variant="subtle"
+                font="mono"
+                withArrow
+                className="self-start md:self-center"
               >
                 {t("whoamiLink.cta")}
-                <span aria-hidden="true">&rarr;</span>
-              </IntlLink>
+              </ActionLink>
             </div>
-          </div>
+          </CardShell>
         </section>
       </div>
     </div>

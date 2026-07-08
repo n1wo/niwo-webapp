@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
+import CardShell from "@/components/common/CardShell";
 import PrimarySecondaryCta from "@/components/common/PrimarySecondaryCta";
+import Surface from "@/components/common/Surface";
 import ServiceVisual from "@/components/services/ServiceVisual";
 import { getServiceBySlug, serviceDefinitions, type ServiceDefinition } from "@/data/services";
 import { Link } from "@/i18n/navigation";
@@ -189,7 +191,7 @@ export default async function ServicePage({
         </div>
 
         {/* ── hero ── */}
-        <section className="rounded-lg border border-white/[0.08] bg-[#111113] px-6 py-8 sm:px-10 sm:py-10 lg:px-12">
+        <Surface as="section" variant="panel" className="px-6 py-8 sm:px-10 sm:py-10 lg:px-12">
           <div className="grid gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(18rem,0.85fr)] lg:items-center">
             <div className="space-y-6 text-left">
               <p className="text-sm font-medium tracking-wide text-[var(--color-accent-light)]">
@@ -209,7 +211,7 @@ export default async function ServicePage({
               </div>
             </div>
 
-            <div className="overflow-hidden rounded-lg border border-white/[0.08] bg-[#111113]">
+            <CardShell className="overflow-hidden">
               <div className="h-64 w-full shrink-0">
                 <ServiceVisual visual={service.visual} />
               </div>
@@ -219,13 +221,13 @@ export default async function ServicePage({
                 </p>
                 <p className="mt-3 text-sm leading-7 text-zinc-400">{content.card.text}</p>
               </div>
-            </div>
+            </CardShell>
           </div>
-        </section>
+        </Surface>
 
         {/* ── covers + best-for ── */}
         <section className="grid gap-6 lg:grid-cols-2">
-          <div className="rounded-lg border border-white/[0.08] bg-[#111113] p-6 transition-colors duration-200 hover:border-[rgb(95_98_184/0.3)]">
+          <CardShell variant="interactive" className="p-6">
             <p className="text-sm font-medium tracking-wide text-[var(--color-accent-light)]">
               {content.covers.title}
             </p>
@@ -237,9 +239,9 @@ export default async function ServicePage({
                 </li>
               ))}
             </ul>
-          </div>
+          </CardShell>
 
-          <div className="rounded-lg border border-white/[0.08] bg-[#111113] p-6 transition-colors duration-200 hover:border-[rgb(95_98_184/0.3)]">
+          <CardShell variant="interactive" className="p-6">
             <p className="text-sm font-medium tracking-wide text-[var(--color-accent-light)]">
               {content.bestFor.title}
             </p>
@@ -251,7 +253,7 @@ export default async function ServicePage({
                 </li>
               ))}
             </ul>
-          </div>
+          </CardShell>
         </section>
 
         {content.reassurance ? (
@@ -269,7 +271,7 @@ export default async function ServicePage({
 
         {/* ── process + deliverables ── */}
         <section className="grid gap-6 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
-          <div className="rounded-lg border border-white/[0.08] bg-[#111113] p-6">
+          <CardShell className="p-6">
             <p className="text-sm font-medium tracking-wide text-[var(--color-accent-light)]">
               {content.process.title}
             </p>
@@ -289,9 +291,9 @@ export default async function ServicePage({
                 </div>
               ))}
             </div>
-          </div>
+          </CardShell>
 
-          <div className="rounded-lg border border-white/[0.08] bg-[#111113] p-6 transition-colors duration-200 hover:border-[rgb(95_98_184/0.3)]">
+          <CardShell variant="interactive" className="p-6">
             <p className="text-sm font-medium tracking-wide text-[var(--color-accent-light)]">
               {content.deliverables.title}
             </p>
@@ -303,11 +305,11 @@ export default async function ServicePage({
                 </li>
               ))}
             </ul>
-          </div>
+          </CardShell>
         </section>
 
         {/* ── CTA ── */}
-        <section className="rounded-lg border border-white/[0.08] bg-[#111113] px-8 py-10 sm:px-12 sm:py-11">
+        <Surface as="section" variant="panel" className="px-8 py-10 sm:px-12 sm:py-11">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-2xl text-left">
               <p className="font-mono text-[0.68rem] font-medium uppercase tracking-[0.22em] text-[var(--color-accent-light)]">
@@ -325,7 +327,7 @@ export default async function ServicePage({
               secondaryLabel={content.cta.secondary}
             />
           </div>
-        </section>
+        </Surface>
 
         {/* ── related topics ── */}
         <section className="space-y-6">
@@ -342,22 +344,24 @@ export default async function ServicePage({
                 <Link
                   key={relatedService.slug}
                   href={`/topics/${relatedService.slug}`}
-                  className="service-card group block overflow-hidden rounded-lg border border-white/[0.08] bg-[#111113] focus-visible:ring-2 focus-visible:ring-[rgb(140_127_224/0.74)] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a] focus-visible:outline-none"
+                  className="group block rounded-lg focus-visible:ring-2 focus-visible:ring-[rgb(140_127_224/0.74)] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a] focus-visible:outline-none"
                 >
-                  <div className="aspect-[3/2] w-full shrink-0">
-                    <ServiceVisual visual={relatedService.visual} variant="wide" />
-                  </div>
-                  <div className="border-t border-white/[0.06] px-6 pt-5 pb-6 text-left">
-                    <p className="font-mono text-[0.68rem] font-medium uppercase tracking-[0.22em] text-[var(--color-accent-light)]">
-                      {relatedContent.card.eyebrow}
-                    </p>
-                    <h3 className="mt-3 font-mono text-lg font-semibold text-white">
-                      {relatedContent.card.title}
-                    </h3>
-                    <p className="mt-3 text-sm leading-7 text-zinc-400">
-                      {relatedContent.card.text}
-                    </p>
-                  </div>
+                  <CardShell variant="interactive" className="overflow-hidden">
+                    <div className="aspect-[3/2] w-full shrink-0">
+                      <ServiceVisual visual={relatedService.visual} variant="wide" />
+                    </div>
+                    <div className="border-t border-white/[0.06] px-6 pt-5 pb-6 text-left">
+                      <p className="font-mono text-[0.68rem] font-medium uppercase tracking-[0.22em] text-[var(--color-accent-light)]">
+                        {relatedContent.card.eyebrow}
+                      </p>
+                      <h3 className="mt-3 font-mono text-lg font-semibold text-white">
+                        {relatedContent.card.title}
+                      </h3>
+                      <p className="mt-3 text-sm leading-7 text-zinc-400">
+                        {relatedContent.card.text}
+                      </p>
+                    </div>
+                  </CardShell>
                 </Link>
               );
             })}
