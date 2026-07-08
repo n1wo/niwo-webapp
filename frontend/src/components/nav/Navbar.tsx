@@ -8,6 +8,7 @@ import Image from "next/image";
 import LanguageSwitcher from "./LanguageSwitcher";
 import TopicsDropdown from "./TopicsDropdown";
 import { serviceDefinitions } from "@/data/services";
+import styles from "./NavChrome.module.css";
 
 export default function Navbar() {
   const t = useTranslations("Navbar");
@@ -33,20 +34,19 @@ export default function Navbar() {
     title: topicsT(`items.${service.key}.card.title`),
   }));
 
+  const framePaddingClass = isPinned ? "px-0 sm:px-0" : "px-4 sm:px-6";
+  const panelStateClass = isPinned ? styles.navPanelPinned : styles.navPanelFloating;
+  const mobileMenuPaddingClass = isPinned ? "px-0" : "px-4";
+  const mobileMenuStateClass = isPinned ? styles.mobileMenuPinned : styles.mobileMenuFloating;
+
   return (
     <header>
       <nav>
         <div
-          className={`fixed inset-x-0 z-50 transition-[top,padding] duration-300 ease-out motion-reduce:transition-none ${
-            isPinned ? "top-0 px-0 sm:px-0" : "top-4 px-4 sm:px-6"
-          }`}
+          className={`fixed inset-x-0 z-50 ${styles.navFrame} ${isPinned ? styles.navFramePinned : styles.navFrameFloating} ${framePaddingClass}`}
         >
           <div
-            className={`grid h-18 w-full grid-cols-2 justify-items-stretch border border-white/[0.08] bg-black/60 px-8 font-mono backdrop-blur-md transition-[border-radius,background-color,box-shadow,transform] duration-300 ease-out motion-reduce:transition-none md:grid-cols-3 sm:px-10 ${
-              isPinned
-                ? "rounded-none bg-black/60 shadow-[0_20px_48px_rgba(0,0,0,0.48)]"
-                : "rounded-2xl shadow-[0_24px_80px_rgba(0,0,0,0.42)]"
-            }`}
+            className={`grid h-18 w-full grid-cols-2 justify-items-stretch px-8 font-mono md:grid-cols-3 sm:px-10 ${styles.navPanel} ${panelStateClass}`}
           >
             <div className="hidden md:flex items-center">
               <ul className="flex my-auto w-fit h-fit gap-6">
@@ -106,11 +106,9 @@ export default function Navbar() {
         {/* Mobile menu */}
         {isOpen && (
           <div
-            className={`fixed inset-x-0 z-40 transition-[top,padding] duration-300 ease-out motion-reduce:transition-none md:hidden ${
-              isPinned ? "top-[4.5rem] px-0" : "top-[5.75rem] px-4"
-            }`}
+            className={`fixed inset-x-0 z-40 md:hidden ${styles.mobileMenuFrame} ${mobileMenuStateClass} ${mobileMenuPaddingClass}`}
           >
-            <div className="w-full rounded-2xl border border-white/[0.08] bg-black/30 px-6 pb-6 pt-4 shadow-[0_24px_80px_rgba(0,0,0,0.38)] backdrop-blur-md">
+            <div className={`w-full px-6 pb-6 pt-4 ${styles.mobileMenuPanel}`}>
               <ul className="flex flex-col gap-4 font-sans">
                 <li>
                   <LanguageSwitcher />
