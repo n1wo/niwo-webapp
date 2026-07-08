@@ -23,8 +23,8 @@ export default function Navbar() {
     <header>
       <nav>
         <div className="fixed inset-x-0 top-4 z-50 px-4 sm:px-6">
-          <div className="grid h-18 w-full grid-cols-2 justify-items-stretch rounded-2xl border border-white/[0.08] bg-black/25 px-8 shadow-[0_24px_80px_rgba(0,0,0,0.42)] backdrop-blur-sm sm:grid-cols-3 sm:px-10 font-mono">
-            <div className="hidden sm:flex items-center">
+          <div className="grid h-18 w-full grid-cols-2 justify-items-stretch rounded-2xl border border-white/[0.08] bg-black/60 px-8 shadow-[0_24px_80px_rgba(0,0,0,0.42)] backdrop-blur-md md:grid-cols-3 sm:px-10 font-mono">
+            <div className="hidden md:flex items-center">
               <ul className="flex my-auto w-fit h-fit gap-6">
                 <li>
                   <LinkAnimation href="mailto:info@niwosystems.com">{t("contact")}</LinkAnimation>
@@ -39,7 +39,7 @@ export default function Navbar() {
             </div>
 
             {/* Logo */}
-            <Link className="sm:flex my-auto sm:mx-auto h-fit w-fit" href="/">
+            <Link className="md:flex my-auto md:mx-auto h-fit w-fit" href="/">
               <Image
                 src="/assets/logos/niwologo.svg"
                 width={220}
@@ -51,14 +51,14 @@ export default function Navbar() {
 
             {/* Right side */}
             <div className="flex items-center justify-self-end w-fit">
-              <div className="hidden sm:flex items-center gap-4">
+              <div className="hidden md:flex items-center gap-4">
                 <LanguageSwitcher />
               </div>
               {/* Mobile menu button */}
               <button
                 type="button"
                 onClick={() => setIsOpen(!isOpen)}
-                className="relative sm:hidden flex flex-col justify-center items-center"
+                className="relative md:hidden flex flex-col justify-center items-center"
                 aria-expanded={isOpen}
                 aria-label={isOpen ? "Close menu" : "Open menu"}
               >
@@ -81,7 +81,7 @@ export default function Navbar() {
 
         {/* Mobile menu */}
         {isOpen && (
-          <div className="fixed inset-x-0 top-[5.75rem] z-40 px-4 sm:hidden">
+          <div className="fixed inset-x-0 top-[5.75rem] z-40 px-4 md:hidden">
             <div className="w-full rounded-2xl border border-white/[0.08] bg-black/30 px-6 pb-6 pt-4 shadow-[0_24px_80px_rgba(0,0,0,0.38)] backdrop-blur-md">
               <ul className="flex flex-col gap-4 font-sans">
                 <li>

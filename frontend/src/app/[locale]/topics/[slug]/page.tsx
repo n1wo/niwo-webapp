@@ -342,12 +342,12 @@ export default async function ServicePage({
                 <Link
                   key={relatedService.slug}
                   href={`/topics/${relatedService.slug}`}
-                  className="service-card group block rounded-lg border border-white/[0.08] bg-[#111113] p-6"
+                  className="service-card group block overflow-hidden rounded-lg border border-white/[0.08] bg-[#111113] focus-visible:ring-2 focus-visible:ring-[rgb(140_127_224/0.74)] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a] focus-visible:outline-none"
                 >
-                  <div className="h-48">
-                    <ServiceVisual visual={relatedService.visual} />
+                  <div className="aspect-[3/2] w-full shrink-0">
+                    <ServiceVisual visual={relatedService.visual} variant="wide" />
                   </div>
-                  <div className="mt-5 border-t border-white/[0.06] pt-5 text-left">
+                  <div className="border-t border-white/[0.06] px-6 pt-5 pb-6 text-left">
                     <p className="font-mono text-[0.68rem] font-medium uppercase tracking-[0.22em] text-[var(--color-accent-light)]">
                       {relatedContent.card.eyebrow}
                     </p>

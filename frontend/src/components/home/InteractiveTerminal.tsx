@@ -30,6 +30,7 @@ type InteractiveTerminalProps = {
 const PROMPT = "root@niwo";
 const HOME_PATH = "~";
 const KALI_GREEN = "#5fbf76";
+const TERMINAL_BODY_ID = "niwo-home-terminal-body";
 
 const PAGE_TARGETS: Record<string, string> = {
   "/": "/",
@@ -53,6 +54,7 @@ export default function InteractiveTerminal({
   const scrollRef = useRef<HTMLDivElement | null>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [command, setCommand] = useState("");
+  const [isCollapsed, setIsCollapsed] = useState(false);
   const [historyIndex, setHistoryIndex] = useState<number | null>(null);
   const [commandHistory, setCommandHistory] = useState<string[]>([]);
   const [entries, setEntries] = useState<TerminalEntry[]>([
@@ -99,7 +101,12 @@ export default function InteractiveTerminal({
   }, [entries]);
 
   const focusInput = () => {
+    if (isCollapsed) return;
     inputRef.current?.focus();
+  };
+
+  const toggleCollapsed = () => {
+    setIsCollapsed((current) => !current);
   };
 
   const appendEntries = (nextEntries: TerminalEntry[]) => {
@@ -298,6 +305,8 @@ export default function InteractiveTerminal({
     return "text-zinc-100";
   };
 
+  const closeControlLabel = isCollapsed ? "Reopen terminal" : "Close terminal";
+
   return (
     <div
       className="overflow-hidden rounded-[1.05rem] border border-white/[0.08] bg-[#111113] shadow-[0_20px_56px_rgb(0_0_0/0.42)]"
@@ -311,17 +320,24 @@ export default function InteractiveTerminal({
         <div className="flex items-center gap-1.5">
           <span className="h-4 w-4 rounded-full border border-white/[0.08] bg-[#22222a]" />
           <span className="h-4 w-4 rounded-full border border-white/[0.08] bg-[#22222a]" />
-          <Link
-            href="/terminal-closed"
-            aria-label="Close terminal"
+          <button
+            type="button"
+            aria-controls={TERMINAL_BODY_ID}
+            aria-expanded={!isCollapsed}
+            aria-label={closeControlLabel}
+            title={closeControlLabel}
+            onClick={(event) => {
+              event.stopPropagation();
+              toggleCollapsed();
+            }}
             className="flex h-4 w-4 items-center justify-center rounded-full border border-white/[0.08] bg-[#303445] text-[0.7rem] leading-none text-[var(--color-accent-light)] transition-colors hover:bg-[#3a4157] hover:text-white"
           >
-            ×
-          </Link>
+            <span aria-hidden="true">{isCollapsed ? "+" : "x"}</span>
+          </button>
         </div>
       </div>
 
-      <div className="border-b border-white/[0.06] bg-[#151519] px-4 py-2">
+      <div hidden={isCollapsed} className="border-b border-white/[0.06] bg-[#151519] px-4 py-2">
         <div className="flex items-center gap-5 font-mono text-[0.92rem] text-zinc-100">
           {menuLinks.map((item) =>
             item.external ? (
@@ -346,6 +362,8 @@ export default function InteractiveTerminal({
       </div>
 
       <div
+        id={TERMINAL_BODY_ID}
+        hidden={isCollapsed}
         ref={scrollRef}
         className="terminal-scrollbar min-h-[12.5rem] max-h-[18rem] overflow-y-auto bg-[#111113] p-5 font-mono text-sm leading-7 text-zinc-100 [scrollbar-color:rgba(95,98,184,0.45)_#151519] [scrollbar-width:thin] sm:min-h-[13.25rem] sm:text-[0.95rem]"
         style={{
