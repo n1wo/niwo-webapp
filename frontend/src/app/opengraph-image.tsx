@@ -4,8 +4,8 @@ export const alt = "niwo - Practical web security for developers and small teams
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-const BACKGROUND = "#0a0a0a";
-const SURFACE = "#111113";
+const BACKGROUND = "#292929";
+const SURFACE = "#202020";
 const BORDER = "rgba(255,255,255,0.08)";
 const ACCENT = "#8c7fe0";
 const MUTED = "#a1a1aa";

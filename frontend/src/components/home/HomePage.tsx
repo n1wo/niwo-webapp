@@ -2,7 +2,7 @@
 
 import type { JSX } from "react";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useTranslations } from "next-intl";
 import ActionLink from "@/components/common/ActionLink";
 import CardShell from "@/components/common/CardShell";
@@ -21,6 +21,8 @@ export default function HomePage(): JSX.Element {
   const serviceT = useTranslations("Topics");
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const servicesHeadingRef = useRef<HTMLDivElement | null>(null);
+  const { scrollY } = useScroll();
+  const videoParallaxY = useTransform(scrollY, [0, 800], [0, 280]);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const [headlineLength, setHeadlineLength] = useState(0);
   const [showHeadlineCursor, setShowHeadlineCursor] = useState(false);
@@ -157,22 +159,28 @@ export default function HomePage(): JSX.Element {
   return (
     <div className="flex flex-col items-center">
       <header className="relative flex min-h-screen w-full items-center justify-center px-6 pt-10 pb-14 sm:px-12 md:px-20">
-        <div className="absolute inset-0">
-          <video
-            ref={videoRef}
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
+        <div className="absolute inset-0 overflow-hidden">
+          <motion.div
             aria-hidden="true"
-            poster="/assets/video/poster.jpg"
-            className="h-full w-full object-cover"
+            className="absolute inset-x-0 -top-36 -bottom-36"
+            style={prefersReducedMotion ? undefined : { y: videoParallaxY }}
           >
-            <source src={VIDEO_SRC} type="video/mp4" />
-          </video>
+            <video
+              ref={videoRef}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              aria-hidden="true"
+              poster="/assets/video/poster.jpg"
+              className="h-full w-full object-cover"
+            >
+              <source src={VIDEO_SRC} type="video/mp4" />
+            </video>
+          </motion.div>
           <div className="absolute inset-0 bg-black/50" />
-          <div className="absolute inset-x-0 bottom-0 h-48 bg-linear-to-b from-transparent via-black/70 to-[#0a0a0a]" />
+          <div className="absolute inset-x-0 bottom-0 h-px bg-white/[0.1]" />
         </div>
 
         <Surface
@@ -283,7 +291,7 @@ export default function HomePage(): JSX.Element {
                   backgroundImage: "url('/assets/graphics/phishing-trainer-background.png')",
                 }}
               />
-              <div className="absolute inset-px -z-10 rounded-[calc(0.5rem-1px)] bg-linear-to-r from-[#111113] via-[#111113]/78 to-[#111113]/12" />
+              <div className="absolute inset-px -z-10 rounded-[calc(0.5rem-1px)] bg-linear-to-r from-[var(--color-surface)] via-[var(--color-surface)]/78 to-[var(--color-surface)]/12" />
               <div className="absolute inset-px -z-10 rounded-[calc(0.5rem-1px)] bg-linear-to-b from-black/18 via-transparent to-black/24" />
               <div className="relative max-w-xl space-y-2">
                 <p className="font-mono text-xs font-medium tracking-widest text-[var(--color-accent-light)] uppercase">

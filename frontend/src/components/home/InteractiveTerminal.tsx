@@ -309,17 +309,17 @@ export default function InteractiveTerminal({
 
   return (
     <div
-      className="overflow-hidden rounded-[1.05rem] border border-white/[0.08] bg-[#111113] shadow-[0_20px_56px_rgb(0_0_0/0.42)]"
+      className="overflow-hidden rounded-[1.05rem] border border-white/[0.08] bg-[var(--color-surface)] shadow-[0_20px_56px_rgb(0_0_0/0.42)]"
       onClick={focusInput}
     >
-      <div className="relative flex items-center justify-between border-b border-white/[0.06] bg-[linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.01)),#17171c] px-4 py-2 text-[0.72rem] text-zinc-200">
+      <div className="relative flex items-center justify-between border-b border-white/[0.06] bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.015)),var(--color-surface-raised)] px-4 py-2 text-[0.72rem] text-zinc-200">
         <div className="text-[var(--color-accent-light)]">⌂</div>
         <span className="absolute left-1/2 -translate-x-1/2 font-mono font-semibold text-zinc-100">
           {copy.label}
         </span>
         <div className="flex items-center gap-1.5">
-          <span className="h-4 w-4 rounded-full border border-white/[0.08] bg-[#22222a]" />
-          <span className="h-4 w-4 rounded-full border border-white/[0.08] bg-[#22222a]" />
+          <span className="h-4 w-4 rounded-full border border-white/[0.08] bg-[var(--color-surface-raised)]" />
+          <span className="h-4 w-4 rounded-full border border-white/[0.08] bg-[var(--color-surface-raised)]" />
           <button
             type="button"
             aria-controls={TERMINAL_BODY_ID}
@@ -330,14 +330,14 @@ export default function InteractiveTerminal({
               event.stopPropagation();
               toggleCollapsed();
             }}
-            className="flex h-4 w-4 items-center justify-center rounded-full border border-white/[0.08] bg-[#303445] text-[0.7rem] leading-none text-[var(--color-accent-light)] transition-colors hover:bg-[#3a4157] hover:text-white"
+            className="flex h-4 w-4 items-center justify-center rounded-full border border-white/[0.08] bg-[rgb(95_98_184/0.24)] text-[0.7rem] leading-none text-[var(--color-accent-light)] transition-colors hover:bg-[rgb(95_98_184/0.32)] hover:text-white"
           >
             <span aria-hidden="true">{isCollapsed ? "+" : "x"}</span>
           </button>
         </div>
       </div>
 
-      <div hidden={isCollapsed} className="border-b border-white/[0.06] bg-[#151519] px-4 py-2">
+      <div hidden={isCollapsed} className="border-b border-white/[0.06] bg-[var(--color-surface-inset)] px-4 py-2">
         <div className="flex items-center gap-5 font-mono text-[0.92rem] text-zinc-100">
           {menuLinks.map((item) =>
             item.external ? (
@@ -365,7 +365,7 @@ export default function InteractiveTerminal({
         id={TERMINAL_BODY_ID}
         hidden={isCollapsed}
         ref={scrollRef}
-        className="terminal-scrollbar min-h-[12.5rem] max-h-[18rem] overflow-y-auto bg-[#111113] p-5 font-mono text-sm leading-7 text-zinc-100 [scrollbar-color:rgba(95,98,184,0.45)_#151519] [scrollbar-width:thin] sm:min-h-[13.25rem] sm:text-[0.95rem]"
+        className="terminal-scrollbar min-h-[12.5rem] max-h-[18rem] overflow-y-auto bg-[var(--color-surface)] p-5 font-mono text-sm leading-7 text-zinc-100 [scrollbar-color:rgba(95,98,184,0.45)_var(--color-surface-inset)] [scrollbar-width:thin] sm:min-h-[13.25rem] sm:text-[0.95rem]"
         style={{
           scrollbarGutter: "stable",
         }}

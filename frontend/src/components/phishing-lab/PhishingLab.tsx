@@ -6,9 +6,9 @@ import { labCopy, type LabCopy, type LabEmail } from './copy';
 
 // ─── Design tokens ────────────────────────────────────────────────────────────
 
-const SURFACE = '#111113';
-const SURFACE_CHROME = '#17171c';
-const SURFACE_INSET = '#151519';
+const SURFACE = 'var(--color-surface)';
+const SURFACE_CHROME = 'var(--color-surface-raised)';
+const SURFACE_INSET = 'var(--color-surface-inset)';
 const BORDER = 'rgb(255 255 255 / 0.08)';
 const BORDER_SOFT = 'rgb(255 255 255 / 0.06)';
 const BORDER_HOVER = 'rgb(255 255 255 / 0.16)';
@@ -26,6 +26,7 @@ const SUCCESS = '#5fbf76';
 const SHADOW_FLOAT = '0 24px 80px rgb(0 0 0 / 0.5)';
 const MONO = '"IBM Plex Mono","SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace';
 const SANS = '"Inter",ui-sans-serif,system-ui,-apple-system,sans-serif';
+const BACKGROUND = 'var(--background)';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -160,7 +161,7 @@ function IntroScreen({ onStart, c }: {
   return (
     <div style={{ minHeight: 'calc(100vh - 4rem)', display: 'flex', alignItems: 'center',
       justifyContent: 'center', padding: isMobile ? '5.5rem 16px 40px' : '7rem 24px 56px',
-      background: '#0a0a0a', overflowX: 'hidden' }}>
+      background: BACKGROUND, overflowX: 'hidden' }}>
       <div style={{ width: '100%', maxWidth: '660px', animation: 'niwoUp 0.5s ease both' }}>
 
         <div style={{ fontFamily: MONO, fontSize: '0.7rem', letterSpacing: '0.22em',
@@ -260,7 +261,7 @@ function ScenarioBody({
     return (
       <div style={{ padding: isMobile ? '18px 18px 4px' : '22px 30px 8px', flex: 1, minWidth: 0 }}>
         <div style={{ width: '100%', maxWidth: '390px', border: `1px solid ${BORDER}`, borderRadius: '18px',
-          background: '#0f0f12', padding: '16px', boxShadow: 'inset 0 1px 0 rgb(255 255 255 / 0.04)' }}>
+          background: SURFACE_INSET, padding: '16px', boxShadow: 'inset 0 1px 0 rgb(255 255 255 / 0.04)' }}>
           <div style={{ fontFamily: MONO, fontSize: '0.72rem', color: TM, marginBottom: '12px',
             textAlign: 'center' }}>
             {email.fromAddr}
@@ -397,7 +398,7 @@ function PlayScreen({
     <div style={{ minHeight: 'calc(100vh - 4rem)',
       padding: isMobile ? '5.25rem 10px 32px' : '7rem 24px 56px',
       display: 'flex', flexDirection: 'column', alignItems: 'center',
-      background: '#0a0a0a', overflowX: 'hidden' }}>
+      background: BACKGROUND, overflowX: 'hidden' }}>
 
       {/* status row */}
       <div style={{ width: '100%', maxWidth: '1040px', display: 'flex', alignItems: 'center',
@@ -429,9 +430,9 @@ function PlayScreen({
             {c.mailChromeTitle}
           </span>
           <span style={{ width: '11px', height: '11px', borderRadius: '50%',
-            background: '#22222a', border: `1px solid ${BORDER_HOVER}` }} />
+            background: SURFACE_CHROME, border: `1px solid ${BORDER_HOVER}` }} />
           <span style={{ width: '11px', height: '11px', borderRadius: '50%',
-            background: '#22222a', border: `1px solid ${BORDER_HOVER}` }} />
+            background: SURFACE_CHROME, border: `1px solid ${BORDER_HOVER}` }} />
           <span style={{ width: '11px', height: '11px', borderRadius: '50%',
             background: 'rgb(95 98 184 / 0.4)', border: `1px solid ${ACCENT}` }} />
         </div>
@@ -521,7 +522,7 @@ function PlayScreen({
                 paddingBottom: '20px', borderBottom: `1px solid ${BORDER_SOFT}`,
                 flexWrap: isMobile ? 'wrap' : 'nowrap' }}>
                 <div style={{ width: '40px', height: '40px', borderRadius: '50%',
-                  background: '#18181b', border: `1px solid ${BORDER_HOVER}`,
+                  background: SURFACE_CHROME, border: `1px solid ${BORDER_HOVER}`,
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   fontFamily: MONO, fontSize: '0.8rem', color: ACCENT_LIGHT, flex: 'none' }}>
                   {initials(email.fromName)}
@@ -679,7 +680,7 @@ function DoneScreen({ results, emails, onRestart, c, fmt }: {
   return (
     <div style={{ minHeight: 'calc(100vh - 4rem)',
       padding: isMobile ? '5.25rem 16px 40px' : '7rem 24px 56px', display: 'flex',
-      justifyContent: 'center', background: '#0a0a0a', overflowX: 'hidden' }}>
+      justifyContent: 'center', background: BACKGROUND, overflowX: 'hidden' }}>
       <div style={{ width: '100%', maxWidth: '760px', animation: 'niwoUp 0.5s ease both' }}>
 
         <div style={{ fontFamily: MONO, fontSize: '0.7rem', letterSpacing: '0.22em',

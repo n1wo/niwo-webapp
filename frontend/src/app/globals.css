@@ -8,11 +8,12 @@
 
 /* ── design tokens ── */
 :root {
-  --background: #0a0a0a;
+  --background: #252525;
   --foreground: #f4f4f5;
 
-  --color-surface: #111113;
-  --color-surface-raised: #18181b;
+  --color-surface: #202020;
+  --color-surface-raised: #242424;
+  --color-surface-inset: #1f1f1f;
   --color-border: rgb(255 255 255 / 0.08);
   --color-border-hover: rgb(255 255 255 / 0.16);
 
@@ -33,6 +34,7 @@
   /* surfaces */
   --color-surface: var(--color-surface);
   --color-surface-raised: var(--color-surface-raised);
+  --color-surface-inset: var(--color-surface-inset);
 
   /* accent */
   --color-accent: var(--color-accent);
@@ -213,11 +215,11 @@ body {
 }
 
 .terminal-scrollbar::-webkit-scrollbar-track {
-  background: #151519;
+  background: var(--color-surface-inset);
 }
 
 .terminal-scrollbar::-webkit-scrollbar-thumb {
-  border: 2px solid #151519;
+  border: 2px solid var(--color-surface-inset);
   border-radius: 9999px;
   background: rgb(95 98 184 / 0.4);
 }

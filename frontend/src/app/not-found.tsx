@@ -2,8 +2,14 @@ import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#0a0a0a] px-6 py-20 text-center">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(95,98,184,0.16),transparent_32%),radial-gradient(circle_at_80%_20%,rgba(140,127,224,0.12),transparent_24%),#0a0a0a]" />
+    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[var(--background)] px-6 py-20 text-center">
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(circle at top, rgba(95,98,184,0.16), transparent 32%), radial-gradient(circle at 80% 20%, rgba(140,127,224,0.12), transparent 24%), var(--background)",
+        }}
+      />
       <div className="absolute inset-0 opacity-40 [background-image:linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] [background-size:72px_72px]" />
 
       <div className="relative w-full max-w-2xl rounded-[1.75rem] border border-white/[0.08] bg-black/25 px-8 py-14 shadow-[0_24px_80px_rgba(0,0,0,0.45)] backdrop-blur-md sm:px-12">
