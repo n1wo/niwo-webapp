@@ -32,15 +32,15 @@
   },
   "Home": {
     "metadata": {
-      "title": "niwo | Cybersicherheit",
-      "description": "Nikita Wokurkas persönliches Web- und Security-Projekt. Praktische Notizen zu Web Security, sicherer Entwicklung, verständlichen Erklärungen und kleinen Security-Labs."
+      "title": "niwo | Software-, IT- & Cybersecurity-Beratung",
+      "description": "niwo systems bietet Software-, IT-, Cybersecurity- und Incident-Response-Beratung mit praktischer Orientierung für sichere Systeme und belastbaren Betrieb."
     },
-    "heroEyebrow": "Web Application Security · Sichere Entwicklung · Security Learning",
-    "heroHeadline": "Willkommen in meiner kleinen Ecke im Cyberspace.",
-    "heroParagraph": "Ich bin Nikita — Cybersecurity-Student in Bonn und baue niwo systems als persönliches Web- und Security-Projekt. Auf dieser Seite dokumentiere ich praktische Security-Arbeit, erkläre Web Security verständlich und sammle kleine Labs zu sicherer Entwicklung, Anwendungsrisiken und defensivem Denken.",
-    "primaryCta": "Security-Frage stellen",
+    "heroEyebrow": "Software-Beratung · IT-Beratung · Cybersecurity · Incident Response",
+    "heroHeadline": "Software-, IT- und Cybersecurity-Beratung.",
+    "heroParagraph": "niwo systems hilft kleinen Teams und Unternehmen dabei, digitale Systeme zu bauen, abzusichern, zu betreiben und nach Sicherheitsvorfällen geordnet zu reagieren. Der Fokus liegt auf praktischer Beratung zu Softwareentwicklung, IT-Support, Cybersecurity-Hardening, Anwendungsrisiken und Incident-Response-Readiness.",
+    "primaryCta": "Gespräch starten",
     "secondaryCta": "Themen ansehen",
-    "supportLine": "Web Application Security · Sichere Entwicklung · Security Learning · Praktische Labs",
+    "supportLine": "Software-Beratung · IT-Beratung · Cybersecurity · Incident Response",
     "whoamiLink": {
       "eyebrow": "whoami",
       "title": "Zur whoami-Seite",
