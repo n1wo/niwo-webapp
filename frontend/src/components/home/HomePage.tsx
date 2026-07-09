@@ -205,12 +205,6 @@ export default function HomePage(): JSX.Element {
               {t("heroParagraph")}
             </p>
 
-            <div className="flex flex-wrap items-center gap-3 text-xs font-medium tracking-wide text-zinc-400">
-              <ActionLink href="/pages/about" variant="pill" withArrow>
-                {t("hiringNotice")}
-              </ActionLink>
-            </div>
-
             <PrimarySecondaryCta
               className="pt-2"
               primaryLabel={t("primaryCta")}
