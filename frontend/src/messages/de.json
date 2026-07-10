@@ -200,27 +200,27 @@
   "Imprint": {
     "metadata": {
       "title": "Impressum | niwo systems",
-      "description": "Rechtliche Hinweise für niwo systems. Nicht-kommerzielle Informationswebsite. Berufliche Zusammenarbeit wird privat außerhalb dieser Plattform abgewickelt."
+      "description": "Impressum und Anbieterinformationen für niwo systems."
     },
     "eyebrow": "Rechtliches",
     "title": "Impressum",
-    "lastUpdated": "16. Okt. 2025",
+    "lastUpdated": "10. Juli 2026",
     "sections": {
       "provider": {
         "title": "1. Anbieterkennzeichnung",
-        "body": "Verantwortlich gemäß § 5 TMG / EU-E-Commerce-Richtlinie",
-        "owner": "Inhaber: N. W.",
-        "address": "Adresse: auf Anfrage erhältlich"
+        "body": "Anbieterkennzeichnung gemäß § 5 DDG und § 18 MStV",
+        "owner": "Anbieter und inhaltlich verantwortlich: Nikita Wokurka",
+        "address": "Geschäftsanschrift: wird derzeit eingerichtet und anschließend hier veröffentlicht"
       },
       "nature": {
         "title": "2. Art der Website",
-        "body": "Diese Website ist ein nicht-kommerzielles Informationsprojekt mit Fokus auf Technologie- und Sicherheitsforschung. Über diese Plattform wird keine bezahlte Arbeit direkt gebucht oder verkauft.",
+        "body": "Diese Website stellt niwo systems, den Beratungsfokus sowie die Technologie- und Sicherheitsarbeit vor. Beratungsaufträge werden separat schriftlich vereinbart.",
         "disclaimerTitle": "Hinweis:",
-        "disclaimerText": "Diese Website verkauft keine bezahlte Arbeit direkt. Jede berufliche Zusammenarbeit, die aus privatem Kontakt entsteht, wird außerhalb dieser Plattform abgewickelt, zum Beispiel per E-Mail oder über eine separate Vereinbarung."
+        "disclaimerText": "Die Informationen auf dieser Website stellen kein verbindliches Angebot dar. Umfang, Autorisierung, Leistungen, Zeitrahmen und Vergütung eines Auftrags werden in einer separaten Vereinbarung festgelegt."
       },
       "contact": {
         "title": "3. Kontakt",
-        "body": "Für rechtliche Hinweise oder formelle Korrespondenz kontaktiere bitte legal@niwosystems.com. Falls für eine formelle Zustellung eine Postanschrift erforderlich ist, wird diese auf Anfrage bereitgestellt."
+        "body": "Für rechtliche Hinweise oder formelle Korrespondenz kontaktiere bitte legal@niwosystems.com. Die externe Geschäftsanschrift wird derzeit eingerichtet und nach Abschluss hier veröffentlicht."
       },
       "liability": {
         "title": "4. Haftung für Inhalte",
@@ -274,11 +274,11 @@
   "PrivacyPolicy": {
     "metadata": {
       "title": "Datenschutzerklärung | niwo",
-      "description": "Datenschutzerklärung für diese Website zu E-Mail-Kontakt, Hosting und lokal gehosteten Schriftarten."
+      "description": "Datenschutzerklärung für diese Website zu E-Mail-Kontakt, AWS-Hosting und -Auslieferung, Proton Mail, Aufbewahrung und Tracking."
     },
     "eyebrow": "Rechtliches",
     "title": "Datenschutzerklärung",
-    "lastUpdated": "13. Oktober 2025",
+    "lastUpdated": "10. Juli 2026",
     "sections": {
       "intro": {
         "navTitle": "1. Einleitung",
@@ -289,10 +289,10 @@
         "navTitle": "2. Verantwortlicher",
         "title": "2. Verantwortlicher",
         "controllerLabel": "Verantwortlicher:",
-        "controllerValue": "niwo systems",
+        "controllerValue": "Nikita Wokurka, handelnd unter der Geschäftsbezeichnung niwo systems",
         "emailLabel": "E-Mail:",
         "addressLabel": "Adresse:",
-        "addressValue": "Deutschland",
+        "addressValue": "Deutschland; externe Geschäftsanschrift wird derzeit eingerichtet",
         "body": "Wenn du Fragen zu dieser Datenschutzerklärung oder zu deinen personenbezogenen Daten hast, kannst du uns über die oben genannten Kontaktdaten erreichen."
       },
       "dataWeCollect": {
@@ -318,13 +318,15 @@
       "storageRetention": {
         "navTitle": "5. Speicherung & Aufbewahrung",
         "title": "5. Speicherung & Aufbewahrung",
-        "body": "Wir speichern personenbezogene Daten nur so lange, wie es für den Zweck der Erhebung, die Kommunikation mit dir oder zur Erfüllung gesetzlicher Pflichten erforderlich ist. E-Mail-Korrespondenz kann aufbewahrt werden, soweit dies zur Dokumentation oder Bearbeitung von Folgeanfragen notwendig ist."
+        "body": "Erfolglose geschäftliche Anfragen werden in der Regel innerhalb von sechs Monaten nach der letzten Kommunikation gelöscht. Korrespondenz zu einem aktiven Kundenauftrag wird für die Dauer des Auftrags und danach nur aufbewahrt, soweit dies zur Geltendmachung, Ausübung oder Verteidigung von Rechtsansprüchen oder zur Erfüllung gesetzlicher Pflichten erforderlich ist. Verträge und Rechnungen werden nach den anwendbaren gesetzlichen Aufbewahrungspflichten getrennt archiviert und nicht unbegrenzt im gewöhnlichen Postfach gespeichert. Bei Datenschutz- oder Sicherheitsanfragen bewahren wir nur die zur Dokumentation und Bearbeitung erforderlichen Nachweise auf und löschen sie, sobald sie vernünftigerweise nicht mehr benötigt werden."
       },
       "thirdParties": {
         "navTitle": "6. Einsatz von Dritten",
         "title": "6. Einsatz von Dritten",
-        "hostingTitle": "Hosting",
-        "hostingBody": "Diese Website wird über AWS-Infrastruktur gehostet. Hosting-Anbieter können technische Verbindungsdaten und Server-Logs verarbeiten, soweit dies für eine sichere und zuverlässige Bereitstellung der Website erforderlich ist.",
+        "hostingTitle": "AWS-Hosting und Inhaltsauslieferung",
+        "hostingBody": "Amazon Web Services (AWS) stellt Amplify Hosting, die Inhaltsauslieferung über CloudFront, operative Protokollierung über CloudWatch und S3-Medienspeicher bereit. AWS kann IP-Adressen, aufgerufene URLs, Zeitstempel, User-Agent-Informationen, Request-Header sowie Auslieferungs- oder Sicherheitsmetadaten verarbeiten, um die Website bereitzustellen und zu schützen. Die Amplify-Bereitstellung und der Ursprung des Medienspeichers befinden sich in Frankfurt, Deutschland (eu-central-1), während CloudFront ein globales Edge-Netzwerk nutzt. Amplify-Compute-Logs werden 90 Tage aufbewahrt. Amplify-Hosting-Zugriffsprotokolle werden von AWS aufbewahrt, bis die Amplify-App gelöscht wird. Die separate Zugriffsprotokollierung für die Medien-CloudFront-Distribution ist deaktiviert.",
+        "emailTitle": "E-Mail-Kommunikation",
+        "emailBody": "Die geschäftliche E-Mail-Kommunikation wird über Proton Mail der Proton AG in der Schweiz bereitgestellt. Wenn du info@niwosystems.com, legal@niwosystems.com oder security@niwosystems.com kontaktierst, kann Proton Absender- und Empfängeradressen, Nachrichtenmetadaten, Nachrichteninhalte, Signaturen und Anhänge verarbeiten, um die Korrespondenz zu übertragen und zu speichern. Proton gibt an, dass Proton-Mail-Daten verschlüsselt auf Servern in der Schweiz, Deutschland oder Norwegen gespeichert werden und verschlüsselte Offline-Sicherungen bis zu 30 Tage aufbewahrt werden können.",
         "fontsTitle": "Schriftarten",
         "fontsBody": "Die Website verwendet lokal gehostete Schriftarten. Beim Laden der Website werden keine Font-Anfragen an Drittanbieter gesendet."
       },
@@ -354,7 +356,7 @@
       "cookies": {
         "navTitle": "10. Cookies & Tracking",
         "title": "10. Cookies & Tracking",
-        "body": "Diese Website verwendet derzeit keine nicht erforderlichen Tracking-Cookies oder invasive Analyse-Tools. Sollte sich das in Zukunft ändern, wird diese Erklärung entsprechend aktualisiert."
+        "body": "Diese Website setzt derzeit kein Sprachpräferenz-Cookie und verwendet keine nicht erforderlichen Tracking-Cookies, Analyse-Beacons, Werbepixel oder Session-Replay-Tools. Sollte sich dies künftig ändern, werden diese Erklärung und gegebenenfalls erforderliche Einwilligungsmechanismen aktualisiert, bevor die neue Verarbeitung aktiviert wird."
       },
       "changes": {
         "navTitle": "11. Änderungen dieser Erklärung",

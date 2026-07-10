@@ -425,27 +425,27 @@
   "Imprint": {
     "metadata": {
       "title": "Imprint | niwo systems",
-      "description": "Legal notice for niwo systems. Non-commercial informational website. Professional collaboration is handled privately, outside this platform."
+      "description": "Legal notice and provider information for niwo systems."
     },
     "eyebrow": "Legal",
     "title": "Imprint",
-    "lastUpdated": "16 Oct 2025",
+    "lastUpdated": "10 July 2026",
     "sections": {
       "provider": {
         "title": "1. Provider Identification",
-        "body": "Responsible according to Section 5 TMG / EU eCommerce Directive",
-        "owner": "Owner: N. W.",
-        "address": "Address: available upon request"
+        "body": "Provider information under Section 5 DDG and Section 18 MStV",
+        "owner": "Operator and person responsible for content: Nikita Wokurka",
+        "address": "Business address: being finalized and will be published here once available"
       },
       "nature": {
         "title": "2. Nature of the Website",
-        "body": "This website is a non-commercial informational project focused on technology and security research. No paid work is booked or sold directly through this platform.",
+        "body": "This website presents niwo systems, its consulting focus, and its technology and security work. Consulting engagements are agreed separately in writing.",
         "disclaimerTitle": "Disclaimer:",
-        "disclaimerText": "This website does not directly sell paid work. Any professional collaboration resulting from private contact is handled outside this platform, for example by email or a separate agreement."
+        "disclaimerText": "Information on this website is not a binding offer. The scope, authorization, deliverables, timing, and fees of any engagement are defined in a separate agreement."
       },
       "contact": {
         "title": "3. Contact",
-        "body": "For legal notices or formal correspondence, please reach out via legal@niwosystems.com. If a physical mailing address is required for formal delivery, it will be provided upon request."
+        "body": "For legal notices or formal correspondence, please contact legal@niwosystems.com. The external business address is being established and will be published here once finalized."
       },
       "liability": {
         "title": "4. Liability for Content",
@@ -499,11 +499,11 @@
   "PrivacyPolicy": {
     "metadata": {
       "title": "Privacy Policy | niwo",
-      "description": "Privacy policy for this website covering email contact, hosting, and locally hosted fonts."
+      "description": "Privacy policy for this website covering email contact, AWS hosting and delivery, Proton Mail, retention, and tracking."
     },
     "eyebrow": "Legal",
     "title": "Privacy Policy",
-    "lastUpdated": "13 October 2025",
+    "lastUpdated": "10 July 2026",
     "sections": {
       "intro": {
         "navTitle": "1. Introduction",
@@ -514,10 +514,10 @@
         "navTitle": "2. Data Controller",
         "title": "2. Data Controller",
         "controllerLabel": "Controller:",
-        "controllerValue": "niwo systems",
+        "controllerValue": "Nikita Wokurka, operating under the business designation niwo systems",
         "emailLabel": "Email:",
         "addressLabel": "Address:",
-        "addressValue": "Based in Germany",
+        "addressValue": "Germany; external business address being finalized",
         "body": "If you have questions about this Privacy Policy or your personal data, you can contact us using the details above."
       },
       "dataWeCollect": {
@@ -543,13 +543,15 @@
       "storageRetention": {
         "navTitle": "5. Data Storage & Retention",
         "title": "5. Data Storage & Retention",
-        "body": "We retain personal data only for as long as necessary to fulfill the purpose for which it was collected, to communicate with you, or to comply with legal obligations. Email correspondence may be retained where needed to document communication or handle follow-up requests."
+        "body": "Unsuccessful business inquiries are normally deleted within six months after the last communication. Correspondence relating to an active client engagement is retained for the duration of the engagement and afterwards only where necessary to establish, exercise, or defend legal claims or comply with legal obligations. Contracts and invoices are archived separately under applicable statutory retention requirements rather than kept indefinitely in the ordinary mailbox. For privacy or security requests, we retain only the limited evidence needed to document and resolve the matter, and delete it when it is no longer reasonably required."
       },
       "thirdParties": {
         "navTitle": "6. Use of Third-Party Providers",
         "title": "6. Use of Third-Party Providers",
-        "hostingTitle": "Hosting",
-        "hostingBody": "This website is hosted using AWS infrastructure. Hosting providers may process technical connection data and server logs as required to deliver the website securely and reliably.",
+        "hostingTitle": "AWS hosting and content delivery",
+        "hostingBody": "Amazon Web Services (AWS) provides Amplify Hosting, CloudFront content delivery, CloudWatch operational logging, and S3 media storage. AWS may process IP addresses, requested URLs, timestamps, user-agent information, request headers, and delivery or security metadata to provide and protect the website. The Amplify deployment and media-storage origin are located in Frankfurt, Germany (eu-central-1), while CloudFront uses a global edge network. Amplify compute logs are retained for 90 days. Amplify Hosting access logs are retained by AWS until the Amplify app is deleted. Separate access logging for the media CloudFront distribution is disabled.",
+        "emailTitle": "Email communication",
+        "emailBody": "Business email is provided through Proton Mail by Proton AG in Switzerland. When you contact info@niwosystems.com, legal@niwosystems.com, or security@niwosystems.com, Proton may process sender and recipient addresses, message metadata, message content, signatures, and attachments to transmit and store the correspondence. Proton states that Proton Mail data is stored in encrypted form on servers in Switzerland, Germany, or Norway and that encrypted offline backups may be retained for up to 30 days.",
         "fontsTitle": "Fonts",
         "fontsBody": "The website uses locally hosted fonts. No font requests are sent to third-party font providers when loading the site."
       },
@@ -579,7 +581,7 @@
       "cookies": {
         "navTitle": "10. Cookies & Tracking",
         "title": "10. Cookies & Tracking",
-        "body": "This website currently does not rely on non-essential tracking cookies or invasive analytics tooling. If this changes in the future, this policy will be updated accordingly."
+        "body": "This website currently does not set a language-preference cookie and does not use non-essential tracking cookies, analytics beacons, advertising pixels, or session-replay tools. If this changes in the future, this policy and any required consent controls will be updated before the new processing is enabled."
       },
       "changes": {
         "navTitle": "11. Changes to This Policy",
