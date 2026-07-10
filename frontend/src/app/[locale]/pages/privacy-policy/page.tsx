@@ -59,6 +59,7 @@ export default async function PrivacyPolicyPage({
       docGroups={docGroups}
       navLabel={common("onThisPage")}
       sections={sections}
+      contentVariant="structured"
     >
       <section id="intro" className="scroll-mt-28">
         <h2>{t("sections.intro.title")}</h2>
