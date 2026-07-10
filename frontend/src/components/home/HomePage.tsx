@@ -2,27 +2,23 @@
 
 import type { JSX } from "react";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import ActionLink from "@/components/common/ActionLink";
 import CardShell from "@/components/common/CardShell";
 import PrimarySecondaryCta from "@/components/common/PrimarySecondaryCta";
-import Surface from "@/components/common/Surface";
 import InteractiveTerminal from "@/components/home/InteractiveTerminal";
+import LivingTrustGraph from "@/components/home/LivingTrustGraph";
 import ServiceCard from "@/components/services/ServiceCard";
 import { serviceDefinitions } from "@/data/services";
 
-const VIDEO_SRC = "https://d2k0ncl90mug6s.cloudfront.net/bvideo-20251020.mp4";
 const HEADLINE_TYPING_DELAY_MS = 28;
 const SECTION_HEADING_TYPING_DELAY_MS = 22;
 
 export default function HomePage(): JSX.Element {
   const t = useTranslations("Home");
   const serviceT = useTranslations("Topics");
-  const videoRef = useRef<HTMLVideoElement | null>(null);
   const servicesHeadingRef = useRef<HTMLDivElement | null>(null);
-  const { scrollY } = useScroll();
-  const videoParallaxY = useTransform(scrollY, [0, 800], [0, 280]);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const [headlineLength, setHeadlineLength] = useState(0);
   const [showHeadlineCursor, setShowHeadlineCursor] = useState(false);
@@ -77,14 +73,6 @@ export default function HomePage(): JSX.Element {
     const apply = () => {
       const reduce = mq.matches;
       setPrefersReducedMotion(reduce);
-
-      if (videoRef.current) {
-        if (reduce) {
-          videoRef.current.pause();
-        } else {
-          void videoRef.current.play().catch(() => {});
-        }
-      }
 
       if (reduce) {
         setHeadlineLength(headline.length);
@@ -158,37 +146,23 @@ export default function HomePage(): JSX.Element {
 
   return (
     <div className="flex flex-col items-center">
-      <header className="relative flex min-h-screen w-full items-center justify-center px-6 pt-10 pb-14 sm:px-12 md:px-20">
+      <header className="relative flex min-h-screen w-full items-center justify-center px-6 pt-28 pb-16 sm:px-12 sm:pt-16 lg:pt-10 lg:pb-14 md:px-20">
         <div className="absolute inset-0 overflow-hidden">
-          <motion.div
+          <LivingTrustGraph />
+          <div
             aria-hidden="true"
-            className="absolute inset-x-0 -top-36 -bottom-36"
-            style={prefersReducedMotion ? undefined : { y: videoParallaxY }}
-          >
-            <video
-              ref={videoRef}
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="metadata"
-              aria-hidden="true"
-              poster="/assets/video/poster.jpg"
-              className="h-full w-full object-cover"
-            >
-              <source src={VIDEO_SRC} type="video/mp4" />
-            </video>
-          </motion.div>
-          <div className="absolute inset-0 bg-black/50" />
+            className="absolute inset-0 bg-[radial-gradient(62%_56%_at_45%_47%,var(--background)_16%,transparent_72%)] opacity-85"
+          />
           <div className="absolute inset-x-0 bottom-0 h-px bg-white/[0.1]" />
         </div>
 
-        <Surface
-          variant="hero"
-          className="relative z-10 w-full max-w-5xl px-8 py-12 sm:px-12 sm:py-16 lg:px-14"
-        >
+        <div className="relative z-10 w-full max-w-5xl px-2 sm:px-4">
           <div className="max-w-4xl space-y-8">
-            <p className="text-sm font-medium tracking-wide text-[var(--color-accent-light)]">
+            <p className="flex items-center gap-3 text-sm font-medium tracking-wide text-[var(--color-accent-light)]">
+              <span
+                aria-hidden="true"
+                className="inline-block h-2 w-2 shrink-0 bg-[var(--color-accent-light)] opacity-70"
+              />
               {t("heroEyebrow")}
             </p>
 
@@ -211,7 +185,7 @@ export default function HomePage(): JSX.Element {
               secondaryLabel={t("secondaryCta")}
             />
           </div>
-        </Surface>
+        </div>
       </header>
 
       <div className="w-full max-w-7xl space-y-28 px-6 pt-16 pb-32 sm:px-12 sm:space-y-36 md:px-20 2xl:max-w-[88rem]">
