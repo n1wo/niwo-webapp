@@ -75,6 +75,50 @@
   color: var(--color-accent-light);
 }
 
+.emergency {
+  position: relative;
+  border: 1px solid rgb(252 165 165 / 0.8);
+  background: rgb(185 28 28);
+  color: white;
+  box-shadow:
+    0 0 0 0 rgb(239 68 68 / 0.42),
+    0 0 24px rgb(220 38 38 / 0.36);
+  animation: emergency-pulse 1.6s ease-out infinite;
+}
+
+.emergency::before {
+  width: 0.5rem;
+  height: 0.5rem;
+  flex: 0 0 auto;
+  border-radius: 9999px;
+  background: rgb(254 226 226);
+  box-shadow: 0 0 10px rgb(255 255 255 / 0.85);
+  content: "";
+}
+
+.emergency:hover {
+  border-color: rgb(254 202 202);
+  background: rgb(220 38 38);
+  box-shadow:
+    0 0 0 4px rgb(239 68 68 / 0.18),
+    0 0 34px rgb(239 68 68 / 0.52);
+}
+
+@keyframes emergency-pulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 0 rgb(239 68 68 / 0.42),
+      0 0 24px rgb(220 38 38 / 0.36);
+  }
+
+  50% {
+    box-shadow:
+      0 0 0 8px rgb(239 68 68 / 0),
+      0 0 34px rgb(239 68 68 / 0.58);
+  }
+}
+
 .focusable:focus-visible {
   outline: none;
   box-shadow:
@@ -85,5 +129,9 @@
 @media (prefers-reduced-motion: reduce) {
   .base {
     transition: none;
+  }
+
+  .emergency {
+    animation: none;
   }
 }
