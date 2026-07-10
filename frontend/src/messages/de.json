@@ -32,15 +32,15 @@
   },
   "Home": {
     "metadata": {
-      "title": "niwo | Software-, IT- & Cybersecurity-Beratung",
-      "description": "niwo systems bietet Software-, IT-, Cybersecurity- und Incident-Response-Beratung mit praktischer Orientierung für sichere Systeme und belastbaren Betrieb."
+      "title": "niwo | Software, IT & Cybersecurity",
+      "description": "niwo systems entwickelt eine fokussierte Software-, IT- und Cybersecurity-Beratungspraxis rund um sichere Systeme und Incident-Response-Readiness."
     },
-    "heroEyebrow": "Software-Beratung · IT-Beratung · Cybersecurity · Incident Response",
-    "heroHeadline": "Software-, IT- und Cybersecurity-Beratung.",
-    "heroParagraph": "niwo systems hilft kleinen Teams und Unternehmen dabei, digitale Systeme zu bauen, abzusichern, zu betreiben und nach Sicherheitsvorfällen geordnet zu reagieren. Der Fokus liegt auf praktischer Beratung zu Softwareentwicklung, IT-Support, Cybersecurity-Hardening, Anwendungsrisiken und Incident-Response-Readiness.",
-    "primaryCta": "Gespräch starten",
+    "heroEyebrow": "Software · IT · Cybersecurity · Incident-Response-Readiness",
+    "heroHeadline": "Praktische Software-, IT- und Cybersecurity-Arbeit.",
+    "heroParagraph": "niwo systems entwickelt eine fokussierte Beratungspraxis für kleine Teams und Unternehmen. Der aktuelle Fokus liegt auf praktischer Orientierung zu Softwareentwicklung, IT-Support, Cybersecurity-Hardening, Anwendungsrisiken und Incident-Response-Readiness. Jeder Auftrag wird separat schriftlich eingegrenzt und vereinbart.",
+    "primaryCta": "Unverbindlich anfragen",
     "secondaryCta": "Themen ansehen",
-    "supportLine": "Software-Beratung · IT-Beratung · Cybersecurity · Incident Response",
+    "supportLine": "Software · IT · Cybersecurity · Incident-Response-Readiness",
     "whoamiLink": {
       "eyebrow": "whoami",
       "title": "Zur whoami-Seite",
@@ -182,7 +182,7 @@
       "paragraphs": [
         "Ich studiere Cybersecurity an der IU und baue parallel praktische Erfahrung in Web Security, IT-Support und sicherer Entwicklung auf.",
         "Aktuell suche ich Werkstudenten-, Praktikums- oder Teilzeitrollen im Bereich IT, Security oder technischem Support — besonders dort, wo ich mit echten Systemen, Dokumentation, Fehlersuche und Security-Themen arbeiten kann.",
-        "Nebenbei arbeite ich an kleinen, klar abgegrenzten Web- und Security-Projekten, wenn der Rahmen passt."
+        "Ich bereite mich darauf vor, kleine, klar abgegrenzte Web- und Security-Projekte zu übernehmen, wenn der Rahmen passt."
       ],
       "recruiters": {
         "label": "Wenn du einstellst",

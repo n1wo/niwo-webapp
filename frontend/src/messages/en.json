@@ -32,15 +32,15 @@
   },
   "Home": {
     "metadata": {
-      "title": "niwo | Software, IT & Cybersecurity Consulting",
-      "description": "niwo systems provides software, IT, cybersecurity, and incident response consulting with practical guidance for secure systems and resilient operations."
+      "title": "niwo | Software, IT & Cybersecurity",
+      "description": "niwo systems is developing a focused software, IT, and cybersecurity consulting practice built around secure systems and incident-response readiness."
     },
-    "heroEyebrow": "Software Consulting · IT Consulting · Cybersecurity · Incident Response",
-    "heroHeadline": "Software, IT and cybersecurity consulting.",
-    "heroParagraph": "niwo systems helps small teams and businesses build, secure, troubleshoot, and recover digital systems. The focus is practical consulting across software development, IT support, cybersecurity hardening, application risk, and incident response readiness.",
-    "primaryCta": "Start a conversation",
+    "heroEyebrow": "Software · IT · Cybersecurity · Incident-Response Readiness",
+    "heroHeadline": "Practical software, IT and cybersecurity.",
+    "heroParagraph": "niwo systems is developing a focused consulting practice for small teams and businesses. The current focus is practical guidance around software development, IT support, cybersecurity hardening, application risk, and incident-response readiness. Any engagement is scoped and agreed separately in writing.",
+    "primaryCta": "Start an initial conversation",
     "secondaryCta": "Explore topics",
-    "supportLine": "Software Consulting · IT Consulting · Cybersecurity · Incident Response",
+    "supportLine": "Software · IT · Cybersecurity · Incident-Response Readiness",
     "whoamiLink": {
       "eyebrow": "whoami",
       "title": "Read the whoami page",
@@ -407,7 +407,7 @@
       "paragraphs": [
         "I'm studying cybersecurity at IU while building practical experience in web security, IT support, and secure development.",
         "Right now I'm looking for working student, internship, or part-time roles in IT, security, or technical support — especially where I get to work with real systems, documentation, troubleshooting, and security topics.",
-        "On the side, I take on small, clearly scoped web and security projects when the fit is right."
+        "I am preparing to take on small, clearly scoped web and security projects when the fit is right."
       ],
       "recruiters": {
         "label": "If you're hiring",
