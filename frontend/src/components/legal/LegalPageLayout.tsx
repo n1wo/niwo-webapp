@@ -154,7 +154,9 @@ export default function LegalPageLayout({
               </p>
               <h1
                 className={`max-w-3xl font-mono text-3xl font-bold tracking-tight text-white sm:text-4xl ${
-                  isStructured ? "mt-4 break-words leading-tight hyphens-auto" : "mt-3"
+                  isStructured
+                    ? "mt-4 break-words text-[1.65rem] leading-tight hyphens-auto sm:text-4xl"
+                    : "mt-3"
                 }`}
               >
                 {title}
