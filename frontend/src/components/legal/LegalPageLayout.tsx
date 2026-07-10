@@ -20,6 +20,7 @@ type LegalPageLayoutProps = {
   docGroups: LegalDocGroup[];
   sections: LegalSectionLink[];
   navLabel?: string;
+  contentVariant?: "default" | "structured";
   children: ReactNode;
 };
 
@@ -34,10 +35,12 @@ export default function LegalPageLayout({
   docGroups,
   sections,
   navLabel = "On this page",
+  contentVariant = "default",
   children,
 }: LegalPageLayoutProps) {
   const terminalPath = path ?? `/${title.toLowerCase().replace(/\s+/g, "-")}`;
   const activePath = path ?? terminalPath;
+  const isStructured = contentVariant === "structured";
   const [activeId, setActiveId] = useState<string>("");
   const observerRef = useRef<IntersectionObserver | null>(null);
 
@@ -142,14 +145,18 @@ export default function LegalPageLayout({
           </aside>
 
           <div className="min-w-0">
-            <header className="border-b border-white/[0.08] pb-8">
+            <header className={`border-b border-white/[0.08] ${isStructured ? "pb-10" : "pb-8"}`}>
               <p className="font-mono text-[0.68rem] uppercase tracking-[0.24em] text-zinc-500">
                 {terminalPath}
               </p>
               <p className="mt-5 font-mono text-[0.72rem] font-medium uppercase tracking-[0.3em] text-[var(--color-accent-light)]">
                 {eyebrow}
               </p>
-              <h1 className="mt-3 max-w-3xl font-mono text-3xl font-bold tracking-tight text-white sm:text-4xl">
+              <h1
+                className={`max-w-3xl font-mono text-3xl font-bold tracking-tight text-white sm:text-4xl ${
+                  isStructured ? "mt-4 break-words leading-tight hyphens-auto" : "mt-3"
+                }`}
+              >
                 {title}
               </h1>
               {description ? (
@@ -165,13 +172,18 @@ export default function LegalPageLayout({
             </header>
 
             <article
-              className="
-                mt-10 min-w-0 max-w-[46rem]
+              className={`
+                min-w-0 max-w-[46rem]
+
+                ${isStructured ? "mt-12" : "mt-10"}
 
                 prose prose-invert max-w-none
                 prose-headings:font-sans prose-headings:tracking-tight
-                prose-h2:mb-4 prose-h2:text-[1.55rem] prose-h2:font-semibold prose-h2:text-white
-                prose-h3:mb-2 prose-h3:mt-7 prose-h3:text-[0.98rem] prose-h3:font-semibold prose-h3:text-zinc-200
+                ${
+                  isStructured
+                    ? "prose-h2:mb-5 prose-h2:border-b prose-h2:border-white/[0.08] prose-h2:pb-3 prose-h2:text-[1.45rem] prose-h2:font-semibold prose-h2:leading-tight prose-h2:text-white prose-h3:mb-3 prose-h3:mt-8 prose-h3:text-[0.96rem] prose-h3:font-semibold prose-h3:leading-snug prose-h3:text-zinc-200"
+                    : "prose-h2:mb-4 prose-h2:text-[1.55rem] prose-h2:font-semibold prose-h2:text-white prose-h3:mb-2 prose-h3:mt-7 prose-h3:text-[0.98rem] prose-h3:font-semibold prose-h3:text-zinc-200"
+                }
                 prose-p:my-4 prose-p:text-[0.98rem] prose-p:leading-[1.9] prose-p:text-zinc-400
                 prose-li:text-[0.98rem] prose-li:leading-[1.9] prose-li:text-zinc-400
                 prose-li:marker:text-zinc-600
@@ -179,11 +191,12 @@ export default function LegalPageLayout({
                 prose-a:text-[var(--color-accent-light)] prose-a:no-underline prose-a:font-normal hover:prose-a:underline
                 prose-strong:text-zinc-200 prose-strong:font-semibold
 
-                [&>section+section]:mt-12
-                [&>section+section]:border-t
-                [&>section+section]:border-white/[0.06]
-                [&>section+section]:pt-12
-              "
+                ${
+                  isStructured
+                    ? "[&>section+section]:mt-14 [&>section+section]:pt-2"
+                    : "[&>section+section]:mt-12 [&>section+section]:border-t [&>section+section]:border-white/[0.06] [&>section+section]:pt-12"
+                }
+              `}
             >
               {children}
             </article>

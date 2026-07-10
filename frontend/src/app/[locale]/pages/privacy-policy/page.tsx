@@ -59,6 +59,7 @@ export default async function PrivacyPolicyPage({
       docGroups={docGroups}
       navLabel={common("onThisPage")}
       sections={sections}
+      contentVariant="structured"
     >
       <section id="intro" className="scroll-mt-28">
         <h2>{t("sections.intro.title")}</h2>
@@ -108,6 +109,8 @@ export default async function PrivacyPolicyPage({
         <h2>{t("sections.thirdParties.title")}</h2>
         <h3>{t("sections.thirdParties.hostingTitle")}</h3>
         <p>{t("sections.thirdParties.hostingBody")}</p>
+        <h3>{t("sections.thirdParties.emailTitle")}</h3>
+        <p>{t("sections.thirdParties.emailBody")}</p>
         <h3>{t("sections.thirdParties.fontsTitle")}</h3>
         <p>{t("sections.thirdParties.fontsBody")}</p>
       </section>
