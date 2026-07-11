@@ -26,6 +26,7 @@ export default function HomePage(): JSX.Element {
   const [showServicesTitleCursor, setShowServicesTitleCursor] = useState(false);
 
   const headline = t("heroHeadline");
+  const heroKeywords = t.raw("heroKeywords") as string[];
   const servicesTitle = t("servicesTitle");
 
   const renderTypedText = (text: string, length: number, showCursor: boolean) => {
@@ -194,6 +195,17 @@ export default function HomePage(): JSX.Element {
             <p className="max-w-3xl text-lg leading-8 text-zinc-200">
               {t("heroParagraph")}
             </p>
+
+            <ul className="flex max-w-3xl flex-wrap gap-2">
+              {heroKeywords.map((keyword) => (
+                <li
+                  key={keyword}
+                  className="border border-white/[0.09] bg-white/[0.02] px-3 py-1.5 font-mono text-[0.68rem] font-medium uppercase tracking-[0.14em] text-zinc-400"
+                >
+                  {keyword}
+                </li>
+              ))}
+            </ul>
 
             <PrimarySecondaryCta
               className="pt-2"
