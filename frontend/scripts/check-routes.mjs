@@ -7,8 +7,28 @@ const BASE_URL = `http://${HOST}:${PORT}`;
 
 const requiredRoutes = [
   { path: "/", statuses: [307, 308], location: "/en" },
-  { path: "/en", statuses: [200], notContains: ["/terminal-closed"] },
-  { path: "/de", statuses: [200], notContains: ["/terminal-closed"] },
+  {
+    path: "/en",
+    statuses: [200],
+    contains: [
+      "Complex security topics, explained clearly",
+      "AI in DevSecOps",
+      "Agentic Engineering",
+      "Incident Response",
+    ],
+    notContains: ["/terminal-closed"],
+  },
+  {
+    path: "/de",
+    statuses: [200],
+    contains: [
+      "Komplexe Security-Themen, klar erklärt",
+      "AI in DevSecOps",
+      "Agentic Engineering",
+      "Incident Response",
+    ],
+    notContains: ["/terminal-closed"],
+  },
   { path: "/robots.txt", statuses: [200] },
   {
     path: "/sitemap.xml",
