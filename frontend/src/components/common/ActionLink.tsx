@@ -3,7 +3,7 @@ import NextLink from "next/link";
 import { Link as IntlLink } from "@/i18n/navigation";
 import styles from "./ActionLink.module.css";
 
-type ActionLinkVariant = "primary" | "secondary" | "subtle" | "pill";
+type ActionLinkVariant = "primary" | "secondary" | "subtle" | "pill" | "emergency";
 type ActionLinkFont = "sans" | "mono";
 
 type ActionLinkProps = {
@@ -34,6 +34,7 @@ export default function ActionLink({
     secondary: styles.secondary,
     subtle: styles.subtle,
     pill: styles.pill,
+    emergency: styles.emergency,
   }[variant];
 
   const fontClass = font === "mono" ? styles.fontMono : styles.fontSans;

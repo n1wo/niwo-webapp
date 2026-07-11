@@ -35,12 +35,18 @@
       "title": "niwo | Software, IT & Cybersecurity",
       "description": "niwo systems is developing a focused software, IT, and cybersecurity consulting practice built around secure systems and incident-response readiness."
     },
-    "heroEyebrow": "Software · IT · Cybersecurity · Incident-Response Readiness",
-    "heroHeadline": "Practical software, IT and cybersecurity.",
-    "heroParagraph": "niwo systems is developing a focused consulting practice for small teams and businesses. The current focus is practical guidance around software development, IT support, cybersecurity hardening, application risk, and incident-response readiness. Any engagement is scoped and agreed separately in writing.",
+    "heroEyebrow": "Software · IT · Cybersecurity consulting",
+    "heroHeadline": "Securely through the digital age.",
+    "heroParagraph": "We help startups, small and medium-sized businesses, and individuals understand digital risks, better secure their systems, and adopt new technologies responsibly.",
     "primaryCta": "Start an initial conversation",
     "secondaryCta": "Explore topics",
     "supportLine": "Software · IT · Cybersecurity · Incident-Response Readiness",
+    "incidentHelp": {
+      "eyebrow": "Security incident help",
+      "title": "Have you been affected by a cyberattack or suspect a security incident?",
+      "description": "Message us directly and briefly describe what happened. We will get back to you as quickly as possible and provide <strong>free initial digital guidance</strong>: what matters now, which steps you should avoid, and how you can begin limiting the damage.",
+      "cta": "Emergency"
+    },
     "whoamiLink": {
       "eyebrow": "whoami",
       "title": "Read the whoami page",

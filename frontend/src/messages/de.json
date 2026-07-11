@@ -35,12 +35,18 @@
       "title": "niwo | Software, IT & Cybersecurity",
       "description": "niwo systems entwickelt eine fokussierte Software-, IT- und Cybersecurity-Beratungspraxis rund um sichere Systeme und Incident-Response-Readiness."
     },
-    "heroEyebrow": "Software · IT · Cybersecurity · Incident-Response-Readiness",
-    "heroHeadline": "Praktische Software-, IT- und Cybersecurity-Arbeit.",
-    "heroParagraph": "niwo systems entwickelt eine fokussierte Beratungspraxis für kleine Teams und Unternehmen. Der aktuelle Fokus liegt auf praktischer Orientierung zu Softwareentwicklung, IT-Support, Cybersecurity-Hardening, Anwendungsrisiken und Incident-Response-Readiness. Jeder Auftrag wird separat schriftlich eingegrenzt und vereinbart.",
+    "heroEyebrow": "Software · IT · Cybersecurity-Beratung",
+    "heroHeadline": "Sicher durch das digitale Zeitalter.",
+    "heroParagraph": "Wir helfen Start-ups, kleinen und mittelgroßen Unternehmen sowie Privatpersonen, digitale Risiken zu verstehen, ihre Systeme besser abzusichern und neue Technologien verantwortungsvoll einzusetzen.",
     "primaryCta": "Unverbindlich anfragen",
     "secondaryCta": "Themen ansehen",
     "supportLine": "Software · IT · Cybersecurity · Incident-Response-Readiness",
+    "incidentHelp": {
+      "eyebrow": "Hilfe bei Sicherheitsvorfällen",
+      "title": "Du bist von einem Cyberangriff betroffen oder vermutest einen Sicherheitsvorfall?",
+      "description": "Schreib uns direkt und schildere kurz, was passiert ist. Wir melden uns so schnell wie möglich und geben dir eine <strong>kostenlose erste digitale Orientierung</strong>: was jetzt wichtig ist, welche Schritte du vermeiden solltest und wie du den Schaden zunächst begrenzen kannst.",
+      "cta": "Notfall"
+    },
     "whoamiLink": {
       "eyebrow": "whoami",
       "title": "Zur whoami-Seite",

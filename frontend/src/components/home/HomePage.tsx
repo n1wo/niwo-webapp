@@ -189,6 +189,46 @@ export default function HomePage(): JSX.Element {
       </header>
 
       <div className="w-full max-w-7xl space-y-28 px-6 pt-16 pb-32 sm:px-12 sm:space-y-36 md:px-20 2xl:max-w-[88rem]">
+        <section aria-labelledby="incident-help-title">
+          <motion.div
+            initial={prefersReducedMotion ? false : { opacity: 0, y: 18 }}
+            whileInView={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.25 }}
+            transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <CardShell variant="promoAccent" className="px-8 py-9 sm:px-10 sm:py-10">
+              <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+                <div className="max-w-3xl space-y-3">
+                  <p className="font-mono text-xs font-medium tracking-[0.24em] text-[var(--color-accent-light)] uppercase">
+                    {t("incidentHelp.eyebrow")}
+                  </p>
+                  <h2
+                    id="incident-help-title"
+                    className="font-mono text-xl font-bold leading-8 tracking-tight text-white sm:text-2xl"
+                  >
+                    {t("incidentHelp.title")}
+                  </h2>
+                  <p className="text-sm leading-7 text-zinc-300 sm:text-base">
+                    {t.rich("incidentHelp.description", {
+                      strong: (chunks) => (
+                        <strong className="font-semibold text-white">{chunks}</strong>
+                      ),
+                    })}
+                  </p>
+                </div>
+                <ActionLink
+                  href="mailto:info@niwosystems.com"
+                  variant="emergency"
+                  font="mono"
+                  className="self-start lg:shrink-0 lg:self-center"
+                >
+                  {t("incidentHelp.cta")}
+                </ActionLink>
+              </div>
+            </CardShell>
+          </motion.div>
+        </section>
+
         <section className="mx-auto max-w-2xl">
           <InteractiveTerminal
             copy={{
