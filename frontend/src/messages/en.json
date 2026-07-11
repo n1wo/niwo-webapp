@@ -123,7 +123,8 @@
       "onThisPage": "On this page",
       "sources": "Sources and further reading",
       "sourceNote": "A compact selection of primary research, standards, and public technical guidance used to ground this article.",
-      "continueReading": "Continue reading"
+      "continueReading": "Continue reading",
+      "opensInNewTab": "opens in a new tab"
     },
     "items": {
       "webAppSecurity": {
@@ -489,6 +490,211 @@
             "title": "CON.8 Software Development",
             "organization": "German Federal Office for Information Security (BSI)",
             "href": "https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/Grundschutz/IT-GS-Kompendium_Einzel_PDFs_2023/03_CON_Konzepte_und_Vorgehensweisen/CON_8_Software_Entwicklung_Edition_2023.html"
+          }
+        ]
+      },
+      "pentestPreparation": {
+        "metadata": {
+          "title": "Pentest Preparation, explained | niwo",
+          "description": "How to prepare an authorized penetration test: objectives, scope, rules of engagement, evidence, remediation, and the limits of a point-in-time assessment."
+        },
+        "eyebrow": "Authorized security testing",
+        "title": "Pentest Preparation",
+        "intro": [
+          "A penetration test is an authorized, bounded attempt to find and validate ways around a system's security controls. It may use some of the techniques of a real attacker, but it takes place for a defensive purpose, under written constraints, with people ready to manage the risk.",
+          "Preparation determines whether the result is useful. Before any testing begins, the system owner and test provider need a shared question, explicit authority, a precise scope, rules for safe execution, and an agreed path from evidence to remediation. Without those, even skilled technical work can be incomplete, unsafe, or impossible to act on."
+        ],
+        "coreIdea": {
+          "title": "A pentest answers a bounded question",
+          "paragraphs": [
+            "A penetration test does not answer 'Is this system secure?' in the abstract. A better question is specific: can an external user cross a tenant boundary in this release, can a compromised standard account reach administrative functions, or can an exposed service provide a path to sensitive data? The objective determines the right targets, access, method, and tester experience.",
+            "NIST describes penetration testing as constrained security testing in which evaluators attempt to circumvent security features, often by combining weaknesses. That is different from a vulnerability scan, which systematically looks for known hosts, properties, and vulnerabilities. Scanning can be broad and repeatable; a pentest uses human judgement to explore context and plausible paths within the agreed boundary.",
+            "The boundary is not paperwork around the test - it is what makes the work authorized. NIST's rules of engagement are established before testing and give the team authority to perform defined activities without seeking permission for every step. Anything outside those rules remains outside the test, even if it looks technically reachable.",
+            "The purpose is assurance and improvement, not surprise or theatre. The final value lies in evidence the owner can understand, fixes the team can implement, and lessons that improve ordinary vulnerability management. A dramatic finding without a safe escalation path or a useful remediation explanation is an incomplete outcome."
+          ]
+        },
+        "howItWorks": {
+          "title": "How a penetration test is prepared and delivered",
+          "intro": "A professional engagement should make the operational and legal boundaries as concrete as the technical target. The order below keeps responsibility visible from the first question through the retest.",
+          "steps": [
+            {
+              "title": "Define the decision",
+              "text": "State why the test is being commissioned and what decision the result must support: a release, customer assurance, a material architecture change, or an independent check of internal vulnerability management."
+            },
+            {
+              "title": "Confirm authority",
+              "text": "Identify the owners of every target and obtain explicit written authorization. Cloud, hosting, payment, identity, and other third-party services may have separate policies or approval requirements; ownership of one application does not imply permission to test every dependency."
+            },
+            {
+              "title": "Build the scope",
+              "text": "List applications, APIs, hostnames, addresses, environments, roles, and important data flows. Record exclusions and shared infrastructure. A scope should describe assets and trust boundaries, not rely on a single homepage URL."
+            },
+            {
+              "title": "Agree the rules",
+              "text": "Document dates, hours, permitted test types, rate limits, prohibited actions, stop conditions, source addresses, communication channels, and how any scope change is approved. Denial-of-service, social engineering, persistence, and destructive actions stay excluded unless expressly authorized and controlled. If genuine adversary activity is suspected, pause the affected test and follow the incident-response path."
+            },
+            {
+              "title": "Prepare access and safety",
+              "text": "Provide representative test accounts and role descriptions, accurate documentation, safe test data, and a technical contact. Decide whether production or a representative environment is appropriate, check backups and monitoring, and prepare a rollback or containment path for unexpected impact."
+            },
+            {
+              "title": "Protect evidence",
+              "text": "Agree how credentials, customer data, screenshots, request traces, exports, and the report will be minimized, encrypted, shared, retained, and destroyed. Test evidence is often sensitive enough to become a security problem of its own."
+            },
+            {
+              "title": "Test with checkpoints",
+              "text": "The provider performs the agreed assessment and keeps the named contact informed. Critical findings and operational problems follow an immediate escalation path; discoveries outside scope are reported for a decision, not silently pursued."
+            },
+            {
+              "title": "Report and debrief",
+              "text": "Expect an executive summary, exact scope and limitations, methodology, reproducible evidence for each validated finding, contextual risk, affected assets, and actionable remediation. Anything that could not be safely validated should be separated, labelled unverified, and accompanied by the reason and uncertainty. A debrief lets developers and risk owners challenge assumptions and ask for clarification."
+            },
+            {
+              "title": "Remediate and retest",
+              "text": "Assign owners and deadlines, fix root causes, and regression-test related paths. A retest verifies the agreed findings against a later version; it does not repeat the whole engagement or prove that unrelated weaknesses are absent."
+            }
+          ]
+        },
+        "whereUsed": {
+          "title": "Choose the assessment that matches the need",
+          "intro": "Security services overlap, but they answer different questions. Clear names prevent a team from buying one kind of evidence and expecting another.",
+          "items": [
+            {
+              "title": "Vulnerability scanning",
+              "text": "Automated, repeatable discovery of hosts, configuration signals, and known vulnerabilities. It is useful for broad and frequent coverage, but results need validation and usually do not show how weaknesses combine in the application's business context."
+            },
+            {
+              "title": "Penetration testing",
+              "text": "A time-bound assessment combining tools and human analysis to test whether weaknesses can bypass controls or create meaningful impact within a named scope. It is deeper and more intrusive than routine scanning, but still only a sample."
+            },
+            {
+              "title": "Security review",
+              "text": "A broader examination of requirements, architecture, configuration, controls, or operating practices against defined risks or standards. The term is not one fixed methodology, so the statement of work must say which artifacts and environments are actually reviewed."
+            },
+            {
+              "title": "Code review",
+              "text": "Source-assisted analysis of how security decisions are implemented. It can reveal unsafe data flows, missing authorization, and logic flaws, but its conclusions are limited to the code and context supplied and do not prove the deployed configuration behaves the same way."
+            },
+            {
+              "title": "Red teaming",
+              "text": "An objective-led exercise that emulates a relevant threat actor across people, process, and technology to assess prevention, detection, and response. It is not normally designed to enumerate every vulnerability in one application."
+            },
+            {
+              "title": "Incident response",
+              "text": "Work performed because a harmful event has occurred or is suspected: confirm impact, contain it, preserve evidence, eradicate the cause, and recover safely. A scheduled pentest can test controls; it is not a substitute for responding to a live incident."
+            }
+          ]
+        },
+        "benefits": {
+          "title": "Questions to settle before the test",
+          "intro": "A credible provider should help refine these answers and explain any trade-offs before the start date, not discover them halfway through the engagement.",
+          "items": [
+            "What exact question will the test answer, and which risks are most important to us?",
+            "Which named tester will do the work, and what relevant experience, qualifications, or required accreditations can the provider demonstrate?",
+            "Which methodology and coverage will be used, and what will not be tested?",
+            "Which accounts, documentation, source code, architecture context, or previous scan results would improve the assessment?",
+            "Which actions are prohibited, rate-limited, or require a fresh approval?",
+            "Who is reachable during testing, and how quickly will a critical finding or service impact be escalated?",
+            "How will evidence and credentials be protected, retained, returned, and destroyed?",
+            "What report, debrief, remediation support, and retest are included in the agreed price and schedule?"
+          ]
+        },
+        "example": {
+          "title": "Example: scoping a small SaaS application",
+          "paragraphs": [
+            "A small team is preparing an invoicing platform for its first enterprise customer. It wants independent evidence about tenant isolation and administrative access before release. The objective is not 'test our company'; it is to assess whether an internet user or ordinary tenant member can reach another tenant's records or privileged functions in the release candidate.",
+            "The scope names the web application, public API, authentication flow, and administration portal in a staging environment that matches production configuration. The team supplies synthetic data and accounts for an administrator, a standard member, and a suspended member. The production payment provider, corporate email, employee accounts, denial-of-service, and social engineering are explicitly excluded; the team confirms that no shared third-party infrastructure may be tested without separate permission.",
+            "The rules set working hours, source addresses, a request-rate ceiling, emergency contacts, and an immediate notification path for cross-tenant access or service instability. The team verifies backups and logging, agrees that evidence will be encrypted and deleted after the retention period, and schedules a developer for short-notice questions.",
+            "The report identifies a cross-tenant authorization flaw with reproducible evidence and a server-side remediation. The team fixes the shared authorization helper, adds regression tests across all roles, and requests a retest. The retest confirms that this finding is no longer reproducible in the new build; it does not convert the original, bounded assessment into a guarantee about the whole platform."
+          ]
+        },
+        "risks": {
+          "title": "Common scoping and interpretation mistakes",
+          "intro": "Most weak engagements fail before the technical testing starts or after the report arrives. These mistakes reduce safety, coverage, or the chance that findings will be fixed.",
+          "items": [
+            {
+              "title": "Testing without complete authority",
+              "text": "Permission from an application owner may not cover the hosting platform, shared network, supplier, customer data, or another legal entity's assets. Resolve ownership and provider policies before any activity."
+            },
+            {
+              "title": "Writing 'test everything' as the scope",
+              "text": "An undefined scope hides assumptions about environments, APIs, roles, mobile clients, and third parties. It also gives neither side a reliable basis for time, safety, coverage, or price."
+            },
+            {
+              "title": "Buying a scanner report as a pentest",
+              "text": "Automation belongs in most assessments, but a penetration test needs contextual analysis, careful validation, and human exploration of relevant paths. Ask who performs that work and how it appears in the report."
+            },
+            {
+              "title": "Testing production without preparation",
+              "text": "A production test may provide the most realistic evidence, but it can affect availability and real data. Decide deliberately, involve operators, minimize risky actions, and keep stop and recovery paths ready."
+            },
+            {
+              "title": "Treating the report as a certificate",
+              "text": "A report describes what was examined and observed under stated constraints. A clean result may mean no issue was found in that sample; it does not mean no issue exists."
+            },
+            {
+              "title": "Fixing findings without retesting the cause",
+              "text": "Changing the exact line shown in evidence can leave the same authorization or validation flaw elsewhere. Remediate the shared cause, add regression coverage, and define what the retest will verify."
+            }
+          ]
+        },
+        "humanResponsibility": {
+          "title": "Authorization, coordination, and ownership",
+          "paragraphs": [
+            "The system owner remains accountable for the test and the risk decisions around it. A provider can recommend scope, rate findings, and propose fixes, but cannot silently expand its own authority or decide which operational risk the organization should accept. Authorization must come from parties legally entitled to approve every target and activity. External or intrusive work should be governed by a signed scope, statement of work, or contract covering exclusions, liabilities, confidentiality, data handling, and third-party permissions, with qualified legal review where applicable. This is operational guidance, not legal advice.",
+            "A penetration test is a point-in-time sample shaped by the scope, access, environment, time budget, methodology, and tester experience. A validated finding documents a demonstrated weakness under the tested conditions. Missing findings do not prove the absence of vulnerabilities, and excluded assets should remain visible as limitations in the report.",
+            "The report and its evidence need the same care as other sensitive security data. Remediation belongs in the normal engineering and vulnerability-management process, with named owners and priorities based on business context. A retest should state exactly which findings, build, and date it covers."
+          ],
+          "items": [
+            "Authorize every target and activity in writing",
+            "Name technical and risk-owner contacts",
+            "Record exclusions as explicit limitations",
+            "Escalate critical findings and service impact immediately",
+            "Protect and destroy evidence on an agreed schedule",
+            "Track remediation and retest scope separately"
+          ]
+        },
+        "takeaways": {
+          "title": "Key takeaways",
+          "items": [
+            "Start with the decision the test must support, not a generic request to attack everything.",
+            "Written authorization, scope, and rules of engagement are prerequisites, not administrative extras.",
+            "Choose scanning, penetration testing, red teaming, or incident response according to the question you need answered.",
+            "Prepare accounts, contacts, safe data, monitoring, escalation, and evidence handling before testing begins.",
+            "Require a report that states scope and limitations, proves findings, explains context, and supports remediation.",
+            "Treat the result as a dated sample, then fix root causes, retest agreed findings, and improve continuous vulnerability management."
+          ]
+        },
+        "sources": [
+          {
+            "title": "Technical Guide to Information Security Testing and Assessment - NIST SP 800-115",
+            "organization": "National Institute of Standards and Technology",
+            "href": "https://csrc.nist.gov/pubs/sp/800/115/final"
+          },
+          {
+            "title": "Web Security Testing Guide",
+            "organization": "OWASP Foundation",
+            "href": "https://owasp.org/www-project-web-security-testing-guide/"
+          },
+          {
+            "title": "Guide to Penetration Testing 2022",
+            "organization": "CREST International",
+            "href": "https://www.crest-approved.org/wp-content/uploads/2023/04/A-Guide-to-Penetration-Testing-2022.pdf"
+          },
+          {
+            "title": "Penetration testing guidance",
+            "organization": "UK National Cyber Security Centre",
+            "href": "https://www.ncsc.gov.uk/guidance/penetration-testing"
+          },
+          {
+            "title": "A cyber buyer's guide to Vulnerability Assessment and Penetration Testing: part 1",
+            "organization": "CREST International",
+            "href": "https://www.crest-approved.org/a-cyber-buyers-guide-to-vulnerability-assessment-and-penetration-testing-part-1/"
+          },
+          {
+            "title": "Incident Response Recommendations and Considerations - NIST SP 800-61 Rev. 3",
+            "organization": "National Institute of Standards and Technology",
+            "href": "https://csrc.nist.gov/pubs/sp/800/61/r3/final"
           }
         ]
       },
@@ -1071,8 +1277,8 @@
           ]
         },
         "reassurance": {
-          "title": "Controlled, not chaotic",
-          "text": "A penetration test is not the same as an actual breach. Done properly, it should not harm your systems or put your data at risk. There is no real damage to recover from, and no fines to worry about. Anything a pentester finds is used for one purpose only: making your security stronger."
+          "title": "Controlled, not risk-free",
+          "text": "A professional test is planned to limit impact, but active testing can still affect availability or expose sensitive evidence. Written scope, stop conditions, contacts, backups, data handling, and third-party permissions reduce risk; they cannot erase it. Findings and reports remain sensitive and must feed an owned remediation process."
         },
         "process": {
           "title": "How I break it down",

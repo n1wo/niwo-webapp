@@ -123,7 +123,8 @@
       "onThisPage": "Auf dieser Seite",
       "sources": "Quellen und weiterführende Literatur",
       "sourceNote": "Eine kompakte Auswahl an Primärforschung, Standards und öffentlicher technischer Orientierung, auf die sich dieser Artikel stützt.",
-      "continueReading": "Weiterlesen"
+      "continueReading": "Weiterlesen",
+      "opensInNewTab": "öffnet in einem neuen Tab"
     },
     "items": {
       "webAppSecurity": {
@@ -489,6 +490,211 @@
             "title": "CON.8 Software-Entwicklung",
             "organization": "Bundesamt für Sicherheit in der Informationstechnik (BSI)",
             "href": "https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/Grundschutz/IT-GS-Kompendium_Einzel_PDFs_2023/03_CON_Konzepte_und_Vorgehensweisen/CON_8_Software_Entwicklung_Edition_2023.html"
+          }
+        ]
+      },
+      "pentestPreparation": {
+        "metadata": {
+          "title": "Pentest-Vorbereitung verständlich erklärt | niwo",
+          "description": "So wird ein autorisierter Penetrationstest vorbereitet: Ziele, Scope, Testregeln, Nachweise, Bericht, Behebung und Grenzen einer Momentaufnahme."
+        },
+        "eyebrow": "Autorisierte Sicherheitsprüfung",
+        "title": "Pentest-Vorbereitung",
+        "intro": [
+          "Ein Penetrationstest ist der autorisierte und klar begrenzte Versuch, Möglichkeiten zu finden, die Sicherheitskontrollen eines Systems zu umgehen, und diese nachvollziehbar zu prüfen. Dabei können Techniken realer Angreifer zum Einsatz kommen - aber zu einem defensiven Zweck, unter schriftlich vereinbarten Regeln und mit Ansprechpersonen, die das verbleibende Risiko steuern.",
+          "Ob das Ergebnis nützlich wird, entscheidet sich in der Vorbereitung. Vor dem ersten Test brauchen Systemverantwortliche und Anbieter eine gemeinsame Fragestellung, ausdrückliche Erlaubnis, einen genauen Scope, Regeln für eine sichere Durchführung und einen vereinbarten Weg vom Nachweis zur Behebung. Ohne diese Grundlagen kann selbst gute technische Arbeit lückenhaft, riskant oder schwer umsetzbar bleiben."
+        ],
+        "coreIdea": {
+          "title": "Ein Pentest beantwortet eine begrenzte Frage",
+          "paragraphs": [
+            "Ein Penetrationstest beantwortet nicht abstrakt die Frage: 'Ist dieses System sicher?' Eine brauchbare Frage ist konkreter: Kann ein externer Nutzer in diesem Release eine Mandantengrenze überschreiten? Kann ein kompromittiertes Standardkonto administrative Funktionen erreichen? Bietet ein offen erreichbarer Dienst einen Pfad zu sensiblen Daten? Das Ziel bestimmt passende Systeme, Zugänge, Methoden und Erfahrung der Testenden.",
+            "NIST beschreibt Penetrationstests als Prüfungen unter festen Einschränkungen, bei denen Sicherheitsfunktionen umgangen und häufig mehrere Schwächen kombiniert werden. Das unterscheidet sie von Schwachstellenscans, die systematisch nach bekannten Systemmerkmalen und Schwachstellen suchen. Scans liefern breite, wiederholbare Abdeckung; ein Pentest nutzt menschliches Urteil, um Kontext und plausible Angriffspfade innerhalb der Vereinbarung zu untersuchen.",
+            "Diese Grenze ist keine Bürokratie rund um den Test - sie macht die Arbeit erst autorisiert. Die von NIST beschriebenen Rules of Engagement werden vor Beginn festgelegt und erlauben dem Team genau definierte Aktivitäten, ohne jeden Schritt neu freigeben zu lassen. Alles außerhalb dieser Regeln bleibt außerhalb des Tests, auch wenn es technisch erreichbar erscheint.",
+            "Ziel sind belastbare Hinweise und Verbesserungen, nicht Überraschung oder Inszenierung. Der Wert steckt in Nachweisen, die Verantwortliche verstehen, in umsetzbaren Korrekturen und in Erkenntnissen für das laufende Schwachstellenmanagement. Ein spektakulärer Fund ohne sicheren Eskalationsweg oder brauchbare Behebungshinweise ist kein vollständiges Ergebnis."
+          ]
+        },
+        "howItWorks": {
+          "title": "So wird ein Penetrationstest vorbereitet und durchgeführt",
+          "intro": "Eine professionelle Beauftragung beschreibt betriebliche und rechtliche Grenzen ebenso konkret wie das technische Ziel. Die folgende Reihenfolge hält die Verantwortung von der ersten Frage bis zum Retest sichtbar.",
+          "steps": [
+            {
+              "title": "Entscheidung klären",
+              "text": "Haltet fest, warum der Test beauftragt wird und welche Entscheidung er unterstützen soll: ein Release, Nachweise für Kunden, eine wesentliche Architekturänderung oder die unabhängige Prüfung des eigenen Schwachstellenmanagements."
+            },
+            {
+              "title": "Erlaubnis bestätigen",
+              "text": "Ermittelt die Verantwortlichen jedes Zielsystems und holt ausdrückliche schriftliche Freigaben ein. Cloud-, Hosting-, Zahlungs-, Identitäts- und andere Drittdienste können eigene Regeln oder Genehmigungen verlangen; der Besitz einer Anwendung erlaubt nicht automatisch den Test jeder Abhängigkeit."
+            },
+            {
+              "title": "Scope aufbauen",
+              "text": "Listet Anwendungen, APIs, Hostnamen, Adressen, Umgebungen, Rollen und wichtige Datenflüsse auf. Haltet Ausschlüsse und geteilte Infrastruktur fest. Ein guter Scope beschreibt Systeme und Vertrauensgrenzen und besteht nicht nur aus der URL einer Startseite."
+            },
+            {
+              "title": "Testregeln vereinbaren",
+              "text": "Dokumentiert Zeitraum, Uhrzeiten, erlaubte Testarten, Rate-Limits, verbotene Handlungen, Abbruchbedingungen, Quelladressen, Kommunikationswege und den Prozess für Scope-Änderungen. Denial-of-Service, Social Engineering, Persistenz und destruktive Aktionen bleiben ausgeschlossen, solange sie nicht ausdrücklich autorisiert und kontrolliert sind. Bei Anzeichen echter Angreiferaktivität wird der betroffene Test pausiert und der Incident-Response-Weg genutzt."
+            },
+            {
+              "title": "Zugänge und Sicherheit vorbereiten",
+              "text": "Stellt repräsentative Testkonten, Rollenbeschreibungen, korrekte Dokumentation, sichere Testdaten und eine technische Ansprechperson bereit. Entscheidet bewusst zwischen Produktion und einer ausreichend realistischen Testumgebung, prüft Backups und Monitoring und plant Rollback oder Eindämmung unerwarteter Auswirkungen."
+            },
+            {
+              "title": "Nachweise schützen",
+              "text": "Vereinbart, wie Zugangsdaten, Kundendaten, Screenshots, Request-Traces, Exporte und Bericht minimiert, verschlüsselt, übertragen, aufbewahrt und vernichtet werden. Testnachweise sind oft sensibel genug, um selbst zum Sicherheitsproblem zu werden."
+            },
+            {
+              "title": "Mit Checkpoints testen",
+              "text": "Der Anbieter führt die vereinbarte Prüfung aus und hält die benannte Ansprechperson auf dem Laufenden. Kritische Funde und betriebliche Probleme folgen einem sofortigen Eskalationsweg; Entdeckungen außerhalb des Scopes werden zur Entscheidung gemeldet und nicht still weiterverfolgt."
+            },
+            {
+              "title": "Berichten und besprechen",
+              "text": "Erwartet eine Management-Zusammenfassung, den genauen Scope samt Grenzen, die Methodik, reproduzierbare Nachweise zu jedem validierten Fund, kontextbezogenes Risiko, betroffene Systeme und umsetzbare Behebungsempfehlungen. Was nicht sicher validiert werden konnte, wird getrennt als unbestätigt gekennzeichnet und mit Grund sowie Unsicherheit beschrieben. In einem Debrief können Entwicklung und Risikoverantwortliche Annahmen hinterfragen und Details klären."
+            },
+            {
+              "title": "Beheben und nachprüfen",
+              "text": "Weist Verantwortliche und Fristen zu, behebt Ursachen und testet verwandte Pfade auf Regressionen. Ein Retest prüft vereinbarte Funde in einer späteren Version; er wiederholt weder den gesamten Auftrag noch belegt er die Abwesenheit anderer Schwächen."
+            }
+          ]
+        },
+        "whereUsed": {
+          "title": "Die Prüfung passend zur Frage wählen",
+          "intro": "Security-Leistungen überschneiden sich, beantworten aber unterschiedliche Fragen. Klare Begriffe verhindern, dass ein Team eine Art von Nachweis einkauft und eine andere erwartet.",
+          "items": [
+            {
+              "title": "Schwachstellenscan",
+              "text": "Automatisierte, wiederholbare Suche nach Systemen, Konfigurationsmerkmalen und bekannten Schwachstellen. Das eignet sich für breite und häufige Abdeckung; Ergebnisse müssen jedoch validiert werden und zeigen meist nicht, wie sich Schwächen im fachlichen Kontext kombinieren lassen."
+            },
+            {
+              "title": "Penetrationstest",
+              "text": "Eine zeitlich begrenzte Prüfung aus Werkzeugen und menschlicher Analyse. Sie untersucht, ob Schwächen innerhalb eines benannten Scopes Sicherheitskontrollen umgehen oder relevante Auswirkungen haben können. Sie geht tiefer und ist invasiver als ein regulärer Scan, bleibt aber eine Stichprobe."
+            },
+            {
+              "title": "Security-Review",
+              "text": "Eine breitere Prüfung von Anforderungen, Architektur, Konfiguration, Kontrollen oder Betriebspraktiken anhand definierter Risiken oder Standards. Der Begriff bezeichnet keine feste Methodik; der Auftrag muss deshalb benennen, welche Unterlagen und Umgebungen tatsächlich geprüft werden."
+            },
+            {
+              "title": "Code-Review",
+              "text": "Quelltextgestützte Analyse der Umsetzung von Sicherheitsentscheidungen. Sie kann unsichere Datenflüsse, fehlende Autorisierung und Logikfehler zeigen, bleibt aber auf den bereitgestellten Code und Kontext begrenzt und belegt nicht, dass die produktive Konfiguration identisch arbeitet."
+            },
+            {
+              "title": "Red-Teaming",
+              "text": "Eine ziel- und bedrohungsorientierte Übung, die das Vorgehen eines relevanten Angreifers über Menschen, Prozesse und Technik hinweg nachbildet und Prävention, Erkennung sowie Reaktion prüft. Üblicherweise soll sie nicht jede Schwachstelle einer einzelnen Anwendung aufzählen."
+            },
+            {
+              "title": "Incident Response",
+              "text": "Arbeit nach einem tatsächlichen oder vermuteten schädlichen Ereignis: Auswirkungen bestätigen, eindämmen, Nachweise sichern, Ursache beseitigen und sicher wiederherstellen. Ein geplanter Pentest kann Kontrollen prüfen, ersetzt aber keine Reaktion auf einen laufenden Vorfall."
+            }
+          ]
+        },
+        "benefits": {
+          "title": "Fragen, die vor dem Test geklärt sein sollten",
+          "intro": "Ein seriöser Anbieter hilft vor dem Start, diese Antworten zu präzisieren und Abwägungen zu erklären - nicht erst mitten im Auftrag.",
+          "items": [
+            "Welche konkrete Frage soll der Test beantworten, und welche Risiken sind für uns besonders wichtig?",
+            "Welche benannte Person führt den Test durch, und welche relevante Erfahrung, Qualifikationen oder erforderlichen Akkreditierungen kann der Anbieter belegen?",
+            "Welche Methodik und Abdeckung sind vorgesehen, und was wird nicht geprüft?",
+            "Welche Konten, Dokumentation, Quelltexte, Architekturinformationen oder früheren Scanergebnisse verbessern die Prüfung?",
+            "Welche Handlungen sind verboten, gedrosselt oder brauchen eine neue Freigabe?",
+            "Wer ist während des Tests erreichbar, und wie schnell werden kritische Funde oder Betriebsstörungen eskaliert?",
+            "Wie werden Nachweise und Zugangsdaten geschützt, aufbewahrt, zurückgegeben und vernichtet?",
+            "Welche Berichte, Besprechungen, Behebungsunterstützung und Retests sind in Preis und Zeitplan enthalten?"
+          ]
+        },
+        "example": {
+          "title": "Beispiel: Scope für eine kleine SaaS-Anwendung",
+          "paragraphs": [
+            "Ein kleines Team bereitet eine Rechnungsplattform auf den ersten Unternehmenskunden vor. Vor dem Release möchte es unabhängige Hinweise zu Mandantentrennung und administrativen Zugriffen. Das Ziel lautet nicht 'Testet unsere Firma', sondern: Kann ein Internetnutzer oder ein reguläres Mandantenmitglied in diesem Release auf Datensätze anderer Mandanten oder privilegierte Funktionen zugreifen?",
+            "Der Scope nennt Webanwendung, öffentliche API, Authentisierungsablauf und Adminbereich in einer Staging-Umgebung mit produktionsnaher Konfiguration. Das Team stellt synthetische Daten sowie Konten für Administration, Standardmitglied und gesperrtes Mitglied bereit. Produktiver Zahlungsanbieter, Unternehmens-E-Mail, Mitarbeiterkonten, Denial-of-Service und Social Engineering sind ausdrücklich ausgeschlossen; geteilte Drittsysteme dürfen ohne separate Erlaubnis nicht geprüft werden.",
+            "Die Testregeln legen Arbeitszeiten, Quelladressen, Request-Limit, Notfallkontakte und einen sofortigen Meldeweg für mandantenübergreifenden Zugriff oder Instabilität fest. Das Team prüft Backups und Logging, vereinbart verschlüsselte Nachweise mit fester Löschfrist und plant eine erreichbare Entwicklungsperson für kurzfristige Rückfragen ein.",
+            "Der Bericht beschreibt einen Fehler in der mandantenübergreifenden Autorisierung mit reproduzierbarem Nachweis und einer serverseitigen Korrektur. Das Team repariert die gemeinsame Autorisierungsfunktion, ergänzt Regressionstests für alle Rollen und beauftragt einen Retest. Dieser bestätigt, dass der konkrete Fund im neuen Build nicht mehr nachvollziehbar ist; aus der ursprünglichen, begrenzten Prüfung wird dadurch keine Garantie für die gesamte Plattform."
+          ]
+        },
+        "risks": {
+          "title": "Häufige Fehler bei Scope und Einordnung",
+          "intro": "Unzureichend vorbereitete Prüfaufträge scheitern häufig vor der technischen Prüfung oder nach dem Bericht. Diese Fehler verringern Sicherheit, Abdeckung oder die Chance, dass Funde tatsächlich behoben werden.",
+          "items": [
+            {
+              "title": "Ohne vollständige Erlaubnis testen",
+              "text": "Die Freigabe eines Anwendungsverantwortlichen deckt möglicherweise weder Hosting-Plattform und geteiltes Netz noch Lieferanten, Kundendaten oder Systeme einer anderen juristischen Person ab. Eigentum und Anbieterrichtlinien müssen vorher geklärt sein."
+            },
+            {
+              "title": "'Alles testen' als Scope schreiben",
+              "text": "Ein unbestimmter Scope verbirgt Annahmen über Umgebungen, APIs, Rollen, mobile Clients und Drittdienste. Für Zeit, Sicherheit, Abdeckung und Preis fehlt beiden Seiten eine belastbare Grundlage."
+            },
+            {
+              "title": "Einen Scannerbericht als Pentest kaufen",
+              "text": "Automatisierung gehört in die meisten Prüfungen. Ein Penetrationstest braucht zusätzlich Kontextanalyse, sorgfältige Validierung und menschliche Untersuchung relevanter Pfade. Fragt, wer diese Arbeit leistet und wie sie im Bericht sichtbar wird."
+            },
+            {
+              "title": "Produktion unvorbereitet prüfen",
+              "text": "Ein Produktivtest kann die realistischsten Hinweise liefern, aber die Verfügbarkeit beeinträchtigen oder echte Daten verändern. Die Entscheidung muss bewusst fallen; Betrieb, risikoarme Methoden sowie Abbruch- und Wiederherstellungswege gehören dazu."
+            },
+            {
+              "title": "Den Bericht als Zertifikat behandeln",
+              "text": "Ein Bericht beschreibt, was unter festgelegten Bedingungen untersucht und beobachtet wurde. Ein sauberes Ergebnis kann bedeuten, dass in dieser Stichprobe kein Problem gefunden wurde - nicht, dass keines existiert."
+            },
+            {
+              "title": "Funde beheben, aber nicht die Ursache testen",
+              "text": "Nur die im Nachweis gezeigte Codezeile zu ändern kann denselben Autorisierungs- oder Validierungsfehler an anderer Stelle bestehen lassen. Behebt die gemeinsame Ursache, ergänzt Regressionstests und legt fest, was der Retest prüft."
+            }
+          ]
+        },
+        "humanResponsibility": {
+          "title": "Freigabe, Koordination und Verantwortung",
+          "paragraphs": [
+            "Die Systemverantwortlichen bleiben für den Test und die Risikentscheidungen verantwortlich. Ein Anbieter kann Scope empfehlen, Funde bewerten und Korrekturen vorschlagen, darf aber weder still die eigene Erlaubnis ausweiten noch entscheiden, welches Betriebsrisiko die Organisation akzeptiert. Die Freigabe muss von Parteien kommen, die jedes Ziel und jede Aktivität rechtlich autorisieren dürfen. Externe oder intrusive Tests sollten durch einen unterzeichneten Scope, eine Leistungsbeschreibung oder einen Vertrag geregelt sein, der Ausschlüsse, Haftung, Vertraulichkeit, Datenverarbeitung und Erlaubnisse Dritter abdeckt; soweit erforderlich gehört eine qualifizierte rechtliche Prüfung dazu. Dies ist betriebliche Orientierung und keine Rechtsberatung.",
+            "Ein Penetrationstest ist eine zeitgebundene Stichprobe, geprägt von Scope, Zugang, Umgebung, Budget, Methodik und Erfahrung der Testenden. Ein validierter Fund dokumentiert eine unter den geprüften Bedingungen nachgewiesene Schwäche. Fehlende Funde belegen nicht, dass keine Schwachstellen existieren; ausgeschlossene Systeme müssen als Grenzen im Bericht sichtbar bleiben.",
+            "Bericht und Nachweise brauchen denselben Schutz wie andere sensible Security-Daten. Die Behebung gehört mit benannten Verantwortlichen und Prioritäten aus dem Geschäftskontext in den normalen Entwicklungs- und Schwachstellenprozess. Ein Retest sollte genau ausweisen, welche Funde, welchen Build und welches Datum er abdeckt."
+          ],
+          "items": [
+            "Jedes Ziel und jede Aktivität schriftlich autorisieren",
+            "Technische Kontakte und Risikoverantwortliche benennen",
+            "Ausschlüsse als ausdrückliche Grenzen dokumentieren",
+            "Kritische Funde und Betriebsstörungen sofort eskalieren",
+            "Nachweise nach vereinbartem Zeitplan schützen und vernichten",
+            "Behebung und Umfang des Retests getrennt nachverfolgen"
+          ]
+        },
+        "takeaways": {
+          "title": "Das Wichtigste in Kürze",
+          "items": [
+            "Mit der Entscheidung beginnen, die der Test unterstützen soll - nicht mit einem pauschalen Auftrag, alles anzugreifen.",
+            "Schriftliche Erlaubnis, Scope und Testregeln sind Voraussetzungen und keine Verwaltungsdetails.",
+            "Schwachstellenscan, Penetrationstest, Red-Teaming oder Incident Response passend zur benötigten Antwort wählen.",
+            "Konten, Kontakte, sichere Daten, Monitoring, Eskalation und Umgang mit Nachweisen vor Testbeginn vorbereiten.",
+            "Einen Bericht verlangen, der Scope und Grenzen nennt, Funde belegt, Kontext erklärt und Behebung unterstützt.",
+            "Das Ergebnis als datierte Stichprobe behandeln, Ursachen beheben, vereinbarte Funde nachprüfen und das laufende Schwachstellenmanagement verbessern."
+          ]
+        },
+        "sources": [
+          {
+            "title": "Technical Guide to Information Security Testing and Assessment - NIST SP 800-115",
+            "organization": "National Institute of Standards and Technology",
+            "href": "https://csrc.nist.gov/pubs/sp/800/115/final"
+          },
+          {
+            "title": "Web Security Testing Guide",
+            "organization": "OWASP Foundation",
+            "href": "https://owasp.org/www-project-web-security-testing-guide/"
+          },
+          {
+            "title": "Guide to Penetration Testing 2022",
+            "organization": "CREST International",
+            "href": "https://www.crest-approved.org/wp-content/uploads/2023/04/A-Guide-to-Penetration-Testing-2022.pdf"
+          },
+          {
+            "title": "Penetration testing guidance",
+            "organization": "UK National Cyber Security Centre",
+            "href": "https://www.ncsc.gov.uk/guidance/penetration-testing"
+          },
+          {
+            "title": "A cyber buyer's guide to Vulnerability Assessment and Penetration Testing: part 1",
+            "organization": "CREST International",
+            "href": "https://www.crest-approved.org/a-cyber-buyers-guide-to-vulnerability-assessment-and-penetration-testing-part-1/"
+          },
+          {
+            "title": "Incident Response Recommendations and Considerations - NIST SP 800-61 Rev. 3",
+            "organization": "National Institute of Standards and Technology",
+            "href": "https://csrc.nist.gov/pubs/sp/800/61/r3/final"
           }
         ]
       },
@@ -1328,8 +1534,8 @@
           ]
         },
         "reassurance": {
-          "title": "Kontrolliert, nicht chaotisch",
-          "text": "Ein Penetrationstest ist nicht dasselbe wie ein echter Angriff. Sauber durchgeführt sollte er deine Systeme nicht beschädigen und deine Daten nicht gefährden. Es gibt keinen echten Schaden, von dem du dich erholen musst, und keine Bußgelder, vor denen du Angst haben musst. Alles, was ein Pentester findet, dient nur einem Zweck: deine Sicherheit stärker zu machen."
+          "title": "Kontrolliert, aber nicht risikofrei",
+          "text": "Ein professioneller Test wird so geplant, dass Auswirkungen begrenzt bleiben. Aktive Prüfungen können die Verfügbarkeit trotzdem beeinträchtigen oder sensible Nachweise erzeugen. Schriftlicher Scope, Abbruchbedingungen, Kontakte, Backups, Datenregeln und Erlaubnisse Dritter verringern das Risiko, beseitigen es aber nicht. Funde und Berichte bleiben sensibel und gehören in einen klar verantworteten Behebungsprozess."
         },
         "process": {
           "title": "Wie ich es aufschlüssele",
