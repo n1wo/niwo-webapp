@@ -1,7 +1,13 @@
 import type { JSX } from "react";
 import styles from "./TopicArtwork.module.css";
 
-export type TopicArtworkType = "aiDevSecOps" | "agenticEngineering" | "incidentResponse";
+export type TopicArtworkType =
+  | "aiDevSecOps"
+  | "agenticEngineering"
+  | "incidentResponse"
+  | "webAppSecurity"
+  | "secureDevelopment"
+  | "pentestPreparation";
 
 function PipelineArtwork(): JSX.Element {
   return (

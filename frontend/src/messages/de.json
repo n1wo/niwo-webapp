@@ -126,6 +126,186 @@
       "continueReading": "Weiterlesen"
     },
     "items": {
+      "webAppSecurity": {
+        "metadata": {
+          "title": "Web App Security verständlich erklärt | niwo",
+          "description": "Wie Risiko tatsächlich durch eine Webanwendung wandert: Vertrauensgrenzen, Identität, Sessions, Datenverarbeitung, Abhängigkeiten - und was Sicherheitstests belegen können und was nicht."
+        },
+        "eyebrow": "Anwendungssicherheit",
+        "title": "Web App Security",
+        "intro": [
+          "Web-App-Sicherheit bedeutet, dafür zu sorgen, dass eine Anwendung nur das tut, was Betreiber und Nutzer beabsichtigen - auch dann, wenn jemand ihr gezielt Eingaben schickt, für die sie nie gedacht war. Das umfasst den Code, die Konfiguration darum herum und die Annahmen, die beides verbindet.",
+          "Diese Seite baut ein brauchbares Denkmodell auf: wo Vertrauensgrenzen liegen, wie eine Anfrage tatsächlich durch eine Anwendung läuft, wo sich Risiko konzentriert und welche verbreiteten Annahmen leise scheitern. Sie richtet sich an Entwicklerinnen und Entwickler, Lernende und kleine Teams, die über ihre eigenen Systeme nachdenken wollen."
+        ],
+        "coreIdea": {
+          "title": "Was Web-App-Sicherheit tatsächlich schützt",
+          "paragraphs": [
+            "Es lohnt sich, das Ziel präzise zu fassen. Anwendungssicherheit macht Software nicht unangreifbar; sie schützt konkrete Güter: die Vertraulichkeit der Daten, die eine Anwendung hält, die Integrität der Aktionen, die sie ausführt, und die Verfügbarkeit des Dienstes für die Menschen, die sich darauf verlassen. Jede technische Maßnahme dient einem dieser Schutzziele.",
+            "Das zentrale Konzept ist die Vertrauensgrenze. Ein Browser steht vollständig unter der Kontrolle der Nutzerin oder des Nutzers - nichts, was von dort kommt, darf der Server ungeprüft übernehmen: Formularfelder, Cookies, Header, URLs, Datei-Uploads. Dasselbe gilt überall dort, wo Daten von einem Kontrollbereich in einen anderen wechseln: zwischen einer API und einem Drittdienst, zwischen Anwendung und Datenbank, zwischen zwei internen Diensten mit unterschiedlichen Rechten.",
+            "Die meisten realen Schwachstellen sind Fehler an Vertrauensgrenzen. Die Anwendung behandelt angreiferkontrollierte Eingaben wie Struktur (Injection), verlässt sich darauf, dass der Client selbst angibt, wer er ist oder was er darf (fehlerhafte Authentifizierung und Zugriffskontrolle), oder reicht Daten dorthin weiter, wo sie als Code interpretiert werden (Cross-Site-Scripting). Die OWASP Top 10 bündeln diese wiederkehrenden Fehler in Awareness-Kategorien - angeführt in der Ausgabe 2025 von Broken Access Control.",
+            "Weil Vertrauensgrenzen Architekturfragen sind, ist Sicherheit ebenfalls eine Architekturfrage. Ein Framework kann viele gute Entscheidungen vorwegnehmen, aber es kann nicht wissen, welche Nutzerin welchen Datensatz sehen darf. Genau diese Entscheidungen sind die eigentliche Sicherheit einer Anwendung."
+          ]
+        },
+        "howItWorks": {
+          "title": "Wie eine Anfrage durch die Anwendung läuft",
+          "intro": "Wer eine einzelne Anfrage von Anfang bis Ende verfolgt, sieht, wo die wichtigen Entscheidungen fallen. Jede Station beantwortet eine andere Frage - und keine kann alle beantworten.",
+          "steps": [
+            {
+              "title": "Transport",
+              "text": "HTTPS schützt Daten auf dem Weg gegen Mitlesen und Manipulation. Über das, was nach dem Eintreffen der Anfrage passiert, sagt es nichts: Eine Anwendung kann über einer einwandfreien TLS-Verbindung vollständig verwundbar sein."
+            },
+            {
+              "title": "Eingangspunkt",
+              "text": "Webserver oder Framework zerlegen die rohe Anfrage in Pfade, Parameter, Header und Cookies. Hier nehmen nicht vertrauenswürdige Daten zum ersten Mal Form an - sichere Voreinstellungen zählen an dieser Stelle mehr als cleverer Code."
+            },
+            {
+              "title": "Authentifizierung",
+              "text": "Die Anwendung stellt fest, wer die Anfrage stellt - üblicherweise über Zugangsdaten oder die Prüfung einer Session oder eines Tokens. Authentifizierung beantwortet die Identitätsfrage, und nur die."
+            },
+            {
+              "title": "Session",
+              "text": "Zwischen Login und Logout vertritt eine Session-ID oder ein Token die Person. Lässt sich dieser Stellvertreter stehlen, erraten oder im Voraus festlegen, wird ein Angreifer zu dieser Person - ohne je ein Passwort anzufassen."
+            },
+            {
+              "title": "Autorisierung",
+              "text": "Für jede Aktion und jeden Datensatz muss der Server entscheiden, ob diese Identität genau das tun darf. Diese Entscheidung gehört serverseitig in jede einzelne Anfrage; ein ausgeblendeter Button in der Oberfläche ist keine Zugriffskontrolle."
+            },
+            {
+              "title": "Eingabeverarbeitung und Geschäftslogik",
+              "text": "Validierung begrenzt, welche Daten akzeptiert werden; die Geschäftslogik entscheidet, was sie bedeuten. Viele folgenreiche Fehler liegen genau hier: Mengenfelder, die negative Zahlen akzeptieren, Abläufe, die einen Bezahlschritt überspringen lassen, Objekt-IDs aus der URL ohne Eigentumsprüfung."
+            },
+            {
+              "title": "Datenzugriff und Ausgabe",
+              "text": "Abfragen sollten Eingaben strikt als Daten behandeln - parametrisiert, nie zusammengesetzt. Auf dem Rückweg sorgt Output-Encoding dafür, dass gespeicherte Daten im Browser nicht zu Skript werden. Validierung beim Eingang und Encoding beim Ausgang sind verschiedene Kontrollen; keine ersetzt die andere."
+            }
+          ]
+        },
+        "whereUsed": {
+          "title": "Wo sich Risiko konzentriert",
+          "intro": "Über sehr unterschiedliche Anwendungen hinweg liefern immer wieder dieselben Bereiche Befunde. Ihnen gilt die erste Aufmerksamkeit.",
+          "items": [
+            {
+              "title": "Authentifizierung",
+              "text": "Passwortverarbeitung, Konto-Wiederherstellung, Ratenbegrenzung und Mehr-Faktor-Optionen. Wiederherstellungsabläufe sind oft die schwächste Tür, weil sie das Passwort vollständig umgehen."
+            },
+            {
+              "title": "Autorisierung",
+              "text": "Fehlende oder uneinheitliche Prüfungen auf Objekt- und Funktionsebene. Broken Access Control führt die OWASP Top 10 seit 2021 an, weil es keine generische Lösung gibt - die Prüfung hängt vom Domänenmodell der Anwendung ab."
+            },
+            {
+              "title": "Sessions und Tokens",
+              "text": "Cookie-Attribute, Token-Laufzeiten und das Ungültigmachen bei Logout und Passwortwechsel. Ein langlebiges Token im Browser-Speicher kann jede andere Kontrolle überdauern."
+            },
+            {
+              "title": "APIs",
+              "text": "APIs stellen dieselbe Logik ohne die Leitplanken der Oberfläche bereit und werden oft weniger geprüft. Jeder Endpunkt braucht eigene Authentifizierungs- und Autorisierungsentscheidungen - auch die internen."
+            },
+            {
+              "title": "Abhängigkeiten und Konfiguration",
+              "text": "Drittpakete, Basis-Images und Infrastruktur-Voreinstellungen gehören zur Angriffsfläche. Die Top 10 von 2025 führen Software-Supply-Chain-Fehler nicht ohne Grund als eigene Kategorie."
+            },
+            {
+              "title": "Fehlerbehandlung und Logging",
+              "text": "Fehlermeldungen mit Stacktraces helfen Angreifern bei der Kartierung des Systems; fehlende Logs machen einen Vorfall im Nachhinein unrekonstruierbar. Im Zweifel geschlossen scheitern, sicherheitsrelevante Ereignisse protokollieren und Geheimnisse aus Logzeilen heraushalten."
+            },
+            {
+              "title": "Geschäftslogik",
+              "text": "Abläufe, die einzeln gültig, in Kombination aber schädlich sind: Race Conditions bei Rabatten, wiederholte Anfragen, übersprungene Prüfschritte. Scanner finden so etwas selten - Verständnis fürs Geschäft schon."
+            }
+          ]
+        },
+        "example": {
+          "title": "Ein realistisches Beispiel entlang einer Anfrage",
+          "paragraphs": [
+            "Angenommen, eine kleine Anwendung verwaltet Rechnungen. Eine eingeloggte Nutzerin ruft den PDF-Export der Rechnung Nummer 8241 auf. Die Transportverschlüsselung steht, das Session-Cookie ist gültig, und der Endpunkt prüft die Authentifizierung korrekt. Der Code lädt anschließend Rechnung 8241 und liefert die Datei aus.",
+            "Die fehlende Frage ist die nach dem Eigentum. Nichts hat geprüft, ob Rechnung 8241 zum anfragenden Konto gehört. Jede authentifizierte Person, die die Nummer in der URL ändert, kann die Rechnungen anderer Kunden lesen - eine Insecure Direct Object Reference und einer der häufigsten Zugriffskontroll-Fehler in realen Prüfungen.",
+            "Jede vorgelagerte Kontrolle hat exakt wie vorgesehen funktioniert. TLS war gültig, Passwörter waren gehasht, die Session war intakt - und die Daten sind trotzdem abgeflossen, weil die Autorisierung für genau dieses Objekt serverseitig nie geprüft wurde.",
+            "Die Korrektur ist klein: die Datenbankabfrage auf das authentifizierte Konto einschränken. Das Beispiel zeigt nicht, dass die Korrektur schwierig wäre - sondern dass kein Scanner-Ergebnis, keine Framework-Voreinstellung und keine Verschlüsselung diese Entscheidung automatisch getroffen hätte."
+          ]
+        },
+        "risks": {
+          "title": "Verbreitete Missverständnisse",
+          "intro": "Die meisten dieser Annahmen klingen vernünftig - und jede entfernt still eine echte Verteidigungsschicht.",
+          "items": [
+            {
+              "title": "„HTTPS macht die Anwendung sicher“",
+              "text": "TLS schützt den Transportkanal, mehr nicht. Injection, fehlerhafte Zugriffskontrolle und Logikfehler reisen problemlos über verschlüsselte Verbindungen."
+            },
+            {
+              "title": "„Authentifizierung deckt Autorisierung ab“",
+              "text": "Zu wissen, wer jemand ist, sagt nichts darüber, was diese Person darf. Es sind getrennte Entscheidungen - und die zweite wird deutlich öfter vergessen."
+            },
+            {
+              "title": "„Eingabevalidierung ersetzt Output-Encoding“",
+              "text": "Validierung begrenzt, was hineinkommt; Encoding steuert, wie Daten beim Verlassen interpretiert werden. Daten, die vor Jahren eine Validierung bestanden haben, können heute im Browser zu Skript werden, wenn das Encoding fehlt."
+            },
+            {
+              "title": "„Clientseitige Prüfungen sind Sicherheitskontrollen“",
+              "text": "Alles, was im Browser läuft - deaktivierte Buttons, JavaScript-Validierung, versteckte Felder - lässt sich mit frei verfügbaren Werkzeugen in Sekunden umgehen. Clientseitige Prüfungen sind Komfort; der Server muss jede Entscheidung erneut treffen."
+            },
+            {
+              "title": "„Ein sauberer Scan bedeutet eine sichere Anwendung“",
+              "text": "Automatische Scanner finden bekannte technische Muster. Geschäftsregeln, Eigentumsmodelle und verkettete Schwächen verstehen sie nicht. Ein Scanner ist ein Baustein einer Sicherheitsprüfung, nicht die Prüfung selbst."
+            },
+            {
+              "title": "„Die OWASP Top 10 sind eine vollständige Checkliste“",
+              "text": "OWASP selbst beschreibt die Top 10 als Awareness-Dokument. Gegen zehn Kategorien zu testen ist kein Sicherheitsprogramm; Prüfstandards wie der ASVS existieren, weil echte Abdeckung deutlich mehr Tiefe braucht."
+            }
+          ]
+        },
+        "humanResponsibility": {
+          "title": "Was Tests belegen können - und was nicht",
+          "paragraphs": [
+            "Jede Form von Sicherheitstest - automatisiert oder manuell - untersucht eine Version einer Anwendung, in einer Konfiguration, für eine begrenzte Zeit. Ein Test kann Probleme nachweisen und berechtigtes Vertrauen aufbauen. Ihre Abwesenheit kann er nicht belegen. Neuer Code, neue Abhängigkeiten und neue Funktionen setzen das Bild zurück.",
+            "Deshalb behandeln aktuelle Leitfäden Sicherheit als Eigenschaft des Entwicklungsprozesses und nicht als einmaliges Prüfereignis. Prüfstandards wie der OWASP ASVS definieren, was zu prüfen ist; wann und wie oft geprüft wird, bleibt eine Abwägung, die von den Daten, dem Risiko und der Änderungsgeschwindigkeit abhängt."
+          ],
+          "items": [
+            "Ein Befund belegt eine Schwäche; ein leerer Bericht belegt keine Sicherheit",
+            "Schweregrade beschreiben technische Auswirkungen, nicht Geschäftsauswirkungen",
+            "Testergebnisse veralten mit jeder Änderung der Anwendung",
+            "Werkzeuge unterstützen Urteilsvermögen, sie ersetzen es nicht",
+            "Getestet wird nur, was einem gehört oder wofür eine ausdrückliche Erlaubnis vorliegt"
+          ]
+        },
+        "takeaways": {
+          "title": "Das Wichtigste in Kürze",
+          "items": [
+            "Zuerst die Vertrauensgrenzen zeichnen: Überall dort, wo Daten aus fremder Kontrolle in die eigene wechseln, fallen Sicherheitsentscheidungen.",
+            "Identität authentifizieren, dann jede Aktion und jedes Objekt serverseitig autorisieren - das sind zwei verschiedene Prüfungen.",
+            "Eingaben beim Eingang validieren und Ausgaben beim Ausgang encodieren; keine der beiden Kontrollen ersetzt die andere.",
+            "Abhängigkeiten und Konfiguration als Teil der Anwendung behandeln - Angreifer tun es auch.",
+            "Die OWASP Top 10 für Awareness nutzen, den ASVS für echte Prüftiefe.",
+            "Jedes Testergebnis als Momentaufnahme verstehen; Sicherheit entsteht im Prozess, der die nächste Version hervorbringt."
+          ]
+        },
+        "sources": [
+          {
+            "title": "OWASP Top 10:2025",
+            "organization": "OWASP Foundation",
+            "href": "https://owasp.org/Top10/2025/"
+          },
+          {
+            "title": "OWASP Application Security Verification Standard 5.0",
+            "organization": "OWASP Foundation",
+            "href": "https://owasp.org/www-project-application-security-verification-standard/"
+          },
+          {
+            "title": "OWASP Web Security Testing Guide",
+            "organization": "OWASP Foundation",
+            "href": "https://owasp.org/www-project-web-security-testing-guide/"
+          },
+          {
+            "title": "OWASP Cheat Sheet Series",
+            "organization": "OWASP Foundation",
+            "href": "https://cheatsheetseries.owasp.org/"
+          },
+          {
+            "title": "Web security documentation",
+            "organization": "MDN Web Docs / Mozilla",
+            "href": "https://developer.mozilla.org/en-US/docs/Web/Security"
+          }
+        ]
+      },
       "aiDevSecOps": {
         "metadata": {
           "title": "AI in DevSecOps verständlich erklärt | niwo",

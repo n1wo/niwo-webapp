@@ -126,6 +126,186 @@
       "continueReading": "Continue reading"
     },
     "items": {
+      "webAppSecurity": {
+        "metadata": {
+          "title": "Web App Security, explained | niwo",
+          "description": "How risk actually moves through a web application: trust boundaries, identity, sessions, data handling, dependencies - and what security testing can and cannot prove."
+        },
+        "eyebrow": "Application security",
+        "title": "Web App Security",
+        "intro": [
+          "Web application security is the practice of making sure an application only does what its operators and users intend - even when someone deliberately sends it input it was never meant to receive. It covers the code, the configuration around it, and the assumptions that connect them.",
+          "This page builds a working mental model: where trust boundaries sit, how a request actually moves through an application, where risk tends to concentrate, and which common beliefs quietly fail. It is written for developers, learners, and small teams who want to reason about their own systems."
+        ],
+        "coreIdea": {
+          "title": "What web application security actually protects",
+          "paragraphs": [
+            "It helps to be precise about the goal. Application security is not about making software impossible to attack; it is about protecting specific things: the confidentiality of the data an application holds, the integrity of the actions it performs, and the availability of the service for the people who rely on it. Every technical control exists to defend one of those properties.",
+            "The central concept is the trust boundary. A browser is entirely under the user's control, so nothing arriving from it - form fields, cookies, headers, URLs, file uploads - can be trusted by the server. The same applies wherever data crosses from one zone of control into another: between an API and a third-party service, between the application and its database, between two internal services with different privileges.",
+            "Most real vulnerabilities are trust-boundary mistakes. The application treats attacker-controlled input as if it were structure (injection), trusts the client to say who it is or what it may do (broken authentication and access control), or passes data onward to a place where it is interpreted as code (cross-site scripting). The OWASP Top 10 groups these recurring failures into awareness categories - with broken access control heading the 2025 edition.",
+            "Because boundaries are architectural, security is architectural too. A framework can encode many good decisions, but it cannot know which user is allowed to see which record. Those decisions are the application's actual security."
+          ]
+        },
+        "howItWorks": {
+          "title": "How a request moves through an application",
+          "intro": "Following one request end to end shows where the important decisions happen. Each stage answers a different question, and no single stage can answer them all.",
+          "steps": [
+            {
+              "title": "Transport",
+              "text": "HTTPS protects data in transit against reading and tampering. It says nothing about what happens after the request arrives: an application can be completely vulnerable while serving everything over a perfectly valid TLS connection."
+            },
+            {
+              "title": "Entry point",
+              "text": "The web server or framework parses the raw request into paths, parameters, headers, and cookies. Parsing is the first place untrusted data takes shape, and safe defaults matter more here than clever code."
+            },
+            {
+              "title": "Authentication",
+              "text": "The application establishes who is making the request, usually by checking credentials or validating a session or token. Authentication answers identity - and only identity."
+            },
+            {
+              "title": "Session",
+              "text": "Between login and logout, a session identifier or token stands in for the user. If it can be stolen, predicted, or fixed in advance, an attacker becomes that user without ever touching a password."
+            },
+            {
+              "title": "Authorization",
+              "text": "For every action and every record, the server must decide whether this identity may do this specific thing. That decision has to happen server-side on each request; a hidden button in the UI is not an access control."
+            },
+            {
+              "title": "Input handling and business logic",
+              "text": "Validation constrains what data is accepted; business logic decides what it means. Many high-impact flaws live here: quantity fields that accept negative numbers, workflows that can skip a payment step, object IDs taken from the URL without an ownership check."
+            },
+            {
+              "title": "Data access and output",
+              "text": "Queries should treat input strictly as data - parameterized, never concatenated. On the way back out, output encoding ensures stored data cannot turn into script in someone's browser. Validation on the way in and encoding on the way out are different controls; one does not replace the other."
+            }
+          ]
+        },
+        "whereUsed": {
+          "title": "Where risk tends to concentrate",
+          "intro": "Across very different applications, the same areas keep producing findings. They deserve attention first.",
+          "items": [
+            {
+              "title": "Authentication",
+              "text": "Password handling, account recovery, rate limiting, and multi-factor options. Recovery flows are often the weakest door, because they bypass the password entirely."
+            },
+            {
+              "title": "Authorization",
+              "text": "Missing or inconsistent checks on objects and functions. Broken access control has topped the OWASP Top 10 since 2021 because it cannot be fixed generically - it depends on the application's own domain model."
+            },
+            {
+              "title": "Sessions and tokens",
+              "text": "Cookie attributes, token lifetimes, and invalidation on logout and password change. A long-lived token in browser storage can outlast every other control."
+            },
+            {
+              "title": "APIs",
+              "text": "APIs expose the same logic without the UI's guardrails and often receive less scrutiny. Every endpoint needs its own authentication and authorization decisions - including the internal ones."
+            },
+            {
+              "title": "Dependencies and configuration",
+              "text": "Third-party packages, base images, and infrastructure defaults are part of the attack surface. The 2025 Top 10 added software supply chain failures as a category of its own for a reason."
+            },
+            {
+              "title": "Error handling and logging",
+              "text": "Errors that leak stack traces help attackers map the system, while missing logs mean an incident cannot be reconstructed afterwards. Fail closed, log security-relevant events, and keep secrets out of log lines."
+            },
+            {
+              "title": "Business logic",
+              "text": "Flows that are individually valid but harmful in combination: race conditions on discounts, replayed requests, skipped verification steps. Scanners rarely find these; understanding the business does."
+            }
+          ]
+        },
+        "example": {
+          "title": "A realistic request-flow example",
+          "paragraphs": [
+            "Consider a small invoicing application. A logged-in user requests the PDF export of invoice number 8241. Transport encryption is in place, the session cookie is valid, and the endpoint checks authentication correctly. The code then loads invoice 8241 and returns the file.",
+            "The missing question is ownership. Nothing verified that invoice 8241 belongs to the requesting account. Any authenticated user who changes the number in the URL can read other customers' invoices - an insecure direct object reference, one of the most common access-control failures found in real assessments.",
+            "Every earlier control worked exactly as designed. TLS was valid, passwords were hashed, the session was intact - and the data still leaked, because authorization for this specific object was never checked on the server.",
+            "The fix is small: scope the database query to the authenticated account. The point of the example is not that the fix is hard, but that no scanner output, framework default, or encryption setting would have made this decision automatically."
+          ]
+        },
+        "risks": {
+          "title": "Common misunderstandings",
+          "intro": "Most of these beliefs sound reasonable, and each one quietly removes a real layer of defence.",
+          "items": [
+            {
+              "title": "“HTTPS makes the application secure”",
+              "text": "TLS protects the transport channel, nothing more. Injection, broken access control, and logic flaws all travel comfortably over encrypted connections."
+            },
+            {
+              "title": "“Authentication covers authorization”",
+              "text": "Knowing who someone is says nothing about what they may do. They are separate decisions, and the second one is skipped far more often."
+            },
+            {
+              "title": "“Input validation replaces output encoding”",
+              "text": "Validation limits what enters; encoding controls how data is interpreted when it leaves. Data that passed validation years ago can still become script in a browser today if output encoding is missing."
+            },
+            {
+              "title": "“Client-side checks are security controls”",
+              "text": "Anything running in the browser - disabled buttons, JavaScript validation, hidden fields - can be bypassed with freely available tooling in seconds. Client-side checks are usability; the server must re-decide everything."
+            },
+            {
+              "title": "“A clean scan means a secure application”",
+              "text": "Automated scanners find known technical patterns. They do not understand business rules, ownership models, or chained weaknesses. A scanner is one input to a security assessment, not the assessment."
+            },
+            {
+              "title": "“The OWASP Top 10 is a complete checklist”",
+              "text": "OWASP itself describes the Top 10 as an awareness document. Testing against ten categories is not a security program; verification standards like the ASVS exist because real coverage needs far more granularity."
+            }
+          ]
+        },
+        "humanResponsibility": {
+          "title": "What testing can and cannot prove",
+          "paragraphs": [
+            "Any form of security testing - automated or manual - examines one version of an application, in one configuration, for a bounded amount of time. It can demonstrate the presence of problems and it can raise justified confidence. It cannot demonstrate their absence. New code, new dependencies, and new features reset the picture.",
+            "That is why current guidance treats security as a property of the development process rather than a one-time verification event. Verification standards such as the OWASP ASVS define what to check; when and how often to check remains a judgement call that depends on the data involved, the risk, and the rate of change."
+          ],
+          "items": [
+            "A finding proves a weakness; a clean report does not prove safety",
+            "Severity ratings describe technical impact, not business impact",
+            "Test results expire as the application changes",
+            "Tooling supports judgement; it does not replace it",
+            "Only test systems you own or have explicit permission to test"
+          ]
+        },
+        "takeaways": {
+          "title": "Key takeaways",
+          "items": [
+            "Draw the trust boundaries first: wherever data crosses from someone else's control into yours is where security decisions live.",
+            "Authenticate identity, then authorize every action and every object on the server - these are two different checks.",
+            "Validate input on the way in and encode output on the way out; neither control substitutes for the other.",
+            "Treat dependencies and configuration as part of the application, because attackers do.",
+            "Use the OWASP Top 10 for awareness and the ASVS for actual verification depth.",
+            "Treat any test result as a snapshot; security lives in the process that produces the next version."
+          ]
+        },
+        "sources": [
+          {
+            "title": "OWASP Top 10:2025",
+            "organization": "OWASP Foundation",
+            "href": "https://owasp.org/Top10/2025/"
+          },
+          {
+            "title": "OWASP Application Security Verification Standard 5.0",
+            "organization": "OWASP Foundation",
+            "href": "https://owasp.org/www-project-application-security-verification-standard/"
+          },
+          {
+            "title": "OWASP Web Security Testing Guide",
+            "organization": "OWASP Foundation",
+            "href": "https://owasp.org/www-project-web-security-testing-guide/"
+          },
+          {
+            "title": "OWASP Cheat Sheet Series",
+            "organization": "OWASP Foundation",
+            "href": "https://cheatsheetseries.owasp.org/"
+          },
+          {
+            "title": "Web security documentation",
+            "organization": "MDN Web Docs / Mozilla",
+            "href": "https://developer.mozilla.org/en-US/docs/Web/Security"
+          }
+        ]
+      },
       "aiDevSecOps": {
         "metadata": {
           "title": "AI in DevSecOps, explained | niwo",
