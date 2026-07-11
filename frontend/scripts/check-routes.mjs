@@ -15,8 +15,17 @@ const requiredRoutes = [
       "AI in DevSecOps",
       "Agentic Engineering",
       "Incident Response",
+      'data-topic-artwork="aiDevSecOps"',
+      'data-topic-artwork="agenticEngineering"',
+      'data-topic-artwork="incidentResponse"',
     ],
-    notContains: ["/terminal-closed"],
+    notContains: [
+      "/terminal-closed",
+      'data-topic-artwork="webAppSecurity"',
+      'data-topic-artwork="secureDevelopment"',
+      'data-topic-artwork="pentestPreparation"',
+    ],
+    occurrences: [{ needle: "data-topic-artwork=", count: 3 }],
   },
   {
     path: "/de",
@@ -26,8 +35,17 @@ const requiredRoutes = [
       "AI in DevSecOps",
       "Agentic Engineering",
       "Incident Response",
+      'data-topic-artwork="aiDevSecOps"',
+      'data-topic-artwork="agenticEngineering"',
+      'data-topic-artwork="incidentResponse"',
     ],
-    notContains: ["/terminal-closed"],
+    notContains: [
+      "/terminal-closed",
+      'data-topic-artwork="webAppSecurity"',
+      'data-topic-artwork="secureDevelopment"',
+      'data-topic-artwork="pentestPreparation"',
+    ],
+    occurrences: [{ needle: "data-topic-artwork=", count: 3 }],
   },
   {
     path: "/en/topics/ai-in-devsecops",
@@ -68,38 +86,44 @@ const requiredRoutes = [
   {
     path: "/en/topics/web-app-security",
     statuses: [200],
-    contains: ["Web App Security", "How a request moves through an application", "What testing can and cannot prove"],
+    contains: ["Web App Security", "How a request moves through an application", "What testing can and cannot prove", 'data-topic-artwork="webAppSecurity"'],
     notContains: ["TopicArticles.items."],
+    occurrences: [{ needle: "data-topic-artwork=", count: 1 }],
   },
   {
     path: "/de/topics/web-app-security",
     statuses: [200],
-    contains: ["Web App Security", "Wie eine Anfrage durch die Anwendung läuft", "Was Tests belegen können - und was nicht"],
+    contains: ["Web App Security", "Wie eine Anfrage durch die Anwendung läuft", "Was Tests belegen können - und was nicht", 'data-topic-artwork="webAppSecurity"'],
     notContains: ["TopicArticles.items."],
+    occurrences: [{ needle: "data-topic-artwork=", count: 1 }],
   },
   {
     path: "/en/topics/secure-development",
     statuses: [200],
-    contains: ["Secure Development", "A practical secure-development lifecycle", "Example: adding a customer-data export"],
+    contains: ["Secure Development", "A practical secure-development lifecycle", "Example: adding a customer-data export", 'data-topic-artwork="secureDevelopment"'],
     notContains: ["TopicArticles.items."],
+    occurrences: [{ needle: "data-topic-artwork=", count: 1 }],
   },
   {
     path: "/de/topics/secure-development",
     statuses: [200],
-    contains: ["Sichere Entwicklung", "Ein praktikabler Lebenszyklus für sichere Entwicklung", "Beispiel: Export von Kundendaten"],
+    contains: ["Sichere Entwicklung", "Ein praktikabler Lebenszyklus für sichere Entwicklung", "Beispiel: Export von Kundendaten", 'data-topic-artwork="secureDevelopment"'],
     notContains: ["TopicArticles.items."],
+    occurrences: [{ needle: "data-topic-artwork=", count: 1 }],
   },
   {
     path: "/en/topics/penetration-testing",
     statuses: [200],
-    contains: ["Pentest Preparation, explained | niwo", "How a penetration test is prepared and delivered", "Example: scoping a small SaaS application", "Authorization, coordination, and ownership", "NIST SP 800-115"],
+    contains: ["Pentest Preparation, explained | niwo", "How a penetration test is prepared and delivered", "Example: scoping a small SaaS application", "Authorization, coordination, and ownership", "NIST SP 800-115", 'data-topic-artwork="pentestPreparation"'],
     notContains: ["TopicArticles.items."],
+    occurrences: [{ needle: "data-topic-artwork=", count: 1 }],
   },
   {
     path: "/de/topics/penetration-testing",
     statuses: [200],
-    contains: ["Pentest-Vorbereitung verständlich erklärt | niwo", "So wird ein Penetrationstest vorbereitet und durchgeführt", "Beispiel: Scope für eine kleine SaaS-Anwendung", "Freigabe, Koordination und Verantwortung", "NIST SP 800-115"],
+    contains: ["Pentest-Vorbereitung verständlich erklärt | niwo", "So wird ein Penetrationstest vorbereitet und durchgeführt", "Beispiel: Scope für eine kleine SaaS-Anwendung", "Freigabe, Koordination und Verantwortung", "NIST SP 800-115", 'data-topic-artwork="pentestPreparation"'],
     notContains: ["TopicArticles.items."],
+    occurrences: [{ needle: "data-topic-artwork=", count: 1 }],
   },
   { path: "/robots.txt", statuses: [200] },
   {
@@ -198,7 +222,7 @@ async function waitForServer() {
   throw new Error(`Timed out waiting for ${BASE_URL}`);
 }
 
-async function checkRoute({ path, statuses, location, contains, notContains }) {
+async function checkRoute({ path, statuses, location, contains, notContains, occurrences }) {
   const response = await fetch(`${BASE_URL}${path}`, { redirect: "manual" });
   const actualLocation = response.headers.get("location") ?? "";
 
@@ -214,7 +238,7 @@ async function checkRoute({ path, statuses, location, contains, notContains }) {
     );
   }
 
-  if (contains?.length || notContains?.length) {
+  if (contains?.length || notContains?.length || occurrences?.length) {
     const body = await response.text();
 
     for (const needle of contains ?? []) {
@@ -226,6 +250,15 @@ async function checkRoute({ path, statuses, location, contains, notContains }) {
     for (const needle of notContains ?? []) {
       if (body.includes(needle)) {
         throw new Error(`${path} contains forbidden content: "${needle}"`);
+      }
+    }
+
+    for (const { needle, count } of occurrences ?? []) {
+      const actualCount = body.split(needle).length - 1;
+      if (actualCount !== count) {
+        throw new Error(
+          `${path} contains "${needle}" ${actualCount} times, expected ${count}`,
+        );
       }
     }
   }
