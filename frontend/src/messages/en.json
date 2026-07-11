@@ -54,9 +54,9 @@
       "cta": "Open whoami"
     },
     "hiringNotice": "Open to working student & part-time roles — IT-Security · IT-Support · Software Development",
-    "servicesEyebrow": "Security Topics",
-    "servicesTitle": "Topics I'm exploring in web security",
-    "servicesDescription": "Practical notes, experiments, and topic areas around web security, secure development, and how real weaknesses show up in applications.",
+    "servicesEyebrow": "Security explained",
+    "servicesTitle": "Complex security topics, explained clearly",
+    "servicesDescription": "Practical explanations of cybersecurity, secure development, incident response, and AI-assisted engineering — structured to show what matters, where the risks are, and how these ideas work in practice.",
     "approach": {
       "eyebrow": "How I work",
       "title": "An honest, practical approach to security",
@@ -98,24 +98,21 @@
         "recommendation": "[>] recommendation: fix auth flow"
       }
     },
-    "serviceCards": {
-      "webAppSecurity": {
-        "eyebrow": "Topic",
-        "title": "Web App Security",
-        "text": "Notes on the flows, inputs, and trust boundaries that carry real risk in modern web applications.",
-        "accent": "Attack surface notes"
+    "securityTopics": {
+      "aiDevSecOps": {
+        "title": "AI in DevSecOps",
+        "description": "How AI can support secure software delivery — from planning and code review to CI/CD, infrastructure, and monitoring — without removing human judgment.",
+        "linkLabel": "Ask about this topic"
       },
-      "penetrationTesting": {
-        "eyebrow": "Topic",
-        "title": "Pentest Preparation",
-        "text": "Plain-language notes on how pentests work, what good scope looks like, and which questions matter before a test.",
-        "accent": "Pentest preparation"
+      "agenticEngineering": {
+        "title": "Agentic Engineering",
+        "description": "How developers work with AI agents, tools, permissions, approval gates, and observable workflows while keeping control over high-impact actions.",
+        "linkLabel": "Ask about this topic"
       },
-      "secureDevelopment": {
-        "eyebrow": "Topic",
-        "title": "Secure Development",
-        "text": "Practical secure-development notes for building, reviewing, and thinking about web applications with fewer sharp edges.",
-        "accent": "Practical security notes"
+      "incidentResponse": {
+        "title": "Incident Response",
+        "description": "A practical introduction to triage, containment, evidence preservation, recovery, communication, and learning after a suspected security incident.",
+        "linkLabel": "Ask about this topic"
       }
     }
   },

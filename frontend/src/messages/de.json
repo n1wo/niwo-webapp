@@ -54,9 +54,9 @@
       "cta": "whoami öffnen"
     },
     "hiringNotice": "Offen für Werkstudenten- & Teilzeitstellen — IT-Security · IT-Support · Softwareentwicklung",
-    "servicesEyebrow": "Security-Themen",
-    "servicesTitle": "Themen, die ich in Web Security erkunde",
-    "servicesDescription": "Praktische Notizen, Experimente und Themenbereiche rund um Web Security, sichere Entwicklung und die Frage, wie echte Schwachstellen in Anwendungen entstehen.",
+    "servicesEyebrow": "Security verständlich erklärt",
+    "servicesTitle": "Komplexe Security-Themen, klar erklärt",
+    "servicesDescription": "Praxisnahe Erklärungen zu Cybersecurity, sicherer Softwareentwicklung, Incident Response und KI-gestütztem Engineering — so strukturiert, dass klar wird, worauf es ankommt, wo Risiken entstehen und wie die Konzepte in der Praxis funktionieren.",
     "approach": {
       "eyebrow": "Wie ich arbeite",
       "title": "Ein ehrlicher, praktischer Ansatz für Sicherheit",
@@ -98,24 +98,21 @@
         "recommendation": "[>] Empfehlung: Auth-Flow absichern"
       }
     },
-    "serviceCards": {
-      "webAppSecurity": {
-        "eyebrow": "Thema",
-        "title": "Web App Security",
-        "text": "Notizen zu Abläufen, Eingaben und Vertrauensgrenzen, die in modernen Webanwendungen echtes Risiko tragen.",
-        "accent": "Attack-Surface-Notizen"
+    "securityTopics": {
+      "aiDevSecOps": {
+        "title": "AI in DevSecOps",
+        "description": "Wie KI eine sichere Softwarebereitstellung unterstützen kann — von Planung und Code-Review über CI/CD und Infrastruktur bis zum Monitoring — ohne menschliches Urteilsvermögen zu ersetzen.",
+        "linkLabel": "Frage zu diesem Thema"
       },
-      "penetrationTesting": {
-        "eyebrow": "Thema",
-        "title": "Pentest-Vorbereitung",
-        "text": "Verständliche Notizen dazu, wie Pentests ablaufen, wie guter Scope aussieht und welche Fragen vor einem Test wichtig sind.",
-        "accent": "Pentest-Vorbereitung"
+      "agenticEngineering": {
+        "title": "Agentic Engineering",
+        "description": "Wie Entwickler mit KI-Agenten, Werkzeugen, Berechtigungen, Freigabeschritten und nachvollziehbaren Workflows arbeiten, ohne die Kontrolle über weitreichende Aktionen abzugeben.",
+        "linkLabel": "Frage zu diesem Thema"
       },
-      "secureDevelopment": {
-        "eyebrow": "Thema",
-        "title": "Sichere Entwicklung",
-        "text": "Praktische Secure-Development-Notizen zum Bauen, Prüfen und Durchdenken von Webanwendungen mit weniger scharfen Kanten.",
-        "accent": "Praktische Security-Notizen"
+      "incidentResponse": {
+        "title": "Incident Response",
+        "description": "Eine praxisnahe Einführung in Triage, Eindämmung, Beweissicherung, Wiederherstellung, Kommunikation und das Lernen nach einem vermuteten Sicherheitsvorfall.",
+        "linkLabel": "Frage zu diesem Thema"
       }
     }
   },

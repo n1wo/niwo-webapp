@@ -117,7 +117,6 @@ Current examples:
 
 - `frontend/src/components/common/PrimarySecondaryCta.tsx`
 - `frontend/src/components/legal/LegalPageLayout.tsx`
-- `frontend/src/components/services/ServiceCard.tsx`
 
 If the same pattern appears on the homepage and another page, prefer a shared
 component.
