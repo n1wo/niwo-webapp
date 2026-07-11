@@ -5,7 +5,11 @@ import CardShell from "@/components/common/CardShell";
 import PrimarySecondaryCta from "@/components/common/PrimarySecondaryCta";
 import Surface from "@/components/common/Surface";
 import ServiceVisual from "@/components/services/ServiceVisual";
+import TopicArticlePage, {
+  getTopicArticleContent,
+} from "@/components/topics/TopicArticlePage";
 import { getServiceBySlug, serviceDefinitions, type ServiceDefinition } from "@/data/services";
+import { getTopicArticleBySlug, topicArticleDefinitions } from "@/data/topicArticles";
 import { Link } from "@/i18n/navigation";
 import { buildMetadata } from "@/i18n/metadata";
 
@@ -135,7 +139,10 @@ function getTopicContent(
 }
 
 export function generateStaticParams() {
-  return serviceDefinitions.map((service) => ({ slug: service.slug }));
+  return [
+    ...serviceDefinitions.map((service) => ({ slug: service.slug })),
+    ...topicArticleDefinitions.map((topic) => ({ slug: topic.slug })),
+  ];
 }
 
 export async function generateMetadata({
@@ -144,6 +151,20 @@ export async function generateMetadata({
   params: Promise<{ locale: string; slug: string }>;
 }): Promise<Metadata> {
   const { locale, slug } = await params;
+  const topicArticle = getTopicArticleBySlug(slug);
+
+  if (topicArticle) {
+    const t = await getTranslations({ locale });
+    const content = getTopicArticleContent(t, topicArticle);
+
+    return buildMetadata({
+      locale,
+      title: content.metadata.title,
+      description: content.metadata.description,
+      path: `/topics/${slug}`,
+    });
+  }
+
   const service = getServiceBySlug(slug);
 
   if (!service) {
@@ -167,6 +188,12 @@ export default async function ServicePage({
   params: Promise<{ locale: string; slug: string }>;
 }) {
   const { locale, slug } = await params;
+  const topicArticle = getTopicArticleBySlug(slug);
+
+  if (topicArticle) {
+    return <TopicArticlePage locale={locale} topic={topicArticle} />;
+  }
+
   const service = getServiceBySlug(slug);
 
   if (!service) {

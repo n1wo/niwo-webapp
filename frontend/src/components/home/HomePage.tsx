@@ -60,7 +60,7 @@ export default function HomePage(): JSX.Element {
       title: t("securityTopics.aiDevSecOps.title"),
       description: t("securityTopics.aiDevSecOps.description"),
       linkLabel: t("securityTopics.aiDevSecOps.linkLabel"),
-      href: "mailto:info@niwosystems.com?subject=AI%20in%20DevSecOps",
+      href: "/topics/ai-in-devsecops",
       artwork: <TopicArtwork type="aiDevSecOps" />,
     },
     {
@@ -69,7 +69,7 @@ export default function HomePage(): JSX.Element {
       title: t("securityTopics.agenticEngineering.title"),
       description: t("securityTopics.agenticEngineering.description"),
       linkLabel: t("securityTopics.agenticEngineering.linkLabel"),
-      href: "mailto:info@niwosystems.com?subject=Agentic%20Engineering",
+      href: "/topics/agentic-engineering",
       artwork: <TopicArtwork type="agenticEngineering" />,
     },
     {
@@ -78,7 +78,7 @@ export default function HomePage(): JSX.Element {
       title: t("securityTopics.incidentResponse.title"),
       description: t("securityTopics.incidentResponse.description"),
       linkLabel: t("securityTopics.incidentResponse.linkLabel"),
-      href: "mailto:info@niwosystems.com?subject=Incident%20Response",
+      href: "/topics/incident-response",
       artwork: <TopicArtwork type="incidentResponse" />,
     },
   ];

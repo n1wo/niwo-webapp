@@ -29,11 +29,47 @@ const requiredRoutes = [
     ],
     notContains: ["/terminal-closed"],
   },
+  {
+    path: "/en/topics/ai-in-devsecops",
+    statuses: [200],
+    contains: ["AI in DevSecOps", "How it works in practice", "Human responsibility"],
+  },
+  {
+    path: "/de/topics/ai-in-devsecops",
+    statuses: [200],
+    contains: ["AI in DevSecOps", "So funktioniert es in der Praxis", "Menschliche Verantwortung"],
+  },
+  {
+    path: "/en/topics/agentic-engineering",
+    statuses: [200],
+    contains: ["Agentic Engineering", "How an agentic workflow works", "Risks and limitations"],
+  },
+  {
+    path: "/de/topics/agentic-engineering",
+    statuses: [200],
+    contains: ["Agentic Engineering", "So läuft ein agentischer Workflow ab", "Risiken und Grenzen"],
+  },
+  {
+    path: "/en/topics/incident-response",
+    statuses: [200],
+    contains: ["Incident Response", "How the response unfolds", "Sources and further reading"],
+  },
+  {
+    path: "/de/topics/incident-response",
+    statuses: [200],
+    contains: ["Incident Response", "So verläuft die Reaktion", "Quellen und weiterführende Literatur"],
+  },
   { path: "/robots.txt", statuses: [200] },
   {
     path: "/sitemap.xml",
     statuses: [200],
-    contains: ["/en/pages/phishing-lab", "/de/pages/phishing-lab"],
+    contains: [
+      "/en/pages/phishing-lab",
+      "/de/pages/phishing-lab",
+      "/en/topics/ai-in-devsecops",
+      "/de/topics/agentic-engineering",
+      "/en/topics/incident-response",
+    ],
   },
   { path: "/.well-known/security.txt", statuses: [200] },
   { path: "/en/pages/phishing-lab", statuses: [200] },

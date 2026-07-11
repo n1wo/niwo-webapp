@@ -1,4 +1,5 @@
 import type { JSX, ReactNode } from "react";
+import { Link } from "@/i18n/navigation";
 
 type TopicEditorialRowProps = {
   marker: string;
@@ -37,7 +38,7 @@ export default function TopicEditorialRow({
         <p className="mt-5 max-w-[58ch] text-base leading-8 text-zinc-300">
           {description}
         </p>
-        <a
+        <Link
           href={href}
           aria-label={`${linkLabel}: ${title}`}
           className="group mt-7 inline-flex items-center gap-2 rounded-sm font-mono text-sm font-medium text-zinc-200 underline decoration-white/20 underline-offset-4 transition-colors duration-200 hover:text-[var(--color-accent-light)] hover:decoration-[var(--color-accent-light)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(140_127_224/0.74)] focus-visible:ring-offset-4 focus-visible:ring-offset-[var(--background)]"
@@ -46,7 +47,7 @@ export default function TopicEditorialRow({
           <span aria-hidden="true" className="transition-transform duration-200 group-hover:translate-x-1">
             &rarr;
           </span>
-        </a>
+        </Link>
       </div>
 
       <div

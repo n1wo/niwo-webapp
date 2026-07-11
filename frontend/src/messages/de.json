@@ -102,17 +102,498 @@
       "aiDevSecOps": {
         "title": "AI in DevSecOps",
         "description": "Wie KI eine sichere Softwarebereitstellung unterstützen kann — von Planung und Code-Review über CI/CD und Infrastruktur bis zum Monitoring — ohne menschliches Urteilsvermögen zu ersetzen.",
-        "linkLabel": "Frage zu diesem Thema"
+        "linkLabel": "Erklärung lesen"
       },
       "agenticEngineering": {
         "title": "Agentic Engineering",
         "description": "Wie Entwickler mit KI-Agenten, Werkzeugen, Berechtigungen, Freigabeschritten und nachvollziehbaren Workflows arbeiten, ohne die Kontrolle über weitreichende Aktionen abzugeben.",
-        "linkLabel": "Frage zu diesem Thema"
+        "linkLabel": "Erklärung lesen"
       },
       "incidentResponse": {
         "title": "Incident Response",
         "description": "Eine praxisnahe Einführung in Triage, Eindämmung, Beweissicherung, Wiederherstellung, Kommunikation und das Lernen nach einem vermuteten Sicherheitsvorfall.",
-        "linkLabel": "Frage zu diesem Thema"
+        "linkLabel": "Erklärung lesen"
+      }
+    }
+  },
+  "TopicArticles": {
+    "common": {
+      "backToTopics": "Zurück zur Themenübersicht",
+      "onThisPage": "Auf dieser Seite",
+      "sources": "Quellen und weiterführende Literatur",
+      "sourceNote": "Eine kompakte Auswahl an Primärforschung, Standards und öffentlicher technischer Orientierung, auf die sich dieser Artikel stützt.",
+      "continueReading": "Weiterlesen"
+    },
+    "items": {
+      "aiDevSecOps": {
+        "metadata": {
+          "title": "AI in DevSecOps verständlich erklärt | niwo",
+          "description": "Eine klare Einführung in KI-gestützte sichere Softwarebereitstellung: Nutzen, Ablauf, Grenzen und die unverzichtbare Rolle menschlicher Prüfung."
+        },
+        "eyebrow": "Sichere Softwarebereitstellung",
+        "title": "AI in DevSecOps",
+        "intro": [
+          "DevSecOps bedeutet, Sicherheit in die tägliche Softwareentwicklung einzubauen — nicht erst kurz vor der Veröffentlichung zu prüfen. KI kann dabei helfen, Ergebnisse zu sortieren, Tests vorzuschlagen, unbekannten Code zu erklären und Muster sichtbar zu machen, die ein ausgelastetes Team sonst leicht übersieht.",
+          "Entscheidend ist das Wort helfen. Ein KI-System erzeugt Vorhersagen aus Daten und Anweisungen; es versteht Geschäftsrisiken, betroffene Menschen oder rechtliche Pflichten nicht wie die verantwortlichen Personen. Richtig eingesetzt verkürzt es Rückkopplungen. Unkritisch automatisiert vervielfacht es überzeugend formulierte Fehler."
+        ],
+        "coreIdea": {
+          "title": "Die Grundidee",
+          "paragraphs": [
+            "Eine Software-Pipeline lässt sich als Folge von Kontrollpunkten verstehen: Änderung planen, Code schreiben, bauen, testen, ausrollen und im Betrieb beobachten. Sicherheitsfragen gehören an jeden dieser Punkte. KI ergänzt einen Assistenten, der vergleichen, zusammenfassen, einordnen und Vorschläge machen kann — während normale Sicherheitskontrollen weiterhin entscheiden, was den nächsten Schritt erreichen darf.",
+            "Das ist mehr als die Frage an einen Chatbot, ob Code sicher sei. Eine belastbare Lösung verbindet unterschiedliche Nachweise: Anforderungen, Bedrohungsmodelle, Code- und Abhängigkeitsanalysen, Testergebnisse, Herkunft von Build-Artefakten, Deployment-Regeln und Monitoring. KI darf diese Signale zusammenführen, aber die zugrunde liegenden Belege müssen prüfbar bleiben."
+          ]
+        },
+        "howItWorks": {
+          "title": "So funktioniert es in der Praxis",
+          "intro": "Es gibt weder das eine AI-in-DevSecOps-Produkt noch einen allgemeingültigen Ablauf. Eine sorgfältige Einführung ergänzt begrenzte Assistenzfunktionen in einem bereits definierten sicheren Entwicklungsprozess.",
+          "steps": [
+            {
+              "title": "Planen",
+              "text": "Das Team legt Sicherheitsanforderungen, denkbare Missbrauchsfälle, sensible Daten und zwingende Freigaben fest. KI kann ähnliche frühere Entscheidungen auffinden, aber nicht die Risikotoleranz erfinden."
+            },
+            {
+              "title": "Entwickeln",
+              "text": "Ein Coding-Assistent kann Funktionen erklären, Tests entwerfen oder eine sicherere Schnittstelle vorschlagen. Der Entwickler prüft den tatsächlichen Diff und bleibt für jeden übernommenen Code verantwortlich."
+            },
+            {
+              "title": "Prüfen",
+              "text": "Statische Analyse, Abhängigkeits- und Secret-Scans sowie Tests liefern Befunde. KI kann Duplikate gruppieren oder Kontext ergänzen; reproduzierbare Tests und deterministische Werkzeuge bleiben der Nachweis."
+            },
+            {
+              "title": "Bauen",
+              "text": "Das Build-System dokumentiert Herkunft und Abhängigkeiten und wendet Richtlinien an. Ein KI-Vorschlag darf signierte Artefakte, geschützte Branches oder vorgeschriebene Reviews nicht umgehen."
+            },
+            {
+              "title": "Ausrollen",
+              "text": "Infrastrukturänderungen werden mit einem freigegebenen Plan verglichen. Geringe Risiken können automatisiert werden; Zugriffs-, Produktionsdaten- und destruktive Änderungen brauchen enge Rechte und klare Freigaben."
+            },
+            {
+              "title": "Beobachten und lernen",
+              "text": "Betriebssignale, Vorfälle und Fehlalarme fließen in Tests und Regeln zurück. KI kann Ereignisse verdichten, während Menschen die Rohdaten prüfen, bevor sie Systeme verändern oder einen Vorfall ausrufen."
+            }
+          ]
+        },
+        "whereUsed": {
+          "title": "Wo der Ansatz nützlich ist",
+          "intro": "Die stärksten Anwendungsfälle haben klare Eingaben, überprüfbare Ausgaben und einen sicheren Weg, den Vorschlag abzulehnen.",
+          "items": [
+            {
+              "title": "Code- und Test-Review",
+              "text": "Riskante Datenflüsse erklären, Randfälle für Tests vorschlagen oder den Weg einer Eingabe bis zu einer sensiblen Operation nachvollziehbar machen."
+            },
+            {
+              "title": "Befund-Triage",
+              "text": "Verwandte Scannergebnisse gruppieren, Repository-Kontext ergänzen und eine erste Einordnung vorbereiten, damit Spezialisten sich auf relevante Befunde konzentrieren können."
+            },
+            {
+              "title": "Infrastrukturänderungen",
+              "text": "Konfiguration oder Infrastructure as Code gegen Regeln vergleichen und die Abweichung zur Freigabe vorlegen, statt sie still anzuwenden."
+            },
+            {
+              "title": "Monitoring-Unterstützung",
+              "text": "Alarme zusammenfassen und mit aktuellen Deployments verbinden, ohne Rohprotokolle, Zeitachsen oder Quellen vor den Responders zu verstecken."
+            }
+          ]
+        },
+        "benefits": {
+          "title": "Was sich verbessern kann",
+          "intro": "KI bringt den größten Nutzen, wenn Menschen früher hilfreiches Sicherheitsfeedback erhalten und vorhandenes Wissen konsequenter anwenden können.",
+          "items": [
+            "Kürzere Rückkopplung zwischen einer Codeänderung und einer Sicherheitsfrage.",
+            "Weniger Zeitaufwand für wiederkehrende Sortier- und Sucharbeit.",
+            "Konsistentere Entwürfe für Dokumentation, Tests und Review-Fragen.",
+            "Leichterer Zugang zu Security-Wissen für Entwickler ohne Spezialisierung."
+          ]
+        },
+        "risks": {
+          "title": "Risiken und Grenzen",
+          "intro": "Eine KI-Antwort kann sicher klingen und trotzdem falsch sein. Schneller Output ist kein stärkerer Nachweis; Automatisierung verstärkt gute wie schlechte Entscheidungen.",
+          "items": [
+            {
+              "title": "Unsicherer oder erfundener Output",
+              "text": "Generierter Code kann versteckte Schwachstellen enthalten, nicht vorhandenes Verhalten voraussetzen oder nur den sichtbaren Test statt der eigentlichen Anforderung erfüllen."
+            },
+            {
+              "title": "Abfluss sensibler Daten",
+              "text": "Quellcode, Secrets, Protokolle und Kundendaten können über Prompts, Integrationen, Aufbewahrungseinstellungen oder eine nicht vertrauenswürdige Lieferkette offengelegt werden."
+            },
+            {
+              "title": "Automatisierungsbias",
+              "text": "Menschen übernehmen eine flüssig formulierte Empfehlung zu schnell oder beenden die Untersuchung, sobald das System einen Befund als harmlos bezeichnet."
+            },
+            {
+              "title": "Gezielte Manipulation",
+              "text": "Bösartige Kommentare, Tickets, Logs oder Abhängigkeiten können versuchen, ein KI-Werkzeug umzulenken. Eingaben bleiben unvertrauenswürdig und Werkzeugrechte müssen eng begrenzt sein."
+            },
+            {
+              "title": "Veränderliches Verhalten",
+              "text": "Modelle, Prompts, Daten und angebundene Werkzeuge verändern sich. Teams brauchen wiederholbare Evaluation und Monitoring statt der Annahme, gestriges Verhalten bleibe stabil."
+            }
+          ]
+        },
+        "humanResponsibility": {
+          "title": "Menschliche Verantwortung",
+          "paragraphs": [
+            "Sichere Softwarebereitstellung ist eine organisatorische Verantwortung. Menschen bestimmen akzeptable Risiken, ausreichende Nachweise, Freigaberechte und den Schutz von Kunden, wenn etwas schiefgeht.",
+            "Menschliche Prüfung ist besonders wichtig, wenn ein Vorschlag Zugriffe ändert, sensible Daten verarbeitet, einen Befund unterdrückt, Produktion verändert oder schwer rückgängig zu machen ist. Eine benannte Person muss die Entscheidung erklären können — ohne sich auf ‘die KI hat es gesagt’ zurückzuziehen."
+          ],
+          "items": [
+            "Sicherheitsanforderungen und Risikotoleranz festlegen",
+            "Weitreichende oder irreversible Aktionen freigeben",
+            "Befunde anhand primärer Belege prüfen",
+            "Vorfälle, Offenlegung und Korrekturen verantworten"
+          ]
+        },
+        "takeaways": {
+          "title": "Das Wichtigste in Kürze",
+          "items": [
+            "KI kann jede Phase unterstützen, sollte aber in ein bestehendes Framework für sichere Entwicklung eingebettet sein.",
+            "Deterministische Prüfungen, geschützte Abläufe und reproduzierbare Nachweise bleiben unverzichtbar.",
+            "Sichere Automatisierung ist begrenzt, beobachtbar, reversibel und für Menschen leicht abzulehnen.",
+            "Menschliche Rechenschaftspflicht verschwindet nicht, wenn das System schneller oder autonomer wird."
+          ]
+        },
+        "sources": [
+          {
+            "title": "Secure Software Development Framework (SSDF) Version 1.1 — NIST SP 800-218",
+            "organization": "National Institute of Standards and Technology",
+            "href": "https://csrc.nist.gov/pubs/sp/800/218/final"
+          },
+          {
+            "title": "Secure Software Development Practices for Generative AI — NIST SP 800-218A",
+            "organization": "National Institute of Standards and Technology",
+            "href": "https://csrc.nist.gov/pubs/sp/800/218/a/final"
+          },
+          {
+            "title": "Artificial Intelligence Risk Management Framework: Generative AI Profile — NIST AI 600-1",
+            "organization": "National Institute of Standards and Technology",
+            "href": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf"
+          },
+          {
+            "title": "Guidelines for Secure AI System Development",
+            "organization": "CISA und internationale Cybersecurity-Partner",
+            "href": "https://www.cisa.gov/news-events/alerts/2023/11/26/cisa-and-uk-ncsc-unveil-joint-guidelines-secure-ai-system-development"
+          },
+          {
+            "title": "Software Assurance Maturity Model",
+            "organization": "OWASP Foundation",
+            "href": "https://owaspsamm.org/model/"
+          }
+        ]
+      },
+      "agenticEngineering": {
+        "metadata": {
+          "title": "Agentic Engineering verständlich erklärt | niwo",
+          "description": "Eine verständliche Einführung in KI-Agenten, Werkzeuge, Rechte, Freigaben, Memory, Beobachtbarkeit und die Grenzen agentischer Systeme."
+        },
+        "eyebrow": "Begrenzte KI-Systeme",
+        "title": "Agentic Engineering",
+        "intro": [
+          "Ein KI-Agent ist ein System, das ein Ziel über mehrere Schritte verfolgt: die Lage erfassen, eine Aktion wählen, ein Werkzeug benutzen, das Ergebnis beobachten und den nächsten Schritt bestimmen. Darin unterscheidet er sich von einem Chatbot, der eine Antwort erzeugt und endet.",
+          "Agentic Engineering gestaltet diese Schleife so, dass sie nützlich, nachvollziehbar und begrenzt bleibt. Das Gebiet entwickelt sich noch: Begriffe sind uneinheitlich, Fähigkeiten ändern sich schnell und es gibt keine allgemein anerkannte Architektur, die Agenten automatisch zuverlässig oder sicher macht."
+        ],
+        "coreIdea": {
+          "title": "Die Grundidee",
+          "paragraphs": [
+            "Ein praktischer Agent verbindet ein Modell mit Anweisungen, Werkzeugen, Arbeitszustand und einer Kontrollschleife. Werkzeuge können ein Repository lesen, eine Datenbank abfragen, ein Ticket vorbereiten oder eine Codeänderung vorschlagen. Memory hält Kontext fest; Richtlinien begrenzen Informationen und Aktionen.",
+            "Scheinbare Schlussfolgerungen des Modells garantieren weder Verständnis noch Richtigkeit. Deshalb muss jede wichtige Aktion durch normale Kontrollen laufen: authentisierte Identitäten, minimale Rechte, strukturierte Eingaben, Validierung, Protokolle, Budgets, Abbruchbedingungen und menschliche Freigabe bei hohem Einfluss."
+          ]
+        },
+        "howItWorks": {
+          "title": "So läuft ein agentischer Workflow ab",
+          "intro": "Die konkrete Schleife unterscheidet sich je nach System. Ein kontrollierter Ablauf enthält meistens diese Schritte.",
+          "steps": [
+            {
+              "title": "Aufgabe begrenzen",
+              "text": "Eine Person oder ein vertrauenswürdiges System beschreibt Ziel, Grenzen, verfügbare Daten, Erfolgskriterien und verbotene oder freigabepflichtige Aktionen."
+            },
+            {
+              "title": "Plan bilden",
+              "text": "Der Agent zerlegt die Aufgabe. Der Plan bleibt vorläufig: neue Belege können ihn verändern, und ein Reviewer muss die beabsichtigte Richtung erkennen können."
+            },
+            {
+              "title": "Werkzeug wählen",
+              "text": "Das System wählt aus einer Positivliste mit strukturierten Parametern. Weil ein Werkzeug engen Zugriff braucht, darf der Agent nicht automatisch allgemeine Zugangsdaten erhalten."
+            },
+            {
+              "title": "Berechtigung prüfen",
+              "text": "Eine Richtlinie bewertet Identität, Aufgabenkontext, Datensensibilität, Auswirkung und Budget. Bei hohem Risiko stoppt der Ablauf an einem Freigabepunkt."
+            },
+            {
+              "title": "Handeln und beobachten",
+              "text": "Das Werkzeug führt die begrenzte Aktion aus. Der Agent protokolliert, prüft die Antwort und verwendet sie als neuen Beleg — nicht als unfehlbare Wahrheit."
+            },
+            {
+              "title": "Beenden oder eskalieren",
+              "text": "Die Schleife endet bei erreichtem Ziel, überschrittener Grenze, zu hoher Unsicherheit oder einer notwendigen menschlichen Entscheidung. Ein sicherer Agent muss zum Stoppen gebaut sein."
+            }
+          ]
+        },
+        "whereUsed": {
+          "title": "Wo der Ansatz eingesetzt wird",
+          "intro": "Agentische Systeme sind am glaubwürdigsten in klar definierten Umgebungen mit messbaren Ergebnissen und begrenzten Folgen.",
+          "items": [
+            {
+              "title": "Softwareentwicklung",
+              "text": "Ein Repository untersuchen, eine kleine Änderung vorschlagen, Tests in einer Sandbox ausführen und den Diff zur menschlichen Prüfung vorlegen."
+            },
+            {
+              "title": "Betriebsunterstützung",
+              "text": "Diagnosedaten sammeln, aktuelle Änderungen abgleichen und einen Behebungsplan entwerfen, ohne Produktion direkt zu verändern."
+            },
+            {
+              "title": "Recherche",
+              "text": "Freigegebene Quellen durchsuchen, Belege extrahieren, Aussagen vergleichen und einen nachvollziehbaren Entwurf zur Prüfung erstellen."
+            },
+            {
+              "title": "Administrative Abläufe",
+              "text": "Tickets, Anträge oder Berichte vorbereiten, wobei jede externe Aktion protokolliert wird und sensible Entscheidungen bei Menschen bleiben."
+            }
+          ]
+        },
+        "benefits": {
+          "title": "Was sich verbessern kann",
+          "intro": "Agenten können die Koordinationskosten mehrstufiger Arbeit senken, besonders wenn Informationen über mehrere Werkzeuge verteilt sind.",
+          "items": [
+            "Kontext über mehrere Schritte halten, statt bei jedem Werkzeug neu zu beginnen.",
+            "Wiederkehrende Sammel- und Vorbereitungsarbeit rund um Expertenentscheidungen automatisieren.",
+            "Dokumentierte Abläufe in einer gut begrenzten Umgebung konsistenter anwenden.",
+            "Nützliche Aktionsspuren erzeugen, wenn Eingaben, Werkzeugaufrufe, Ergebnisse und Freigaben festgehalten werden."
+          ]
+        },
+        "risks": {
+          "title": "Risiken und Grenzen",
+          "intro": "Werkzeugzugriff verändert das Risiko: Aus einem falschen Satz kann eine falsche Aktion werden. Security-Leitlinien für Agenten entwickeln sich schnell und verlangen laufende Tests statt einer einmaligen Abnahme.",
+          "items": [
+            {
+              "title": "Manipulierte Ziele oder Anweisungen",
+              "text": "Unvertrauter Text in Dokumenten, Webseiten, Tickets oder Werkzeugausgaben kann versuchen, den Agenten von der erlaubten Aufgabe abzulenken."
+            },
+            {
+              "title": "Zu große Handlungsfreiheit",
+              "text": "Ein Werkzeug stellt mehr Daten oder Rechte bereit als nötig. Ein kleiner Planungsfehler kann dadurch große betriebliche Folgen haben."
+            },
+            {
+              "title": "Fehlerketten",
+              "text": "Eine plausible, aber falsche Beobachtung beeinflusst Plan, Werkzeugwahl und Folgeaktion. Mehrstufige Fehler werden dadurch schwerer erkennbar."
+            },
+            {
+              "title": "Vergiftetes Memory",
+              "text": "Falsche oder bösartige gespeicherte Informationen beeinflussen spätere Aufgaben, Nutzer oder Entscheidungen, lange nachdem die ursprüngliche Eingabe verschwunden ist."
+            },
+            {
+              "title": "Fehlende Beobachtbarkeit",
+              "text": "Ohne Protokolle zu Prompts, Werkzeugaufrufen, Richtlinienentscheidungen und Zustandsänderungen lässt sich eine Aktion nicht rekonstruieren."
+            },
+            {
+              "title": "Endlosschleifen und Kosten",
+              "text": "Ein Agent kann erfolglose Aktionen wiederholen, Ressourcen verbrauchen oder Last erzeugen. Zeit-, Aktions- und Kostenbudgets brauchen harte Grenzen."
+            }
+          ]
+        },
+        "humanResponsibility": {
+          "title": "Menschliche Verantwortung",
+          "paragraphs": [
+            "Menschen bestimmen Ziel, verfügbare Werkzeuge, Identitäten, Rechte, Evaluationskriterien und Freigabepunkte. Das sind Governance-Entscheidungen, die sich nicht an einen Prompt delegieren lassen.",
+            "Auch Aufsicht muss realistisch sein. Hunderte undurchsichtige Aktionen abzunicken ist keine wirksame Kontrolle. Reviewer brauchen Kontext, Zeit, Autorität und technische Belege, um einen Vorschlag tatsächlich ablehnen oder ändern zu können."
+          ],
+          "items": [
+            "Aufgabengrenzen und minimale Rechte festlegen",
+            "Folgenreiche oder irreversible Aktionen freigeben",
+            "Protokolle, Evaluation und Fehlermuster prüfen",
+            "Das System anhalten und Vorfälle untersuchen"
+          ]
+        },
+        "takeaways": {
+          "title": "Das Wichtigste in Kürze",
+          "items": [
+            "Ein Agent ist ein Modell in einer kontrollierten Schleife aus Beobachtung, Planung, Werkzeugen und Rückmeldung.",
+            "Nützliche Autonomie braucht enge Rechte, Validierung, sichtbare Aktionen, Budgets und Abbruchbedingungen.",
+            "Agentic Engineering ist ein junges Gebiet; beeindruckende Demos belegen keine verlässliche Praxisleistung.",
+            "Menschen bleiben für Ziele, Zugriff, Freigaben, Rechenschaft und Vorfallbehandlung verantwortlich."
+          ]
+        },
+        "sources": [
+          {
+            "title": "Artificial Intelligence Risk Management Framework 1.0",
+            "organization": "National Institute of Standards and Technology",
+            "href": "https://www.nist.gov/itl/ai-risk-management-framework"
+          },
+          {
+            "title": "Artificial Intelligence Risk Management Framework: Generative AI Profile — NIST AI 600-1",
+            "organization": "National Institute of Standards and Technology",
+            "href": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf"
+          },
+          {
+            "title": "Agentic AI — Threats and Mitigations",
+            "organization": "OWASP GenAI Security Project",
+            "href": "https://genai.owasp.org/resource/agentic-ai-threats-and-mitigations/"
+          },
+          {
+            "title": "ReAct: Synergizing Reasoning and Acting in Language Models",
+            "organization": "Yao et al., ICLR 2023",
+            "href": "https://arxiv.org/abs/2210.03629"
+          }
+        ]
+      },
+      "incidentResponse": {
+        "metadata": {
+          "title": "Incident Response verständlich erklärt | niwo",
+          "description": "Eine praxisnahe Einführung in Erkennung, Triage, Eindämmung, Untersuchung, Wiederherstellung und Lernen nach einem Cybersecurity-Vorfall."
+        },
+        "eyebrow": "Handeln unter Unsicherheit",
+        "title": "Incident Response",
+        "intro": [
+          "Incident Response ist die koordinierte Arbeit, die beginnt, sobald ein Unternehmen eine Kompromittierung von Systemen, Konten oder Daten vermutet. Ziel ist nicht nur, Schadsoftware zu entfernen. Es geht darum, Schaden zu begrenzen, den Ablauf zu verstehen, verlässliche Beweise zu sichern, vertrauenswürdigen Betrieb wiederherzustellen und verantwortlich zu kommunizieren.",
+          "Eine gute Reaktion verbindet Tempo mit Sorgfalt. Das Trennen eines Rechners kann einen Angreifer stoppen, aber auch einen kritischen Dienst unterbrechen oder flüchtige Belege vernichten. Deshalb arbeiten Teams mit erprobten Plänen, klaren Zuständigkeiten und dokumentierten Entscheidungen."
+        ],
+        "coreIdea": {
+          "title": "Die Grundidee",
+          "paragraphs": [
+            "Incident Response ist ein Kreislauf aus Vorbereitung, Erkennung, Reaktion und Wiederherstellung. Vorbereitung entscheidet, ob Logs vorhanden sind, Backups funktionieren, Kontakte bekannt sind und Menschen unter Druck entscheiden können. Erkennung und Triage formen aus Signalen ein belegbares Bild von Umfang und Auswirkung.",
+            "Danach begrenzt die Reaktion das akute Risiko, sichert und analysiert Beweise, beseitigt die Ursache und stellt Systeme vorsichtig wieder her. Recovery ist erst abgeschlossen, wenn wichtige Dienste wieder vertrauenswürdig sind, Betroffene die nötigen Informationen haben und Erkenntnisse die nächste Reaktion verbessern."
+          ]
+        },
+        "howItWorks": {
+          "title": "So verläuft die Reaktion",
+          "intro": "Echte Vorfälle folgen selten einer geraden Linie. Mit wachsendem Wissen werden Schritte wiederholt. Die Struktur verhindert jedoch widersprüchliche Improvisation.",
+          "steps": [
+            {
+              "title": "Vorbereiten",
+              "text": "Rollen, Kontakte, Eskalationsschwellen, Kommunikationswege, Beweissicherung, Backups und sichere Zugänge vorab definieren und mit realistischen Übungen testen."
+            },
+            {
+              "title": "Erkennen und prüfen",
+              "text": "Alarme, Meldungen und Systemsignale sammeln. Prüfen, ob das Ereignis echt ist, erste Fakten festhalten und eine unbestätigte Theorie nicht als Ergebnis behandeln."
+            },
+            {
+              "title": "Triage und Umfang",
+              "text": "Betroffene Identitäten, Geräte, Anwendungen, Daten und Geschäftsprozesse abschätzen. Nach Auswirkung, Dringlichkeit und verbleibendem Angreiferzugriff priorisieren."
+            },
+            {
+              "title": "Eindämmen",
+              "text": "Weiteren Schaden begrenzen, etwa durch Isolation eines Hosts, Sperren eines Kontos oder Blockieren einer Verbindung. Maßnahmen müssen zum betrieblichen Risiko passen."
+            },
+            {
+              "title": "Sichern und analysieren",
+              "text": "Relevante Logs, Dateien, flüchtige Daten und Zeitachsen so erfassen, dass Integrität und Herkunft geschützt bleiben. Die Analyse prüft Erklärungen und verfeinert den Umfang."
+            },
+            {
+              "title": "Beseitigen und wiederherstellen",
+              "text": "Persistenz entfernen, den ausgenutzten Weg schließen, betroffene Secrets rotieren, Systeme neu aufbauen oder wiederherstellen, Backups prüfen und eng überwachen."
+            },
+            {
+              "title": "Kommunizieren und lernen",
+              "text": "Über freigegebene Kanäle verlässlich informieren, rechtliche und vertragliche Pflichten erfüllen, Entscheidungen dokumentieren und Erkenntnisse in Kontrollen und Übungen überführen."
+            }
+          ]
+        },
+        "whereUsed": {
+          "title": "Wo Incident Response gebraucht wird",
+          "intro": "Incident Response beginnt überall dort, wo digitales Vertrauen verloren sein könnte — vom einzelnen Konto bis zum Ausfall wichtiger Dienste.",
+          "items": [
+            {
+              "title": "Kontoübernahme",
+              "text": "Eine Phishing-Meldung oder ungewöhnliche Anmeldung führt zum Entzug von Sitzungen, Passwortwechsel, Mailbox-Prüfung und Suche nach weiterem Zugriff."
+            },
+            {
+              "title": "Ransomware",
+              "text": "Teams isolieren Systeme, schützen Backups, ermitteln die Ausbreitung, koordinieren den Notbetrieb, sichern Beweise und planen eine geprüfte Wiederherstellung."
+            },
+            {
+              "title": "Cloud- oder API-Exposition",
+              "text": "Ein offengelegtes Token oder eine Fehlkonfiguration verlangt schnelle Zugriffskontrolle, Log-Analyse, Umfangsprüfung und den Nachweis, dass der Weg geschlossen ist."
+            },
+            {
+              "title": "Anwendungsangriff",
+              "text": "Responders begrenzen den verwundbaren Dienst, sichern App- und Infrastrukturbelege, bestimmen betroffene Daten, beheben den Fehler und überwachen das reparierte System."
+            }
+          ]
+        },
+        "benefits": {
+          "title": "Was gute Reaktion verbessert",
+          "intro": "Vorbereitung garantiert keinen kleinen Vorfall. Sie verbessert aber die Fähigkeit, unter Unsicherheit nachvollziehbare Entscheidungen zu treffen.",
+          "items": [
+            "Schnellere Eindämmung und weniger Zeit für zusätzlichen Schaden.",
+            "Klarere Zusammenarbeit zwischen Technik, Recht, Führung, Kommunikation und Partnern.",
+            "Verlässlichere Beweise für Umfang, Recovery, Meldungen und spätere Untersuchungen.",
+            "Sicherere Wiederherstellung und konkrete Erkenntnisse gegen eine Wiederholung."
+          ]
+        },
+        "risks": {
+          "title": "Risiken und Grenzen",
+          "intro": "Entscheidungen fallen mit unvollständigem Wissen. Ein Playbook gibt Struktur, ersetzt aber kein Urteil über Sicherheit, Betrieb, Beweise, Recht und betroffene Menschen.",
+          "items": [
+            {
+              "title": "Beweise vernichten",
+              "text": "Zu schnelles Neustarten, Löschen oder Verändern eines Systems kann flüchtige Daten entfernen und die Rekonstruktion erschweren."
+            },
+            {
+              "title": "Zu enger Umfang",
+              "text": "Ein kompromittiertes Konto oder Gerät beweist keine Eindämmung. Gemeinsame Zugangsdaten, laterale Bewegung und Persistenz können weiter reichen."
+            },
+            {
+              "title": "Betrieblicher Schaden",
+              "text": "Aggressive Isolation kann wichtige Dienste unterbrechen. Die Wahl muss fortbestehenden Angreiferzugriff gegen Sicherheit und Geschäftsauswirkung abwägen."
+            },
+            {
+              "title": "Unsichere Wiederherstellung",
+              "text": "Ein ungeprüftes Backup oder zu frühes Wiederverbinden kann das Unternehmen erneut in einen kompromittierten Zustand bringen."
+            },
+            {
+              "title": "Schlechte Kommunikation",
+              "text": "Späte, spekulative oder widersprüchliche Aussagen können Betroffenen schaden und rechtliche, vertragliche und öffentliche Verantwortung untergraben."
+            },
+            {
+              "title": "Menschliche Belastung",
+              "text": "Lange Vorfälle erzeugen Müdigkeit und Tunnelblick. Schichten, Entscheidungsprotokolle, Übergaben und Spezialisten sind operative Schutzmaßnahmen."
+            }
+          ]
+        },
+        "humanResponsibility": {
+          "title": "Menschliche Verantwortung",
+          "paragraphs": [
+            "Eine Reaktion braucht benannte Entscheider. Incident Command koordiniert Prioritäten und dokumentiert; technische Spezialisten untersuchen und begrenzen; Systemverantwortliche erklären Betriebsfolgen; Recht, Datenschutz, Kommunikation und Führung behandeln Pflichten jenseits der Technik.",
+            "Werkzeuge können Alarme korrelieren, Artefakte sammeln und freigegebene Eindämmungsschritte automatisieren. Menschen entscheiden weiterhin, ob Belege ausreichen, eine Maßnahme verhältnismäßig ist, wer informiert werden muss und wann der Betrieb wieder vertrauenswürdig ist."
+          ],
+          "items": [
+            "Befugnisse, Rollen und Eskalationswege festlegen",
+            "Beweisintegrität und betroffene Menschen schützen",
+            "Eindämmung, Meldung und Recovery freigeben",
+            "Erkenntnisse dokumentieren und Korrekturen finanzieren"
+          ]
+        },
+        "takeaways": {
+          "title": "Das Wichtigste in Kürze",
+          "items": [
+            "Incident Response ist koordiniertes Risikomanagement — nicht nur technische Aufräumarbeit.",
+            "Vorbereitung, belastbare Beweise, klare Rollen und geübte Kommunikation zählen vor dem ersten Alarm.",
+            "Eindämmung muss Schaden begrenzen, ohne unnötig Beweise oder kritischen Betrieb zu zerstören.",
+            "Recovery umfasst Prüfung, Kommunikation, Dokumentation und Lernen — nicht nur das Wiedereinschalten."
+          ]
+        },
+        "sources": [
+          {
+            "title": "Incident Response Recommendations and Considerations — NIST SP 800-61 Rev. 3",
+            "organization": "National Institute of Standards and Technology",
+            "href": "https://csrc.nist.gov/pubs/sp/800/61/r3/final"
+          },
+          {
+            "title": "Federal Government Cybersecurity Incident and Vulnerability Response Playbooks",
+            "organization": "Cybersecurity and Infrastructure Security Agency",
+            "href": "https://www.cisa.gov/topics/cybersecurity-best-practices/executive-order-improving-nations-cybersecurity"
+          },
+          {
+            "title": "Guide to Integrating Forensic Techniques into Incident Response — NIST SP 800-86",
+            "organization": "National Institute of Standards and Technology",
+            "href": "https://csrc.nist.gov/pubs/sp/800/86/final"
+          },
+          {
+            "title": "Cybersecurity Framework 2.0",
+            "organization": "National Institute of Standards and Technology",
+            "href": "https://www.nist.gov/cyberframework"
+          }
+        ]
       }
     }
   },
