@@ -219,7 +219,11 @@ export default async function TopicArticlePage({
 }) {
   const t = await getTranslations({ locale });
   const content = getTopicArticleContent(t, topic);
-  const relatedTopics = topicArticleDefinitions.filter((item) => item.slug !== topic.slug);
+  const relatedTopics = topicArticleDefinitions.filter(
+    (item) =>
+      item.slug !== topic.slug &&
+      t.has(`TopicArticles.items.${item.key}.title`),
+  );
 
   const numberedSections: [string, string][] = [
     ["core-idea", content.coreIdea.title],

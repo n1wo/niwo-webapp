@@ -306,6 +306,192 @@
           }
         ]
       },
+      "secureDevelopment": {
+        "metadata": {
+          "title": "Secure Development, explained | niwo",
+          "description": "How to make security a continuous engineering responsibility across planning, design, code, verification, delivery, and operation - without mistaking tools for a process."
+        },
+        "eyebrow": "Secure software lifecycle",
+        "title": "Secure Development",
+        "intro": [
+          "Secure development means making security decisions while software is planned, designed, built, released, and operated. It is not a separate phase and it is not a final scan. The aim is to create useful evidence early enough that the team can still change course, then keep learning after the software reaches real users.",
+          "This page is for learners, solo developers, and small teams. It explains a practical lifecycle, the decisions that deserve explicit ownership, a realistic feature example, and the limits of frameworks and automation."
+        ],
+        "coreIdea": {
+          "title": "Security is a feedback loop, not a finish line",
+          "paragraphs": [
+            "Every release rests on a chain of decisions: what the software is allowed to do, which data it may handle, who may perform sensitive actions, how changes are reviewed, what evidence supports a release, and how the team will notice and repair problems later. Secure development makes those decisions visible instead of leaving them as assumptions in code and configuration.",
+            "NIST's Secure Software Development Framework groups the work into four broad outcomes: prepare the organization, protect the software and its development environment, produce well-secured releases, and respond to vulnerabilities. It is designed to fit into an existing development method rather than replace it. A two-person team and a regulated enterprise can use the same ideas with very different controls and amounts of evidence.",
+            "OWASP SAMM shows the same continuity from another angle: governance, design, implementation, verification, and operations all contain security practices. That matters because a late test cannot repair an unclear requirement, and a careful design cannot protect a production system that nobody monitors or patches.",
+            "The useful question is therefore not 'Did security approve this?' but 'Which risk are we controlling, what evidence do we have, and who owns the next decision?' The answer should become more precise as the change moves through the lifecycle."
+          ]
+        },
+        "howItWorks": {
+          "title": "A practical secure-development lifecycle",
+          "intro": "The stages overlap and repeat. A small change may pass through them in an afternoon; a high-impact system may need formal reviews and independent evidence. The decisions remain recognizable in either case.",
+          "steps": [
+            {
+              "title": "Plan",
+              "text": "Describe the intended behavior, sensitive data, likely users, abuse cases, legal or contractual constraints, and acceptable failure modes. Turn the important security properties into requirements that can later be checked."
+            },
+            {
+              "title": "Design",
+              "text": "Map data flows and trust boundaries, then model what could go wrong. Choose secure defaults, narrow privileges, and simple recovery paths before implementation makes the architecture expensive to change."
+            },
+            {
+              "title": "Implement",
+              "text": "Use maintained frameworks and established security controls for identity, authorization, input handling, secrets, and cryptography. Keep the change small enough to review and avoid inventing custom security mechanisms without a strong reason."
+            },
+            {
+              "title": "Review",
+              "text": "A reviewer checks the requirement, design assumption, code, tests, and configuration together. Tool findings can focus attention, but a person still has to understand business rules and decide whether the change behaves safely in context."
+            },
+            {
+              "title": "Verify",
+              "text": "Run tests that trace back to the security requirements, supported by static analysis, dependency and secret checks, and focused manual testing. Standards such as the OWASP ASVS help define coverage; passing a tool is not itself the goal."
+            },
+            {
+              "title": "Build and release",
+              "text": "Protect repositories, build workers, credentials, and artifacts. Record what source and dependencies produced the release, enforce review and policy gates, and deploy with safe configuration and a tested rollback path."
+            },
+            {
+              "title": "Operate",
+              "text": "Collect useful security events without logging secrets, monitor the controls that matter, maintain dependencies, and give users a way to report problems. A release is the start of operational evidence, not the end of development responsibility."
+            },
+            {
+              "title": "Learn and improve",
+              "text": "Treat vulnerabilities, incidents, near misses, and noisy alerts as feedback. Fix the immediate defect, then improve the requirement, test, default, or development practice that allowed the same class of problem to recur."
+            }
+          ]
+        },
+        "whereUsed": {
+          "title": "Where explicit decisions matter most",
+          "intro": "Secure development becomes concrete when the team names the decisions that cannot safely be delegated to a default or a scanner.",
+          "items": [
+            {
+              "title": "Identity and access",
+              "text": "Define who may do what, at which scope, and under which conditions. Authentication establishes identity; authorization must still be enforced for every sensitive action and object."
+            },
+            {
+              "title": "Inputs and workflows",
+              "text": "Validate untrusted data at the server boundary and test how valid actions can be combined or reordered. Business-logic failures often look normal to generic tooling."
+            },
+            {
+              "title": "Secrets and cryptography",
+              "text": "Keep credentials out of source code and logs, limit access, rotate them safely, and use established libraries and managed primitives rather than custom algorithms."
+            },
+            {
+              "title": "Dependencies and builds",
+              "text": "Know which third-party components and build steps enter a release. Updates reduce exposure to known defects, but each update is also a change that needs compatibility and regression evidence."
+            },
+            {
+              "title": "Configuration and deployment",
+              "text": "Make the safest usable configuration the default, separate environments, restrict production access, and verify that deployment automation applies the intended policy rather than only moving files."
+            },
+            {
+              "title": "Logging and response",
+              "text": "Decide which events would reveal misuse or control failure, how long evidence is retained, who receives a signal, and how a vulnerable version can be contained, patched, and communicated."
+            }
+          ]
+        },
+        "example": {
+          "title": "Example: adding a customer-data export",
+          "paragraphs": [
+            "A small SaaS team wants account administrators to export customer records as a CSV file. The visible work is a button and an endpoint, but the security work starts with the requirement: only current administrators may export records from their own tenant; every export must be auditable; unusually large exports should be limited; and the file must not remain on the server longer than necessary.",
+            "During design, the team maps the browser, API, database, temporary storage, and download path. It considers stolen sessions, changed tenant identifiers, spreadsheet formula injection, repeated exports, and sensitive fields that should not leave the system. The design scopes the database query to the authenticated tenant, selects an allowlist of columns, streams the file instead of leaving a public object behind, and records an export event without copying the exported data into logs.",
+            "Implementation uses the application's established authorization helper and CSV library. Review compares the code with the written requirements. Tests cover a normal export, a non-admin user, a cross-tenant identifier, a revoked role, dangerous cell prefixes, limits, and logging. Dependency and secret checks add evidence, but they do not replace those domain-specific tests.",
+            "The feature is released behind a controlled rollout. Operations watches export volume and failures, and the support path is ready if a customer reports unexpected access. If a later incident reveals a missing edge case, the team fixes the code and adds a regression test and requirement so the learning survives the individual patch."
+          ]
+        },
+        "risks": {
+          "title": "Common mistakes and real trade-offs",
+          "intro": "Secure development is weakened by rituals that produce activity without useful evidence. Trade-offs are unavoidable; the important part is making them explicit and reviewable.",
+          "items": [
+            {
+              "title": "Treating a scanner as the process",
+              "text": "Automated checks are valuable for repeatable patterns, but they cannot define the product's trust model, understand ownership rules, or decide whether a workflow can be abused."
+            },
+            {
+              "title": "Moving everything left",
+              "text": "Earlier feedback is usually cheaper to act on, but some evidence only exists in a running system. Runtime monitoring, vulnerability intake, patching, and incident learning cannot be replaced by design-time work."
+            },
+            {
+              "title": "Copying a framework wholesale",
+              "text": "SSDF, SAMM, and ASVS offer structure and coverage, not a universal backlog. A small team should choose controls according to its architecture and risk, document omissions, and strengthen the process as evidence demands."
+            },
+            {
+              "title": "Letting severity scores make decisions",
+              "text": "A generic technical score does not know whether a system handles public data or medical records, whether a control is exposed, or how a failure affects customers. Prioritization needs system context and an accountable owner."
+            },
+            {
+              "title": "Patching without change control",
+              "text": "Delaying a known security update increases exposure; applying it blindly can break production. Good dependency practice combines inventory, timely triage, compatibility tests, staged rollout, and rollback."
+            },
+            {
+              "title": "Assigning security to one specialist",
+              "text": "Specialists provide depth and independent challenge, but developers, product owners, operators, and leaders each control different decisions. Responsibility cannot be handed off at a single gate."
+            }
+          ]
+        },
+        "humanResponsibility": {
+          "title": "Limits, ownership, and proportionality",
+          "paragraphs": [
+            "No lifecycle, maturity model, toolchain, or certification proves that software is secure. Evidence is always scoped to a version, configuration, environment, and set of assumptions. New features, dependencies, attackers, and operating conditions change that evidence over time.",
+            "A useful process is proportional. A small internal tool does not need the ceremony of safety-critical software, but it still needs clear ownership of access, data, changes, and response. Conversely, a large checklist is not enough for a high-impact system if nobody can explain which risks the items actually control.",
+            "Automation should make good decisions easier to repeat and bad changes harder to ship. People still set the requirements, evaluate exceptions, approve residual risk, and respond when the evidence is incomplete or the system behaves differently from the design."
+          ],
+          "items": [
+            "Name an owner for each material security decision",
+            "Record assumptions and evidence, not only approvals",
+            "Make exceptions narrow, time-bound, and visible",
+            "Keep production feedback connected to development",
+            "Revisit controls when the system or its impact changes"
+          ]
+        },
+        "takeaways": {
+          "title": "Key takeaways",
+          "items": [
+            "Integrate security into the development method you already use; do not bolt on a separate final phase.",
+            "Turn important security properties into explicit, testable requirements before implementation.",
+            "Use threat modeling, review, automated checks, focused tests, and runtime evidence as complementary layers.",
+            "Protect the development environment and build path as carefully as the application code.",
+            "Choose controls proportionally, and document the risk and owner behind every meaningful exception.",
+            "Close the loop: vulnerabilities and incidents should improve the process that produces the next release."
+          ]
+        },
+        "sources": [
+          {
+            "title": "Secure Software Development Framework (SSDF) Version 1.1 - NIST SP 800-218",
+            "organization": "National Institute of Standards and Technology",
+            "href": "https://csrc.nist.gov/pubs/sp/800/218/final"
+          },
+          {
+            "title": "Software Assurance Maturity Model",
+            "organization": "OWASP Foundation",
+            "href": "https://owaspsamm.org/model/"
+          },
+          {
+            "title": "Application Security Verification Standard 5.0",
+            "organization": "OWASP Foundation",
+            "href": "https://owasp.org/www-project-application-security-verification-standard/"
+          },
+          {
+            "title": "Shifting the Balance of Cybersecurity Risk: Secure by Design Software",
+            "organization": "Cybersecurity and Infrastructure Security Agency",
+            "href": "https://www.cisa.gov/sites/default/files/2023-10/Shifting-the-Balance-of-Cybersecurity-Risk-Principles-and-Approaches-for-Secure-by-Design-Software.pdf"
+          },
+          {
+            "title": "Software Security Code of Practice - Secure design and development",
+            "organization": "UK National Cyber Security Centre",
+            "href": "https://www.ncsc.gov.uk/collection/software-security-code-of-practice-implementation-guidance/theme-1-secure-design-development"
+          },
+          {
+            "title": "CON.8 Software Development",
+            "organization": "German Federal Office for Information Security (BSI)",
+            "href": "https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/Grundschutz/IT-GS-Kompendium_Einzel_PDFs_2023/03_CON_Konzepte_und_Vorgehensweisen/CON_8_Software_Entwicklung_Edition_2023.html"
+          }
+        ]
+      },
       "aiDevSecOps": {
         "metadata": {
           "title": "AI in DevSecOps, explained | niwo",

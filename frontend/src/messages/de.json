@@ -306,6 +306,192 @@
           }
         ]
       },
+      "secureDevelopment": {
+        "metadata": {
+          "title": "Sichere Entwicklung verständlich erklärt | niwo",
+          "description": "Wie Sicherheit von Planung und Entwurf über Code, Prüfung und Auslieferung bis in den Betrieb zu einer kontinuierlichen Engineering-Aufgabe wird - ohne Werkzeuge mit einem Prozess zu verwechseln."
+        },
+        "eyebrow": "Sicherer Softwarelebenszyklus",
+        "title": "Sichere Entwicklung",
+        "intro": [
+          "Sichere Entwicklung bedeutet, Sicherheitsentscheidungen dann zu treffen, wenn Software geplant, entworfen, gebaut, ausgeliefert und betrieben wird. Sie ist weder eine eigene Schlussphase noch ein letzter Scan. Das Ziel sind belastbare Hinweise zu einem Zeitpunkt, an dem ein Team noch gegensteuern kann - und ein Lernprozess, der nach dem Release weitergeht.",
+          "Diese Seite richtet sich an Lernende, Einzelentwickler und kleine Teams. Sie beschreibt einen praktikablen Lebenszyklus, klar verantwortete Entscheidungen, ein realistisches Funktionsbeispiel sowie die Grenzen von Frameworks und Automatisierung."
+        ],
+        "coreIdea": {
+          "title": "Sicherheit ist ein Regelkreis, keine Ziellinie",
+          "paragraphs": [
+            "Jedes Release beruht auf einer Kette von Entscheidungen: Was darf die Software tun? Welche Daten darf sie verarbeiten? Wer darf sensible Aktionen ausführen? Wie werden Änderungen geprüft, welche Nachweise tragen ein Release und woran erkennt und behebt das Team spätere Probleme? Sichere Entwicklung macht diese Entscheidungen sichtbar, statt sie als stille Annahmen in Code und Konfiguration zu verstecken.",
+            "Das Secure Software Development Framework von NIST bündelt die Arbeit in vier groben Ergebnissen: die Organisation vorbereiten, Software und Entwicklungsumgebung schützen, gut abgesicherte Releases erzeugen und auf Schwachstellen reagieren. Das Framework ergänzt eine vorhandene Entwicklungsmethode, es ersetzt sie nicht. Ein Zweierteam und ein regulierter Konzern können dieselben Grundideen mit sehr unterschiedlichem Kontroll- und Nachweisumfang anwenden.",
+            "OWASP SAMM beschreibt dieselbe Kontinuität aus einer anderen Perspektive: Governance, Design, Implementierung, Verifizierung und Betrieb enthalten jeweils eigene Sicherheitspraktiken. Ein später Test kann keine unklare Anforderung reparieren; ein sorgfältiger Entwurf schützt keinen Produktivbetrieb, den niemand überwacht oder aktualisiert.",
+            "Die hilfreiche Frage lautet deshalb nicht: 'Hat Security das freigegeben?', sondern: 'Welches Risiko steuern wir, welche Nachweise haben wir und wer verantwortet die nächste Entscheidung?' Auf dem Weg durch den Lebenszyklus sollte die Antwort immer konkreter werden."
+          ]
+        },
+        "howItWorks": {
+          "title": "Ein praktikabler Lebenszyklus für sichere Entwicklung",
+          "intro": "Die Schritte überlappen sich und werden wiederholt. Eine kleine Änderung kann sie an einem Nachmittag durchlaufen; ein System mit hoher Auswirkung braucht vielleicht formale Reviews und unabhängige Nachweise. Die Entscheidungen bleiben in beiden Fällen erkennbar.",
+          "steps": [
+            {
+              "title": "Planen",
+              "text": "Beschreibt das gewünschte Verhalten, sensible Daten, wahrscheinliche Nutzer, Missbrauchsfälle, rechtliche oder vertragliche Grenzen und akzeptable Fehlerzustände. Übersetzt wichtige Sicherheitseigenschaften in Anforderungen, die sich später prüfen lassen."
+            },
+            {
+              "title": "Entwerfen",
+              "text": "Zeichnet Datenflüsse und Vertrauensgrenzen und betrachtet dann, was schiefgehen könnte. Wählt sichere Voreinstellungen, geringe Berechtigungen und einfache Wiederherstellungswege, bevor die Implementierung Architekturänderungen teuer macht."
+            },
+            {
+              "title": "Umsetzen",
+              "text": "Nutzt gepflegte Frameworks und etablierte Kontrollen für Identität, Autorisierung, Eingaben, Geheimnisse und Kryptografie. Haltet Änderungen überschaubar und erfindet keine eigenen Sicherheitsmechanismen ohne belastbaren Grund."
+            },
+            {
+              "title": "Reviewen",
+              "text": "Ein Review betrachtet Anforderung, Entwurfsannahme, Code, Tests und Konfiguration gemeinsam. Werkzeuge können Aufmerksamkeit lenken; Geschäftsregeln verstehen und die Sicherheit im konkreten Kontext bewerten muss weiterhin ein Mensch."
+            },
+            {
+              "title": "Verifizieren",
+              "text": "Führt Tests aus, die auf die Sicherheitsanforderungen zurückgehen, ergänzt durch statische Analyse, Abhängigkeits- und Secret-Prüfungen sowie gezielte manuelle Tests. Standards wie OWASP ASVS helfen bei der Abdeckung; ein grünes Werkzeug ist nicht das eigentliche Ziel."
+            },
+            {
+              "title": "Bauen und ausliefern",
+              "text": "Schützt Repositories, Build-Worker, Zugangsdaten und Artefakte. Haltet fest, aus welchem Quellcode und welchen Abhängigkeiten das Release entstand, erzwingt Reviews und Regeln und stellt mit sicherer Konfiguration sowie getestetem Rollback bereit."
+            },
+            {
+              "title": "Betreiben",
+              "text": "Erfasst hilfreiche Sicherheitsereignisse, ohne Geheimnisse zu protokollieren, überwacht entscheidende Kontrollen, pflegt Abhängigkeiten und bietet einen Meldeweg für Probleme. Ein Release beginnt operative Nachweise; es beendet nicht die Verantwortung der Entwicklung."
+            },
+            {
+              "title": "Lernen und verbessern",
+              "text": "Nutzt Schwachstellen, Vorfälle, Beinahefehler und störende Alarme als Rückmeldung. Behebt den konkreten Defekt und verbessert danach auch die Anforderung, den Test, die Voreinstellung oder die Entwicklungspraxis, die eine Wiederholung ermöglicht hat."
+            }
+          ]
+        },
+        "whereUsed": {
+          "title": "Wo klare Entscheidungen besonders wichtig sind",
+          "intro": "Sichere Entwicklung wird konkret, wenn ein Team benennt, welche Entscheidungen weder einer Voreinstellung noch einem Scanner überlassen werden dürfen.",
+          "items": [
+            {
+              "title": "Identität und Zugriff",
+              "text": "Legt fest, wer was in welchem Bereich und unter welchen Bedingungen tun darf. Authentisierung stellt Identität fest; Autorisierung muss sensible Aktionen und Objekte trotzdem einzeln schützen."
+            },
+            {
+              "title": "Eingaben und Abläufe",
+              "text": "Validiert nicht vertrauenswürdige Daten an der Servergrenze und testet, wie gültige Aktionen kombiniert oder umgeordnet werden können. Fehler in der Geschäftslogik wirken auf generische Werkzeuge oft unauffällig."
+            },
+            {
+              "title": "Secrets und Kryptografie",
+              "text": "Haltet Zugangsdaten aus Quellcode und Logs heraus, begrenzt Zugriffe, rotiert sie kontrolliert und nutzt etablierte Bibliotheken und verwaltete Bausteine statt eigener Algorithmen."
+            },
+            {
+              "title": "Abhängigkeiten und Builds",
+              "text": "Kennt die Komponenten und Build-Schritte eines Releases. Updates verkleinern die Angriffsfläche bekannter Fehler, sind aber selbst Änderungen, die Kompatibilitäts- und Regressionsevidenz brauchen."
+            },
+            {
+              "title": "Konfiguration und Deployment",
+              "text": "Macht die sicherste praktikable Konfiguration zum Standard, trennt Umgebungen, begrenzt Produktionszugriffe und prüft, ob Automatisierung die beabsichtigten Regeln umsetzt - nicht nur Dateien verschiebt."
+            },
+            {
+              "title": "Logging und Reaktion",
+              "text": "Entscheidet, welche Ereignisse Missbrauch oder Kontrollversagen sichtbar machen, wie lange Nachweise bleiben, wer ein Signal erhält und wie eine verwundbare Version eingedämmt, korrigiert und kommuniziert wird."
+            }
+          ]
+        },
+        "example": {
+          "title": "Beispiel: Export von Kundendaten",
+          "paragraphs": [
+            "Ein kleines SaaS-Team möchte Kontoadministratoren den Export von Kundendatensätzen als CSV-Datei ermöglichen. Sichtbar sind nur ein Button und ein Endpunkt. Die Sicherheitsarbeit beginnt jedoch mit der Anforderung: Nur aktuelle Administratoren dürfen Datensätze des eigenen Mandanten exportieren; jeder Export muss nachvollziehbar sein; ungewöhnlich große Exporte werden begrenzt; und die Datei darf nicht länger als nötig auf dem Server verbleiben.",
+            "Im Entwurf zeichnet das Team Browser, API, Datenbank, temporären Speicher und Downloadpfad ein. Es betrachtet gestohlene Sitzungen, veränderte Mandanten-IDs, Formel-Injection in Tabellenprogrammen, wiederholte Exporte und sensible Felder, die das System nicht verlassen sollen. Die Datenbankabfrage wird an den authentisierten Mandanten gebunden, die Spalten kommen aus einer Positivliste, die Datei wird gestreamt statt öffentlich abgelegt und ein Exportereignis wird protokolliert, ohne die Nutzdaten ins Log zu kopieren.",
+            "Die Implementierung verwendet die vorhandene Autorisierungsfunktion und eine gepflegte CSV-Bibliothek. Das Review gleicht den Code mit den Anforderungen ab. Tests decken einen normalen Export, einen Nutzer ohne Adminrolle, eine fremde Mandanten-ID, eine entzogene Rolle, gefährliche Zellpräfixe, Größenlimits und Logging ab. Abhängigkeits- und Secret-Prüfungen liefern zusätzliche Hinweise, ersetzen diese fachlichen Tests aber nicht.",
+            "Die Funktion startet in einem kontrollierten Rollout. Im Betrieb beobachtet das Team Exportvolumen und Fehler; der Supportweg steht bereit, falls ein Kunde unerwarteten Zugriff meldet. Zeigt ein späterer Vorfall eine übersehene Variante, verbessert das Team nicht nur den Code, sondern ergänzt auch Regressionstest und Anforderung, damit die Erkenntnis den einzelnen Patch überdauert."
+          ]
+        },
+        "risks": {
+          "title": "Häufige Fehler und echte Abwägungen",
+          "intro": "Rituale erzeugen leicht Aktivität ohne belastbare Hinweise. Abwägungen lassen sich nicht vermeiden; entscheidend ist, dass sie sichtbar, begründet und überprüfbar bleiben.",
+          "items": [
+            {
+              "title": "Den Scanner mit dem Prozess verwechseln",
+              "text": "Automatisierte Prüfungen finden wiederholbare Muster. Sie definieren weder das Vertrauensmodell des Produkts noch verstehen sie Besitzregeln oder entscheiden, ob sich ein fachlicher Ablauf missbrauchen lässt."
+            },
+            {
+              "title": "Alles nach links verschieben",
+              "text": "Frühe Rückmeldung ist meist günstiger umzusetzen, doch manche Hinweise entstehen erst im laufenden System. Monitoring, Schwachstellenannahme, Patching und Lernen aus Vorfällen lassen sich nicht durch Entwurfsarbeit ersetzen."
+            },
+            {
+              "title": "Ein Framework eins zu eins kopieren",
+              "text": "SSDF, SAMM und ASVS liefern Struktur und Abdeckung, keine universelle Aufgabenliste. Kleine Teams sollten Kontrollen nach Architektur und Risiko wählen, Auslassungen dokumentieren und den Prozess anhand neuer Evidenz ausbauen."
+            },
+            {
+              "title": "Severity-Scores entscheiden lassen",
+              "text": "Ein allgemeiner technischer Wert kennt weder die Bedeutung der Daten noch die Erreichbarkeit einer Kontrolle oder die Folgen für Kunden. Priorisierung braucht Systemkontext und eine klar verantwortliche Person."
+            },
+            {
+              "title": "Patches ohne Änderungskontrolle",
+              "text": "Ein bekanntes Sicherheitsupdate aufzuschieben verlängert die Exposition; es blind einzuspielen kann Produktion stören. Gute Abhängigkeitspflege verbindet Inventar, zeitnahe Bewertung, Kompatibilitätstests, gestufte Auslieferung und Rollback."
+            },
+            {
+              "title": "Sicherheit einer Fachperson zuweisen",
+              "text": "Spezialisten liefern Tiefe und unabhängige Prüfung. Entwickler, Produktverantwortliche, Betrieb und Führung kontrollieren jedoch unterschiedliche Entscheidungen. Verantwortung lässt sich nicht an einem einzelnen Gate abgeben."
+            }
+          ]
+        },
+        "humanResponsibility": {
+          "title": "Grenzen, Verantwortung und Verhältnismäßigkeit",
+          "paragraphs": [
+            "Kein Lebenszyklus, kein Reifegradmodell, kein Werkzeugbestand und kein Zertifikat können belegen, dass Software sicher ist. Nachweise gelten immer nur für eine Version, Konfiguration, Umgebung und Menge von Annahmen. Neue Funktionen, Abhängigkeiten, Angreifer und Betriebsbedingungen verändern ihre Aussagekraft.",
+            "Ein sinnvoller Prozess ist verhältnismäßig. Ein kleines internes Werkzeug braucht nicht die Formalität sicherheitskritischer Software, aber auch dort müssen Zugriff, Daten, Änderungen und Reaktion klar verantwortet werden. Umgekehrt genügt eine große Checkliste für ein System mit hoher Auswirkung nicht, wenn niemand erklären kann, welches Risiko die Punkte tatsächlich steuern.",
+            "Automatisierung sollte gute Entscheidungen wiederholbar und schlechte Änderungen schwerer auslieferbar machen. Menschen legen weiterhin Anforderungen fest, bewerten Ausnahmen, akzeptieren Restrisiken und reagieren, wenn Hinweise fehlen oder sich das System anders verhält als entworfen."
+          ],
+          "items": [
+            "Für jede wesentliche Sicherheitsentscheidung eine verantwortliche Person benennen",
+            "Annahmen und Nachweise festhalten, nicht nur Freigaben",
+            "Ausnahmen eng, befristet und sichtbar machen",
+            "Rückmeldungen aus dem Betrieb mit der Entwicklung verbinden",
+            "Kontrollen bei veränderter Technik oder Auswirkung neu bewerten"
+          ]
+        },
+        "takeaways": {
+          "title": "Das Wichtigste in Kürze",
+          "items": [
+            "Sicherheit in die vorhandene Entwicklungsmethode integrieren, statt eine separate Schlussphase anzubauen.",
+            "Wichtige Sicherheitseigenschaften vor der Umsetzung in klare, prüfbare Anforderungen übersetzen.",
+            "Threat Modeling, Reviews, automatisierte Prüfungen, gezielte Tests und Betriebsdaten als ergänzende Ebenen nutzen.",
+            "Entwicklungsumgebung und Buildpfad ebenso sorgfältig schützen wie den Anwendungscode.",
+            "Kontrollen verhältnismäßig wählen und Risiko sowie Verantwortliche jeder wesentlichen Ausnahme dokumentieren.",
+            "Den Regelkreis schließen: Schwachstellen und Vorfälle müssen den Prozess für das nächste Release verbessern."
+          ]
+        },
+        "sources": [
+          {
+            "title": "Secure Software Development Framework (SSDF) Version 1.1 - NIST SP 800-218",
+            "organization": "National Institute of Standards and Technology",
+            "href": "https://csrc.nist.gov/pubs/sp/800/218/final"
+          },
+          {
+            "title": "Software Assurance Maturity Model",
+            "organization": "OWASP Foundation",
+            "href": "https://owaspsamm.org/model/"
+          },
+          {
+            "title": "Application Security Verification Standard 5.0",
+            "organization": "OWASP Foundation",
+            "href": "https://owasp.org/www-project-application-security-verification-standard/"
+          },
+          {
+            "title": "Shifting the Balance of Cybersecurity Risk: Secure by Design Software",
+            "organization": "Cybersecurity and Infrastructure Security Agency",
+            "href": "https://www.cisa.gov/sites/default/files/2023-10/Shifting-the-Balance-of-Cybersecurity-Risk-Principles-and-Approaches-for-Secure-by-Design-Software.pdf"
+          },
+          {
+            "title": "Software Security Code of Practice - Secure design and development",
+            "organization": "UK National Cyber Security Centre",
+            "href": "https://www.ncsc.gov.uk/collection/software-security-code-of-practice-implementation-guidance/theme-1-secure-design-development"
+          },
+          {
+            "title": "CON.8 Software-Entwicklung",
+            "organization": "Bundesamt für Sicherheit in der Informationstechnik (BSI)",
+            "href": "https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/Grundschutz/IT-GS-Kompendium_Einzel_PDFs_2023/03_CON_Konzepte_und_Vorgehensweisen/CON_8_Software_Entwicklung_Edition_2023.html"
+          }
+        ]
+      },
       "aiDevSecOps": {
         "metadata": {
           "title": "AI in DevSecOps verständlich erklärt | niwo",
