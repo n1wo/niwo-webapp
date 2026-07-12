@@ -316,9 +316,9 @@ export default async function TopicArticlePage({
                     className="relative grid gap-4 border-l border-white/[0.1] pb-10 pl-8 last:border-transparent last:pb-0 sm:grid-cols-[9rem_minmax(0,1fr)] sm:gap-7"
                   >
                     <span className="absolute -left-[0.35rem] top-1 h-2.5 w-2.5 rounded-full border border-[var(--color-accent-light)] bg-[var(--background)] shadow-[0_0_16px_rgb(140_127_224/0.3)]" />
-                    <p className="font-mono text-xs uppercase tracking-[0.18em] text-[var(--color-accent-light)]">
+                    <h3 className="font-mono text-xs uppercase tracking-[0.18em] text-[var(--color-accent-light)]">
                       {String(index + 1).padStart(2, "0")} · {step.title}
-                    </p>
+                    </h3>
                     <p className="text-[0.98rem] leading-8 text-zinc-400">{step.text}</p>
                   </li>
                 ))}

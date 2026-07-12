@@ -125,7 +125,7 @@
       "backToTopics": "Zurück zur Themenübersicht",
       "onThisPage": "Auf dieser Seite",
       "sources": "Quellen und weiterführende Literatur",
-      "sourceNote": "Eine kompakte Auswahl an Primärforschung, Standards und öffentlicher technischer Orientierung, auf die sich dieser Artikel stützt.",
+      "sourceNote": "Eine kompakte Auswahl an Primärquellen, Standards und öffentlich zugänglicher technischer Orientierung, auf die sich dieser Artikel stützt.",
       "continueReading": "Weiterlesen",
       "opensInNewTab": "öffnet in einem neuen Tab"
     },
@@ -156,7 +156,7 @@
           "paragraphs": [
             "Es lohnt sich, das Ziel präzise zu fassen. Anwendungssicherheit macht Software nicht unangreifbar; sie schützt konkrete Güter: die Vertraulichkeit der Daten, die eine Anwendung hält, die Integrität der Aktionen, die sie ausführt, und die Verfügbarkeit des Dienstes für die Menschen, die sich darauf verlassen. Jede technische Maßnahme dient einem dieser Schutzziele.",
             "Das zentrale Konzept ist die Vertrauensgrenze. Ein Browser steht vollständig unter der Kontrolle der Nutzerin oder des Nutzers - nichts, was von dort kommt, darf der Server ungeprüft übernehmen: Formularfelder, Cookies, Header, URLs, Datei-Uploads. Dasselbe gilt überall dort, wo Daten von einem Kontrollbereich in einen anderen wechseln: zwischen einer API und einem Drittdienst, zwischen Anwendung und Datenbank, zwischen zwei internen Diensten mit unterschiedlichen Rechten.",
-            "Die meisten realen Schwachstellen sind Fehler an Vertrauensgrenzen. Die Anwendung behandelt angreiferkontrollierte Eingaben wie Struktur (Injection), verlässt sich darauf, dass der Client selbst angibt, wer er ist oder was er darf (fehlerhafte Authentifizierung und Zugriffskontrolle), oder reicht Daten dorthin weiter, wo sie als Code interpretiert werden (Cross-Site-Scripting). Die OWASP Top 10 bündeln diese wiederkehrenden Fehler in Awareness-Kategorien - angeführt in der Ausgabe 2025 von Broken Access Control.",
+            "Fehler an Vertrauensgrenzen sind ein hilfreiches Denkmodell für viele Web-Schwachstellen. Die Anwendung behandelt angreiferkontrollierte Eingaben wie Struktur (Injection), verlässt sich darauf, dass der Client selbst angibt, wer er ist oder was er darf (fehlerhafte Authentifizierung und Zugriffskontrolle), oder reicht Daten dorthin weiter, wo sie als Code interpretiert werden (Cross-Site-Scripting). Die OWASP Top 10 bündeln diese wiederkehrenden Fehler in Awareness-Kategorien - angeführt in der Ausgabe 2025 von Broken Access Control.",
             "Weil Vertrauensgrenzen Architekturfragen sind, ist Sicherheit ebenfalls eine Architekturfrage. Ein Framework kann viele gute Entscheidungen vorwegnehmen, aber es kann nicht wissen, welche Nutzerin welchen Datensatz sehen darf. Genau diese Entscheidungen sind die eigentliche Sicherheit einer Anwendung."
           ]
         },
@@ -200,23 +200,23 @@
           "items": [
             {
               "title": "Authentifizierung",
-              "text": "Passwortverarbeitung, Konto-Wiederherstellung, Ratenbegrenzung und Mehr-Faktor-Optionen. Wiederherstellungsabläufe sind oft die schwächste Tür, weil sie das Passwort vollständig umgehen."
+              "text": "Passwortverarbeitung, Konto-Wiederherstellung, Ratenbegrenzung und Mehr-Faktor-Optionen. Wiederherstellungsabläufe umgehen das Passwort und brauchen deshalb gleichwertige Identitätsprüfungen, Ratenbegrenzung und Monitoring."
             },
             {
               "title": "Autorisierung",
-              "text": "Fehlende oder uneinheitliche Prüfungen auf Objekt- und Funktionsebene. Broken Access Control führt die OWASP Top 10 seit 2021 an, weil es keine generische Lösung gibt - die Prüfung hängt vom Domänenmodell der Anwendung ab."
+              "text": "Fehlende oder uneinheitliche Prüfungen auf Objekt- und Funktionsebene. Broken Access Control steht in den OWASP Top 10:2025 an erster Stelle; sinnvolle Prüfungen hängen vom Domänenmodell der Anwendung ab und müssen serverseitig konsistent durchgesetzt werden."
             },
             {
               "title": "Sessions und Tokens",
-              "text": "Cookie-Attribute, Token-Laufzeiten und das Ungültigmachen bei Logout und Passwortwechsel. Ein langlebiges Token im Browser-Speicher kann jede andere Kontrolle überdauern."
+              "text": "Cookie-Attribute, Token-Laufzeiten und das Ungültigmachen bei Logout und Passwortwechsel. Ein langlebiges Token im Browser-Speicher vergrößert das Zeitfenster für Missbrauch und braucht einen geplanten Widerruf."
             },
             {
               "title": "APIs",
-              "text": "APIs stellen dieselbe Logik ohne die Leitplanken der Oberfläche bereit und werden oft weniger geprüft. Jeder Endpunkt braucht eigene Authentifizierungs- und Autorisierungsentscheidungen - auch die internen."
+              "text": "APIs stellen dieselbe Logik ohne die Leitplanken der Oberfläche bereit. Jeder Endpunkt braucht eine explizite Zugriffsregel - öffentlich, authentifiziert oder enger autorisiert - und serverseitige Durchsetzung, auch interne Endpunkte."
             },
             {
               "title": "Abhängigkeiten und Konfiguration",
-              "text": "Drittpakete, Basis-Images und Infrastruktur-Voreinstellungen gehören zur Angriffsfläche. Die Top 10 von 2025 führen Software-Supply-Chain-Fehler nicht ohne Grund als eigene Kategorie."
+              "text": "Drittpakete, Basis-Images und Infrastruktur-Voreinstellungen gehören zur Angriffsfläche. Die OWASP Top 10:2025 führen Software Supply Chain Failures als eigene Kategorie und unterstreichen damit, dass diese Abhängigkeiten bewusst verwaltet werden müssen."
             },
             {
               "title": "Fehlerbehandlung und Logging",
@@ -224,7 +224,7 @@
             },
             {
               "title": "Geschäftslogik",
-              "text": "Abläufe, die einzeln gültig, in Kombination aber schädlich sind: Race Conditions bei Rabatten, wiederholte Anfragen, übersprungene Prüfschritte. Scanner finden so etwas selten - Verständnis fürs Geschäft schon."
+              "text": "Abläufe, die einzeln gültig, in Kombination aber schädlich sind: Race Conditions bei Rabatten, wiederholte Anfragen, übersprungene Prüfschritte. Automatische Scanner können beabsichtigte Geschäftsregeln nicht zuverlässig ableiten; dafür ist kontextbezogene Analyse nötig."
             }
           ]
         },
@@ -232,30 +232,30 @@
           "title": "Ein realistisches Beispiel entlang einer Anfrage",
           "paragraphs": [
             "Angenommen, eine kleine Anwendung verwaltet Rechnungen. Eine eingeloggte Nutzerin ruft den PDF-Export der Rechnung Nummer 8241 auf. Die Transportverschlüsselung steht, das Session-Cookie ist gültig, und der Endpunkt prüft die Authentifizierung korrekt. Der Code lädt anschließend Rechnung 8241 und liefert die Datei aus.",
-            "Die fehlende Frage ist die nach dem Eigentum. Nichts hat geprüft, ob Rechnung 8241 zum anfragenden Konto gehört. Jede authentifizierte Person, die die Nummer in der URL ändert, kann die Rechnungen anderer Kunden lesen - eine Insecure Direct Object Reference und einer der häufigsten Zugriffskontroll-Fehler in realen Prüfungen.",
+            "Die fehlende Frage ist die nach dem Eigentum. Nichts hat geprüft, ob Rechnung 8241 zum anfragenden Konto gehört. Jede authentifizierte Person, die die Nummer in der URL ändert, kann die Rechnungen anderer Kunden lesen - eine Insecure Direct Object Reference und eine konkrete Form fehlerhafter objektbezogener Autorisierung.",
             "Jede vorgelagerte Kontrolle hat exakt wie vorgesehen funktioniert. TLS war gültig, Passwörter waren gehasht, die Session war intakt - und die Daten sind trotzdem abgeflossen, weil die Autorisierung für genau dieses Objekt serverseitig nie geprüft wurde.",
             "Die Korrektur ist klein: die Datenbankabfrage auf das authentifizierte Konto einschränken. Das Beispiel zeigt nicht, dass die Korrektur schwierig wäre - sondern dass kein Scanner-Ergebnis, keine Framework-Voreinstellung und keine Verschlüsselung diese Entscheidung automatisch getroffen hätte."
           ]
         },
         "risks": {
           "title": "Verbreitete Missverständnisse",
-          "intro": "Die meisten dieser Annahmen klingen vernünftig - und jede entfernt still eine echte Verteidigungsschicht.",
+          "intro": "Diese Annahmen können vernünftig klingen, entfernen oder verwechseln aber jeweils eine wichtige Verteidigungsschicht.",
           "items": [
             {
               "title": "„HTTPS macht die Anwendung sicher“",
-              "text": "TLS schützt den Transportkanal, mehr nicht. Injection, fehlerhafte Zugriffskontrolle und Logikfehler reisen problemlos über verschlüsselte Verbindungen."
+              "text": "TLS schützt den Transportkanal. Injection, fehlerhafte Zugriffskontrolle oder Logikfehler in Anwendungsanfragen behebt es nicht."
             },
             {
               "title": "„Authentifizierung deckt Autorisierung ab“",
-              "text": "Zu wissen, wer jemand ist, sagt nichts darüber, was diese Person darf. Es sind getrennte Entscheidungen - und die zweite wird deutlich öfter vergessen."
+              "text": "Zu wissen, wer jemand ist, sagt nichts darüber, was diese Person darf. Es sind getrennte Entscheidungen: Eine authentifizierte Anfrage ist nicht automatisch für ein bestimmtes Objekt oder eine bestimmte Aktion autorisiert."
             },
             {
               "title": "„Eingabevalidierung ersetzt Output-Encoding“",
-              "text": "Validierung begrenzt, was hineinkommt; Encoding steuert, wie Daten beim Verlassen interpretiert werden. Daten, die vor Jahren eine Validierung bestanden haben, können heute im Browser zu Skript werden, wenn das Encoding fehlt."
+              "text": "Validierung begrenzt, was hineinkommt; Encoding steuert, wie Daten beim Verlassen interpretiert werden. Auch validierte Daten können zu Skript werden, wenn sie ohne passendes Output-Encoding in einen HTML-Kontext eingesetzt werden."
             },
             {
-              "title": "„Clientseitige Prüfungen sind Sicherheitskontrollen“",
-              "text": "Alles, was im Browser läuft - deaktivierte Buttons, JavaScript-Validierung, versteckte Felder - lässt sich mit frei verfügbaren Werkzeugen in Sekunden umgehen. Clientseitige Prüfungen sind Komfort; der Server muss jede Entscheidung erneut treffen."
+              "title": "„UI-Beschränkungen erzwingen serverseitige Sicherheit“",
+              "text": "UI-Beschränkungen und browserseitige Validierung - deaktivierte Buttons, JavaScript-Prüfungen, versteckte Felder - lassen sich durch direkte Anfragen umgehen. Sie können Bedienbarkeit und zusätzliche Schutzschichten unterstützen; Identität, Autorisierung und Datenintegrität muss jedoch der Server durchsetzen. Vom Browser erzwungene Mechanismen wie CSP erfüllen einen anderen Zweck und ersetzen keine serverseitigen Kontrollen."
             },
             {
               "title": "„Ein sauberer Scan bedeutet eine sichere Anwendung“",
@@ -623,7 +623,7 @@
         },
         "risks": {
           "title": "Häufige Fehler bei Scope und Einordnung",
-          "intro": "Unzureichend vorbereitete Prüfaufträge scheitern häufig vor der technischen Prüfung oder nach dem Bericht. Diese Fehler verringern Sicherheit, Abdeckung oder die Chance, dass Funde tatsächlich behoben werden.",
+          "intro": "Die Qualität eines Prüfauftrags kann schon vor der technischen Prüfung oder nach dem Bericht verloren gehen. Diese Fehler verringern Sicherheit, Abdeckung oder die Chance, dass Funde tatsächlich behoben werden.",
           "items": [
             {
               "title": "Ohne vollständige Erlaubnis testen",
@@ -635,11 +635,11 @@
             },
             {
               "title": "Einen Scannerbericht als Pentest kaufen",
-              "text": "Automatisierung gehört in die meisten Prüfungen. Ein Penetrationstest braucht zusätzlich Kontextanalyse, sorgfältige Validierung und menschliche Untersuchung relevanter Pfade. Fragt, wer diese Arbeit leistet und wie sie im Bericht sichtbar wird."
+              "text": "Automatisierung kann eine breite, wiederholbare Erhebung unterstützen. Ein Penetrationstest braucht zusätzlich Kontextanalyse, sorgfältige Validierung und menschliche Untersuchung relevanter Pfade. Fragt, wer diese Arbeit leistet und wie sie im Bericht sichtbar wird."
             },
             {
               "title": "Produktion unvorbereitet prüfen",
-              "text": "Ein Produktivtest kann die realistischsten Hinweise liefern, aber die Verfügbarkeit beeinträchtigen oder echte Daten verändern. Die Entscheidung muss bewusst fallen; Betrieb, risikoarme Methoden sowie Abbruch- und Wiederherstellungswege gehören dazu."
+              "text": "Ein Produktivtest kann Nachweise aus dem realen Betriebskontext liefern, aber die Verfügbarkeit beeinträchtigen oder echte Daten verändern. Die Entscheidung muss bewusst fallen; Betrieb, risikoarme Methoden sowie Abbruch- und Wiederherstellungswege gehören dazu."
             },
             {
               "title": "Den Bericht als Zertifikat behandeln",

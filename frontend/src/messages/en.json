@@ -125,7 +125,7 @@
       "backToTopics": "Back to the topic overview",
       "onThisPage": "On this page",
       "sources": "Sources and further reading",
-      "sourceNote": "A compact selection of primary research, standards, and public technical guidance used to ground this article.",
+      "sourceNote": "A compact selection of primary sources, standards, and public technical guidance used to ground this article.",
       "continueReading": "Continue reading",
       "opensInNewTab": "opens in a new tab"
     },
@@ -156,7 +156,7 @@
           "paragraphs": [
             "It helps to be precise about the goal. Application security is not about making software impossible to attack; it is about protecting specific things: the confidentiality of the data an application holds, the integrity of the actions it performs, and the availability of the service for the people who rely on it. Every technical control exists to defend one of those properties.",
             "The central concept is the trust boundary. A browser is entirely under the user's control, so nothing arriving from it - form fields, cookies, headers, URLs, file uploads - can be trusted by the server. The same applies wherever data crosses from one zone of control into another: between an API and a third-party service, between the application and its database, between two internal services with different privileges.",
-            "Most real vulnerabilities are trust-boundary mistakes. The application treats attacker-controlled input as if it were structure (injection), trusts the client to say who it is or what it may do (broken authentication and access control), or passes data onward to a place where it is interpreted as code (cross-site scripting). The OWASP Top 10 groups these recurring failures into awareness categories - with broken access control heading the 2025 edition.",
+            "Trust-boundary mistakes are a useful way to understand many web vulnerabilities. The application treats attacker-controlled input as if it were structure (injection), trusts the client to say who it is or what it may do (broken authentication and access control), or passes data onward to a place where it is interpreted as code (cross-site scripting). The OWASP Top 10 groups these recurring failures into awareness categories - with broken access control heading the 2025 edition.",
             "Because boundaries are architectural, security is architectural too. A framework can encode many good decisions, but it cannot know which user is allowed to see which record. Those decisions are the application's actual security."
           ]
         },
@@ -200,23 +200,23 @@
           "items": [
             {
               "title": "Authentication",
-              "text": "Password handling, account recovery, rate limiting, and multi-factor options. Recovery flows are often the weakest door, because they bypass the password entirely."
+              "text": "Password handling, account recovery, rate limiting, and multi-factor options. Recovery flows bypass the password, so they need equivalent identity checks, rate limits, and monitoring."
             },
             {
               "title": "Authorization",
-              "text": "Missing or inconsistent checks on objects and functions. Broken access control has topped the OWASP Top 10 since 2021 because it cannot be fixed generically - it depends on the application's own domain model."
+              "text": "Missing or inconsistent checks on objects and functions. Broken access control is first in the OWASP Top 10:2025; useful checks depend on the application's own domain model and must be enforced consistently on the server."
             },
             {
               "title": "Sessions and tokens",
-              "text": "Cookie attributes, token lifetimes, and invalidation on logout and password change. A long-lived token in browser storage can outlast every other control."
+              "text": "Cookie attributes, token lifetimes, and invalidation on logout and password change. A long-lived token in browser storage widens the exposure window and needs deliberate revocation."
             },
             {
               "title": "APIs",
-              "text": "APIs expose the same logic without the UI's guardrails and often receive less scrutiny. Every endpoint needs its own authentication and authorization decisions - including the internal ones."
+              "text": "APIs expose the same logic without the UI's guardrails. Each endpoint needs an explicit access policy - public, authenticated, or more narrowly authorized - and server-side enforcement, including internal endpoints."
             },
             {
               "title": "Dependencies and configuration",
-              "text": "Third-party packages, base images, and infrastructure defaults are part of the attack surface. The 2025 Top 10 added software supply chain failures as a category of its own for a reason."
+              "text": "Third-party packages, base images, and infrastructure defaults are part of the attack surface. OWASP Top 10:2025 includes Software Supply Chain Failures as a category, reflecting the need to manage these dependencies deliberately."
             },
             {
               "title": "Error handling and logging",
@@ -224,7 +224,7 @@
             },
             {
               "title": "Business logic",
-              "text": "Flows that are individually valid but harmful in combination: race conditions on discounts, replayed requests, skipped verification steps. Scanners rarely find these; understanding the business does."
+              "text": "Flows that are individually valid but harmful in combination: race conditions on discounts, replayed requests, skipped verification steps. Automated scanners cannot infer intended business rules reliably; contextual analysis is needed."
             }
           ]
         },
@@ -232,30 +232,30 @@
           "title": "A realistic request-flow example",
           "paragraphs": [
             "Consider a small invoicing application. A logged-in user requests the PDF export of invoice number 8241. Transport encryption is in place, the session cookie is valid, and the endpoint checks authentication correctly. The code then loads invoice 8241 and returns the file.",
-            "The missing question is ownership. Nothing verified that invoice 8241 belongs to the requesting account. Any authenticated user who changes the number in the URL can read other customers' invoices - an insecure direct object reference, one of the most common access-control failures found in real assessments.",
+            "The missing question is ownership. Nothing verified that invoice 8241 belongs to the requesting account. Any authenticated user who changes the number in the URL can read other customers' invoices - an insecure direct object reference and a concrete form of broken object-level authorization.",
             "Every earlier control worked exactly as designed. TLS was valid, passwords were hashed, the session was intact - and the data still leaked, because authorization for this specific object was never checked on the server.",
             "The fix is small: scope the database query to the authenticated account. The point of the example is not that the fix is hard, but that no scanner output, framework default, or encryption setting would have made this decision automatically."
           ]
         },
         "risks": {
           "title": "Common misunderstandings",
-          "intro": "Most of these beliefs sound reasonable, and each one quietly removes a real layer of defence.",
+          "intro": "These beliefs can sound reasonable, but each one removes or confuses an important layer of defence.",
           "items": [
             {
               "title": "“HTTPS makes the application secure”",
-              "text": "TLS protects the transport channel, nothing more. Injection, broken access control, and logic flaws all travel comfortably over encrypted connections."
+              "text": "TLS protects the transport channel. It does not correct injection, broken access control, or logic flaws carried in application requests."
             },
             {
               "title": "“Authentication covers authorization”",
-              "text": "Knowing who someone is says nothing about what they may do. They are separate decisions, and the second one is skipped far more often."
+              "text": "Knowing who someone is says nothing about what they may do. They are separate decisions: authenticating a request does not authorize any particular object or action."
             },
             {
               "title": "“Input validation replaces output encoding”",
-              "text": "Validation limits what enters; encoding controls how data is interpreted when it leaves. Data that passed validation years ago can still become script in a browser today if output encoding is missing."
+              "text": "Validation limits what enters; encoding controls how data is interpreted when it leaves. Even validated data can become script when inserted into an HTML context without appropriate output encoding."
             },
             {
-              "title": "“Client-side checks are security controls”",
-              "text": "Anything running in the browser - disabled buttons, JavaScript validation, hidden fields - can be bypassed with freely available tooling in seconds. Client-side checks are usability; the server must re-decide everything."
+              "title": "“UI restrictions enforce server-side security”",
+              "text": "UI restrictions and browser-side validation - disabled buttons, JavaScript checks, hidden fields - can be bypassed by sending requests directly. They can support usability and defence in depth, but the server must enforce identity, authorization, and data-integrity decisions. Browser-enforced mechanisms such as CSP serve a different purpose and do not replace server-side controls."
             },
             {
               "title": "“A clean scan means a secure application”",
@@ -623,7 +623,7 @@
         },
         "risks": {
           "title": "Common scoping and interpretation mistakes",
-          "intro": "Most weak engagements fail before the technical testing starts or after the report arrives. These mistakes reduce safety, coverage, or the chance that findings will be fixed.",
+          "intro": "Engagement quality can be lost before technical testing starts or after the report arrives. These mistakes reduce safety, coverage, or the chance that findings will be fixed.",
           "items": [
             {
               "title": "Testing without complete authority",
@@ -635,11 +635,11 @@
             },
             {
               "title": "Buying a scanner report as a pentest",
-              "text": "Automation belongs in most assessments, but a penetration test needs contextual analysis, careful validation, and human exploration of relevant paths. Ask who performs that work and how it appears in the report."
+              "text": "Automation can support broad, repeatable discovery, but a penetration test also needs contextual analysis, careful validation, and human exploration of relevant paths. Ask who performs that work and how it appears in the report."
             },
             {
               "title": "Testing production without preparation",
-              "text": "A production test may provide the most realistic evidence, but it can affect availability and real data. Decide deliberately, involve operators, minimize risky actions, and keep stop and recovery paths ready."
+              "text": "Testing production can provide evidence from the real operating context, but it can affect availability and real data. Decide deliberately, involve operators, minimize risky actions, and keep stop and recovery paths ready."
             },
             {
               "title": "Treating the report as a certificate",
