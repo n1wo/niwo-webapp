@@ -135,8 +135,8 @@
         "description": "Sechs zusammenhängende Leitfäden zu Web App Security, sicherer Entwicklung, Pentest-Vorbereitung, AI in DevSecOps, Agentic Engineering und Incident Response."
       },
       "eyebrow": "Wissensbereich",
-      "title": "Sechs miteinander verbundene Security-Themen",
-      "intro": "Starte bei den Grundlagen oder folge einem modernen Workflow. Jeder Leitfaden vermittelt ein praktisches Denkmodell, benennt wichtige Grenzen und verweist auf die zugrunde liegende Primärliteratur.",
+      "title": "Alle Themen",
+      "intro": "Sechs Leitfäden, die aufeinander aufbauen - von Web App Security bis Incident Response. Jeder gibt dir ein praktisches Denkmodell, benennt ehrlich die Grenzen und verlinkt die Primärquellen.",
       "readTopic": "Thema lesen"
     },
     "items": {

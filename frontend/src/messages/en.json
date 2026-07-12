@@ -135,8 +135,8 @@
         "description": "Six connected guides to web application security, secure development, pentest preparation, AI in DevSecOps, agentic engineering, and incident response."
       },
       "eyebrow": "Knowledge area",
-      "title": "Six connected security topics",
-      "intro": "Start with the foundations or follow a modern workflow. Each guide builds a practical mental model, explains important limits, and points to the primary guidance behind it.",
+      "title": "All Topics",
+      "intro": "Six guides that build on each other - from web app security to incident response. Each gives you a practical mental model, is honest about the limits, and links the primary sources.",
       "readTopic": "Read topic"
     },
     "items": {
