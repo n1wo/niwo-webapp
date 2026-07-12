@@ -5,7 +5,7 @@ import TopicArticlePage, {
   getTopicArticleContent,
 } from "@/components/topics/TopicArticlePage";
 import { getTopicArticleBySlug, topicArticleDefinitions } from "@/data/topicArticles";
-import { buildMetadata } from "@/i18n/metadata";
+import { buildMetadata, SITE_NAME, SITE_URL } from "@/i18n/metadata";
 
 export function generateStaticParams() {
   return topicArticleDefinitions.map((topic) => ({ slug: topic.slug }));
@@ -31,6 +31,7 @@ export async function generateMetadata({
     title: content.metadata.title,
     description: content.metadata.description,
     path: `/topics/${slug}`,
+    ogType: "article",
   });
 }
 
@@ -46,5 +47,66 @@ export default async function TopicPage({
     notFound();
   }
 
-  return <TopicArticlePage locale={locale} topic={topicArticle} />;
+  const t = await getTranslations({ locale });
+  const content = getTopicArticleContent(t, topicArticle);
+  const pageUrl = `${SITE_URL}/${locale}/topics/${slug}`;
+
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    headline: content.title,
+    description: content.metadata.description,
+    inLanguage: locale,
+    url: pageUrl,
+    mainEntityOfPage: pageUrl,
+    author: {
+      "@type": "Person",
+      name: "Nikita Wokurka",
+      url: SITE_URL,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: SITE_NAME,
+      url: SITE_URL,
+    },
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: SITE_NAME,
+        item: `${SITE_URL}/${locale}`,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: t("TopicArticles.index.title"),
+        item: `${SITE_URL}/${locale}/topics`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: content.title,
+        item: pageUrl,
+      },
+    ],
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <TopicArticlePage locale={locale} topic={topicArticle} />
+    </>
+  );
 }

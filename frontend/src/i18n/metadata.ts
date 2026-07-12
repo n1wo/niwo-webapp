@@ -26,6 +26,7 @@ type BuildMetadataArgs = {
   title: string;
   description: string;
   path?: string;
+  ogType?: "website" | "article";
 };
 
 /**
@@ -38,6 +39,7 @@ export function buildMetadata({
   title,
   description,
   path = "",
+  ogType = "website",
 }: BuildMetadataArgs): Metadata {
   return {
     title,
@@ -47,7 +49,7 @@ export function buildMetadata({
       ...getLocalizedAlternates(path),
     },
     openGraph: {
-      type: "website",
+      type: ogType,
       siteName: SITE_NAME,
       title,
       description,
