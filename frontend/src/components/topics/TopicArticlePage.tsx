@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { getTranslations } from "next-intl/server";
 import TopicArtwork from "@/components/home/TopicArtwork";
+import TopicTocNav from "@/components/topics/TopicTocNav";
 import {
   topicArticleDefinitions,
   type TopicArticleDefinition,
@@ -277,18 +278,9 @@ export default async function TopicArticlePage({
               <p className="font-mono text-[0.68rem] uppercase tracking-[0.24em] text-zinc-500">
                 {t("TopicArticles.common.onThisPage")}
               </p>
-              <ol className="mt-4 space-y-1 border-l border-white/[0.08]">
-                {tocEntries.map(([id, label]) => (
-                  <li key={id}>
-                    <a
-                      href={`#${id}`}
-                      className="-ml-px block border-l-2 border-transparent py-1.5 pl-3 text-sm leading-snug text-zinc-500 transition-colors hover:border-[var(--color-accent-light)] hover:text-zinc-200"
-                    >
-                      {label}
-                    </a>
-                  </li>
-                ))}
-              </ol>
+              <TopicTocNav
+                entries={tocEntries.map(([id, label]) => ({ id, label }))}
+              />
             </nav>
           </aside>
 
