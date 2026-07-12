@@ -329,7 +329,7 @@
         "title": "Secure Development",
         "intro": [
           "Secure development means making security decisions while software is planned, designed, built, released, and operated. It is not a separate phase and it is not a final scan. The aim is to create useful evidence early enough that the team can still change course, then keep learning after the software reaches real users.",
-          "This page is for learners, solo developers, and small teams. It explains a practical lifecycle, the decisions that deserve explicit ownership, a realistic feature example, and the limits of frameworks and automation."
+          "This page is for learners, solo developers, and small teams. You will find a practical lifecycle, the decisions that deserve explicit ownership, a realistic feature example, and the limits of frameworks and automation."
         ],
         "coreIdea": {
           "title": "Security is a feedback loop, not a finish line",
@@ -396,7 +396,7 @@
             },
             {
               "title": "Dependencies and builds",
-              "text": "Know which third-party components and build steps enter a release. Updates reduce exposure to known defects, but each update is also a change that needs compatibility and regression evidence."
+              "text": "Know which third-party components and build steps enter a release. Updates reduce exposure to known defects - but each update is also a change, and you still need to check that it is compatible and breaks nothing."
             },
             {
               "title": "Configuration and deployment",

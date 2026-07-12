@@ -329,7 +329,7 @@
         "title": "Sichere Entwicklung",
         "intro": [
           "Sichere Entwicklung bedeutet, Sicherheitsentscheidungen dann zu treffen, wenn Software geplant, entworfen, gebaut, ausgeliefert und betrieben wird. Sie ist weder eine eigene Schlussphase noch ein letzter Scan. Das Ziel sind belastbare Hinweise zu einem Zeitpunkt, an dem ein Team noch gegensteuern kann - und ein Lernprozess, der nach dem Release weitergeht.",
-          "Diese Seite richtet sich an Lernende, Einzelentwickler und kleine Teams. Sie beschreibt einen praktikablen Lebenszyklus, klar verantwortete Entscheidungen, ein realistisches Funktionsbeispiel sowie die Grenzen von Frameworks und Automatisierung."
+          "Diese Seite richtet sich an Lernende, Einzelentwickler und kleine Teams. Du findest hier einen praktikablen Lebenszyklus, die Entscheidungen, die klare Verantwortung brauchen, ein realistisches Funktionsbeispiel und die Grenzen von Frameworks und Automatisierung."
         ],
         "coreIdea": {
           "title": "Sicherheit ist ein Regelkreis, keine Ziellinie",
@@ -346,15 +346,15 @@
           "steps": [
             {
               "title": "Planen",
-              "text": "Beschreibt das gewünschte Verhalten, sensible Daten, wahrscheinliche Nutzer, Missbrauchsfälle, rechtliche oder vertragliche Grenzen und akzeptable Fehlerzustände. Übersetzt wichtige Sicherheitseigenschaften in Anforderungen, die sich später prüfen lassen."
+              "text": "Beschreib das gewünschte Verhalten, sensible Daten, wahrscheinliche Nutzer, Missbrauchsfälle, rechtliche oder vertragliche Grenzen und akzeptable Fehlerzustände. Übersetze wichtige Sicherheitseigenschaften in Anforderungen, die sich später prüfen lassen."
             },
             {
               "title": "Entwerfen",
-              "text": "Zeichnet Datenflüsse und Vertrauensgrenzen und betrachtet dann, was schiefgehen könnte. Wählt sichere Voreinstellungen, geringe Berechtigungen und einfache Wiederherstellungswege, bevor die Implementierung Architekturänderungen teuer macht."
+              "text": "Zeichne Datenflüsse und Vertrauensgrenzen und überleg dann, was schiefgehen könnte. Wähle sichere Voreinstellungen, geringe Berechtigungen und einfache Wiederherstellungswege, bevor die Implementierung Architekturänderungen teuer macht."
             },
             {
               "title": "Umsetzen",
-              "text": "Nutzt gepflegte Frameworks und etablierte Kontrollen für Identität, Autorisierung, Eingaben, Geheimnisse und Kryptografie. Haltet Änderungen überschaubar und erfindet keine eigenen Sicherheitsmechanismen ohne belastbaren Grund."
+              "text": "Nutze gepflegte Frameworks und etablierte Kontrollen für Identität, Autorisierung, Eingaben, Secrets und Kryptografie. Halte Änderungen überschaubar und erfinde keine eigenen Sicherheitsmechanismen ohne guten Grund."
             },
             {
               "title": "Reviewen",
@@ -362,19 +362,19 @@
             },
             {
               "title": "Verifizieren",
-              "text": "Führt Tests aus, die auf die Sicherheitsanforderungen zurückgehen, ergänzt durch statische Analyse, Abhängigkeits- und Secret-Prüfungen sowie gezielte manuelle Tests. Standards wie OWASP ASVS helfen bei der Abdeckung; ein grünes Werkzeug ist nicht das eigentliche Ziel."
+              "text": "Führe Tests aus, die auf die Sicherheitsanforderungen zurückgehen, ergänzt durch statische Analyse, Abhängigkeits- und Secret-Prüfungen sowie gezielte manuelle Tests. Standards wie der OWASP ASVS helfen bei der Abdeckung; ein grünes Werkzeug ist nicht das eigentliche Ziel."
             },
             {
               "title": "Bauen und ausliefern",
-              "text": "Schützt Repositories, Build-Worker, Zugangsdaten und Artefakte. Haltet fest, aus welchem Quellcode und welchen Abhängigkeiten das Release entstand, erzwingt Reviews und Regeln und stellt mit sicherer Konfiguration sowie getestetem Rollback bereit."
+              "text": "Schütze Repositories, Build-Worker, Zugangsdaten und Artefakte. Halte fest, aus welchem Quellcode und welchen Abhängigkeiten das Release entstand. Erzwinge Reviews und Regeln, und liefere mit sicherer Konfiguration und einem getesteten Rollback aus."
             },
             {
               "title": "Betreiben",
-              "text": "Erfasst hilfreiche Sicherheitsereignisse, ohne Geheimnisse zu protokollieren, überwacht entscheidende Kontrollen, pflegt Abhängigkeiten und bietet einen Meldeweg für Probleme. Ein Release beginnt operative Nachweise; es beendet nicht die Verantwortung der Entwicklung."
+              "text": "Erfasse hilfreiche Sicherheitsereignisse, ohne Secrets zu loggen, überwache die entscheidenden Kontrollen, pflege Abhängigkeiten und biete einen Meldeweg für Probleme. Mit dem Release beginnen die Nachweise aus dem Betrieb; die Verantwortung der Entwicklung endet dort nicht."
             },
             {
               "title": "Lernen und verbessern",
-              "text": "Nutzt Schwachstellen, Vorfälle, Beinahefehler und störende Alarme als Rückmeldung. Behebt den konkreten Defekt und verbessert danach auch die Anforderung, den Test, die Voreinstellung oder die Entwicklungspraxis, die eine Wiederholung ermöglicht hat."
+              "text": "Nutze Schwachstellen, Vorfälle, Beinahefehler und störende Alarme als Rückmeldung. Behebe den konkreten Defekt - und verbessere danach auch die Anforderung, den Test, die Voreinstellung oder die Praxis, die die Wiederholung möglich gemacht hat."
             }
           ]
         },
@@ -384,27 +384,27 @@
           "items": [
             {
               "title": "Identität und Zugriff",
-              "text": "Legt fest, wer was in welchem Bereich und unter welchen Bedingungen tun darf. Authentisierung stellt Identität fest; Autorisierung muss sensible Aktionen und Objekte trotzdem einzeln schützen."
+              "text": "Leg fest, wer was in welchem Bereich und unter welchen Bedingungen tun darf. Authentisierung stellt die Identität fest; Autorisierung muss sensible Aktionen und Objekte trotzdem einzeln schützen."
             },
             {
               "title": "Eingaben und Abläufe",
-              "text": "Validiert nicht vertrauenswürdige Daten an der Servergrenze und testet, wie gültige Aktionen kombiniert oder umgeordnet werden können. Fehler in der Geschäftslogik wirken auf generische Werkzeuge oft unauffällig."
+              "text": "Validiere nicht vertrauenswürdige Daten an der Servergrenze und teste, wie sich gültige Aktionen kombinieren oder umordnen lassen. Fehler in der Geschäftslogik sehen für generische Werkzeuge oft unauffällig aus."
             },
             {
               "title": "Secrets und Kryptografie",
-              "text": "Haltet Zugangsdaten aus Quellcode und Logs heraus, begrenzt Zugriffe, rotiert sie kontrolliert und nutzt etablierte Bibliotheken und verwaltete Bausteine statt eigener Algorithmen."
+              "text": "Halte Zugangsdaten aus Quellcode und Logs heraus, begrenze Zugriffe und rotiere sie kontrolliert. Nutze etablierte Bibliotheken und verwaltete Bausteine statt eigener Algorithmen."
             },
             {
               "title": "Abhängigkeiten und Builds",
-              "text": "Kennt die Komponenten und Build-Schritte eines Releases. Updates verkleinern die Angriffsfläche bekannter Fehler, sind aber selbst Änderungen, die Kompatibilitäts- und Regressionsevidenz brauchen."
+              "text": "Du solltest wissen, welche Komponenten und Build-Schritte in einem Release stecken. Updates verkleinern die Angriffsfläche bekannter Fehler - aber sie sind selbst Änderungen, und du musst prüfen, dass sie kompatibel sind und nichts kaputt machen."
             },
             {
               "title": "Konfiguration und Deployment",
-              "text": "Macht die sicherste praktikable Konfiguration zum Standard, trennt Umgebungen, begrenzt Produktionszugriffe und prüft, ob Automatisierung die beabsichtigten Regeln umsetzt - nicht nur Dateien verschiebt."
+              "text": "Mach die sicherste praktikable Konfiguration zum Standard, trenne Umgebungen und begrenze Produktionszugriffe. Prüfe, ob deine Automatisierung die beabsichtigten Regeln umsetzt - und nicht nur Dateien verschiebt."
             },
             {
               "title": "Logging und Reaktion",
-              "text": "Entscheidet, welche Ereignisse Missbrauch oder Kontrollversagen sichtbar machen, wie lange Nachweise bleiben, wer ein Signal erhält und wie eine verwundbare Version eingedämmt, korrigiert und kommuniziert wird."
+              "text": "Entscheide, welche Ereignisse Missbrauch oder versagende Kontrollen sichtbar machen, wie lange Nachweise aufbewahrt werden, wer ein Signal bekommt und wie du eine verwundbare Version eindämmst, korrigierst und kommunizierst."
             }
           ]
         },
@@ -431,7 +431,7 @@
             },
             {
               "title": "Ein Framework eins zu eins kopieren",
-              "text": "SSDF, SAMM und ASVS liefern Struktur und Abdeckung, keine universelle Aufgabenliste. Kleine Teams sollten Kontrollen nach Architektur und Risiko wählen, Auslassungen dokumentieren und den Prozess anhand neuer Evidenz ausbauen."
+              "text": "SSDF, SAMM und ASVS liefern Struktur und Abdeckung, keine universelle Aufgabenliste. Kleine Teams sollten Kontrollen nach Architektur und Risiko wählen, Auslassungen dokumentieren und den Prozess ausbauen, sobald neue Erkenntnisse es nötig machen."
             },
             {
               "title": "Severity-Scores entscheiden lassen",
@@ -465,12 +465,12 @@
         "takeaways": {
           "title": "Das Wichtigste in Kürze",
           "items": [
-            "Sicherheit in die vorhandene Entwicklungsmethode integrieren, statt eine separate Schlussphase anzubauen.",
-            "Wichtige Sicherheitseigenschaften vor der Umsetzung in klare, prüfbare Anforderungen übersetzen.",
-            "Threat Modeling, Reviews, automatisierte Prüfungen, gezielte Tests und Betriebsdaten als ergänzende Ebenen nutzen.",
-            "Entwicklungsumgebung und Buildpfad ebenso sorgfältig schützen wie den Anwendungscode.",
-            "Kontrollen verhältnismäßig wählen und Risiko sowie Verantwortliche jeder wesentlichen Ausnahme dokumentieren.",
-            "Den Regelkreis schließen: Schwachstellen und Vorfälle müssen den Prozess für das nächste Release verbessern."
+            "Integriere Sicherheit in die Entwicklungsmethode, die du schon nutzt, statt eine separate Schlussphase anzubauen.",
+            "Übersetze wichtige Sicherheitseigenschaften vor der Umsetzung in klare, prüfbare Anforderungen.",
+            "Nutze Threat Modeling, Reviews, automatisierte Prüfungen, gezielte Tests und Betriebsdaten als Ebenen, die sich ergänzen.",
+            "Schütze Entwicklungsumgebung und Buildpfad genauso sorgfältig wie den Anwendungscode.",
+            "Wähle Kontrollen verhältnismäßig und dokumentiere Risiko und Verantwortliche jeder wesentlichen Ausnahme.",
+            "Schließ den Regelkreis: Schwachstellen und Vorfälle müssen den Prozess für das nächste Release verbessern."
           ]
         },
         "sources": [
