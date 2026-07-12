@@ -1031,7 +1031,7 @@
         "title": "Incident Response",
         "intro": [
           "Incident Response ist die koordinierte Arbeit, die beginnt, sobald ein Unternehmen eine Kompromittierung von Systemen, Konten oder Daten vermutet. Ziel ist nicht nur, Schadsoftware zu entfernen. Es geht darum, Schaden zu begrenzen, den Ablauf zu verstehen, verlässliche Beweise zu sichern, vertrauenswürdigen Betrieb wiederherzustellen und verantwortlich zu kommunizieren.",
-          "Eine gute Reaktion verbindet Tempo mit Sorgfalt. Das Trennen eines Rechners kann einen Angreifer stoppen, aber auch einen kritischen Dienst unterbrechen oder flüchtige Belege vernichten. Deshalb arbeiten Teams mit erprobten Plänen, klaren Zuständigkeiten und dokumentierten Entscheidungen."
+          "Eine gute Reaktion verbindet Tempo mit Sorgfalt. Das Trennen eines Rechners kann einen Angreifer stoppen, aber auch einen kritischen Dienst unterbrechen oder flüchtige Belege vernichten. Deshalb arbeiten Teams mit erprobten Plänen, klaren Zuständigkeiten und dokumentierten Entscheidungen — und passen ihr Bild an, sobald neue Fakten auftauchen."
         ],
         "coreIdea": {
           "title": "Die Grundidee",
@@ -1046,31 +1046,31 @@
           "steps": [
             {
               "title": "Vorbereiten",
-              "text": "Rollen, Kontakte, Eskalationsschwellen, Kommunikationswege, Beweissicherung, Backups und sichere Zugänge vorab definieren und mit realistischen Übungen testen."
+              "text": "Definiere Rollen, Kontakte, Eskalationsschwellen, Kommunikationswege, Beweissicherung, Backups und sichere Zugänge vorab — und teste sie mit realistischen Übungen."
             },
             {
               "title": "Erkennen und prüfen",
-              "text": "Alarme, Meldungen und Systemsignale sammeln. Prüfen, ob das Ereignis echt ist, erste Fakten festhalten und eine unbestätigte Theorie nicht als Ergebnis behandeln."
+              "text": "Sammle Alarme, Meldungen und Systemsignale. Prüfe, ob das Ereignis echt ist, halte erste Fakten fest und behandle eine unbestätigte Theorie nicht als Ergebnis."
             },
             {
               "title": "Triage und Umfang",
-              "text": "Betroffene Identitäten, Geräte, Anwendungen, Daten und Geschäftsprozesse abschätzen. Nach Auswirkung, Dringlichkeit und verbleibendem Angreiferzugriff priorisieren."
+              "text": "Schätze ab, welche Identitäten, Geräte, Anwendungen, Daten und Geschäftsprozesse betroffen sind. Priorisiere nach Auswirkung, Dringlichkeit und verbleibendem Angreiferzugriff."
             },
             {
               "title": "Eindämmen",
-              "text": "Weiteren Schaden begrenzen, etwa durch Isolation eines Hosts, Sperren eines Kontos oder Blockieren einer Verbindung. Maßnahmen müssen zum betrieblichen Risiko passen."
+              "text": "Begrenze weiteren Schaden — etwa durch Isolation eines Hosts, Sperren eines Kontos, Blockieren einer Verbindung oder Abtrennen eines Netzsegments. Die Maßnahmen müssen zum betrieblichen Risiko passen."
             },
             {
               "title": "Sichern und analysieren",
-              "text": "Relevante Logs, Dateien, flüchtige Daten und Zeitachsen so erfassen, dass Integrität und Herkunft geschützt bleiben. Die Analyse prüft Erklärungen und verfeinert den Umfang."
+              "text": "Erfasse relevante Logs, Dateien, flüchtige Daten und Zeitachsen so, dass Integrität und Herkunft geschützt bleiben. Die Analyse prüft konkurrierende Erklärungen und verfeinert den Umfang."
             },
             {
               "title": "Beseitigen und wiederherstellen",
-              "text": "Persistenz entfernen, den ausgenutzten Weg schließen, betroffene Secrets rotieren, Systeme neu aufbauen oder wiederherstellen, Backups prüfen und eng überwachen."
+              "text": "Entferne Persistenz, schließ den ausgenutzten Weg und rotiere betroffene Secrets. Baue Systeme neu auf oder stelle sie wieder her, prüfe Backups und überwache danach eng."
             },
             {
               "title": "Kommunizieren und lernen",
-              "text": "Über freigegebene Kanäle verlässlich informieren, rechtliche und vertragliche Pflichten erfüllen, Entscheidungen dokumentieren und Erkenntnisse in Kontrollen und Übungen überführen."
+              "text": "Informiere verlässlich über freigegebene Kanäle und erfülle rechtliche und vertragliche Pflichten. Dokumentiere Entscheidungen und überführe Erkenntnisse in bessere Kontrollen und Übungen."
             }
           ]
         },
@@ -1140,7 +1140,7 @@
           "title": "Menschliche Verantwortung",
           "paragraphs": [
             "Eine Reaktion braucht benannte Entscheider. Incident Command koordiniert Prioritäten und dokumentiert; technische Spezialisten untersuchen und begrenzen; Systemverantwortliche erklären Betriebsfolgen; Recht, Datenschutz, Kommunikation und Führung behandeln Pflichten jenseits der Technik.",
-            "Werkzeuge können Alarme korrelieren, Artefakte sammeln und freigegebene Eindämmungsschritte automatisieren. Menschen entscheiden weiterhin, ob Belege ausreichen, eine Maßnahme verhältnismäßig ist, wer informiert werden muss und wann der Betrieb wieder vertrauenswürdig ist."
+            "Werkzeuge können Alarme korrelieren, Artefakte sammeln und freigegebene Eindämmungsschritte automatisieren. Menschen entscheiden weiterhin, ob Belege ausreichen, eine Maßnahme verhältnismäßig ist, wer informiert werden muss, wann der Betrieb wieder vertrauenswürdig ist — und welche Verantwortung daraus folgt."
           ],
           "items": [
             "Befugnisse, Rollen und Eskalationswege festlegen",

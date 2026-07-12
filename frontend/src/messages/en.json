@@ -1030,7 +1030,7 @@
         "eyebrow": "Responding under uncertainty",
         "title": "Incident Response",
         "intro": [
-          "Incident Response is the coordinated work that begins when an organization suspects that systems, accounts, or data may have been compromised. The goal is not merely to remove malware. It is to limit harm, understand what happened, preserve reliable evidence, restore trustworthy operations, and communicate responsibly.",
+          "Incident Response is the coordinated work that begins when an organization suspects that systems, accounts, or data may have been compromised. The goal is not just to remove malware. It is to limit harm, understand what happened, preserve reliable evidence, restore trustworthy operations, and communicate responsibly.",
           "A good response balances speed with care. Disconnecting a machine may stop an attacker, but it can also interrupt a critical service or destroy short-lived evidence. Teams therefore work from tested plans, assign clear authority, record decisions, and update their understanding as new facts arrive."
         ],
         "coreIdea": {
@@ -1155,7 +1155,7 @@
             "Incident response is a coordinated risk-management process, not only a technical cleanup task.",
             "Preparation, reliable evidence, clear roles, and practiced communication matter before the first alert arrives.",
             "Containment must limit harm without unnecessarily destroying evidence or critical operations.",
-            "Recovery includes verification, communication, documentation, and learning — not merely switching systems back on."
+            "Recovery includes verification, communication, documentation, and learning — not just switching systems back on."
           ]
         },
         "sources": [
