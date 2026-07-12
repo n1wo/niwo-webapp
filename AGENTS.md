@@ -67,10 +67,8 @@ Expected validation:
   duplicating UI patterns
 - `frontend/src/components/legal/LegalPageLayout.tsx`
   Shared layout for legal pages
-- `frontend/src/components/services/`
-  Service cards and service visuals
-- `frontend/src/data/services.ts`
-  Canonical service registry and slug map
+- `frontend/src/data/topicArticles.ts`
+  Canonical six-topic registry, route slugs, and display order
 - `frontend/src/i18n/`
   `next-intl` routing, navigation, metadata helpers
 - `frontend/src/messages/en.json`
@@ -94,19 +92,22 @@ The site uses `next-intl` with locale-prefixed routes.
 - Prefer editing existing keys over inventing new ones when the content shape is
   unchanged.
 
-### Services
+### Topics
 
-Service pages are driven by both the service registry and message content.
+Topic pages are driven by the topic registry and bilingual article content.
 
-If you add, rename, or remove a service, check all of these:
+If you add, rename, or remove a topic, check all of these:
 
-- `frontend/src/data/services.ts`
+- `frontend/src/data/topicArticles.ts`
 - `frontend/src/messages/en.json`
 - `frontend/src/messages/de.json`
-- `frontend/src/app/[locale]/services/[slug]/page.tsx`
-- any related shared cards or navigation references
+- `frontend/src/app/[locale]/topics/`
+- `frontend/src/components/topics/`
+- desktop and mobile navigation references
+- `frontend/src/app/sitemap.ts` and route checks
 
-Do not update service copy in only one place and assume the rest will follow.
+Legacy `/services/:slug` URLs remain compatibility redirects to `/topics/:slug`.
+Do not update topic copy or routes in only one place and assume the rest will follow.
 
 ### Shared UI
 

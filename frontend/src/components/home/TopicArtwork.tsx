@@ -1,13 +1,16 @@
 import type { JSX } from "react";
+import type { TopicArticleKey } from "@/data/topicArticles";
 import styles from "./TopicArtwork.module.css";
 
-export type TopicArtworkType = "aiDevSecOps" | "agenticEngineering" | "incidentResponse";
+export type TopicArtworkType = TopicArticleKey;
 
 function PipelineArtwork(): JSX.Element {
   return (
     <svg
       className={styles.svg}
       viewBox="0 0 640 320"
+      width="640"
+      height="320"
       preserveAspectRatio="xMidYMid meet"
       aria-hidden="true"
       focusable="false"
@@ -65,6 +68,8 @@ function AgenticArtwork(): JSX.Element {
     <svg
       className={styles.svg}
       viewBox="0 0 640 320"
+      width="640"
+      height="320"
       preserveAspectRatio="xMidYMid meet"
       aria-hidden="true"
       focusable="false"
@@ -128,6 +133,8 @@ function IncidentArtwork(): JSX.Element {
     <svg
       className={styles.svg}
       viewBox="0 0 640 320"
+      width="640"
+      height="320"
       preserveAspectRatio="xMidYMid meet"
       aria-hidden="true"
       focusable="false"
@@ -172,12 +179,197 @@ function IncidentArtwork(): JSX.Element {
   );
 }
 
-export default function TopicArtwork({ type }: { type: TopicArtworkType }): JSX.Element {
+function WebAppSecurityArtwork(): JSX.Element {
   return (
-    <div className={styles.root} aria-hidden="true">
-      {type === "aiDevSecOps" ? <PipelineArtwork /> : null}
-      {type === "agenticEngineering" ? <AgenticArtwork /> : null}
-      {type === "incidentResponse" ? <IncidentArtwork /> : null}
+    <svg
+      className={styles.svg}
+      viewBox="0 0 640 320"
+      width="640"
+      height="320"
+      preserveAspectRatio="xMidYMid meet"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <path className={styles.guide} d="M34 58H606M34 262H606" />
+      <rect className={styles.trustBoundary} x="188" y="44" width="278" height="232" rx="30" />
+      <rect className={styles.dataBoundary} x="494" y="92" width="112" height="136" rx="26" />
+
+      <path className={styles.connection} d="M166 160H550" />
+      <path
+        className={`${styles.motionPath} ${styles.requestFlow}`}
+        d="M166 160H550"
+        pathLength="100"
+      />
+      <path className={styles.connectionDim} d="M326 184C326 224 380 238 437 238" />
+      <circle className={styles.nodeOutline} cx="437" cy="238" r="7" />
+      <path className={styles.nodeDetail} d="M433 234l8 8M441 234l-8 8" />
+      <path className={styles.containmentStop} d="M446 218V258" />
+
+      <rect className={styles.nodeOutline} x="44" y="104" width="122" height="112" rx="14" />
+      <path className={styles.nodeDetail} d="M44 130H166M62 151h84M62 174h58M62 197h72" />
+      <circle className={styles.evidenceMarker} cx="62" cy="117" r="3" />
+      <circle className={styles.evidenceMarker} cx="74" cy="117" r="3" />
+      <circle className={styles.evidenceMarker} cx="86" cy="117" r="3" />
+
+      <circle className={styles.nodeOutline} cx="238" cy="160" r="24" />
+      <circle className={styles.nodeDetailRing} cx="238" cy="151" r="6" />
+      <path className={styles.nodeDetail} d="M226 173c3-8 21-8 24 0" />
+      <circle className={`${styles.webControlSignal} ${styles.webControlOne}`} cx="238" cy="160" r="3" />
+
+      <path className={styles.nodeAccent} d="M326 132l28 28-28 28-28-28z" />
+      <path className={styles.nodeDetail} d="M314 160l8 8 17-18" />
+      <circle className={`${styles.webControlSignal} ${styles.webControlTwo}`} cx="326" cy="160" r="3" />
+
+      <rect className={styles.nodeOutline} x="388" y="136" width="52" height="48" rx="10" />
+      <path className={styles.nodeDetail} d="M400 151h28M400 160h18M400 169h24" />
+      <circle className={`${styles.webControlSignal} ${styles.webControlThree}`} cx="414" cy="160" r="3" />
+      <path className={styles.connectionDim} d="M414 136V112M414 184V208" />
+      <rect className={styles.evidenceMarker} x="410" y="104" width="8" height="8" rx="1" />
+      <circle className={styles.evidenceMarker} cx="414" cy="214" r="4" />
+
+      <circle className={styles.nodeOutline} cx="550" cy="160" r="28" />
+      <ellipse className={styles.nodeDetailRing} cx="550" cy="151" rx="16" ry="7" />
+      <path className={styles.nodeDetail} d="M534 151v18c0 4 7 7 16 7s16-3 16-7v-18" />
+    </svg>
+  );
+}
+
+function SecureDevelopmentArtwork(): JSX.Element {
+  const lifecyclePath =
+    "M112 160C112 86 202 52 320 52C438 52 528 86 528 160C528 234 438 268 320 268C202 268 112 234 112 160Z";
+
+  return (
+    <svg
+      className={styles.svg}
+      viewBox="0 0 640 320"
+      width="640"
+      height="320"
+      preserveAspectRatio="xMidYMid meet"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <path className={styles.guide} d="M42 34H598M42 286H598" />
+      <path className={styles.lifecyclePath} d={lifecyclePath} />
+      <path
+        className={`${styles.motionPath} ${styles.lifecycleMotion}`}
+        d={lifecyclePath}
+        pathLength="100"
+      />
+      <path className={styles.feedbackPath} d="M450 246C384 300 172 296 112 176" />
+      <circle className={styles.evidenceMarker} cx="374" cy="276" r="4" />
+      <path className={styles.evidenceMarker} d="M202 274l5 5-5 5-5-5z" />
+
+      <circle className={styles.nodeOutline} cx="112" cy="160" r="24" />
+      <path className={styles.nodeDetail} d="M100 160h24M112 148v24" />
+      <circle className={`${styles.lifecycleSignal} ${styles.signalOne}`} cx="112" cy="160" r="3" />
+
+      <rect className={styles.nodeOutline} x="140" y="62" width="52" height="52" rx="10" />
+      <path className={styles.nodeDetail} d="M153 88h26M153 78h17M153 98h21" />
+      <circle className={`${styles.lifecycleSignal} ${styles.signalTwo}`} cx="166" cy="88" r="3" />
+
+      <path className={styles.nodeAccent} d="M268 30l24 24-24 24-24-24z" />
+      <path className={styles.nodeDetail} d="M256 54l8 8 17-18" />
+      <circle className={`${styles.lifecycleSignal} ${styles.signalThree}`} cx="268" cy="54" r="3" />
+
+      <circle className={styles.nodeOutline} cx="386" cy="64" r="23" />
+      <path className={styles.nodeDetail} d="M374 64h24M386 52v24" />
+      <circle className={`${styles.lifecycleSignal} ${styles.signalFour}`} cx="386" cy="64" r="3" />
+
+      <rect className={styles.nodeOutline} x="456" y="78" width="52" height="52" rx="10" />
+      <path className={styles.nodeDetail} d="M469 104l8 8 18-20" />
+      <circle className={`${styles.lifecycleSignal} ${styles.signalFive}`} cx="482" cy="104" r="3" />
+
+      <path className={styles.nodeAccent} d="M528 154l26 26-26 26-26-26z" />
+      <path className={styles.nodeDetail} d="M516 180h24M528 168v24" />
+      <circle className={`${styles.lifecycleSignal} ${styles.signalSix}`} cx="528" cy="180" r="3" />
+
+      <circle className={styles.nodeOutline} cx="450" cy="246" r="24" />
+      <circle className={styles.nodeDetailRing} cx="450" cy="246" r="13" />
+      <circle className={`${styles.lifecycleSignal} ${styles.signalSeven}`} cx="450" cy="246" r="3" />
+
+      <rect className={styles.nodeOutline} x="256" y="240" width="52" height="48" rx="10" />
+      <path className={styles.nodeDetail} d="M268 264h28M282 252v24" />
+      <circle className={`${styles.lifecycleSignal} ${styles.signalEight}`} cx="282" cy="264" r="3" />
+    </svg>
+  );
+}
+
+function PentestPreparationArtwork(): JSX.Element {
+  const testPath =
+    "M54 156H112C146 156 154 106 194 106C236 106 238 156 278 156C322 156 320 208 362 208C410 208 426 156 474 156H570";
+
+  return (
+    <svg
+      className={styles.svg}
+      viewBox="0 0 640 320"
+      width="640"
+      height="320"
+      preserveAspectRatio="xMidYMid meet"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <rect className={styles.scopeBoundary} x="112" y="54" width="330" height="202" rx="30" />
+      <path className={styles.connection} d={testPath} />
+      <path
+        className={`${styles.motionPath} ${styles.authorizedTestFlow}`}
+        d={testPath}
+        pathLength="100"
+      />
+
+      <circle className={styles.nodeOutline} cx="54" cy="156" r="24" />
+      <path className={styles.nodeDetail} d="M43 156h22M54 145v22" />
+
+      <circle className={styles.approvalHalo} cx="112" cy="156" r="44" />
+      <path className={styles.nodeAccent} d="M112 130l26 26-26 26-26-26z" />
+      <path className={styles.nodeDetail} d="M100 156l8 8 17-18" />
+
+      <rect className={styles.nodeOutline} x="170" y="82" width="48" height="48" rx="10" />
+      <path className={styles.nodeDetail} d="M182 106h24M194 94v24" />
+      <circle className={`${styles.checkpointSignal} ${styles.checkpointOne}`} cx="194" cy="106" r="3" />
+
+      <circle className={styles.nodeOutline} cx="278" cy="156" r="24" />
+      <circle className={styles.nodeDetailRing} cx="278" cy="156" r="13" />
+      <circle className={`${styles.checkpointSignal} ${styles.checkpointTwo}`} cx="278" cy="156" r="3" />
+
+      <path className={styles.nodeAccent} d="M362 182l26 26-26 26-26-26z" />
+      <path className={styles.nodeDetail} d="M350 208l8 8 17-18" />
+      <circle className={`${styles.checkpointSignal} ${styles.checkpointThree}`} cx="362" cy="208" r="3" />
+
+      <rect className={styles.nodeOutline} x="458" y="126" width="64" height="60" rx="10" />
+      <path className={styles.nodeDetail} d="M472 143h36M472 155h27M472 167h31" />
+      <circle className={styles.reportSignal} cx="508" cy="167" r="3" />
+
+      <circle className={styles.nodeOutline} cx="570" cy="156" r="25" />
+      <circle className={styles.nodeDetailRing} cx="570" cy="156" r="14" />
+      <path className={styles.nodeDetail} d="M559 156h22M570 145v22" />
+
+      <circle className={styles.scopeExcluded} cx="510" cy="76" r="18" />
+      <rect className={styles.scopeExcluded} x="492" y="218" width="36" height="36" rx="8" />
+
+      <path className={styles.testWindow} d="M78 286H568" />
+      <path className={styles.testWindowActive} d="M166 286H424" />
+      <path className={styles.connectionDim} d="M166 276V296M424 276V296" />
+      <circle className={styles.timelineMarker} cx="166" cy="286" r="5" />
+      <circle className={styles.timelineMarker} cx="424" cy="286" r="5" />
+    </svg>
+  );
+}
+
+const artworkByType: Record<TopicArtworkType, () => JSX.Element> = {
+  aiDevSecOps: PipelineArtwork,
+  agenticEngineering: AgenticArtwork,
+  incidentResponse: IncidentArtwork,
+  webAppSecurity: WebAppSecurityArtwork,
+  secureDevelopment: SecureDevelopmentArtwork,
+  pentestPreparation: PentestPreparationArtwork,
+};
+
+export default function TopicArtwork({ type }: { type: TopicArtworkType }): JSX.Element {
+  const Artwork = artworkByType[type];
+
+  return (
+    <div className={styles.root} data-topic-artwork={type} aria-hidden="true">
+      <Artwork />
     </div>
   );
 }

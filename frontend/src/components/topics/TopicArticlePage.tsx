@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { getTranslations } from "next-intl/server";
 import TopicArtwork from "@/components/home/TopicArtwork";
+import TopicTocNav from "@/components/topics/TopicTocNav";
 import {
   topicArticleDefinitions,
   type TopicArticleDefinition,
@@ -42,10 +43,14 @@ export type TopicArticleContent = {
     intro: string;
     items: ArticleItem[];
   };
-  benefits: {
+  benefits?: {
     title: string;
     intro: string;
     items: string[];
+  };
+  example?: {
+    title: string;
+    paragraphs: string[];
   };
   risks: {
     title: string;
@@ -144,14 +149,25 @@ export function getTopicArticleContent(
         `${prefix}.whereUsed.items`,
       ),
     },
-    benefits: {
-      title: t(`${prefix}.benefits.title`),
-      intro: t(`${prefix}.benefits.intro`),
-      items: asStringArray(
-        t.raw(`${prefix}.benefits.items`),
-        `${prefix}.benefits.items`,
-      ),
-    },
+    benefits: t.has(`${prefix}.benefits.title`)
+      ? {
+          title: t(`${prefix}.benefits.title`),
+          intro: t(`${prefix}.benefits.intro`),
+          items: asStringArray(
+            t.raw(`${prefix}.benefits.items`),
+            `${prefix}.benefits.items`,
+          ),
+        }
+      : undefined,
+    example: t.has(`${prefix}.example.title`)
+      ? {
+          title: t(`${prefix}.example.title`),
+          paragraphs: asStringArray(
+            t.raw(`${prefix}.example.paragraphs`),
+            `${prefix}.example.paragraphs`,
+          ),
+        }
+      : undefined,
     risks: {
       title: t(`${prefix}.risks.title`),
       intro: t(`${prefix}.risks.intro`),
@@ -206,11 +222,28 @@ export default async function TopicArticlePage({
   const content = getTopicArticleContent(t, topic);
   const relatedTopics = topicArticleDefinitions.filter((item) => item.slug !== topic.slug);
 
+  const numberedSections: [string, string][] = [
+    ["core-idea", content.coreIdea.title],
+    ["how-it-works", content.howItWorks.title],
+    ["where-used", content.whereUsed.title],
+    ...(content.benefits ? [["benefits", content.benefits.title] as [string, string]] : []),
+    ...(content.example ? [["example", content.example.title] as [string, string]] : []),
+    ["risks", content.risks.title],
+    ["human-responsibility", content.humanResponsibility.title],
+    ["takeaways", content.takeaways.title],
+  ];
+  const markerFor = (id: string) =>
+    String(numberedSections.findIndex(([sectionId]) => sectionId === id) + 1).padStart(2, "0");
+  const tocEntries: [string, string][] = [
+    ...numberedSections,
+    ["sources", t("TopicArticles.common.sources")],
+  ];
+
   return (
     <article className="bg-[var(--background)] px-6 pb-28 pt-28 text-foreground sm:px-10 lg:px-16">
       <div className="mx-auto max-w-7xl 2xl:max-w-[88rem]">
         <Link
-          href="/#topics"
+          href="/topics"
           className="inline-flex items-center gap-2 rounded-sm font-mono text-xs uppercase tracking-[0.22em] text-zinc-500 transition-colors hover:text-zinc-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(140_127_224/0.74)] focus-visible:ring-offset-4 focus-visible:ring-offset-[var(--background)]"
         >
           <span aria-hidden="true">&larr;</span>
@@ -245,33 +278,15 @@ export default async function TopicArticlePage({
               <p className="font-mono text-[0.68rem] uppercase tracking-[0.24em] text-zinc-500">
                 {t("TopicArticles.common.onThisPage")}
               </p>
-              <ol className="mt-4 space-y-1 border-l border-white/[0.08]">
-                {[
-                  ["core-idea", content.coreIdea.title],
-                  ["how-it-works", content.howItWorks.title],
-                  ["where-used", content.whereUsed.title],
-                  ["benefits", content.benefits.title],
-                  ["risks", content.risks.title],
-                  ["human-responsibility", content.humanResponsibility.title],
-                  ["takeaways", content.takeaways.title],
-                  ["sources", t("TopicArticles.common.sources")],
-                ].map(([id, label]) => (
-                  <li key={id}>
-                    <a
-                      href={`#${id}`}
-                      className="-ml-px block border-l-2 border-transparent py-1.5 pl-3 text-sm leading-snug text-zinc-500 transition-colors hover:border-[var(--color-accent-light)] hover:text-zinc-200"
-                    >
-                      {label}
-                    </a>
-                  </li>
-                ))}
-              </ol>
+              <TopicTocNav
+                entries={tocEntries.map(([id, label]) => ({ id, label }))}
+              />
             </nav>
           </aside>
 
           <div className="min-w-0">
             <section id="core-idea" className="scroll-mt-28">
-              <SectionHeading marker="01">{content.coreIdea.title}</SectionHeading>
+              <SectionHeading marker={markerFor("core-idea")}>{content.coreIdea.title}</SectionHeading>
               <div className="space-y-5 sm:pl-12">
                 {content.coreIdea.paragraphs.map((paragraph) => (
                   <p key={paragraph} className="text-[1.02rem] leading-[1.9] text-zinc-300">
@@ -282,7 +297,7 @@ export default async function TopicArticlePage({
             </section>
 
             <section id="how-it-works" className="mt-20 scroll-mt-28 border-t border-white/[0.08] pt-16">
-              <SectionHeading marker="02">{content.howItWorks.title}</SectionHeading>
+              <SectionHeading marker={markerFor("how-it-works")}>{content.howItWorks.title}</SectionHeading>
               <p className="max-w-3xl text-[1.02rem] leading-[1.9] text-zinc-400 sm:pl-12">
                 {content.howItWorks.intro}
               </p>
@@ -293,9 +308,9 @@ export default async function TopicArticlePage({
                     className="relative grid gap-4 border-l border-white/[0.1] pb-10 pl-8 last:border-transparent last:pb-0 sm:grid-cols-[9rem_minmax(0,1fr)] sm:gap-7"
                   >
                     <span className="absolute -left-[0.35rem] top-1 h-2.5 w-2.5 rounded-full border border-[var(--color-accent-light)] bg-[var(--background)] shadow-[0_0_16px_rgb(140_127_224/0.3)]" />
-                    <p className="font-mono text-xs uppercase tracking-[0.18em] text-[var(--color-accent-light)]">
+                    <h3 className="font-mono text-xs uppercase tracking-[0.18em] text-[var(--color-accent-light)]">
                       {String(index + 1).padStart(2, "0")} · {step.title}
-                    </p>
+                    </h3>
                     <p className="text-[0.98rem] leading-8 text-zinc-400">{step.text}</p>
                   </li>
                 ))}
@@ -303,7 +318,7 @@ export default async function TopicArticlePage({
             </section>
 
             <section id="where-used" className="mt-20 scroll-mt-28 border-t border-white/[0.08] pt-16">
-              <SectionHeading marker="03">{content.whereUsed.title}</SectionHeading>
+              <SectionHeading marker={markerFor("where-used")}>{content.whereUsed.title}</SectionHeading>
               <p className="max-w-3xl text-[1.02rem] leading-[1.9] text-zinc-400 sm:pl-12">
                 {content.whereUsed.intro}
               </p>
@@ -317,23 +332,38 @@ export default async function TopicArticlePage({
               </div>
             </section>
 
-            <section id="benefits" className="mt-20 scroll-mt-28 border-t border-white/[0.08] pt-16">
-              <SectionHeading marker="04">{content.benefits.title}</SectionHeading>
-              <p className="max-w-3xl text-[1.02rem] leading-[1.9] text-zinc-400 sm:pl-12">
-                {content.benefits.intro}
-              </p>
-              <ul className="mt-8 grid gap-x-10 gap-y-5 sm:ml-12 sm:grid-cols-2">
-                {content.benefits.items.map((item) => (
-                  <li key={item} className="flex gap-4 border-t border-white/[0.08] pt-5 text-[0.96rem] leading-8 text-zinc-300">
-                    <span aria-hidden="true" className="mt-3 h-1.5 w-1.5 shrink-0 bg-[var(--color-accent-light)]" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </section>
+            {content.benefits ? (
+              <section id="benefits" className="mt-20 scroll-mt-28 border-t border-white/[0.08] pt-16">
+                <SectionHeading marker={markerFor("benefits")}>{content.benefits.title}</SectionHeading>
+                <p className="max-w-3xl text-[1.02rem] leading-[1.9] text-zinc-400 sm:pl-12">
+                  {content.benefits.intro}
+                </p>
+                <ul className="mt-8 grid gap-x-10 gap-y-5 sm:ml-12 sm:grid-cols-2">
+                  {content.benefits.items.map((item) => (
+                    <li key={item} className="flex gap-4 border-t border-white/[0.08] pt-5 text-[0.96rem] leading-8 text-zinc-300">
+                      <span aria-hidden="true" className="mt-3 h-1.5 w-1.5 shrink-0 bg-[var(--color-accent-light)]" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            ) : null}
+
+            {content.example ? (
+              <section id="example" className="mt-20 scroll-mt-28 border-t border-white/[0.08] pt-16">
+                <SectionHeading marker={markerFor("example")}>{content.example.title}</SectionHeading>
+                <div className="space-y-5 border-l-2 border-white/[0.14] pl-6 sm:ml-12 sm:pl-8">
+                  {content.example.paragraphs.map((paragraph) => (
+                    <p key={paragraph} className="text-[1.02rem] leading-[1.9] text-zinc-300">
+                      {paragraph}
+                    </p>
+                  ))}
+                </div>
+              </section>
+            ) : null}
 
             <section id="risks" className="mt-20 scroll-mt-28 border-t border-white/[0.08] pt-16">
-              <SectionHeading marker="05">{content.risks.title}</SectionHeading>
+              <SectionHeading marker={markerFor("risks")}>{content.risks.title}</SectionHeading>
               <div className="border-l-2 border-[rgb(140_127_224/0.38)] pl-6 sm:ml-12 sm:pl-8">
                 <p className="text-[1.02rem] leading-[1.9] text-zinc-300">{content.risks.intro}</p>
                 <div className="mt-8 space-y-8">
@@ -348,7 +378,7 @@ export default async function TopicArticlePage({
             </section>
 
             <section id="human-responsibility" className="mt-20 scroll-mt-28 border-t border-white/[0.08] pt-16">
-              <SectionHeading marker="06">{content.humanResponsibility.title}</SectionHeading>
+              <SectionHeading marker={markerFor("human-responsibility")}>{content.humanResponsibility.title}</SectionHeading>
               <div className="space-y-5 sm:pl-12">
                 {content.humanResponsibility.paragraphs.map((paragraph) => (
                   <p key={paragraph} className="text-[1.02rem] leading-[1.9] text-zinc-300">
@@ -367,7 +397,7 @@ export default async function TopicArticlePage({
             </section>
 
             <section id="takeaways" className="mt-20 scroll-mt-28 border-y border-white/[0.08] py-14">
-              <SectionHeading marker="07">{content.takeaways.title}</SectionHeading>
+              <SectionHeading marker={markerFor("takeaways")}>{content.takeaways.title}</SectionHeading>
               <ul className="space-y-4 sm:pl-12">
                 {content.takeaways.items.map((item, index) => (
                   <li key={item} className="grid gap-3 sm:grid-cols-[2rem_minmax(0,1fr)]">
@@ -400,6 +430,9 @@ export default async function TopicArticlePage({
                       <span>
                         <span className="block">{source.title}</span>
                         <span className="block text-xs text-zinc-600">{source.organization}</span>
+                        <span className="sr-only">
+                          ({t("TopicArticles.common.opensInNewTab")})
+                        </span>
                       </span>
                     </a>
                   </li>

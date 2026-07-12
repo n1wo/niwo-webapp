@@ -46,13 +46,18 @@
 
 .mobileMenuFloating {
   top: 5.75rem;
+  --mobile-menu-available-height: calc(100dvh - 6.75rem);
 }
 
 .mobileMenuPinned {
   top: 4.5rem;
+  --mobile-menu-available-height: calc(100dvh - 5.5rem);
 }
 
 .mobileMenuPanel {
+  max-height: var(--mobile-menu-available-height);
+  overflow-y: auto;
+  overscroll-behavior: contain;
   border: 1px solid rgb(255 255 255 / 0.16);
   border-radius: 1rem;
   background:
@@ -86,7 +91,9 @@
 }
 
 .dropdownMenuPanel {
-  overflow: hidden;
+  max-height: min(32rem, calc(100dvh - 7rem));
+  overflow-y: auto;
+  overscroll-behavior: contain;
   border: 0;
   border-radius: 0 0 0.75rem 0.75rem;
   background: var(--nav-glass-background);
@@ -100,7 +107,7 @@
     color 150ms ease;
 }
 
-.dropdownItem:hover {
+.dropdownItem:is(:hover, :focus-visible) {
   background: rgb(95 98 184 / 0.12);
   color: white;
 }
@@ -111,7 +118,7 @@
   transition: opacity 150ms ease;
 }
 
-.dropdownItem:hover .dropdownItemArrow {
+.dropdownItem:is(:hover, :focus-visible) .dropdownItemArrow {
   opacity: 1;
 }
 
@@ -119,7 +126,7 @@
   transition: color 150ms ease;
 }
 
-.dropdownFooterLink:hover {
+.dropdownFooterLink:is(:hover, :focus-visible) {
   color: var(--color-accent-light);
 }
 

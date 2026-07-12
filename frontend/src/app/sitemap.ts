@@ -1,5 +1,4 @@
 import type { MetadataRoute } from "next";
-import { serviceDefinitions } from "@/data/services";
 import { topicArticleDefinitions } from "@/data/topicArticles";
 import { SITE_URL } from "@/i18n/metadata";
 import { routing } from "@/i18n/routing";
@@ -12,7 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/pages/privacy-policy",
     "/pages/vdp",
     "/pages/imprint",
-    ...serviceDefinitions.map((service) => `/topics/${service.slug}`),
+    "/topics",
     ...topicArticleDefinitions.map((topic) => `/topics/${topic.slug}`),
   ];
 

@@ -37,7 +37,16 @@
 .containmentBoundary,
 .containmentBarrier,
 .detectionRing,
-.timeline {
+.timeline,
+.trustBoundary,
+.dataBoundary,
+.containmentStop,
+.lifecyclePath,
+.feedbackPath,
+.scopeBoundary,
+.scopeExcluded,
+.testWindow,
+.testWindowActive {
   vector-effect: non-scaling-stroke;
 }
 
@@ -138,6 +147,160 @@
 .pipelineMotion {
   animation: path-travel 14s linear infinite;
   animation-delay: -2s;
+}
+
+.trustBoundary,
+.scopeBoundary {
+  fill: rgb(95 98 184 / 0.025);
+  stroke: rgb(140 127 224 / 0.38);
+  stroke-width: 1.2;
+  stroke-dasharray: 8 9;
+}
+
+.dataBoundary {
+  fill: none;
+  stroke: rgb(255 255 255 / 0.16);
+  stroke-width: 1.1;
+  stroke-dasharray: 4 8;
+}
+
+.containmentStop {
+  fill: none;
+  stroke: rgb(140 127 224 / 0.55);
+  stroke-width: 1.6;
+  stroke-dasharray: 4 6;
+}
+
+.requestFlow {
+  animation: path-travel 18s linear infinite;
+  animation-delay: -5s;
+}
+
+.webControlSignal,
+.lifecycleSignal,
+.checkpointSignal,
+.reportSignal {
+  fill: var(--color-accent-light);
+  opacity: 0.34;
+  animation-name: semantic-signal;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+.webControlSignal {
+  animation-duration: 18s;
+}
+
+.webControlOne {
+  animation-delay: -15s;
+}
+
+.webControlTwo {
+  animation-delay: -10s;
+}
+
+.webControlThree {
+  animation-delay: -5s;
+}
+
+.lifecyclePath {
+  fill: none;
+  stroke: rgb(255 255 255 / 0.2);
+  stroke-width: 1.25;
+}
+
+.feedbackPath {
+  fill: none;
+  stroke: rgb(140 127 224 / 0.2);
+  stroke-width: 1.15;
+  stroke-dasharray: 3 8;
+}
+
+.lifecycleMotion {
+  animation: path-travel 22s linear infinite;
+  animation-delay: -7s;
+}
+
+.lifecycleSignal {
+  animation-duration: 22s;
+}
+
+.signalOne {
+  animation-delay: -19s;
+}
+
+.signalTwo {
+  animation-delay: -16.5s;
+}
+
+.signalThree {
+  animation-delay: -14s;
+}
+
+.signalFour {
+  animation-delay: -11.5s;
+}
+
+.signalFive {
+  animation-delay: -9s;
+}
+
+.signalSix {
+  animation-delay: -6.5s;
+}
+
+.signalSeven {
+  animation-delay: -4s;
+}
+
+.signalEight {
+  animation-delay: -1.5s;
+}
+
+.scopeExcluded {
+  fill: rgb(37 37 37 / 0.32);
+  stroke: rgb(255 255 255 / 0.18);
+  stroke-width: 1;
+  stroke-dasharray: 3 6;
+  opacity: 0.62;
+}
+
+.authorizedTestFlow {
+  animation: path-travel 20s linear infinite;
+  animation-delay: -6s;
+}
+
+.checkpointSignal,
+.reportSignal {
+  animation-duration: 20s;
+}
+
+.checkpointOne {
+  animation-delay: -16s;
+}
+
+.checkpointTwo {
+  animation-delay: -11s;
+}
+
+.checkpointThree {
+  animation-delay: -6s;
+}
+
+.reportSignal {
+  animation-delay: -2s;
+}
+
+.testWindow {
+  fill: none;
+  stroke: rgb(255 255 255 / 0.12);
+  stroke-width: 1;
+}
+
+.testWindowActive {
+  fill: none;
+  stroke: rgb(140 127 224 / 0.46);
+  stroke-width: 1.8;
 }
 
 .boundary,
@@ -312,6 +475,18 @@
   }
 }
 
+@keyframes semantic-signal {
+  0%,
+  68%,
+  100% {
+    opacity: 0.3;
+  }
+  75%,
+  86% {
+    opacity: 0.92;
+  }
+}
+
 @keyframes timeline-travel {
   0%,
   12% {
@@ -333,33 +508,22 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .pipelineMotion,
-  .agentFlowOne,
-  .agentFlowTwo,
-  .agentFlowThree,
-  .agentFlowFour,
-  .responseMotion,
-  .timelineMotion {
-    animation: none;
+  .root * {
+    animation: none !important;
+  }
+
+  .motionPath {
     stroke-dasharray: none;
     stroke-dashoffset: 0;
     opacity: 0.38;
   }
 
   .stageSignal,
-  .approvalHalo,
-  .detectionRingOne,
-  .detectionRingTwo,
-  .detectionRingThree,
   .incidentCore,
-  .evidenceOne,
-  .evidenceTwo,
-  .evidenceThree {
-    animation: none;
-  }
-
-  .stageSignal,
-  .incidentCore {
+  .webControlSignal,
+  .lifecycleSignal,
+  .checkpointSignal,
+  .reportSignal {
     opacity: 0.72;
   }
 

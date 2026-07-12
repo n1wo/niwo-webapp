@@ -24,7 +24,10 @@ export default function TopicEditorialRow({
   const artworkOrder = artworkFirstOnDesktop ? "lg:order-1" : "lg:order-2";
 
   return (
-    <article className="grid min-w-0 gap-10 border-t border-white/[0.08] py-16 sm:gap-12 sm:py-20 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-center lg:gap-20 lg:py-24">
+    <article
+      data-topic-editorial-row
+      className="grid min-w-0 gap-10 border-t border-white/[0.08] py-16 sm:gap-12 sm:py-20 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-center lg:gap-20 lg:py-24"
+    >
       <div className={`order-1 min-w-0 ${textOrder}`}>
         <p
           aria-hidden="true"
