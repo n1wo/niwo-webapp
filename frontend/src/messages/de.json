@@ -720,12 +720,12 @@
         "title": "AI in DevSecOps",
         "intro": [
           "DevSecOps bedeutet, Sicherheit in die tägliche Softwareentwicklung einzubauen — nicht erst kurz vor der Veröffentlichung zu prüfen. KI kann dabei helfen, Ergebnisse zu sortieren, Tests vorzuschlagen, unbekannten Code zu erklären und Muster sichtbar zu machen, die ein ausgelastetes Team sonst leicht übersieht.",
-          "Entscheidend ist das Wort helfen. Ein KI-System erzeugt Vorhersagen aus Daten und Anweisungen; es versteht Geschäftsrisiken, betroffene Menschen oder rechtliche Pflichten nicht wie die verantwortlichen Personen. Richtig eingesetzt verkürzt es Rückkopplungen. Unkritisch automatisiert vervielfacht es überzeugend formulierte Fehler."
+          "Entscheidend ist das Wort helfen. Ein KI-System erzeugt Vorhersagen aus Daten und Anweisungen; es versteht Geschäftsrisiken, betroffene Menschen und rechtliche Pflichten nicht so, wie es die verantwortlichen Menschen tun. Richtig eingesetzt verkürzt es Feedback-Schleifen. Unkritisch automatisiert vervielfacht es überzeugend formulierte Fehler."
         ],
         "coreIdea": {
           "title": "Die Grundidee",
           "paragraphs": [
-            "Eine Software-Pipeline lässt sich als Folge von Kontrollpunkten verstehen: Änderung planen, Code schreiben, bauen, testen, ausrollen und im Betrieb beobachten. Sicherheitsfragen gehören an jeden dieser Punkte. KI ergänzt einen Assistenten, der vergleichen, zusammenfassen, einordnen und Vorschläge machen kann — während normale Sicherheitskontrollen weiterhin entscheiden, was den nächsten Schritt erreichen darf.",
+            "Eine Software-Pipeline lässt sich als Folge von Kontrollpunkten verstehen: Änderung planen, Code schreiben, bauen, testen, ausrollen und im Betrieb beobachten. Sicherheitsfragen gehören an jeden dieser Punkte. KI ergänzt das um einen Assistenten, der vergleichen, zusammenfassen, einordnen und Vorschläge machen kann — während die normalen Sicherheitskontrollen weiterhin entscheiden, was den nächsten Schritt erreichen darf.",
             "Das ist mehr als die Frage an einen Chatbot, ob Code sicher sei. Eine belastbare Lösung verbindet unterschiedliche Nachweise: Anforderungen, Bedrohungsmodelle, Code- und Abhängigkeitsanalysen, Testergebnisse, Herkunft von Build-Artefakten, Deployment-Regeln und Monitoring. KI darf diese Signale zusammenführen, aber die zugrunde liegenden Belege müssen prüfbar bleiben."
           ]
         },
@@ -739,7 +739,7 @@
             },
             {
               "title": "Entwickeln",
-              "text": "Ein Coding-Assistent kann Funktionen erklären, Tests entwerfen oder eine sicherere Schnittstelle vorschlagen. Der Entwickler prüft den tatsächlichen Diff und bleibt für jeden übernommenen Code verantwortlich."
+              "text": "Ein Coding-Assistent kann Funktionen erklären, Tests entwerfen oder eine sicherere Schnittstelle vorschlagen. Der Entwickler prüft den tatsächlichen Diff, hinterfragt Annahmen und bleibt für jeden übernommenen Code verantwortlich."
             },
             {
               "title": "Prüfen",
@@ -777,7 +777,7 @@
             },
             {
               "title": "Monitoring-Unterstützung",
-              "text": "Alarme zusammenfassen und mit aktuellen Deployments verbinden, ohne Rohprotokolle, Zeitachsen oder Quellen vor den Responders zu verstecken."
+              "text": "Alarme zusammenfassen und mit aktuellen Deployments verbinden, während Roh-Logs, Zeitachsen und Quellen für die Menschen sichtbar bleiben, die reagieren müssen."
             }
           ]
         },
@@ -785,7 +785,7 @@
           "title": "Was sich verbessern kann",
           "intro": "KI bringt den größten Nutzen, wenn Menschen früher hilfreiches Sicherheitsfeedback erhalten und vorhandenes Wissen konsequenter anwenden können.",
           "items": [
-            "Kürzere Rückkopplung zwischen einer Codeänderung und einer Sicherheitsfrage.",
+            "Kürzere Feedback-Schleifen zwischen einer Codeänderung und einer Sicherheitsfrage.",
             "Weniger Zeitaufwand für wiederkehrende Sortier- und Sucharbeit.",
             "Konsistentere Entwürfe für Dokumentation, Tests und Review-Fragen.",
             "Leichterer Zugang zu Security-Wissen für Entwickler ohne Spezialisierung."
