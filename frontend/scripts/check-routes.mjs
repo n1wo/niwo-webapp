@@ -18,6 +18,13 @@ const requiredRoutes = [
       'data-topic-artwork="aiDevSecOps"',
       'data-topic-artwork="agenticEngineering"',
       'data-topic-artwork="incidentResponse"',
+      'data-topic-nav="webAppSecurity"',
+      'data-topic-nav="secureDevelopment"',
+      'data-topic-nav="pentestPreparation"',
+      'data-topic-nav="aiDevSecOps"',
+      'data-topic-nav="agenticEngineering"',
+      'data-topic-nav="incidentResponse"',
+      'data-all-topics-link="mobile"',
     ],
     notContains: [
       "/terminal-closed",
@@ -25,7 +32,20 @@ const requiredRoutes = [
       'data-topic-artwork="secureDevelopment"',
       'data-topic-artwork="pentestPreparation"',
     ],
-    occurrences: [{ needle: "data-topic-artwork=", count: 3 }],
+    occurrences: [
+      { needle: "data-topic-artwork=", count: 3 },
+      { needle: "data-topic-nav=", count: 6 },
+      { needle: 'data-all-topics-link="mobile"', count: 1 },
+    ],
+    ordered: [
+      'data-topic-nav="webAppSecurity"',
+      'data-topic-nav="secureDevelopment"',
+      'data-topic-nav="pentestPreparation"',
+      'data-topic-nav="aiDevSecOps"',
+      'data-topic-nav="agenticEngineering"',
+      'data-topic-nav="incidentResponse"',
+      'data-all-topics-link="mobile"',
+    ],
   },
   {
     path: "/de",
@@ -38,6 +58,13 @@ const requiredRoutes = [
       'data-topic-artwork="aiDevSecOps"',
       'data-topic-artwork="agenticEngineering"',
       'data-topic-artwork="incidentResponse"',
+      'data-topic-nav="webAppSecurity"',
+      'data-topic-nav="secureDevelopment"',
+      'data-topic-nav="pentestPreparation"',
+      'data-topic-nav="aiDevSecOps"',
+      'data-topic-nav="agenticEngineering"',
+      'data-topic-nav="incidentResponse"',
+      'data-all-topics-link="mobile"',
     ],
     notContains: [
       "/terminal-closed",
@@ -45,7 +72,68 @@ const requiredRoutes = [
       'data-topic-artwork="secureDevelopment"',
       'data-topic-artwork="pentestPreparation"',
     ],
-    occurrences: [{ needle: "data-topic-artwork=", count: 3 }],
+    occurrences: [
+      { needle: "data-topic-artwork=", count: 3 },
+      { needle: "data-topic-nav=", count: 6 },
+      { needle: 'data-all-topics-link="mobile"', count: 1 },
+    ],
+    ordered: [
+      'data-topic-nav="webAppSecurity"',
+      'data-topic-nav="secureDevelopment"',
+      'data-topic-nav="pentestPreparation"',
+      'data-topic-nav="aiDevSecOps"',
+      'data-topic-nav="agenticEngineering"',
+      'data-topic-nav="incidentResponse"',
+      'data-all-topics-link="mobile"',
+    ],
+  },
+  {
+    path: "/en/topics",
+    statuses: [200],
+    contains: [
+      "Six connected security topics",
+      "Web App Security",
+      "Secure Development",
+      "Pentest Preparation",
+      "AI in DevSecOps",
+      "Agentic Engineering",
+      "Incident Response",
+      'data-topics-index="true"',
+    ],
+    notContains: ["TopicArticles.index.", "TopicArticles.items."],
+    occurrences: [{ needle: "data-topic-index=", count: 6 }],
+    ordered: [
+      'data-topic-index="webAppSecurity"',
+      'data-topic-index="secureDevelopment"',
+      'data-topic-index="pentestPreparation"',
+      'data-topic-index="aiDevSecOps"',
+      'data-topic-index="agenticEngineering"',
+      'data-topic-index="incidentResponse"',
+    ],
+  },
+  {
+    path: "/de/topics",
+    statuses: [200],
+    contains: [
+      "Sechs miteinander verbundene Security-Themen",
+      "Web App Security",
+      "Sichere Entwicklung",
+      "Pentest-Vorbereitung",
+      "AI in DevSecOps",
+      "Agentic Engineering",
+      "Incident Response",
+      'data-topics-index="true"',
+    ],
+    notContains: ["TopicArticles.index.", "TopicArticles.items."],
+    occurrences: [{ needle: "data-topic-index=", count: 6 }],
+    ordered: [
+      'data-topic-index="webAppSecurity"',
+      'data-topic-index="secureDevelopment"',
+      'data-topic-index="pentestPreparation"',
+      'data-topic-index="aiDevSecOps"',
+      'data-topic-index="agenticEngineering"',
+      'data-topic-index="incidentResponse"',
+    ],
   },
   {
     path: "/en/topics/ai-in-devsecops",
@@ -125,6 +213,36 @@ const requiredRoutes = [
     notContains: ["TopicArticles.items."],
     occurrences: [{ needle: "data-topic-artwork=", count: 1 }],
   },
+  {
+    path: "/en/services/web-app-security",
+    statuses: [308],
+    location: "/en/topics/web-app-security",
+  },
+  {
+    path: "/de/services/web-app-security",
+    statuses: [308],
+    location: "/de/topics/web-app-security",
+  },
+  {
+    path: "/en/services/secure-development",
+    statuses: [308],
+    location: "/en/topics/secure-development",
+  },
+  {
+    path: "/de/services/secure-development",
+    statuses: [308],
+    location: "/de/topics/secure-development",
+  },
+  {
+    path: "/en/services/penetration-testing",
+    statuses: [308],
+    location: "/en/topics/penetration-testing",
+  },
+  {
+    path: "/de/services/penetration-testing",
+    statuses: [308],
+    location: "/de/topics/penetration-testing",
+  },
   { path: "/robots.txt", statuses: [200] },
   {
     path: "/sitemap.xml",
@@ -132,6 +250,8 @@ const requiredRoutes = [
     contains: [
       "/en/pages/phishing-lab",
       "/de/pages/phishing-lab",
+      "/en/topics</loc>",
+      "/de/topics</loc>",
       "/en/topics/ai-in-devsecops",
       "/de/topics/agentic-engineering",
       "/en/topics/incident-response",
@@ -222,7 +342,15 @@ async function waitForServer() {
   throw new Error(`Timed out waiting for ${BASE_URL}`);
 }
 
-async function checkRoute({ path, statuses, location, contains, notContains, occurrences }) {
+async function checkRoute({
+  path,
+  statuses,
+  location,
+  contains,
+  notContains,
+  occurrences,
+  ordered,
+}) {
   const response = await fetch(`${BASE_URL}${path}`, { redirect: "manual" });
   const actualLocation = response.headers.get("location") ?? "";
 
@@ -238,7 +366,7 @@ async function checkRoute({ path, statuses, location, contains, notContains, occ
     );
   }
 
-  if (contains?.length || notContains?.length || occurrences?.length) {
+  if (contains?.length || notContains?.length || occurrences?.length || ordered?.length) {
     const body = await response.text();
 
     for (const needle of contains ?? []) {
@@ -260,6 +388,15 @@ async function checkRoute({ path, statuses, location, contains, notContains, occ
           `${path} contains "${needle}" ${actualCount} times, expected ${count}`,
         );
       }
+    }
+
+    let previousIndex = -1;
+    for (const needle of ordered ?? []) {
+      const nextIndex = body.indexOf(needle, previousIndex + 1);
+      if (nextIndex === -1) {
+        throw new Error(`${path} is missing ordered content after offset ${previousIndex}: "${needle}"`);
+      }
+      previousIndex = nextIndex;
     }
   }
 

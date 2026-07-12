@@ -15,7 +15,7 @@ interface LinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
  * It displays its child text or element with a subtle bottom border animation on hover.
  */
 
-const LinkAnimation: React.FC<LinkProps> = ({ href, children }) => {
+const LinkAnimation: React.FC<LinkProps> = ({ href, children, className = "", ...props }) => {
   const isExternal =
     href.startsWith("http://") ||
     href.startsWith("https://") ||
@@ -31,14 +31,22 @@ const LinkAnimation: React.FC<LinkProps> = ({ href, children }) => {
 
   if (isExternal) {
     return (
-      <NextLink className="relative flex h-fit w-fit font-mono" href={href}>
+      <NextLink
+        {...props}
+        className={`relative flex h-fit w-fit rounded-sm font-mono focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(140_127_224/0.74)] focus-visible:ring-offset-4 focus-visible:ring-offset-[var(--background)] ${className}`}
+        href={href}
+      >
         {content}
       </NextLink>
     );
   }
 
   return (
-    <IntlLink className="relative flex h-fit w-fit font-mono" href={href}>
+    <IntlLink
+      {...props}
+      className={`relative flex h-fit w-fit rounded-sm font-mono focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(140_127_224/0.74)] focus-visible:ring-offset-4 focus-visible:ring-offset-[var(--background)] ${className}`}
+      href={href}
+    >
       {content}
     </IntlLink>
   );

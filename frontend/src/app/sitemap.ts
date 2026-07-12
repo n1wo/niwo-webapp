@@ -11,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/pages/privacy-policy",
     "/pages/vdp",
     "/pages/imprint",
+    "/topics",
     ...topicArticleDefinitions.map((topic) => `/topics/${topic.slug}`),
   ];
 

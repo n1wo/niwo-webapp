@@ -1,19 +1,20 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import LinkAnimation from "./LinkAnimation";
 import LanguageSwitcher from "./LanguageSwitcher";
 import TopicsDropdown from "./TopicsDropdown";
 import HomeLogoLink from "./HomeLogoLink";
-import { serviceDefinitions } from "@/data/services";
+import { topicArticleDefinitions } from "@/data/topicArticles";
 import styles from "./NavChrome.module.css";
 
 export default function Navbar() {
   const t = useTranslations("Navbar");
-  const topicsT = useTranslations("Topics");
+  const topicsT = useTranslations("TopicArticles");
   const [isOpen, setIsOpen] = useState(false);
   const [isPinned, setIsPinned] = useState(false);
+  const mobileMenuButtonRef = useRef<HTMLButtonElement | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,9 +29,25 @@ export default function Navbar() {
     };
   }, []);
 
-  const topicLinks = serviceDefinitions.map((service) => ({
-    href: `/topics/${service.slug}`,
-    title: topicsT(`items.${service.key}.card.title`),
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== "Escape") return;
+
+      event.preventDefault();
+      setIsOpen(false);
+      mobileMenuButtonRef.current?.focus();
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen]);
+
+  const topicLinks = topicArticleDefinitions.map((topic) => ({
+    key: topic.key,
+    href: `/topics/${topic.slug}`,
+    title: topicsT(`items.${topic.key}.title`),
   }));
 
   const framePaddingClass = isPinned ? "px-0 sm:px-0" : "px-4 sm:px-6";
@@ -77,11 +94,13 @@ export default function Navbar() {
               </div>
               {/* Mobile menu button */}
               <button
+                ref={mobileMenuButtonRef}
                 type="button"
-                onClick={() => setIsOpen(!isOpen)}
-                className="relative md:hidden flex flex-col justify-center items-center"
+                onClick={() => setIsOpen((open) => !open)}
+                className="relative flex h-11 w-11 flex-col items-center justify-center rounded-sm md:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(140_127_224/0.74)] focus-visible:ring-offset-4 focus-visible:ring-offset-[var(--background)]"
+                aria-controls="mobile-navigation-menu"
                 aria-expanded={isOpen}
-                aria-label={isOpen ? "Close menu" : "Open menu"}
+                aria-label={isOpen ? t("closeMenu") : t("openMenu")}
               >
                 <span
                   className={`bg-white block transition-all duration-300 ease-out
@@ -101,37 +120,57 @@ export default function Navbar() {
         </div>
 
         {/* Mobile menu */}
-        {isOpen && (
-          <div
-            className={`fixed inset-x-0 z-40 md:hidden ${styles.mobileMenuFrame} ${mobileMenuStateClass} ${mobileMenuPaddingClass}`}
-          >
-            <div className={`w-full px-6 pb-6 pt-4 ${styles.mobileMenuPanel}`}>
-              <ul className="flex flex-col gap-4 font-sans">
-                <li>
-                  <LanguageSwitcher />
+        <div
+          id="mobile-navigation-menu"
+          data-mobile-navigation
+          hidden={!isOpen}
+          className={`fixed inset-x-0 z-40 md:hidden ${styles.mobileMenuFrame} ${mobileMenuStateClass} ${mobileMenuPaddingClass}`}
+        >
+          <div className={`w-full px-6 pb-6 pt-4 ${styles.mobileMenuPanel}`}>
+            <ul aria-label={t("mobileNavigation")} className="flex flex-col gap-4 font-sans">
+              <li>
+                <LanguageSwitcher onNavigate={() => setIsOpen(false)} />
+              </li>
+              <li>
+                <LinkAnimation
+                  href="mailto:info@niwosystems.com"
+                  onClick={() => setIsOpen(false)}
+                >
+                  {t("contact")}
+                </LinkAnimation>
+              </li>
+              <li>
+                <LinkAnimation href="/pages/about" onClick={() => setIsOpen(false)}>
+                  {t("about")}
+                </LinkAnimation>
+              </li>
+              <li>
+                <p className="font-mono text-xs uppercase tracking-[0.2em] text-zinc-500">
+                  {t("services")}
+                </p>
+              </li>
+              {topicLinks.map((topic) => (
+                <li
+                  key={topic.href}
+                  data-topic-nav={topic.key}
+                  className="border-l border-white/[0.1] pl-4"
+                >
+                  <LinkAnimation href={topic.href} onClick={() => setIsOpen(false)}>
+                    {topic.title}
+                  </LinkAnimation>
                 </li>
-                <li onClick={() => setIsOpen(false)}>
-                  <LinkAnimation href="mailto:info@niwosystems.com">{t("contact")}</LinkAnimation>
-                </li>
-                <li onClick={() => setIsOpen(false)}>
-                  <LinkAnimation href="/pages/about">{t("about")}</LinkAnimation>
-                </li>
-                <li onClick={() => setIsOpen(false)}>
-                  <LinkAnimation href="/#topics">{t("services")}</LinkAnimation>
-                </li>
-                {topicLinks.map((topic) => (
-                  <li
-                    key={topic.href}
-                    onClick={() => setIsOpen(false)}
-                    className="border-l border-white/[0.1] pl-4"
-                  >
-                    <LinkAnimation href={topic.href}>{topic.title}</LinkAnimation>
-                  </li>
-                ))}
-              </ul>
-            </div>
+              ))}
+              <li
+                data-all-topics-link="mobile"
+                className="border-t border-white/[0.08] pt-4"
+              >
+                <LinkAnimation href="/topics" onClick={() => setIsOpen(false)}>
+                  {t("allTopics")}
+                </LinkAnimation>
+              </li>
+            </ul>
           </div>
-        )}
+        </div>
       </nav>
     </header>
   );

@@ -242,7 +242,7 @@ export default async function TopicArticlePage({
     <article className="bg-[var(--background)] px-6 pb-28 pt-28 text-foreground sm:px-10 lg:px-16">
       <div className="mx-auto max-w-7xl 2xl:max-w-[88rem]">
         <Link
-          href="/#topics"
+          href="/topics"
           className="inline-flex items-center gap-2 rounded-sm font-mono text-xs uppercase tracking-[0.22em] text-zinc-500 transition-colors hover:text-zinc-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(140_127_224/0.74)] focus-visible:ring-offset-4 focus-visible:ring-offset-[var(--background)]"
         >
           <span aria-hidden="true">&larr;</span>

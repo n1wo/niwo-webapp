@@ -11,7 +11,10 @@
     "services": "Topics",
     "about": "About",
     "contact": "Contact",
-    "allTopics": "All topics"
+    "allTopics": "All topics",
+    "openMenu": "Open navigation menu",
+    "closeMenu": "Close navigation menu",
+    "mobileNavigation": "Mobile navigation"
   },
   "Footer": {
     "about": "About",
@@ -125,6 +128,16 @@
       "sourceNote": "A compact selection of primary research, standards, and public technical guidance used to ground this article.",
       "continueReading": "Continue reading",
       "opensInNewTab": "opens in a new tab"
+    },
+    "index": {
+      "metadata": {
+        "title": "Security topics, clearly explained | niwo",
+        "description": "Six connected guides to web application security, secure development, pentest preparation, AI in DevSecOps, agentic engineering, and incident response."
+      },
+      "eyebrow": "Knowledge area",
+      "title": "Six connected security topics",
+      "intro": "Start with the foundations or follow a modern workflow. Each guide builds a practical mental model, explains important limits, and points to the primary guidance behind it.",
+      "readTopic": "Read topic"
     },
     "items": {
       "webAppSecurity": {
@@ -1167,231 +1180,6 @@
             "href": "https://www.nist.gov/cyberframework"
           }
         ]
-      }
-    }
-  },
-  "Topics": {
-    "common": {
-      "backToTopics": "Back to topics",
-      "relatedTopics": "Related topics"
-    },
-    "items": {
-      "webAppSecurity": {
-        "metadata": {
-          "title": "Web App Security | niwo",
-          "description": "A practical topic page on web application security: flows, inputs, trust boundaries, common weaknesses, and plain-language notes on what matters."
-        },
-        "card": {
-          "eyebrow": "Topic",
-          "title": "Web App Security",
-          "text": "A practical look at the flows, inputs, and trust boundaries that carry real risk in web applications, with notes on how issues show up and how to reason about fixes.",
-          "accent": "Attack surface notes",
-          "tag": "Good for: developers, learners, and small teams who want a clearer mental model of web application risk."
-        },
-        "hero": {
-          "eyebrow": "Application security",
-          "title": "How web apps become exposed",
-          "intro": "This topic collects practical notes on how modern web applications become exposed: weak flows, missing access checks, unsafe input handling, session mistakes, and trust boundaries that are assumed instead of enforced.",
-          "outcomeLabel": "What this page is for",
-          "outcomeText": "A clear, plain-language map of where web application risk tends to appear and how to think about fixing it."
-        },
-        "covers": {
-          "title": "What this topic covers",
-          "items": [
-            "The flows that carry real risk: login, account actions, payments, anything sensitive",
-            "Authentication and session handling, and the assumptions behind them",
-            "Access control gaps: privilege escalation and broken object-level access",
-            "Input handling: injection, unsafe parsing, and weak validation",
-            "Configuration and trust-boundary issues that quietly widen your attack surface"
-          ]
-        },
-        "process": {
-          "title": "How I explore it",
-          "steps": [
-            {
-              "title": "Understand how the system is meant to work",
-              "text": "Start with the intended behavior: where sensitive actions happen, what data matters, and where the application assumes trust."
-            },
-            {
-              "title": "Look at where risk actually collects",
-              "text": "Focus on the flows, inputs, and edge cases that tend to hide real issues, not just what a checklist would flag."
-            },
-            {
-              "title": "Write it so it can be understood",
-              "text": "Good security notes explain impact and fixes in plain language. No vague risk scores; just what is wrong, why it matters, and what would improve it."
-            }
-          ]
-        },
-        "bestFor": {
-          "title": "Useful for",
-          "items": [
-            "Developers building products with accounts, permissions, or sensitive data",
-            "Learners trying to understand where web security issues come from",
-            "Small teams who want a clearer view of application risk",
-            "Anyone who wants an honest second pair of eyes on their security thinking"
-          ]
-        },
-        "deliverables": {
-          "title": "What I document",
-          "items": [
-            "Short notes on common web application failure modes",
-            "Plain-language explanations without jargon nobody reads",
-            "Practical fix patterns and tradeoffs",
-            "Examples from labs, reviews, and controlled test setups"
-          ]
-        },
-        "cta": {
-          "title": "Have a web security question?",
-          "text": "If this topic connects to something you are building or learning, you can ask a concrete question and I will take a look when I can.",
-          "primary": "Ask a security question",
-          "secondary": "Back to topics"
-        }
-      },
-      "penetrationTesting": {
-        "metadata": {
-          "title": "Pentest Preparation | niwo",
-          "description": "Plain-language notes on preparing for a penetration test: understanding the process, defining scope, reading reports, and asking a testing provider better questions."
-        },
-        "card": {
-          "eyebrow": "Topic",
-          "title": "Pentest Preparation",
-          "text": "Plain-language notes on what a penetration test is, how scope works, what a useful report should contain, and which questions are worth asking before you choose a testing provider.",
-          "accent": "Pentest preparation",
-          "tag": "Note: This is a learning and preparation topic, not a claim to sell full penetration tests."
-        },
-        "hero": {
-          "eyebrow": "Process & preparation",
-          "title": "Understand pentests before you pay for one",
-          "intro": "This topic explains what a pentest usually involves, how to think about scope, what a report can and cannot tell you, and how to have a more informed conversation with a testing provider.",
-          "outcomeLabel": "What this page is for",
-          "outcomeText": "A clearer understanding of the process, better scoping instincts, and a practical list of questions to ask before commissioning a test."
-        },
-        "covers": {
-          "title": "What this topic covers",
-          "items": [
-            "What a penetration test actually involves, from start to finish",
-            "Help defining and scoping what should be tested",
-            "What to expect from a report and how to read one",
-            "The right questions to ask a testing provider",
-            "How to make sure you get real value from the test"
-          ]
-        },
-        "reassurance": {
-          "title": "Controlled, not risk-free",
-          "text": "A professional test is planned to limit impact, but active testing can still affect availability or expose sensitive evidence. Written scope, stop conditions, contacts, backups, data handling, and third-party permissions reduce risk; they cannot erase it. Findings and reports remain sensitive and must feed an owned remediation process."
-        },
-        "process": {
-          "title": "How I break it down",
-          "steps": [
-            {
-              "title": "Understand the process",
-              "text": "I walk you through what a pentest involves, so there are no surprises and no jargon you have to decode later."
-            },
-            {
-              "title": "Prepare your scope",
-              "text": "We figure out what's worth testing and define a scope that fits your product and your budget."
-            },
-            {
-              "title": "Go in informed",
-              "text": "You head into the test knowing what to expect, what to ask, and how to judge the results."
-            }
-          ]
-        },
-        "bestFor": {
-          "title": "Useful for",
-          "items": [
-            "Teams considering their first penetration test",
-            "Founders who need to meet a customer or compliance requirement",
-            "Developers who want to scope a test properly before paying for it",
-            "Anyone unsure what to expect from a testing provider"
-          ]
-        },
-        "deliverables": {
-          "title": "What I document",
-          "items": [
-            "Plain-language walkthroughs of the pentest process",
-            "Scope examples and questions to clarify early",
-            "Notes on reading and acting on reports",
-            "A list of useful questions to ask a provider"
-          ]
-        },
-        "cta": {
-          "title": "Thinking about a pentest?",
-          "text": "If you are trying to understand scope, reports, or provider questions, ask a concrete security question and I can point you in a practical direction.",
-          "primary": "Ask a security question",
-          "secondary": "Back to topics"
-        }
-      },
-      "secureDevelopment": {
-        "metadata": {
-          "title": "Secure Development | niwo",
-          "description": "Practical secure-development notes for developers and learners: web security basics, defensive decisions, risk prioritization, and safer implementation patterns."
-        },
-        "card": {
-          "eyebrow": "Topic",
-          "title": "Secure Development",
-          "text": "Practical notes on building web applications with fewer security surprises: how to think about auth, input handling, data exposure, dependencies, and tradeoffs while you build.",
-          "accent": "Practical security notes",
-          "tag": "Good for: learners, solo developers, and small teams building web applications."
-        },
-        "hero": {
-          "eyebrow": "Secure development",
-          "title": "Build with security in mind, without drowning in checklists",
-          "intro": "This topic is about practical secure development: the small design and implementation choices that reduce risk before an app needs a formal review or a long report.",
-          "outcomeLabel": "What this page is for",
-          "outcomeText": "A practical way to think through security decisions while building: what matters, what can wait, and where mistakes tend to become real risk."
-        },
-        "covers": {
-          "title": "What this topic covers",
-          "items": [
-            "How to spot risky assumptions in your current setup",
-            "Authentication, authorization, session, and data-flow decisions",
-            "Practical web security and secure-development patterns",
-            "What to watch out for as an application grows",
-            "How to prioritize effort where it actually reduces risk"
-          ]
-        },
-        "process": {
-          "title": "How I explore it",
-          "steps": [
-            {
-              "title": "Start from the thing being built",
-              "text": "Good security thinking starts with the product, stack, data, and real user actions, not a generic checklist."
-            },
-            {
-              "title": "Trace the risky decisions",
-              "text": "Follow where trust, identity, input, permissions, and external dependencies enter the system."
-            },
-            {
-              "title": "Turn it into practical next steps",
-              "text": "The useful output is not fear. It is a clearer list of tradeoffs, fixes, and next things to learn."
-            }
-          ]
-        },
-        "bestFor": {
-          "title": "Useful for",
-          "items": [
-            "Early-stage teams figuring out their security basics",
-            "Solo developers who want someone to sanity-check their thinking",
-            "Small businesses moving things online for the first time",
-            "Anyone trying to learn secure development in a practical way"
-          ]
-        },
-        "deliverables": {
-          "title": "What I document",
-          "items": [
-            "Practical notes tied to real web-development decisions",
-            "Honest, jargon-free explanations of common risks",
-            "Fix patterns you can actually apply",
-            "A prioritized sense of what to learn or improve first"
-          ]
-        },
-        "cta": {
-          "title": "Not sure how to reason about a security decision?",
-          "text": "Ask a concrete question about what you are building, reading, or testing, and I can help you think it through.",
-          "primary": "Ask a security question",
-          "secondary": "Back to topics"
-        }
       }
     }
   },

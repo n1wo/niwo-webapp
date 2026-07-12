@@ -4,7 +4,7 @@ import {useLocale, useTranslations} from "next-intl";
 import {Link, usePathname} from "@/i18n/navigation";
 import {routing} from "@/i18n/routing";
 
-export default function LanguageSwitcher() {
+export default function LanguageSwitcher({ onNavigate }: { onNavigate?: () => void } = {}) {
   const t = useTranslations("LanguageSwitcher");
   const locale = useLocale();
   const pathname = usePathname();
@@ -22,7 +22,8 @@ export default function LanguageSwitcher() {
             key={nextLocale}
             href={pathname}
             locale={nextLocale}
-            className={`rounded-full px-2.5 py-1 transition-colors ${
+            onClick={onNavigate}
+            className={`rounded-full px-2.5 py-1 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(140_127_224/0.74)] ${
               isActive
                 ? "bg-[var(--color-accent)] text-white"
                 : "text-zinc-400 hover:text-white"
