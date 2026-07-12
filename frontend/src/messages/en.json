@@ -38,6 +38,7 @@
     "heroEyebrow": "Software · IT · Cybersecurity consulting",
     "heroHeadline": "Securely through the digital age.",
     "heroParagraph": "We help startups, small and medium-sized businesses, and individuals understand digital risks, better secure their systems, and adopt new technologies responsibly.",
+    "heroKeywords": ["DevSecOps", "Agentic Engineering", "Incident Response", "Security Hardening"],
     "primaryCta": "Start an initial conversation",
     "secondaryCta": "Explore topics",
     "supportLine": "Software · IT · Cybersecurity · Incident-Response Readiness",
@@ -54,9 +55,9 @@
       "cta": "Open whoami"
     },
     "hiringNotice": "Open to working student & part-time roles — IT-Security · IT-Support · Software Development",
-    "servicesEyebrow": "Security Topics",
-    "servicesTitle": "Topics I'm exploring in web security",
-    "servicesDescription": "Practical notes, experiments, and topic areas around web security, secure development, and how real weaknesses show up in applications.",
+    "servicesEyebrow": "Security explained",
+    "servicesTitle": "Complex security topics, explained clearly",
+    "servicesDescription": "Practical explanations of cybersecurity, secure development, incident response, and AI-assisted engineering — structured to show what matters, where the risks are, and how these ideas work in practice.",
     "approach": {
       "eyebrow": "How I work",
       "title": "An honest, practical approach to security",
@@ -98,24 +99,502 @@
         "recommendation": "[>] recommendation: fix auth flow"
       }
     },
-    "serviceCards": {
-      "webAppSecurity": {
-        "eyebrow": "Topic",
-        "title": "Web App Security",
-        "text": "Notes on the flows, inputs, and trust boundaries that carry real risk in modern web applications.",
-        "accent": "Attack surface notes"
+    "securityTopics": {
+      "aiDevSecOps": {
+        "title": "AI in DevSecOps",
+        "description": "How AI can support secure software delivery — from planning and code review to CI/CD, infrastructure, and monitoring — without removing human judgment.",
+        "linkLabel": "Read the explanation"
       },
-      "penetrationTesting": {
-        "eyebrow": "Topic",
-        "title": "Pentest Preparation",
-        "text": "Plain-language notes on how pentests work, what good scope looks like, and which questions matter before a test.",
-        "accent": "Pentest preparation"
+      "agenticEngineering": {
+        "title": "Agentic Engineering",
+        "description": "How developers work with AI agents, tools, permissions, approval gates, and observable workflows while keeping control over high-impact actions.",
+        "linkLabel": "Read the explanation"
       },
-      "secureDevelopment": {
-        "eyebrow": "Topic",
-        "title": "Secure Development",
-        "text": "Practical secure-development notes for building, reviewing, and thinking about web applications with fewer sharp edges.",
-        "accent": "Practical security notes"
+      "incidentResponse": {
+        "title": "Incident Response",
+        "description": "A practical introduction to triage, containment, evidence preservation, recovery, communication, and learning after a suspected security incident.",
+        "linkLabel": "Read the explanation"
+      }
+    }
+  },
+  "TopicArticles": {
+    "common": {
+      "backToTopics": "Back to the topic overview",
+      "onThisPage": "On this page",
+      "sources": "Sources and further reading",
+      "sourceNote": "A compact selection of primary research, standards, and public technical guidance used to ground this article.",
+      "continueReading": "Continue reading"
+    },
+    "items": {
+      "aiDevSecOps": {
+        "metadata": {
+          "title": "AI in DevSecOps, explained | niwo",
+          "description": "A clear introduction to using AI across secure software delivery: where it helps, how the workflow works, and why human review remains essential."
+        },
+        "eyebrow": "Secure software delivery",
+        "title": "AI in DevSecOps",
+        "intro": [
+          "DevSecOps means treating security as part of everyday software delivery, not as a final inspection shortly before release. AI can support that work by sorting findings, suggesting tests, explaining unfamiliar code, and highlighting patterns that a busy team might otherwise miss.",
+          "The important word is support. An AI system produces predictions from data and instructions; it does not understand a company’s risk, customers, or legal duties in the way accountable people do. Used well, it shortens feedback loops. Used carelessly, it can create convincing new mistakes at the speed of automation."
+        ],
+        "coreIdea": {
+          "title": "The core idea",
+          "paragraphs": [
+            "Think of a software delivery pipeline as a sequence of checkpoints: plan the change, write code, build it, test it, deploy it, and watch how it behaves. Security questions belong at every checkpoint. AI adds an assistant that can compare, summarize, classify, and propose — while ordinary security controls still decide what is allowed to move forward.",
+            "This is different from asking a chatbot whether code is secure. A useful setup combines several forms of evidence: requirements, threat models, code and dependency scans, test results, build provenance, deployment policy, and production monitoring. AI may help connect those signals, but the underlying evidence must remain inspectable."
+          ]
+        },
+        "howItWorks": {
+          "title": "How it works in practice",
+          "intro": "There is no single AI-in-DevSecOps product or universal workflow. A careful implementation usually adds bounded assistance to an existing secure development process.",
+          "steps": [
+            {
+              "title": "Plan",
+              "text": "The team defines security requirements, likely misuse cases, sensitive data, and the actions that always require human approval. AI can help retrieve similar past decisions, but it should not invent the risk tolerance."
+            },
+            {
+              "title": "Code",
+              "text": "A coding assistant may explain unfamiliar functions, draft tests, or suggest a safer API. The developer reviews the actual diff, checks assumptions, and remains responsible for what enters the repository."
+            },
+            {
+              "title": "Verify",
+              "text": "Static analysis, dependency checks, secret scanning, and tests produce findings. AI can group duplicates or add context, but deterministic tools and reproducible tests remain the source of evidence."
+            },
+            {
+              "title": "Build",
+              "text": "The build system records where code and dependencies came from and applies policy gates. An AI suggestion must not bypass signed artifacts, protected branches, or required reviews."
+            },
+            {
+              "title": "Deploy",
+              "text": "Infrastructure changes are compared with an approved plan. Low-risk changes may be automated; access-control, production-data, and destructive changes should be narrowly permissioned and explicitly approved."
+            },
+            {
+              "title": "Observe and learn",
+              "text": "Runtime signals, incidents, and false alarms feed back into tests and rules. AI can summarize a noisy event stream, while responders verify the evidence before changing systems or declaring an incident."
+            }
+          ]
+        },
+        "whereUsed": {
+          "title": "Where it is useful",
+          "intro": "The strongest use cases have clear inputs, reviewable outputs, and a safe way to reject the suggestion.",
+          "items": [
+            {
+              "title": "Code and test review",
+              "text": "Explaining a risky code path, proposing edge-case tests, or helping a reviewer trace data from an input to a sensitive operation."
+            },
+            {
+              "title": "Finding triage",
+              "text": "Grouping related scanner results, adding repository context, and drafting a first explanation so specialists can spend more time on the findings that matter."
+            },
+            {
+              "title": "Infrastructure changes",
+              "text": "Comparing configuration or infrastructure-as-code changes with policy, then presenting the difference for approval rather than silently applying it."
+            },
+            {
+              "title": "Monitoring support",
+              "text": "Summarizing alerts and connecting them to recent deployments, while keeping raw logs, timelines, and source evidence available to responders."
+            }
+          ]
+        },
+        "benefits": {
+          "title": "What it can improve",
+          "intro": "AI is most valuable when it helps people get useful security feedback earlier and apply existing knowledge more consistently.",
+          "items": [
+            "Shorter feedback loops between a code change and a security question.",
+            "Less time spent sorting repetitive findings and searching for context.",
+            "More consistent draft documentation, tests, and review prompts.",
+            "Better access to security guidance for developers who are not specialists."
+          ]
+        },
+        "risks": {
+          "title": "Risks and limitations",
+          "intro": "An AI answer can sound certain even when it is wrong. Faster output is not the same as stronger evidence, and automation can amplify both good and bad decisions.",
+          "items": [
+            {
+              "title": "Insecure or invented output",
+              "text": "Generated code may contain subtle vulnerabilities, depend on nonexistent behavior, or solve the visible test while missing the real requirement."
+            },
+            {
+              "title": "Sensitive-data exposure",
+              "text": "Source code, secrets, logs, and customer data can leak through prompts, tool integrations, retention settings, or an untrusted model supply chain."
+            },
+            {
+              "title": "Automation bias",
+              "text": "People may accept a fluent recommendation too quickly or stop investigating after the system labels a finding as harmless."
+            },
+            {
+              "title": "Adversarial manipulation",
+              "text": "Malicious code comments, issue text, logs, or dependencies can try to steer an AI-enabled tool. Inputs must be treated as untrusted, and tool permissions must stay narrow."
+            },
+            {
+              "title": "Changing behavior",
+              "text": "Models, prompts, data, and connected tools change over time. Teams need repeatable evaluations and monitoring rather than assuming yesterday’s behavior will remain stable."
+            }
+          ]
+        },
+        "humanResponsibility": {
+          "title": "Human responsibility",
+          "paragraphs": [
+            "Secure delivery is an organizational responsibility. People decide what risk is acceptable, which evidence is sufficient, who may approve a release, and how customers are protected when something goes wrong.",
+            "Human review is especially important when a recommendation changes access, handles sensitive data, suppresses a finding, modifies production, or is difficult to reverse. A named owner must be able to explain the decision without relying on the phrase ‘the AI said so.’"
+          ],
+          "items": [
+            "Define security requirements and risk tolerance",
+            "Approve high-impact or irreversible actions",
+            "Validate findings against primary evidence",
+            "Own incidents, disclosures, and corrective action"
+          ]
+        },
+        "takeaways": {
+          "title": "Key takeaways",
+          "items": [
+            "AI can assist every delivery stage, but it should sit inside an existing secure development framework.",
+            "Deterministic checks, protected workflows, and reproducible evidence remain essential.",
+            "The safest automations are bounded, observable, reversible, and easy for a person to reject.",
+            "Human accountability does not disappear when the system becomes faster or more autonomous."
+          ]
+        },
+        "sources": [
+          {
+            "title": "Secure Software Development Framework (SSDF) Version 1.1 — NIST SP 800-218",
+            "organization": "National Institute of Standards and Technology",
+            "href": "https://csrc.nist.gov/pubs/sp/800/218/final"
+          },
+          {
+            "title": "Secure Software Development Practices for Generative AI — NIST SP 800-218A",
+            "organization": "National Institute of Standards and Technology",
+            "href": "https://csrc.nist.gov/pubs/sp/800/218/a/final"
+          },
+          {
+            "title": "Artificial Intelligence Risk Management Framework: Generative AI Profile — NIST AI 600-1",
+            "organization": "National Institute of Standards and Technology",
+            "href": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf"
+          },
+          {
+            "title": "Guidelines for Secure AI System Development",
+            "organization": "CISA and international cybersecurity partners",
+            "href": "https://www.cisa.gov/news-events/alerts/2023/11/26/cisa-and-uk-ncsc-unveil-joint-guidelines-secure-ai-system-development"
+          },
+          {
+            "title": "Software Assurance Maturity Model",
+            "organization": "OWASP Foundation",
+            "href": "https://owaspsamm.org/model/"
+          }
+        ]
+      },
+      "agenticEngineering": {
+        "metadata": {
+          "title": "Agentic Engineering, explained | niwo",
+          "description": "A plain-language guide to AI agents, tool use, permissions, approval gates, memory, observability, and the limits of emerging agentic systems."
+        },
+        "eyebrow": "Bounded AI systems",
+        "title": "Agentic Engineering",
+        "intro": [
+          "An AI agent is a system that can pursue a goal through several steps: inspect the current situation, choose an action, use a tool, observe the result, and decide what to do next. That is different from a chatbot that produces one answer and stops.",
+          "Agentic Engineering is the work of designing that loop so it is useful, understandable, and constrained. The field is still emerging: terminology varies, capabilities change quickly, and there is no universally accepted architecture that makes an agent reliable or safe by default."
+        ],
+        "coreIdea": {
+          "title": "The core idea",
+          "paragraphs": [
+            "A practical agent combines a model with instructions, tools, working state, and a control loop. Tools might read a repository, query a database, open a ticket, or propose a code change. Memory can retain useful context, while policy determines which information and actions are available.",
+            "The model’s apparent reasoning is not a guarantee that it understands the world or has reached a correct conclusion. The engineering challenge is therefore to make every important action pass through ordinary controls: authenticated identities, least privilege, structured inputs, validation, logs, budgets, stop conditions, and human approval where the impact is high."
+          ]
+        },
+        "howItWorks": {
+          "title": "How an agentic workflow works",
+          "intro": "The exact loop differs between systems, but a controlled workflow usually contains the following stages.",
+          "steps": [
+            {
+              "title": "Scope the task",
+              "text": "A person or trusted system states the goal, boundaries, available data, success criteria, and actions that are forbidden or require approval."
+            },
+            {
+              "title": "Form a plan",
+              "text": "The agent breaks the task into steps. The plan is provisional: new evidence may require revision, and a reviewer should be able to inspect the intended direction."
+            },
+            {
+              "title": "Select a tool",
+              "text": "The system chooses from an allowlist of tools with structured parameters. It should not gain a general-purpose credential simply because one tool needs narrow access."
+            },
+            {
+              "title": "Check permission",
+              "text": "Policy evaluates identity, task context, data sensitivity, action impact, and budget. A high-impact action pauses at an approval gate."
+            },
+            {
+              "title": "Act and observe",
+              "text": "The tool performs the bounded operation and returns a result. The agent records what happened, validates the response, and uses it as new evidence rather than unquestioned truth."
+            },
+            {
+              "title": "Stop or escalate",
+              "text": "The loop ends when success criteria are met, a limit is reached, uncertainty becomes too high, or a person must decide. A safe agent is designed to stop, not only to continue."
+            }
+          ]
+        },
+        "whereUsed": {
+          "title": "Where it is used",
+          "intro": "Agentic systems are most credible when they operate in a defined environment with measurable outcomes and limited consequences.",
+          "items": [
+            {
+              "title": "Software engineering",
+              "text": "Inspecting a repository, proposing a small change, running tests in a sandbox, and presenting the diff for human review."
+            },
+            {
+              "title": "Operations support",
+              "text": "Collecting diagnostic information, correlating recent changes, and drafting a remediation plan without directly altering production."
+            },
+            {
+              "title": "Research workflows",
+              "text": "Searching approved sources, extracting evidence, comparing claims, and producing a traceable draft that a researcher can verify."
+            },
+            {
+              "title": "Administrative processes",
+              "text": "Preparing a ticket, routing a request, or assembling a report where each external action is logged and sensitive decisions remain with people."
+            }
+          ]
+        },
+        "benefits": {
+          "title": "What it can improve",
+          "intro": "Agents can reduce the coordination cost of multi-step work, especially when information is spread across several tools.",
+          "items": [
+            "Carry context across several steps instead of restarting with every tool.",
+            "Automate repetitive collection and preparation work around expert decisions.",
+            "Apply a documented workflow more consistently when the environment is well bounded.",
+            "Create useful action trails when tool calls, inputs, outputs, and approvals are recorded."
+          ]
+        },
+        "risks": {
+          "title": "Risks and limitations",
+          "intro": "Giving a model tools changes the risk: an incorrect sentence can become an incorrect action. Agentic security guidance is developing quickly, so controls need continual testing rather than one-time certification.",
+          "items": [
+            {
+              "title": "Goal or instruction hijacking",
+              "text": "Untrusted text in a document, website, issue, or tool result may try to redirect the agent away from the authorized task."
+            },
+            {
+              "title": "Excessive agency",
+              "text": "A tool may expose more data or authority than the task requires. A small planning error can then have a large operational impact."
+            },
+            {
+              "title": "Cascading errors",
+              "text": "One plausible but wrong observation can shape the next plan, tool choice, and action, making a multi-step failure harder to notice."
+            },
+            {
+              "title": "Memory poisoning",
+              "text": "Incorrect or malicious information stored as memory can influence later tasks, users, or decisions long after the original input disappeared."
+            },
+            {
+              "title": "Poor observability",
+              "text": "If prompts, tool calls, policy decisions, and state changes are not recorded, operators cannot reconstruct why an action occurred."
+            },
+            {
+              "title": "Runaway loops and cost",
+              "text": "An agent can repeat unsuccessful actions, consume resources, or create load. Time, action, and spending budgets need hard limits."
+            }
+          ]
+        },
+        "humanResponsibility": {
+          "title": "Human responsibility",
+          "paragraphs": [
+            "People choose the goal, design the available tools, grant identities and permissions, define evaluation criteria, and decide which actions need approval. Those are governance decisions, not details that can be delegated to a prompt.",
+            "Human oversight must also be realistic. Asking someone to approve hundreds of opaque actions is not meaningful control. Reviewers need enough context, time, authority, and technical evidence to reject or change the proposed action."
+          ],
+          "items": [
+            "Set task boundaries and least-privilege access",
+            "Approve consequential or irreversible actions",
+            "Review logs, evaluations, and failure patterns",
+            "Suspend the system and investigate incidents"
+          ]
+        },
+        "takeaways": {
+          "title": "Key takeaways",
+          "items": [
+            "An agent is a model connected to a controlled loop of observation, planning, tools, and feedback.",
+            "Useful autonomy depends on narrow permissions, validation, observable actions, budgets, and stop conditions.",
+            "Agentic Engineering remains an emerging discipline; impressive demos do not establish dependable real-world behavior.",
+            "Humans remain responsible for goals, access, approvals, accountability, and incident handling."
+          ]
+        },
+        "sources": [
+          {
+            "title": "Artificial Intelligence Risk Management Framework 1.0",
+            "organization": "National Institute of Standards and Technology",
+            "href": "https://www.nist.gov/itl/ai-risk-management-framework"
+          },
+          {
+            "title": "Artificial Intelligence Risk Management Framework: Generative AI Profile — NIST AI 600-1",
+            "organization": "National Institute of Standards and Technology",
+            "href": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf"
+          },
+          {
+            "title": "Agentic AI — Threats and Mitigations",
+            "organization": "OWASP GenAI Security Project",
+            "href": "https://genai.owasp.org/resource/agentic-ai-threats-and-mitigations/"
+          },
+          {
+            "title": "ReAct: Synergizing Reasoning and Acting in Language Models",
+            "organization": "Yao et al., ICLR 2023",
+            "href": "https://arxiv.org/abs/2210.03629"
+          }
+        ]
+      },
+      "incidentResponse": {
+        "metadata": {
+          "title": "Incident Response, explained | niwo",
+          "description": "A practical introduction to detecting, triaging, containing, investigating, recovering from, and learning after a cybersecurity incident."
+        },
+        "eyebrow": "Responding under uncertainty",
+        "title": "Incident Response",
+        "intro": [
+          "Incident Response is the coordinated work that begins when an organization suspects that systems, accounts, or data may have been compromised. The goal is not merely to remove malware. It is to limit harm, understand what happened, preserve reliable evidence, restore trustworthy operations, and communicate responsibly.",
+          "A good response balances speed with care. Disconnecting a machine may stop an attacker, but it can also interrupt a critical service or destroy short-lived evidence. Teams therefore work from tested plans, assign clear authority, record decisions, and update their understanding as new facts arrive."
+        ],
+        "coreIdea": {
+          "title": "The core idea",
+          "paragraphs": [
+            "Incident response is a cycle that connects preparation, detection, response, and recovery. Preparation determines whether logs exist, backups work, contacts are known, and people can make decisions under pressure. Detection and triage turn signals into an evidence-based view of scope and impact.",
+            "Response then contains the immediate risk, preserves and analyzes evidence, removes the cause, and restores systems carefully. Recovery is complete only when important services are trustworthy again, stakeholders have the information they need, and lessons from the event improve future prevention and response."
+          ]
+        },
+        "howItWorks": {
+          "title": "How the response unfolds",
+          "intro": "Real incidents rarely follow a perfect straight line. Teams may repeat these stages as the scope changes, but the structure helps them avoid improvised and contradictory actions.",
+          "steps": [
+            {
+              "title": "Prepare",
+              "text": "Define roles, contacts, escalation thresholds, communication channels, evidence procedures, backups, and safe access before an incident occurs. Practice with realistic exercises."
+            },
+            {
+              "title": "Detect and verify",
+              "text": "Collect alerts, reports, and system signals. Check whether the event is genuine, record initial facts, and avoid treating an unverified theory as the conclusion."
+            },
+            {
+              "title": "Triage and scope",
+              "text": "Estimate which identities, devices, applications, data, and business processes may be affected. Prioritize by impact, urgency, and the attacker’s remaining access."
+            },
+            {
+              "title": "Contain",
+              "text": "Limit further harm through actions such as isolating a host, disabling a credential, blocking a malicious connection, or separating a network segment. Choose actions proportionate to operational risk."
+            },
+            {
+              "title": "Preserve and analyze",
+              "text": "Collect relevant logs, files, volatile data, and timelines in a way that protects integrity and provenance. Analysis tests competing explanations and refines the scope."
+            },
+            {
+              "title": "Eradicate and recover",
+              "text": "Remove malicious persistence, close the exploited path, rotate affected secrets, rebuild or restore systems, verify backups, and monitor closely for recurrence."
+            },
+            {
+              "title": "Communicate and learn",
+              "text": "Provide accurate updates through approved channels, meet legal or contractual duties, document decisions, and turn lessons into better controls, plans, and exercises."
+            }
+          ]
+        },
+        "whereUsed": {
+          "title": "Where it is used",
+          "intro": "Incident response applies whenever digital trust may have been lost — from a single account to a major service disruption.",
+          "items": [
+            {
+              "title": "Account compromise",
+              "text": "A phishing report or unusual login leads to session revocation, credential reset, mailbox review, and checks for further access."
+            },
+            {
+              "title": "Ransomware",
+              "text": "Teams isolate affected systems, protect backups, determine the spread, coordinate business continuity, preserve evidence, and plan a verified restoration."
+            },
+            {
+              "title": "Cloud or API exposure",
+              "text": "A leaked token or misconfiguration requires rapid credential control, access-log analysis, scope assessment, and validation that the exposed path is closed."
+            },
+            {
+              "title": "Application breach",
+              "text": "Responders contain the vulnerable service, preserve application and infrastructure evidence, identify affected data, remediate the defect, and monitor the repaired system."
+            }
+          ]
+        },
+        "benefits": {
+          "title": "What good response improves",
+          "intro": "A prepared response does not guarantee that an incident will be small, but it improves the organization’s ability to make defensible decisions under uncertainty.",
+          "items": [
+            "Faster containment and less time for an attacker to cause additional harm.",
+            "Clearer coordination across technical, legal, leadership, communications, and external partners.",
+            "More reliable evidence for scoping, recovery, reporting, and later investigation.",
+            "Safer restoration and concrete lessons that reduce the chance of recurrence."
+          ]
+        },
+        "risks": {
+          "title": "Risks and limitations",
+          "intro": "Response decisions are made with incomplete information. A playbook provides structure, but it cannot replace judgment about safety, business continuity, evidence, law, and the people affected.",
+          "items": [
+            {
+              "title": "Destroying evidence",
+              "text": "Rebooting, wiping, or changing a system too quickly can remove volatile data and make the sequence of events harder to reconstruct."
+            },
+            {
+              "title": "Scoping too narrowly",
+              "text": "Finding one compromised account or device does not prove the incident is contained. Shared credentials, lateral movement, and persistence may extend the scope."
+            },
+            {
+              "title": "Operational harm",
+              "text": "Aggressive isolation can interrupt essential services. Containment choices must balance ongoing attacker access against safety and business impact."
+            },
+            {
+              "title": "Unreliable recovery",
+              "text": "Restoring from an unverified backup or reconnecting before the root cause is addressed can return the organization to a compromised state."
+            },
+            {
+              "title": "Poor communication",
+              "text": "Late, speculative, or inconsistent messages can harm affected people and undermine legal, contractual, and public responsibilities."
+            },
+            {
+              "title": "Human strain",
+              "text": "Long incidents create fatigue and tunnel vision. Rotations, decision logs, handovers, and access to specialist support are operational safeguards."
+            }
+          ]
+        },
+        "humanResponsibility": {
+          "title": "Human responsibility",
+          "paragraphs": [
+            "Response needs named decision-makers. An incident commander coordinates priorities and records decisions; technical specialists investigate and contain; system owners explain operational consequences; legal, privacy, communications, and leadership roles address duties beyond the technical system.",
+            "Tools can correlate alerts, collect artifacts, and automate approved containment steps. People still decide whether the evidence is sufficient, whether an action is proportionate, who must be notified, when operations are trustworthy again, and what accountability follows."
+          ],
+          "items": [
+            "Assign authority, roles, and escalation paths",
+            "Protect evidence integrity and affected people",
+            "Approve containment, disclosure, and recovery decisions",
+            "Document lessons and fund corrective action"
+          ]
+        },
+        "takeaways": {
+          "title": "Key takeaways",
+          "items": [
+            "Incident response is a coordinated risk-management process, not only a technical cleanup task.",
+            "Preparation, reliable evidence, clear roles, and practiced communication matter before the first alert arrives.",
+            "Containment must limit harm without unnecessarily destroying evidence or critical operations.",
+            "Recovery includes verification, communication, documentation, and learning — not merely switching systems back on."
+          ]
+        },
+        "sources": [
+          {
+            "title": "Incident Response Recommendations and Considerations — NIST SP 800-61 Rev. 3",
+            "organization": "National Institute of Standards and Technology",
+            "href": "https://csrc.nist.gov/pubs/sp/800/61/r3/final"
+          },
+          {
+            "title": "Federal Government Cybersecurity Incident and Vulnerability Response Playbooks",
+            "organization": "Cybersecurity and Infrastructure Security Agency",
+            "href": "https://www.cisa.gov/topics/cybersecurity-best-practices/executive-order-improving-nations-cybersecurity"
+          },
+          {
+            "title": "Guide to Integrating Forensic Techniques into Incident Response — NIST SP 800-86",
+            "organization": "National Institute of Standards and Technology",
+            "href": "https://csrc.nist.gov/pubs/sp/800/86/final"
+          },
+          {
+            "title": "Cybersecurity Framework 2.0",
+            "organization": "National Institute of Standards and Technology",
+            "href": "https://www.nist.gov/cyberframework"
+          }
+        ]
       }
     }
   },

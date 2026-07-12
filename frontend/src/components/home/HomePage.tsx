@@ -1,7 +1,7 @@
 "use client";
 
 import type { JSX } from "react";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import ActionLink from "@/components/common/ActionLink";
@@ -9,15 +9,14 @@ import CardShell from "@/components/common/CardShell";
 import PrimarySecondaryCta from "@/components/common/PrimarySecondaryCta";
 import InteractiveTerminal from "@/components/home/InteractiveTerminal";
 import LivingTrustGraph from "@/components/home/LivingTrustGraph";
-import ServiceCard from "@/components/services/ServiceCard";
-import { serviceDefinitions } from "@/data/services";
+import TopicEditorialRow from "@/components/home/TopicEditorialRow";
+import TopicArtwork from "@/components/home/TopicArtwork";
 
 const HEADLINE_TYPING_DELAY_MS = 28;
 const SECTION_HEADING_TYPING_DELAY_MS = 22;
 
 export default function HomePage(): JSX.Element {
   const t = useTranslations("Home");
-  const serviceT = useTranslations("Topics");
   const servicesHeadingRef = useRef<HTMLDivElement | null>(null);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const [headlineLength, setHeadlineLength] = useState(0);
@@ -27,6 +26,7 @@ export default function HomePage(): JSX.Element {
   const [showServicesTitleCursor, setShowServicesTitleCursor] = useState(false);
 
   const headline = t("heroHeadline");
+  const heroKeywords = t.raw("heroKeywords") as string[];
   const servicesTitle = t("servicesTitle");
 
   const renderTypedText = (text: string, length: number, showCursor: boolean) => {
@@ -54,18 +54,35 @@ export default function HomePage(): JSX.Element {
     );
   };
 
-  const serviceCards = useMemo(
-    () =>
-      serviceDefinitions.map((service) => ({
-        ...service,
-        href: `/topics/${service.slug}`,
-        eyebrow: serviceT(`items.${service.key}.card.eyebrow`),
-        title: serviceT(`items.${service.key}.card.title`),
-        text: serviceT(`items.${service.key}.card.text`),
-        tag: serviceT(`items.${service.key}.card.tag`),
-      })),
-    [serviceT],
-  );
+  const topicRows = [
+    {
+      key: "aiDevSecOps",
+      marker: "01",
+      title: t("securityTopics.aiDevSecOps.title"),
+      description: t("securityTopics.aiDevSecOps.description"),
+      linkLabel: t("securityTopics.aiDevSecOps.linkLabel"),
+      href: "/topics/ai-in-devsecops",
+      artwork: <TopicArtwork type="aiDevSecOps" />,
+    },
+    {
+      key: "agenticEngineering",
+      marker: "02",
+      title: t("securityTopics.agenticEngineering.title"),
+      description: t("securityTopics.agenticEngineering.description"),
+      linkLabel: t("securityTopics.agenticEngineering.linkLabel"),
+      href: "/topics/agentic-engineering",
+      artwork: <TopicArtwork type="agenticEngineering" />,
+    },
+    {
+      key: "incidentResponse",
+      marker: "03",
+      title: t("securityTopics.incidentResponse.title"),
+      description: t("securityTopics.incidentResponse.description"),
+      linkLabel: t("securityTopics.incidentResponse.linkLabel"),
+      href: "/topics/incident-response",
+      artwork: <TopicArtwork type="incidentResponse" />,
+    },
+  ];
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -179,6 +196,17 @@ export default function HomePage(): JSX.Element {
               {t("heroParagraph")}
             </p>
 
+            <ul className="flex max-w-3xl flex-wrap gap-2">
+              {heroKeywords.map((keyword) => (
+                <li
+                  key={keyword}
+                  className="border border-white/[0.09] bg-white/[0.02] px-3 py-1.5 font-mono text-[0.68rem] font-medium uppercase tracking-[0.14em] text-zinc-400"
+                >
+                  {keyword}
+                </li>
+              ))}
+            </ul>
+
             <PrimarySecondaryCta
               className="pt-2"
               primaryLabel={t("primaryCta")}
@@ -245,13 +273,13 @@ export default function HomePage(): JSX.Element {
           />
         </section>
 
-        <section id="topics" className="space-y-10">
-          <div ref={servicesHeadingRef} className="max-w-5xl space-y-4">
+        <section id="topics">
+          <div ref={servicesHeadingRef} className="max-w-4xl space-y-4 pb-8 sm:pb-10">
             <p className="text-sm font-medium tracking-wide text-[var(--color-accent-light)]">
               {t("servicesEyebrow")}
             </p>
-            <h2 className="relative break-words hyphens-auto font-mono text-3xl font-bold tracking-tight text-white sm:text-4xl lg:whitespace-nowrap">
-              <span aria-hidden="true" className="invisible block whitespace-pre-wrap lg:whitespace-nowrap">
+            <h2 className="relative break-words hyphens-auto font-mono text-3xl font-bold tracking-tight text-white sm:text-4xl">
+              <span aria-hidden="true" className="invisible block whitespace-pre-wrap">
                 {servicesTitle}
               </span>
               <span aria-label={servicesTitle} className="absolute inset-0 block">
@@ -262,23 +290,22 @@ export default function HomePage(): JSX.Element {
                 )}
               </span>
             </h2>
-            <p className="text-base leading-7 text-zinc-400">
+            <p className="max-w-3xl text-base leading-8 text-zinc-400">
               {t("servicesDescription")}
             </p>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-3 md:auto-rows-fr md:items-stretch">
-            {serviceCards.map((card, index) => (
-              <ServiceCard
-                key={card.title}
-                href={card.href}
-                eyebrow={card.eyebrow}
-                title={card.title}
-                text={card.text}
-                tag={card.tag}
-                visual={card.visual}
-                prefersReducedMotion={prefersReducedMotion}
-                delay={index * 0.08}
+          <div>
+            {topicRows.map((topic, index) => (
+              <TopicEditorialRow
+                key={topic.key}
+                marker={topic.marker}
+                title={topic.title}
+                description={topic.description}
+                linkLabel={topic.linkLabel}
+                href={topic.href}
+                artwork={topic.artwork}
+                artworkFirstOnDesktop={index === 1}
               />
             ))}
           </div>
