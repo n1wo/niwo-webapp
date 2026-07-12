@@ -532,27 +532,27 @@
           "steps": [
             {
               "title": "Entscheidung klären",
-              "text": "Haltet fest, warum der Test beauftragt wird und welche Entscheidung er unterstützen soll: ein Release, Nachweise für Kunden, eine wesentliche Architekturänderung oder die unabhängige Prüfung des eigenen Schwachstellenmanagements."
+              "text": "Halte fest, warum du den Test beauftragst und welche Entscheidung er unterstützen soll: ein Release, Nachweise für Kunden, eine wesentliche Architekturänderung oder die unabhängige Prüfung des eigenen Schwachstellenmanagements."
             },
             {
               "title": "Erlaubnis bestätigen",
-              "text": "Ermittelt die Verantwortlichen jedes Zielsystems und holt ausdrückliche schriftliche Freigaben ein. Cloud-, Hosting-, Zahlungs-, Identitäts- und andere Drittdienste können eigene Regeln oder Genehmigungen verlangen; der Besitz einer Anwendung erlaubt nicht automatisch den Test jeder Abhängigkeit."
+              "text": "Ermittle die Verantwortlichen jedes Zielsystems und hol ausdrückliche schriftliche Freigaben ein. Cloud-, Hosting-, Zahlungs-, Identitäts- und andere Drittdienste können eigene Regeln oder Genehmigungen verlangen. Dass dir eine Anwendung gehört, erlaubt noch nicht den Test jeder Abhängigkeit."
             },
             {
               "title": "Scope aufbauen",
-              "text": "Listet Anwendungen, APIs, Hostnamen, Adressen, Umgebungen, Rollen und wichtige Datenflüsse auf. Haltet Ausschlüsse und geteilte Infrastruktur fest. Ein guter Scope beschreibt Systeme und Vertrauensgrenzen und besteht nicht nur aus der URL einer Startseite."
+              "text": "Liste Anwendungen, APIs, Hostnamen, Adressen, Umgebungen, Rollen und wichtige Datenflüsse auf. Halte Ausschlüsse und geteilte Infrastruktur fest. Ein guter Scope beschreibt Systeme und Vertrauensgrenzen - nicht nur die URL einer Startseite."
             },
             {
               "title": "Testregeln vereinbaren",
-              "text": "Dokumentiert Zeitraum, Uhrzeiten, erlaubte Testarten, Rate-Limits, verbotene Handlungen, Abbruchbedingungen, Quelladressen, Kommunikationswege und den Prozess für Scope-Änderungen. Denial-of-Service, Social Engineering, Persistenz und destruktive Aktionen bleiben ausgeschlossen, solange sie nicht ausdrücklich autorisiert und kontrolliert sind. Bei Anzeichen echter Angreiferaktivität wird der betroffene Test pausiert und der Incident-Response-Weg genutzt."
+              "text": "Dokumentiere Zeitraum, Uhrzeiten, erlaubte Testarten, Rate-Limits, verbotene Handlungen, Abbruchbedingungen, Quelladressen, Kommunikationswege und den Prozess für Scope-Änderungen. Denial-of-Service, Social Engineering, Persistenz und destruktive Aktionen bleiben ausgeschlossen, solange sie nicht ausdrücklich autorisiert und kontrolliert sind. Gibt es Anzeichen echter Angreiferaktivität, pausiert der betroffene Test und der Incident-Response-Weg übernimmt."
             },
             {
               "title": "Zugänge und Sicherheit vorbereiten",
-              "text": "Stellt repräsentative Testkonten, Rollenbeschreibungen, korrekte Dokumentation, sichere Testdaten und eine technische Ansprechperson bereit. Entscheidet bewusst zwischen Produktion und einer ausreichend realistischen Testumgebung, prüft Backups und Monitoring und plant Rollback oder Eindämmung unerwarteter Auswirkungen."
+              "text": "Stelle repräsentative Testkonten, Rollenbeschreibungen, korrekte Dokumentation, sichere Testdaten und eine technische Ansprechperson bereit. Entscheide bewusst zwischen Produktion und einer ausreichend realistischen Testumgebung. Prüfe Backups und Monitoring, und plane Rollback oder Eindämmung für unerwartete Auswirkungen."
             },
             {
               "title": "Nachweise schützen",
-              "text": "Vereinbart, wie Zugangsdaten, Kundendaten, Screenshots, Request-Traces, Exporte und Bericht minimiert, verschlüsselt, übertragen, aufbewahrt und vernichtet werden. Testnachweise sind oft sensibel genug, um selbst zum Sicherheitsproblem zu werden."
+              "text": "Vereinbare, wie Zugangsdaten, Kundendaten, Screenshots, Request-Traces, Exporte und der Bericht minimiert, verschlüsselt, übertragen, aufbewahrt und vernichtet werden. Testnachweise sind oft sensibel genug, um selbst zum Sicherheitsproblem zu werden."
             },
             {
               "title": "Mit Checkpoints testen",
@@ -560,11 +560,11 @@
             },
             {
               "title": "Berichten und besprechen",
-              "text": "Erwartet eine Management-Zusammenfassung, den genauen Scope samt Grenzen, die Methodik, reproduzierbare Nachweise zu jedem validierten Fund, kontextbezogenes Risiko, betroffene Systeme und umsetzbare Behebungsempfehlungen. Was nicht sicher validiert werden konnte, wird getrennt als unbestätigt gekennzeichnet und mit Grund sowie Unsicherheit beschrieben. In einem Debrief können Entwicklung und Risikoverantwortliche Annahmen hinterfragen und Details klären."
+              "text": "Erwarte eine Management-Zusammenfassung, den genauen Scope samt Grenzen, die Methodik, reproduzierbare Nachweise zu jedem validierten Fund, kontextbezogenes Risiko, betroffene Systeme und umsetzbare Behebungsempfehlungen. Was nicht sicher validiert werden konnte, wird getrennt als unbestätigt gekennzeichnet und mit Grund sowie Unsicherheit beschrieben. In einem Debrief können Entwicklung und Risikoverantwortliche Annahmen hinterfragen und Details klären."
             },
             {
               "title": "Beheben und nachprüfen",
-              "text": "Weist Verantwortliche und Fristen zu, behebt Ursachen und testet verwandte Pfade auf Regressionen. Ein Retest prüft vereinbarte Funde in einer späteren Version; er wiederholt weder den gesamten Auftrag noch belegt er die Abwesenheit anderer Schwächen."
+              "text": "Weise Verantwortliche und Fristen zu, behebe die Ursachen und teste verwandte Pfade auf Regressionen. Ein Retest prüft vereinbarte Funde in einer späteren Version; er wiederholt weder den gesamten Auftrag noch belegt er, dass es keine anderen Schwächen gibt."
             }
           ]
         },
@@ -635,7 +635,7 @@
             },
             {
               "title": "Einen Scannerbericht als Pentest kaufen",
-              "text": "Automatisierung kann eine breite, wiederholbare Erhebung unterstützen. Ein Penetrationstest braucht zusätzlich Kontextanalyse, sorgfältige Validierung und menschliche Untersuchung relevanter Pfade. Fragt, wer diese Arbeit leistet und wie sie im Bericht sichtbar wird."
+              "text": "Automatisierung kann eine breite, wiederholbare Erhebung unterstützen. Ein Penetrationstest braucht zusätzlich Kontextanalyse, sorgfältige Validierung und menschliche Untersuchung relevanter Pfade. Frag, wer diese Arbeit leistet und wie sie im Bericht sichtbar wird."
             },
             {
               "title": "Produktion unvorbereitet prüfen",
@@ -647,14 +647,14 @@
             },
             {
               "title": "Funde beheben, aber nicht die Ursache testen",
-              "text": "Nur die im Nachweis gezeigte Codezeile zu ändern kann denselben Autorisierungs- oder Validierungsfehler an anderer Stelle bestehen lassen. Behebt die gemeinsame Ursache, ergänzt Regressionstests und legt fest, was der Retest prüft."
+              "text": "Nur die im Nachweis gezeigte Codezeile zu ändern kann denselben Autorisierungs- oder Validierungsfehler an anderer Stelle bestehen lassen. Behebe die gemeinsame Ursache, ergänze Regressionstests und lege fest, was der Retest prüft."
             }
           ]
         },
         "humanResponsibility": {
           "title": "Freigabe, Koordination und Verantwortung",
           "paragraphs": [
-            "Die Systemverantwortlichen bleiben für den Test und die Risikentscheidungen verantwortlich. Ein Anbieter kann Scope empfehlen, Funde bewerten und Korrekturen vorschlagen, darf aber weder still die eigene Erlaubnis ausweiten noch entscheiden, welches Betriebsrisiko die Organisation akzeptiert. Die Freigabe muss von Parteien kommen, die jedes Ziel und jede Aktivität rechtlich autorisieren dürfen. Externe oder intrusive Tests sollten durch einen unterzeichneten Scope, eine Leistungsbeschreibung oder einen Vertrag geregelt sein, der Ausschlüsse, Haftung, Vertraulichkeit, Datenverarbeitung und Erlaubnisse Dritter abdeckt; soweit erforderlich gehört eine qualifizierte rechtliche Prüfung dazu. Dies ist betriebliche Orientierung und keine Rechtsberatung.",
+            "Die Systemverantwortlichen bleiben für den Test und die Risikoentscheidungen verantwortlich. Ein Anbieter kann Scope empfehlen, Funde bewerten und Korrekturen vorschlagen. Er darf aber weder still die eigene Erlaubnis ausweiten noch entscheiden, welches Betriebsrisiko die Organisation akzeptiert. Die Freigabe muss von Parteien kommen, die jedes Ziel und jede Aktivität rechtlich autorisieren dürfen. Externe oder intrusive Tests gehören in einen unterzeichneten Scope, eine Leistungsbeschreibung oder einen Vertrag, der Ausschlüsse, Haftung, Vertraulichkeit, Datenverarbeitung und Erlaubnisse Dritter abdeckt. Wo nötig, gehört eine qualifizierte rechtliche Prüfung dazu. Das ist betriebliche Orientierung, keine Rechtsberatung.",
             "Ein Penetrationstest ist eine zeitgebundene Stichprobe, geprägt von Scope, Zugang, Umgebung, Budget, Methodik und Erfahrung der Testenden. Ein validierter Fund dokumentiert eine unter den geprüften Bedingungen nachgewiesene Schwäche. Fehlende Funde belegen nicht, dass keine Schwachstellen existieren; ausgeschlossene Systeme müssen als Grenzen im Bericht sichtbar bleiben.",
             "Bericht und Nachweise brauchen denselben Schutz wie andere sensible Security-Daten. Die Behebung gehört mit benannten Verantwortlichen und Prioritäten aus dem Geschäftskontext in den normalen Entwicklungs- und Schwachstellenprozess. Ein Retest sollte genau ausweisen, welche Funde, welchen Build und welches Datum er abdeckt."
           ],
@@ -670,12 +670,12 @@
         "takeaways": {
           "title": "Das Wichtigste in Kürze",
           "items": [
-            "Mit der Entscheidung beginnen, die der Test unterstützen soll - nicht mit einem pauschalen Auftrag, alles anzugreifen.",
+            "Beginn mit der Entscheidung, die der Test unterstützen soll - nicht mit dem pauschalen Auftrag, alles anzugreifen.",
             "Schriftliche Erlaubnis, Scope und Testregeln sind Voraussetzungen und keine Verwaltungsdetails.",
-            "Schwachstellenscan, Penetrationstest, Red-Teaming oder Incident Response passend zur benötigten Antwort wählen.",
-            "Konten, Kontakte, sichere Daten, Monitoring, Eskalation und Umgang mit Nachweisen vor Testbeginn vorbereiten.",
-            "Einen Bericht verlangen, der Scope und Grenzen nennt, Funde belegt, Kontext erklärt und Behebung unterstützt.",
-            "Das Ergebnis als datierte Stichprobe behandeln, Ursachen beheben, vereinbarte Funde nachprüfen und das laufende Schwachstellenmanagement verbessern."
+            "Wähle Schwachstellenscan, Penetrationstest, Red-Teaming oder Incident Response passend zur Antwort, die du brauchst.",
+            "Bereite Konten, Kontakte, sichere Daten, Monitoring, Eskalation und den Umgang mit Nachweisen vor Testbeginn vor.",
+            "Verlang einen Bericht, der Scope und Grenzen nennt, Funde belegt, Kontext erklärt und bei der Behebung hilft.",
+            "Behandle das Ergebnis als datierte Stichprobe: Ursachen beheben, vereinbarte Funde nachprüfen, das laufende Schwachstellenmanagement verbessern."
           ]
         },
         "sources": [

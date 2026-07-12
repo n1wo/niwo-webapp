@@ -536,7 +536,7 @@
             },
             {
               "title": "Confirm authority",
-              "text": "Identify the owners of every target and obtain explicit written authorization. Cloud, hosting, payment, identity, and other third-party services may have separate policies or approval requirements; ownership of one application does not imply permission to test every dependency."
+              "text": "Identify the owners of every target and obtain explicit written authorization. Cloud, hosting, payment, identity, and other third-party services may have separate policies or approval requirements. Owning one application does not mean you may test every dependency."
             },
             {
               "title": "Build the scope",
@@ -564,7 +564,7 @@
             },
             {
               "title": "Remediate and retest",
-              "text": "Assign owners and deadlines, fix root causes, and regression-test related paths. A retest verifies the agreed findings against a later version; it does not repeat the whole engagement or prove that unrelated weaknesses are absent."
+              "text": "Assign owners and deadlines, fix root causes, and regression-test related paths. A retest verifies the agreed findings against a later version; it does not repeat the whole engagement or prove that no other weaknesses exist."
             }
           ]
         },
@@ -654,7 +654,7 @@
         "humanResponsibility": {
           "title": "Authorization, coordination, and ownership",
           "paragraphs": [
-            "The system owner remains accountable for the test and the risk decisions around it. A provider can recommend scope, rate findings, and propose fixes, but cannot silently expand its own authority or decide which operational risk the organization should accept. Authorization must come from parties legally entitled to approve every target and activity. External or intrusive work should be governed by a signed scope, statement of work, or contract covering exclusions, liabilities, confidentiality, data handling, and third-party permissions, with qualified legal review where applicable. This is operational guidance, not legal advice.",
+            "The system owner remains accountable for the test and the risk decisions around it. A provider can recommend scope, rate findings, and propose fixes. It cannot silently expand its own authority or decide which operational risk the organization should accept. Authorization must come from parties legally entitled to approve every target and activity. External or intrusive work belongs under a signed scope, statement of work, or contract that covers exclusions, liabilities, confidentiality, data handling, and third-party permissions. Add qualified legal review where it applies. This is operational guidance, not legal advice.",
             "A penetration test is a point-in-time sample shaped by the scope, access, environment, time budget, methodology, and tester experience. A validated finding documents a demonstrated weakness under the tested conditions. Missing findings do not prove the absence of vulnerabilities, and excluded assets should remain visible as limitations in the report.",
             "The report and its evidence need the same care as other sensitive security data. Remediation belongs in the normal engineering and vulnerability-management process, with named owners and priorities based on business context. A retest should state exactly which findings, build, and date it covers."
           ],
