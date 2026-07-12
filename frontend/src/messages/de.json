@@ -143,34 +143,34 @@
       "webAppSecurity": {
         "metadata": {
           "title": "Web App Security verständlich erklärt | niwo",
-          "description": "Wie Risiken durch eine Webanwendung wandern. Der Leitfaden erklärt Vertrauensgrenzen, Identität, Sessions, Datenverarbeitung und Abhängigkeiten. Er zeigt auch, was Sicherheitstests belegen können und was nicht."
+          "description": "Ein praktischer Überblick über Vertrauensgrenzen, Zugriffsrechte, Sessions, Datenverarbeitung, Abhängigkeiten und die Grenzen von Sicherheitstests."
         },
         "eyebrow": "Anwendungssicherheit",
         "title": "Web App Security",
         "intro": [
-          "Web-App-Sicherheit sorgt dafür, dass eine Anwendung nur das tut, was Betreiber und Nutzer beabsichtigen. Das gilt auch bei gezielten Eingaben, für die sie nie gedacht war. Zur Sicherheit gehören der Code und seine Konfiguration. Auch die Annahmen dahinter spielen eine Rolle.",
-          "Diese Seite gibt dir ein brauchbares Denkmodell. Du erfährst, wo Vertrauensgrenzen liegen und wie eine Anfrage durch eine Anwendung läuft. Außerdem siehst du, wo sich Risiken konzentrieren und welche verbreiteten Annahmen scheitern. Die Seite richtet sich an Lernende, Entwicklerinnen und Entwickler sowie kleine Teams."
+          "Web-App-Sicherheit bedeutet: Eine Anwendung tut nur das, was sie tun soll. Das muss auch dann gelten, wenn jemand unerwartete oder schädliche Eingaben sendet. Neben dem Code zählen die Konfiguration und die Annahmen dahinter.",
+          "Diese Seite folgt einer Anfrage durch die Anwendung. Sie zeigt, wo Vertrauen wechselt, wo Risiken entstehen und warum bekannte Schutzmaßnahmen oft falsch verstanden werden."
         ],
         "coreIdea": {
           "title": "Was Web-App-Sicherheit tatsächlich schützt",
           "paragraphs": [
-            "Das Ziel muss klar sein. Anwendungssicherheit macht Software nicht unangreifbar. Sie schützt drei konkrete Dinge: die Vertraulichkeit der Daten, die Integrität von Aktionen und die Verfügbarkeit des Dienstes. Jede technische Maßnahme dient mindestens einem dieser Schutzziele.",
-            "Das zentrale Konzept ist die Vertrauensgrenze. Der Browser gehört zur Umgebung der Person, die ihn benutzt. Der Server darf Daten von dort nicht ungeprüft übernehmen. Dazu zählen Formularfelder, Cookies, Header, URLs und Datei-Uploads. Vertrauensgrenzen gibt es auch an anderen Übergängen. Sie liegen zum Beispiel zwischen einer API und einem Drittdienst. Auch zwischen Anwendung und Datenbank oder zwischen internen Diensten mit unterschiedlichen Rechten entstehen solche Grenzen.",
-            "Viele Web-Schwachstellen entstehen an Vertrauensgrenzen. Eine Anwendung behandelt fremde Eingaben zum Beispiel als Struktur. Das führt zu Injection. Vielleicht vertraut sie auch den Angaben des Clients zu Identität und Rechten. Dann drohen Fehler bei Authentifizierung und Zugriffskontrolle. Daten können außerdem dort landen, wo sie als Code ausgeführt werden. So entsteht Cross-Site-Scripting. Die OWASP Top 10 fassen solche Fehler in Awareness-Kategorien zusammen. In der Ausgabe 2025 steht Broken Access Control an erster Stelle.",
-            "Vertrauensgrenzen sind Teil der Architektur. Deshalb ist auch Sicherheit eine Architekturfrage. Ein Framework kann viele gute Entscheidungen vorwegnehmen. Es kann aber nicht wissen, welche Nutzerin welchen Datensatz sehen darf. Genau diese Entscheidungen bestimmen die Sicherheit einer Anwendung."
+            "Das Ziel ist nicht unangreifbare Software. Es geht darum, Daten zu schützen, unerlaubte Aktionen zu verhindern und den Dienst verfügbar zu halten.",
+            "Der wichtigste Begriff ist die Vertrauensgrenze. Der Nutzer kontrolliert den Browser. Deshalb darf der Server Formularfelder, Cookies, Header, URLs und Uploads nicht ungeprüft übernehmen. Dasselbe gilt an Übergängen zu Datenbanken, Drittdiensten und internen Systemen.",
+            "Viele Schwachstellen entstehen, weil eine Anwendung Daten zu früh vertraut. Sie behandelt Eingaben als Befehl, übernimmt Angaben zu Rechten oder gibt gespeicherte Inhalte als ausführbaren Code aus. Die OWASP Top 10 ordnen solche wiederkehrenden Fehler in breite Kategorien ein.",
+            "Frameworks liefern sichere Voreinstellungen. Sie wissen aber nicht, welcher Kunde einen Datensatz besitzt oder wer eine Zahlung freigeben darf. Diese Regeln muss die Anwendung selbst durchsetzen."
           ]
         },
         "howItWorks": {
           "title": "Wie eine Anfrage durch die Anwendung läuft",
-          "intro": "Verfolg eine Anfrage einmal von Anfang bis Ende, und du siehst, wo die wichtigen Entscheidungen fallen. Jede Station beantwortet eine andere Frage. Keine kann alle beantworten.",
+          "intro": "Folge einer Anfrage vom Browser bis zur Antwort. An jeder Station fällt eine andere Sicherheitsentscheidung.",
           "steps": [
             {
               "title": "Transport",
-              "text": "HTTPS schützt Daten auf dem Weg gegen Mitlesen und Manipulation. Über das, was nach dem Eintreffen der Anfrage passiert, sagt es nichts. Eine Anwendung kann über einer einwandfreien TLS-Verbindung vollständig verwundbar sein."
+              "text": "HTTPS schützt Daten auf dem Transportweg. Ob die Anwendung dahinter sicher ist, sagt das noch nicht."
             },
             {
               "title": "Eingangspunkt",
-              "text": "Webserver oder Framework zerlegen die rohe Anfrage in Pfade, Parameter, Header und Cookies. Hier nehmen nicht vertrauenswürdige Daten zum ersten Mal Form an. Sichere Voreinstellungen zählen an dieser Stelle mehr als cleverer Code."
+              "text": "Der Server zerlegt die Anfrage in Pfade, Parameter, Header und Cookies. All diese Daten sind zunächst nicht vertrauenswürdig."
             },
             {
               "title": "Authentifizierung",
@@ -178,7 +178,7 @@
             },
             {
               "title": "Session",
-              "text": "Zwischen Login und Logout vertritt eine Session-ID oder ein Token die Person. Angreifer können diesen Stellvertreter stehlen, erraten oder im Voraus festlegen. Dann handeln sie als diese Person. Das Passwort müssen sie dafür nicht kennen."
+              "text": "Nach dem Login steht eine Session oder ein Token für den Nutzer. Wird sie gestohlen oder erraten, kann ein Angreifer ohne Passwort in dessen Namen handeln."
             },
             {
               "title": "Autorisierung",
@@ -190,17 +190,17 @@
             },
             {
               "title": "Datenzugriff und Ausgabe",
-              "text": "Abfragen sollten Eingaben strikt als Daten behandeln. Sie müssen parametrisiert statt zusammengesetzt sein. Auf dem Rückweg verhindert Output-Encoding, dass gespeicherte Daten im Browser zu Skript werden. Validierung und Encoding sind verschiedene Kontrollen. Keine ersetzt die andere."
+              "text": "Datenbankabfragen müssen Eingaben als Daten behandeln, nicht als Code. Output-Encoding verhindert, dass gespeicherte Inhalte im Browser zu Skript werden. Validierung und Encoding lösen verschiedene Probleme."
             }
           ]
         },
         "whereUsed": {
           "title": "Wo sich Risiko konzentriert",
-          "intro": "Über sehr unterschiedliche Anwendungen hinweg liefern immer wieder dieselben Bereiche Befunde. Dort lohnt sich der erste Blick.",
+          "intro": "In vielen Anwendungen tauchen dieselben Schwachstellen auf. Diese Bereiche sind ein guter Startpunkt.",
           "items": [
             {
               "title": "Authentifizierung",
-              "text": "Passwortverarbeitung, Konto-Wiederherstellung, Ratenbegrenzung und Mehr-Faktor-Optionen. Wiederherstellungsabläufe umgehen das Passwort und brauchen deshalb gleichwertige Identitätsprüfungen, Ratenbegrenzung und Monitoring."
+              "text": "Prüfe Passwörter, Kontowiederherstellung, Rate Limits und Mehr-Faktor-Authentifizierung. Die Wiederherstellung kann das Passwort umgehen und braucht deshalb starke Kontrollen."
             },
             {
               "title": "Autorisierung",
@@ -216,11 +216,11 @@
             },
             {
               "title": "Abhängigkeiten und Konfiguration",
-              "text": "Drittpakete, Basis-Images und Infrastruktur-Voreinstellungen gehören zur Angriffsfläche. Die OWASP Top 10:2025 führen Software Supply Chain Failures als eigene Kategorie und unterstreichen damit, dass diese Abhängigkeiten bewusst verwaltet werden müssen."
+              "text": "Pakete, Basis-Images und Infrastruktur gehören zur Angriffsfläche. Halte den Bestand aktuell und entferne, was nicht mehr gebraucht wird."
             },
             {
               "title": "Fehlerbehandlung und Logging",
-              "text": "Fehlermeldungen mit Stacktraces helfen Angreifern bei der Kartierung des Systems. Fehlende Logs erschweren später die Rekonstruktion eines Vorfalls. Systeme sollten im Zweifel geschlossen scheitern. Sicherheitsrelevante Ereignisse gehören ins Protokoll. Geheimnisse gehören nicht in Logzeilen."
+              "text": "Detaillierte Fehler können zu viel über das System verraten. Fehlende Logs erschweren die Aufklärung eines Vorfalls. Protokolliere relevante Ereignisse, aber keine Secrets."
             },
             {
               "title": "Geschäftslogik",
@@ -231,15 +231,15 @@
         "example": {
           "title": "Ein realistisches Beispiel entlang einer Anfrage",
           "paragraphs": [
-            "Angenommen, eine kleine Anwendung verwaltet Rechnungen. Eine eingeloggte Nutzerin ruft den PDF-Export der Rechnung Nummer 8241 auf. Die Verbindung ist verschlüsselt. Das Session-Cookie ist gültig. Auch die Authentifizierung funktioniert. Danach lädt der Code die Rechnung und liefert sie aus.",
-            "Eine Frage fehlt: Gehört Rechnung 8241 zum anfragenden Konto? Das hat niemand geprüft. Jede authentifizierte Person kann die Nummer in der URL ändern und fremde Rechnungen lesen. Das ist eine Insecure Direct Object Reference. Sie ist eine Form fehlerhafter objektbezogener Autorisierung.",
-            "Alle vorgelagerten Kontrollen haben wie vorgesehen funktioniert. TLS war gültig. Die Passwörter waren gehasht und die Session war intakt. Trotzdem sind Daten abgeflossen. Der Server hat die Autorisierung für dieses Objekt nie geprüft.",
-            "Die Korrektur ist klein. Die Datenbankabfrage muss auf das authentifizierte Konto beschränkt werden. Kein Scanner, keine Framework-Voreinstellung und keine Verschlüsselung hätten diese fachliche Entscheidung automatisch getroffen."
+            "Ein eingeloggter Nutzer fordert in einer Rechnungs-App die Rechnung 8241 als PDF an. Die Verbindung ist verschlüsselt, die Session gültig und der Nutzer korrekt angemeldet. Danach liefert der Server die Datei aus.",
+            "Eine Prüfung fehlt: Gehört Rechnung 8241 wirklich zu diesem Konto? Jede angemeldete Person kann die Nummer in der URL ändern und so fremde Rechnungen lesen.",
+            "TLS, Passwort-Hashing und Session-Verwaltung funktionieren. Trotzdem fließen Daten ab, weil die Autorisierung für den einzelnen Datensatz fehlt.",
+            "Die Abfrage muss deshalb auf das angemeldete Konto begrenzt werden. Diese fachliche Regel kann weder ein Scanner noch das Framework für das Team festlegen."
           ]
         },
         "risks": {
           "title": "Verbreitete Missverständnisse",
-          "intro": "Diese Annahmen können vernünftig klingen, entfernen oder verwechseln aber jeweils eine wichtige Verteidigungsschicht.",
+          "intro": "Diese Aussagen klingen plausibel. Aber jede lässt einen wichtigen Teil der Sicherheit aus.",
           "items": [
             {
               "title": "„HTTPS macht die Anwendung sicher“",
@@ -247,7 +247,7 @@
             },
             {
               "title": "„Authentifizierung deckt Autorisierung ab“",
-              "text": "Zu wissen, wer jemand ist, sagt nichts darüber, was diese Person darf. Es sind getrennte Entscheidungen: Eine authentifizierte Anfrage ist nicht automatisch für ein bestimmtes Objekt oder eine bestimmte Aktion autorisiert."
+              "text": "Identität und Berechtigung sind zwei getrennte Prüfungen. Ein gültiger Login erlaubt nicht automatisch jede Aktion und jeden Datensatz."
             },
             {
               "title": "„Eingabevalidierung ersetzt Output-Encoding“",
@@ -255,7 +255,7 @@
             },
             {
               "title": "„UI-Beschränkungen erzwingen serverseitige Sicherheit“",
-              "text": "Deaktivierte Buttons, JavaScript-Prüfungen und versteckte Felder lassen sich durch direkte Anfragen umgehen. Solche UI-Beschränkungen können die Bedienbarkeit verbessern und zusätzliche Schutzschichten unterstützen. Identität, Autorisierung und Datenintegrität muss jedoch der Server durchsetzen. Browsermechanismen wie CSP erfüllen einen anderen Zweck. Sie ersetzen keine serverseitigen Kontrollen."
+              "text": "Deaktivierte Buttons, versteckte Felder und Prüfungen im Browser lassen sich umgehen. Die eigentlichen Regeln muss der Server durchsetzen."
             },
             {
               "title": "„Ein sauberer Scan bedeutet eine sichere Anwendung“",
@@ -270,8 +270,8 @@
         "humanResponsibility": {
           "title": "Was Tests belegen können - und was nicht",
           "paragraphs": [
-            "Jeder Sicherheitstest untersucht nur eine bestimmte Version und Konfiguration. Außerdem gilt er nur für einen begrenzten Zeitraum. Das gilt für automatische und manuelle Tests. Ein Test kann Probleme nachweisen und Vertrauen aufbauen. Er kann nicht belegen, dass keine Probleme existieren. Neuer Code, neue Abhängigkeiten und neue Funktionen verändern das Bild.",
-            "Aktuelle Leitfäden behandeln Sicherheit deshalb als Teil des Entwicklungsprozesses. Sie ist kein einmaliges Prüfereignis. Standards wie der OWASP ASVS definieren den Prüfgegenstand. Daten, Risiko und Änderungsgeschwindigkeit bestimmen den passenden Zeitpunkt und die Häufigkeit."
+            "Ein Sicherheitstest betrachtet eine bestimmte Version, Konfiguration und Zeitspanne. Er kann eine Schwachstelle belegen. Er kann nicht beweisen, dass es keine weiteren gibt. Jede größere Änderung kann das Ergebnis verändern.",
+            "Sicherheit muss deshalb Teil der Entwicklung bleiben. Standards wie der OWASP ASVS helfen bei der Auswahl der Prüfungen. Risiko und Änderungstempo bestimmen, wann erneut geprüft wird."
           ],
           "items": [
             "Ein Befund belegt eine Schwäche. Ein leerer Bericht belegt keine Sicherheit",
@@ -284,12 +284,12 @@
         "takeaways": {
           "title": "Das Wichtigste in Kürze",
           "items": [
-            "Zeichne zuerst die Vertrauensgrenzen: Überall dort, wo Daten aus fremder Kontrolle in deine wechseln, fallen Sicherheitsentscheidungen.",
-            "Authentifiziere zuerst die Identität. Autorisiere danach jede Aktion und jedes Objekt auf dem Server. Das sind zwei verschiedene Prüfungen.",
-            "Validiere Eingaben beim Eingang und encodiere Ausgaben beim Ausgang. Keine der beiden Kontrollen ersetzt die andere.",
-            "Behandle Abhängigkeiten und Konfiguration als Teil der Anwendung. Angreifer tun es auch.",
-            "Nutze die OWASP Top 10 für Awareness und den ASVS für echte Prüftiefe.",
-            "Nimm jedes Testergebnis als Momentaufnahme. Sicherheit entsteht im Prozess für die nächste Version."
+            "Markiere alle Stellen, an denen Daten aus fremder Kontrolle in deine wechseln.",
+            "Prüfe zuerst die Identität und dann die Rechte für jede Aktion und jeden Datensatz.",
+            "Validiere Eingaben und encodiere Ausgaben. Beides löst unterschiedliche Probleme.",
+            "Behandle Abhängigkeiten und Konfiguration als Teil der Anwendung.",
+            "Nutze die OWASP Top 10 für den Überblick und den ASVS für genaue Prüfungen.",
+            "Behandle jeden Test als Momentaufnahme, nicht als Garantie."
           ]
         },
         "sources": [
@@ -323,30 +323,30 @@
       "secureDevelopment": {
         "metadata": {
           "title": "Sichere Entwicklung verständlich erklärt | niwo",
-          "description": "Wie Sicherheit von der Planung bis zum Betrieb zu einer kontinuierlichen Engineering-Aufgabe wird. Der Leitfaden ordnet Werkzeuge in einen verlässlichen Prozess ein."
+          "description": "Wie Sicherheit Teil von Planung, Design, Entwicklung, Tests, Release und Betrieb wird."
         },
         "eyebrow": "Sicherer Softwarelebenszyklus",
         "title": "Sichere Entwicklung",
         "intro": [
-          "Sichere Entwicklung berücksichtigt Sicherheit bei Planung, Entwurf, Bau, Auslieferung und Betrieb. Sie ist keine eigene Schlussphase und kein letzter Scan. Teams brauchen belastbare Hinweise zu einem Zeitpunkt, an dem sie noch gegensteuern können. Der Lernprozess geht nach dem Release weiter.",
-          "Diese Seite richtet sich an Lernende, Einzelentwickler und kleine Teams. Du findest hier einen praktikablen Lebenszyklus und die wichtigsten Verantwortlichkeiten. Ein realistisches Beispiel zeigt die Anwendung. Außerdem geht es um die Grenzen von Frameworks und Automatisierung."
+          "Sichere Entwicklung berücksichtigt Sicherheit über den gesamten Lebenszyklus der Software. Sie beginnt bei der Planung und läuft über Design, Code und Release bis in den Betrieb. Ein letzter Scan reicht nicht.",
+          "Das Ziel ist einfach: Probleme finden, solange Änderungen noch leicht sind. Und nach dem Release weiterlernen."
         ],
         "coreIdea": {
           "title": "Sicherheit ist ein Regelkreis, keine Ziellinie",
           "paragraphs": [
-            "Jedes Release beruht auf vielen Entscheidungen. Was darf die Software tun? Welche Daten darf sie verarbeiten? Wer darf sensible Aktionen ausführen? Das Team muss auch Änderungen prüfen und Nachweise für das Release sammeln. Spätere Probleme brauchen einen klaren Melde- und Behebungsweg. Sichere Entwicklung macht diese Entscheidungen sichtbar. So bleiben sie keine stillen Annahmen in Code und Konfiguration.",
+            "Jedes Release beruht auf Entscheidungen. Was darf die Software tun? Welche Daten darf sie verarbeiten? Wer darf sensible Aktionen ausführen? Wie erkennt und behebt das Team spätere Probleme? Sichere Entwicklung macht diese Fragen sichtbar.",
             "Das Secure Software Development Framework von NIST bündelt die Arbeit in vier Ergebnisse. Die Organisation bereitet sich vor. Sie schützt Software und Entwicklungsumgebung. Sie erzeugt gut abgesicherte Releases und reagiert auf Schwachstellen. Das Framework ergänzt eine vorhandene Entwicklungsmethode. Es ersetzt sie nicht. Ein Zweierteam und ein regulierter Konzern können dieselben Grundideen in unterschiedlicher Tiefe anwenden.",
-            "OWASP SAMM betrachtet denselben Kreislauf aus einer anderen Perspektive. Governance, Design, Implementierung, Verifizierung und Betrieb enthalten eigene Sicherheitspraktiken. Ein später Test kann keine unklare Anforderung reparieren. Ein guter Entwurf schützt auch keinen Produktivbetrieb, den niemand überwacht oder aktualisiert.",
-            "Die hilfreiche Frage lautet nicht: 'Hat Security das freigegeben?' Besser ist: 'Welches Risiko steuern wir?' Dazu kommen zwei weitere Fragen. 'Welche Nachweise haben wir?' und 'Wer verantwortet die nächste Entscheidung?' Die Antworten sollten im Verlauf der Entwicklung immer konkreter werden."
+            "OWASP SAMM betrachtet Sicherheit ebenfalls als laufende Aufgabe in Governance, Design, Implementierung, Prüfung und Betrieb. Ein später Test repariert keine unklare Anforderung. Und ein guter Entwurf schützt kein System, das niemand überwacht oder aktualisiert.",
+            "Die bessere Frage ist nicht: 'Hat Security das freigegeben?' Sondern: 'Welches Risiko senken wir, welche Nachweise haben wir und wer trägt die Entscheidung?'"
           ]
         },
         "howItWorks": {
           "title": "Ein praktikabler Lebenszyklus für sichere Entwicklung",
-          "intro": "Die Schritte überlappen sich und werden wiederholt. Eine kleine Änderung kann sie an einem Nachmittag durchlaufen. Ein System mit hoher Auswirkung braucht vielleicht formale Reviews und unabhängige Nachweise. Die Entscheidungen bleiben in beiden Fällen erkennbar.",
+          "intro": "Die Schritte überlappen sich und wiederholen sich. Eine kleine Änderung dauert vielleicht nur Stunden. Ein kritisches System braucht formale Reviews. Die grundlegenden Entscheidungen bleiben gleich.",
           "steps": [
             {
               "title": "Planen",
-              "text": "Beschreib zuerst das gewünschte Verhalten. Benenne sensible Daten, wahrscheinliche Nutzer und mögliche Missbrauchsfälle. Halte auch rechtliche oder vertragliche Grenzen und akzeptable Fehlerzustände fest. Formuliere wichtige Sicherheitseigenschaften als prüfbare Anforderungen."
+              "text": "Beschreibe das gewünschte Verhalten, sensible Daten, Nutzer und mögliche Missbrauchsfälle. Formuliere wichtige Risiken als Anforderungen, die sich später prüfen lassen."
             },
             {
               "title": "Entwerfen",
@@ -362,7 +362,7 @@
             },
             {
               "title": "Verifizieren",
-              "text": "Leite Tests aus den Sicherheitsanforderungen ab. Ergänze sie durch statische Analyse sowie Prüfungen von Abhängigkeiten und Secrets. Auch gezielte manuelle Tests gehören dazu. Standards wie der OWASP ASVS helfen bei der Abdeckung. Ein grünes Werkzeug ist nicht das eigentliche Ziel."
+              "text": "Teste die Sicherheitsanforderungen. Ergänze statische Analyse, Prüfungen von Abhängigkeiten und Secrets sowie gezielte manuelle Tests. Ein grünes Tool allein ist noch kein Ergebnis."
             },
             {
               "title": "Bauen und ausliefern",
@@ -370,7 +370,7 @@
             },
             {
               "title": "Betreiben",
-              "text": "Erfasse hilfreiche Sicherheitsereignisse. Logge dabei keine Secrets. Überwache wichtige Kontrollen und pflege die Abhängigkeiten. Biete außerdem einen Meldeweg für Probleme. Mit dem Release beginnen die Nachweise aus dem Betrieb. Die Verantwortung der Entwicklung endet dort nicht."
+              "text": "Überwache relevante Sicherheitsereignisse, ohne Secrets zu loggen. Pflege Abhängigkeiten und biete einen Meldeweg für Probleme. Die Verantwortung endet nicht mit dem Release."
             },
             {
               "title": "Lernen und verbessern",
@@ -380,7 +380,7 @@
         },
         "whereUsed": {
           "title": "Wo klare Entscheidungen besonders wichtig sind",
-          "intro": "Sichere Entwicklung wird konkret, wenn ein Team benennt, welche Entscheidungen weder einer Voreinstellung noch einem Scanner überlassen werden dürfen.",
+          "intro": "Einige Entscheidungen brauchen klare Verantwortliche. Frameworks und Scanner können sie dem Team nicht abnehmen.",
           "items": [
             {
               "title": "Identität und Zugriff",
@@ -396,7 +396,7 @@
             },
             {
               "title": "Abhängigkeiten und Builds",
-              "text": "Du solltest alle Komponenten und Build-Schritte eines Releases kennen. Updates schließen bekannte Fehler. Sie sind aber selbst Änderungen. Deshalb musst du ihre Kompatibilität prüfen und mögliche Schäden ausschließen."
+              "text": "Kenne die Komponenten und Build-Schritte eines Releases. Spiele Updates zeitnah ein, prüfe die Kompatibilität und halte einen Rollback bereit."
             },
             {
               "title": "Konfiguration und Deployment",
@@ -411,15 +411,15 @@
         "example": {
           "title": "Beispiel: Export von Kundendaten",
           "paragraphs": [
-            "Ein kleines SaaS-Team möchte Kontoadministratoren den Export von Kundendaten als CSV-Datei ermöglichen. Sichtbar sind nur ein Button und ein Endpunkt. Die Sicherheitsarbeit beginnt jedoch mit klaren Anforderungen. Nur aktuelle Administratoren dürfen Daten des eigenen Mandanten exportieren. Jeder Export muss nachvollziehbar sein. Große Exporte werden begrenzt. Die Datei darf nur so lange wie nötig auf dem Server bleiben.",
+            "Ein kleines SaaS-Team baut einen CSV-Export für Kundendaten. Nur aktuelle Administratoren dürfen Daten ihres eigenen Mandanten exportieren. Jeder Export muss nachvollziehbar sein, große Exporte brauchen Grenzen und temporäre Dateien dürfen nicht liegen bleiben.",
             "Im Entwurf zeichnet das Team Browser, API, Datenbank, temporären Speicher und Downloadpfad ein. Es betrachtet gestohlene Sitzungen und veränderte Mandanten-IDs. Auch Formel-Injection, wiederholte Exporte und unerlaubte Felder spielen eine Rolle. Die Datenbankabfrage wird an den authentisierten Mandanten gebunden. Die erlaubten Spalten stehen auf einer Positivliste. Das System streamt die Datei und protokolliert den Export. Die Nutzdaten landen nicht im Log.",
             "Die Implementierung nutzt die vorhandene Autorisierungsfunktion und eine gepflegte CSV-Bibliothek. Das Review gleicht den Code mit den Anforderungen ab. Die Tests prüfen einen normalen Export und einen Nutzer ohne Adminrolle. Sie decken auch fremde Mandanten-IDs, entzogene Rollen, gefährliche Zellpräfixe, Größenlimits und Logging ab. Prüfungen von Abhängigkeiten und Secrets liefern zusätzliche Hinweise. Sie ersetzen diese fachlichen Tests nicht.",
-            "Die Funktion startet mit einem kontrollierten Rollout. Im Betrieb beobachtet das Team Exportvolumen und Fehler. Der Supportweg ist für Meldungen zu unerwarteten Zugriffen vorbereitet. Ein späterer Vorfall kann weitere Varianten zeigen. Dann verbessert das Team den Code, den Regressionstest und die Anforderung. So überdauert die Erkenntnis den einzelnen Patch."
+            "Nach dem Release beobachtet das Team Exportvolumen und Fehler. Taucht später ein neuer Sonderfall auf, korrigiert es den Code und ergänzt einen Regressionstest."
           ]
         },
         "risks": {
           "title": "Häufige Fehler und echte Abwägungen",
-          "intro": "Rituale erzeugen leicht Aktivität ohne belastbare Hinweise. Abwägungen lassen sich nicht vermeiden. Sie müssen sichtbar, begründet und überprüfbar bleiben.",
+          "intro": "Security-Arbeit kann zum Ritual werden, ohne brauchbare Nachweise zu liefern. Abwägungen sollten deshalb sichtbar und überprüfbar bleiben.",
           "items": [
             {
               "title": "Den Scanner mit dem Prozess verwechseln",
@@ -450,9 +450,9 @@
         "humanResponsibility": {
           "title": "Grenzen, Verantwortung und Verhältnismäßigkeit",
           "paragraphs": [
-            "Kein Lebenszyklus, kein Reifegradmodell, kein Werkzeugbestand und kein Zertifikat können belegen, dass Software sicher ist. Nachweise gelten immer nur für eine Version, Konfiguration, Umgebung und Menge von Annahmen. Neue Funktionen, Abhängigkeiten, Angreifer und Betriebsbedingungen verändern ihre Aussagekraft.",
-            "Ein sinnvoller Prozess ist verhältnismäßig. Ein kleines internes Werkzeug braucht nicht die Formalität sicherheitskritischer Software, aber auch dort müssen Zugriff, Daten, Änderungen und Reaktion klar verantwortet werden. Umgekehrt genügt eine große Checkliste für ein System mit hoher Auswirkung nicht, wenn niemand erklären kann, welches Risiko die Punkte tatsächlich steuern.",
-            "Automatisierung sollte gute Entscheidungen wiederholbar und schlechte Änderungen schwerer auslieferbar machen. Menschen legen weiterhin Anforderungen fest, bewerten Ausnahmen, akzeptieren Restrisiken und reagieren, wenn Hinweise fehlen oder sich das System anders verhält als entworfen."
+            "Kein Framework, Werkzeug oder Zertifikat beweist, dass Software sicher ist. Nachweise gelten für eine bestimmte Version, Konfiguration, Umgebung und Annahme. Mit jeder Änderung verlieren sie an Aussagekraft.",
+            "Der Aufwand sollte zum Risiko passen. Ein kleines internes Werkzeug braucht weniger Formalität als sicherheitskritische Software. Klare Zuständigkeiten für Zugriff, Daten, Änderungen und Vorfälle braucht es trotzdem.",
+            "Automatisierung soll gute Entscheidungen leichter wiederholbar machen. Menschen legen Anforderungen fest, genehmigen Ausnahmen, akzeptieren Restrisiken und reagieren, wenn sich das System anders verhält als geplant."
           ],
           "items": [
             "Für jede wesentliche Sicherheitsentscheidung eine verantwortliche Person benennen",
@@ -465,12 +465,12 @@
         "takeaways": {
           "title": "Das Wichtigste in Kürze",
           "items": [
-            "Integriere Sicherheit in die Entwicklungsmethode, die du schon nutzt, statt eine separate Schlussphase anzubauen.",
-            "Übersetze wichtige Sicherheitseigenschaften vor der Umsetzung in klare, prüfbare Anforderungen.",
-            "Nutze Threat Modeling, Reviews, automatisierte Prüfungen, gezielte Tests und Betriebsdaten als Ebenen, die sich ergänzen.",
-            "Schütze Entwicklungsumgebung und Buildpfad genauso sorgfältig wie den Anwendungscode.",
-            "Wähle Kontrollen verhältnismäßig und dokumentiere Risiko und Verantwortliche jeder wesentlichen Ausnahme.",
-            "Schließ den Regelkreis: Schwachstellen und Vorfälle müssen den Prozess für das nächste Release verbessern."
+            "Baue Sicherheit in die Entwicklungsmethode ein, die du bereits nutzt.",
+            "Formuliere wichtige Risiken vor dem Coding als klare Anforderungen.",
+            "Kombiniere Design-Reviews, Werkzeuge, gezielte Tests und Rückmeldungen aus dem Betrieb.",
+            "Schütze den Buildpfad genauso sorgfältig wie den Anwendungscode.",
+            "Passe Kontrollen an das Risiko an und dokumentiere jede wichtige Ausnahme.",
+            "Nutze Schwachstellen und Vorfälle, um das nächste Release zu verbessern."
           ]
         },
         "sources": [
@@ -514,21 +514,21 @@
         "eyebrow": "Autorisierte Sicherheitsprüfung",
         "title": "Pentest-Vorbereitung",
         "intro": [
-          "Ein Penetrationstest ist ein autorisierter und klar begrenzter Sicherheitsversuch. Testende suchen nach Wegen, die Kontrollen eines Systems zu umgehen. Anschließend prüfen und dokumentieren sie diese Wege. Dabei können Techniken realer Angreifer zum Einsatz kommen. Der Zweck bleibt defensiv. Schriftliche Regeln und erreichbare Ansprechpersonen begrenzen das Risiko.",
-          "Der Nutzen des Ergebnisses hängt von der Vorbereitung ab. Vor dem ersten Test brauchen Systemverantwortliche und Anbieter eine gemeinsame Fragestellung. Auch Erlaubnis, Scope und sichere Testregeln müssen feststehen. Dazu kommt ein vereinbarter Weg vom Nachweis zur Behebung. Ohne diese Grundlagen bleibt selbst gute technische Arbeit möglicherweise lückenhaft oder riskant."
+          "Ein Penetrationstest ist ein autorisierter Versuch, die Schutzmaßnahmen eines Systems zu umgehen. Dabei können Methoden realer Angreifer zum Einsatz kommen. Der Zweck bleibt defensiv. Scope und Sicherheitsregeln setzen klare Grenzen.",
+          "Gute Vorbereitung macht das Ergebnis brauchbar. Verantwortliche und Testende müssen sich vorab auf Fragestellung, Erlaubnis, Scope, Regeln und nächste Schritte einigen."
         ],
         "coreIdea": {
           "title": "Ein Pentest beantwortet eine begrenzte Frage",
           "paragraphs": [
-            "Ein Penetrationstest beantwortet nicht abstrakt die Frage: 'Ist dieses System sicher?' Eine brauchbare Frage ist konkreter: Kann ein externer Nutzer in diesem Release eine Mandantengrenze überschreiten? Kann ein kompromittiertes Standardkonto administrative Funktionen erreichen? Bietet ein offen erreichbarer Dienst einen Pfad zu sensiblen Daten? Das Ziel bestimmt passende Systeme, Zugänge, Methoden und Erfahrung der Testenden.",
-            "NIST beschreibt Penetrationstests als Prüfungen unter festen Einschränkungen. Dabei werden Sicherheitsfunktionen umgangen und oft mehrere Schwächen kombiniert. Schwachstellenscans suchen dagegen systematisch nach bekannten Merkmalen und Fehlern. Sie liefern breite und wiederholbare Abdeckung. Ein Pentest nutzt menschliches Urteil. So untersucht er den Kontext und plausible Angriffspfade innerhalb der Vereinbarung.",
-            "Die Grenze ist keine bloße Bürokratie. Sie macht die Arbeit erst autorisiert. Die von NIST beschriebenen Rules of Engagement stehen vor Beginn fest. Sie erlauben dem Team genau definierte Aktivitäten. Dadurch muss nicht jeder Schritt erneut freigegeben werden. Alles außerhalb dieser Regeln bleibt außerhalb des Tests. Das gilt auch bei technischer Erreichbarkeit.",
-            "Ziel sind belastbare Hinweise und Verbesserungen, nicht Überraschung oder Inszenierung. Der Wert steckt in Nachweisen, die Verantwortliche verstehen, in umsetzbaren Korrekturen und in Erkenntnissen für das laufende Schwachstellenmanagement. Ein spektakulärer Fund ohne sicheren Eskalationsweg oder brauchbare Behebungshinweise ist kein vollständiges Ergebnis."
+            "Ein Pentest beantwortet nicht die breite Frage: 'Ist dieses System sicher?' Er beantwortet eine konkrete Frage. Kann ein normaler Nutzer fremde Kundendaten lesen? Kann ein kompromittiertes Konto Admin-Funktionen erreichen? Führt ein offener Dienst zu sensiblen Daten?",
+            "Ein Schwachstellenscan sucht nach bekannten Mustern. Ein Pentest verbindet Werkzeuge mit menschlichem Urteil und untersucht mögliche Angriffspfade innerhalb des vereinbarten Rahmens.",
+            "Dieser Rahmen ist keine bloße Bürokratie. Er macht den Test autorisiert. Alles außerhalb der schriftlichen Regeln bleibt außerhalb des Tests, auch wenn es technisch erreichbar ist.",
+            "Das Ergebnis soll klare Nachweise, umsetzbare Korrekturen und Erkenntnisse für künftige Arbeit liefern. Ein spektakulärer Fund allein reicht nicht."
           ]
         },
         "howItWorks": {
           "title": "So wird ein Penetrationstest vorbereitet und durchgeführt",
-          "intro": "Eine professionelle Beauftragung beschreibt betriebliche und rechtliche Grenzen ebenso konkret wie das technische Ziel. Die folgende Reihenfolge hält die Verantwortung von der ersten Frage bis zum Retest sichtbar.",
+          "intro": "Rechtliche und betriebliche Grenzen müssen so klar sein wie das technische Ziel. Diese Schritte führen von der ersten Frage bis zum Retest.",
           "steps": [
             {
               "title": "Entscheidung klären",
@@ -544,7 +544,7 @@
             },
             {
               "title": "Testregeln vereinbaren",
-              "text": "Dokumentiere Zeitraum, Uhrzeiten und erlaubte Testarten. Halte auch Rate-Limits, verbotene Handlungen und Abbruchbedingungen fest. Quelladressen, Kommunikationswege und Scope-Änderungen brauchen ebenfalls klare Regeln. Denial-of-Service, Social Engineering, Persistenz und destruktive Aktionen bleiben grundsätzlich ausgeschlossen. Sie brauchen eine ausdrückliche Autorisierung und enge Kontrolle. Bei Anzeichen echter Angreiferaktivität pausiert der Test. Dann übernimmt der Incident-Response-Weg."
+              "text": "Halte Zeitraum, erlaubte Testarten, Rate Limits, verbotene Handlungen und Abbruchbedingungen fest. Regeln braucht es auch für Quelladressen, Kommunikation und Scope-Änderungen. Denial-of-Service, Social Engineering, Persistenz und destruktive Aktionen bleiben ohne ausdrückliche Freigabe ausgeschlossen. Bei echter Angreiferaktivität wird der Test pausiert und der Incident-Response-Prozess gestartet."
             },
             {
               "title": "Zugänge und Sicherheit vorbereiten",
@@ -560,7 +560,7 @@
             },
             {
               "title": "Berichten und besprechen",
-              "text": "Erwarte eine Management-Zusammenfassung und den genauen Scope samt Grenzen. Der Bericht sollte auch Methodik und reproduzierbare Nachweise enthalten. Zu jedem validierten Fund gehören das kontextbezogene Risiko, betroffene Systeme und umsetzbare Empfehlungen. Unbestätigte Beobachtungen werden klar getrennt. Der Bericht nennt dafür den Grund und die Unsicherheit. In einem Debrief können Entwicklung und Risikoverantwortliche Annahmen und Details klären."
+              "text": "Der Bericht braucht eine kurze Zusammenfassung, den genauen Scope, Grenzen, Methodik und nachvollziehbare Belege. Zu jedem bestätigten Fund gehören Risiko, betroffene Systeme und umsetzbare Korrekturen. Unbestätigte Beobachtungen müssen klar als solche markiert sein."
             },
             {
               "title": "Beheben und nachprüfen",
@@ -570,7 +570,7 @@
         },
         "whereUsed": {
           "title": "Die Prüfung passend zur Frage wählen",
-          "intro": "Security-Leistungen überschneiden sich, beantworten aber unterschiedliche Fragen. Klare Begriffe verhindern, dass ein Team eine Art von Nachweis einkauft und eine andere erwartet.",
+          "intro": "Security-Prüfungen überschneiden sich, beantworten aber unterschiedliche Fragen. Der Name allein sagt noch nicht, welche Nachweise ein Team bekommt.",
           "items": [
             {
               "title": "Schwachstellenscan",
@@ -586,11 +586,11 @@
             },
             {
               "title": "Code-Review",
-              "text": "Quelltextgestützte Analyse der Umsetzung von Sicherheitsentscheidungen. Sie kann unsichere Datenflüsse, fehlende Autorisierung und Logikfehler zeigen, bleibt aber auf den bereitgestellten Code und Kontext begrenzt und belegt nicht, dass die produktive Konfiguration identisch arbeitet."
+              "text": "Ein Code-Review prüft, wie Sicherheitsentscheidungen umgesetzt sind. Es kann unsichere Datenflüsse, fehlende Autorisierung und Logikfehler zeigen. Ob die produktive Konfiguration genauso arbeitet, belegt es nicht."
             },
             {
               "title": "Red-Teaming",
-              "text": "Eine ziel- und bedrohungsorientierte Übung, die das Vorgehen eines relevanten Angreifers über Menschen, Prozesse und Technik hinweg nachbildet und Prävention, Erkennung sowie Reaktion prüft. Üblicherweise soll sie nicht jede Schwachstelle einer einzelnen Anwendung aufzählen."
+              "text": "Red-Teaming bildet das Vorgehen eines passenden Angreifers über Menschen, Prozesse und Technik hinweg nach. Es prüft Prävention, Erkennung und Reaktion. Es soll meist nicht jede Schwachstelle einer Anwendung finden."
             },
             {
               "title": "Incident Response",
@@ -600,7 +600,7 @@
         },
         "benefits": {
           "title": "Fragen, die vor dem Test geklärt sein sollten",
-          "intro": "Ein seriöser Anbieter hilft schon vor dem Start. Er präzisiert die Antworten und erklärt wichtige Abwägungen. Das sollte nicht erst mitten im Auftrag passieren.",
+          "intro": "Ein guter Anbieter klärt diese Fragen vor dem Start und erklärt die wichtigsten Abwägungen.",
           "items": [
             "Welche konkrete Frage soll der Test beantworten, und welche Risiken sind für uns besonders wichtig?",
             "Welche benannte Person führt den Test durch, und welche relevante Erfahrung, Qualifikationen oder erforderlichen Akkreditierungen kann der Anbieter belegen?",
@@ -615,15 +615,15 @@
         "example": {
           "title": "Beispiel: Scope für eine kleine SaaS-Anwendung",
           "paragraphs": [
-            "Ein kleines Team bereitet eine Rechnungsplattform auf den ersten Unternehmenskunden vor. Vor dem Release möchte es unabhängige Hinweise zu Mandantentrennung und administrativen Zugriffen. Das Ziel lautet nicht 'Testet unsere Firma', sondern: Kann ein Internetnutzer oder ein reguläres Mandantenmitglied in diesem Release auf Datensätze anderer Mandanten oder privilegierte Funktionen zugreifen?",
+            "Ein kleines Team bereitet eine Rechnungsplattform auf den ersten Unternehmenskunden vor. Vor dem Release will es Mandantentrennung und Admin-Zugriffe unabhängig prüfen lassen. Die konkrete Frage lautet: Kann ein externer Nutzer oder ein normales Mitglied auf fremde Datensätze oder privilegierte Funktionen zugreifen?",
             "Der Scope nennt Webanwendung, öffentliche API, Authentisierungsablauf und Adminbereich. Die Prüfung läuft in einer produktionsnahen Staging-Umgebung. Das Team stellt synthetische Daten und mehrere Konten bereit. Dazu gehören Administration, Standardmitglied und gesperrtes Mitglied. Zahlungsanbieter, Unternehmens-E-Mail, Mitarbeiterkonten, Denial-of-Service und Social Engineering sind ausgeschlossen. Geteilte Drittsysteme brauchen eine separate Erlaubnis.",
             "Die Testregeln legen Arbeitszeiten, Quelladressen, Request-Limit, Notfallkontakte und einen sofortigen Meldeweg für mandantenübergreifenden Zugriff oder Instabilität fest. Das Team prüft Backups und Logging, vereinbart verschlüsselte Nachweise mit fester Löschfrist und plant eine erreichbare Entwicklungsperson für kurzfristige Rückfragen ein.",
-            "Der Bericht beschreibt einen Fehler in der mandantenübergreifenden Autorisierung. Er enthält einen reproduzierbaren Nachweis und eine serverseitige Korrektur. Das Team repariert die gemeinsame Autorisierungsfunktion. Es ergänzt Regressionstests für alle Rollen und beauftragt einen Retest. Dieser bestätigt die Korrektur im neuen Build. Die ursprüngliche Prüfung bleibt trotzdem begrenzt und wird nicht zur Garantie für die gesamte Plattform."
+            "Der Bericht belegt einen Fehler in der Mandantentrennung und beschreibt eine serverseitige Korrektur. Das Team repariert die gemeinsame Autorisierungsfunktion, ergänzt Regressionstests und beauftragt einen Retest. Der bestätigt die Korrektur im neuen Build. Eine Garantie für die gesamte Plattform ist das trotzdem nicht."
           ]
         },
         "risks": {
           "title": "Häufige Fehler bei Scope und Einordnung",
-          "intro": "Die Qualität eines Prüfauftrags kann schon vor der technischen Prüfung oder nach dem Bericht verloren gehen. Diese Fehler verringern Sicherheit, Abdeckung oder die Chance, dass Funde tatsächlich behoben werden.",
+          "intro": "Fehler vor dem Test oder nach dem Bericht mindern den Nutzen. Sie senken die Sicherheit, begrenzen die Abdeckung oder verhindern wirksame Korrekturen.",
           "items": [
             {
               "title": "Ohne vollständige Erlaubnis testen",
@@ -654,9 +654,9 @@
         "humanResponsibility": {
           "title": "Freigabe, Koordination und Verantwortung",
           "paragraphs": [
-            "Die Systemverantwortlichen bleiben für den Test und die Risikoentscheidungen verantwortlich. Ein Anbieter kann den Scope empfehlen und Funde bewerten. Er kann auch Korrekturen vorschlagen. Er darf seine Erlaubnis aber nicht still ausweiten. Auch das akzeptable Betriebsrisiko bestimmt die Organisation selbst. Jede Freigabe muss von rechtlich befugten Parteien kommen. Externe oder intrusive Tests brauchen einen unterzeichneten Scope, eine Leistungsbeschreibung oder einen Vertrag. Das Dokument regelt Ausschlüsse, Haftung, Vertraulichkeit, Datenverarbeitung und Erlaubnisse Dritter. Bei Bedarf gehört eine qualifizierte rechtliche Prüfung dazu. Diese Hinweise sind keine Rechtsberatung.",
-            "Ein Penetrationstest ist eine zeitgebundene Stichprobe. Scope, Zugang, Umgebung, Budget, Methodik und Erfahrung prägen das Ergebnis. Ein validierter Fund dokumentiert eine nachgewiesene Schwäche unter den geprüften Bedingungen. Fehlende Funde belegen keine vollständige Sicherheit. Ausgeschlossene Systeme müssen als Grenzen im Bericht sichtbar bleiben.",
-            "Bericht und Nachweise brauchen denselben Schutz wie andere sensible Security-Daten. Die Behebung gehört mit benannten Verantwortlichen und Prioritäten aus dem Geschäftskontext in den normalen Entwicklungs- und Schwachstellenprozess. Ein Retest sollte genau ausweisen, welche Funde, welchen Build und welches Datum er abdeckt."
+            "Die Systemverantwortlichen bleiben für Test und Risiken zuständig. Ein Anbieter kann Scope und Korrekturen empfehlen. Er darf seine Erlaubnis nicht selbst erweitern. Jede Aktivität braucht die Freigabe einer befugten Stelle. Externe oder intrusive Tests gehören in einen unterschriebenen Scope oder Vertrag. Bei Bedarf ist rechtliche Beratung nötig.",
+            "Ein Pentest ist eine zeitgebundene Stichprobe. Scope, Zugang, Umgebung, Zeit, Methode und Erfahrung prägen das Ergebnis. Ein bestätigter Fund beweist eine Schwachstelle unter diesen Bedingungen. Fehlende Funde beweisen keine vollständige Sicherheit.",
+            "Behandle Bericht und Nachweise als sensible Daten. Gib Korrekturen klare Verantwortliche und Prioritäten. Ein Retest muss nennen, welche Funde, Version und welches Datum er abdeckt."
           ],
           "items": [
             "Jedes Ziel und jede Aktivität schriftlich autorisieren",
@@ -670,12 +670,12 @@
         "takeaways": {
           "title": "Das Wichtigste in Kürze",
           "items": [
-            "Beginn mit der Entscheidung, die der Test unterstützen soll. Vermeide den pauschalen Auftrag, alles anzugreifen.",
-            "Schriftliche Erlaubnis, Scope und Testregeln sind Voraussetzungen und keine Verwaltungsdetails.",
-            "Wähle Schwachstellenscan, Penetrationstest, Red-Teaming oder Incident Response passend zur Antwort, die du brauchst.",
-            "Bereite Konten, Kontakte, sichere Daten, Monitoring, Eskalation und den Umgang mit Nachweisen vor Testbeginn vor.",
-            "Verlang einen Bericht, der Scope und Grenzen nennt, Funde belegt, Kontext erklärt und bei der Behebung hilft.",
-            "Behandle das Ergebnis als datierte Stichprobe: Ursachen beheben, vereinbarte Funde nachprüfen, das laufende Schwachstellenmanagement verbessern."
+            "Beginne mit der Entscheidung, die der Test unterstützen soll.",
+            "Kläre Erlaubnis, Scope und Testregeln schriftlich vor dem Start.",
+            "Wähle die Prüfart passend zur Frage.",
+            "Bereite Konten, Kontakte, sichere Daten, Monitoring und Nachweise vor.",
+            "Verlange klare Belege, Grenzen, Kontext und umsetzbare Korrekturen.",
+            "Behandle das Ergebnis als datierte Stichprobe und prüfe behobene Funde erneut."
           ]
         },
         "sources": [
@@ -714,24 +714,24 @@
       "aiDevSecOps": {
         "metadata": {
           "title": "AI in DevSecOps verständlich erklärt | niwo",
-          "description": "Eine klare Einführung in KI-gestützte sichere Softwarebereitstellung: Nutzen, Ablauf, Grenzen und die unverzichtbare Rolle menschlicher Prüfung."
+          "description": "Wo KI sichere Softwareentwicklung unterstützt, wo sie scheitern kann und warum Menschen die Entscheidungen verantworten."
         },
         "eyebrow": "Sichere Softwarebereitstellung",
         "title": "AI in DevSecOps",
         "intro": [
-          "DevSecOps baut Sicherheit in die tägliche Softwareentwicklung ein. Die Prüfung beginnt nicht erst kurz vor der Veröffentlichung. KI kann Ergebnisse sortieren und Tests vorschlagen. Sie kann auch unbekannten Code erklären und schwer erkennbare Muster sichtbar machen.",
-          "Entscheidend ist das Wort helfen. Ein KI-System erzeugt Vorhersagen aus Daten und Anweisungen. Es versteht Geschäftsrisiken, betroffene Menschen und rechtliche Pflichten nicht wie ein verantwortlicher Mensch. Richtig eingesetzt verkürzt es Feedback-Schleifen. Unkritische Automatisierung vervielfacht dagegen überzeugend formulierte Fehler."
+          "DevSecOps macht Sicherheit zum Teil der täglichen Softwareentwicklung. Die Prüfung beginnt nicht erst kurz vor dem Release. KI kann Befunde sortieren, Tests vorschlagen, Code erklären und übersehene Muster zeigen.",
+          "Aber KI unterstützt nur. Sie versteht Geschäftsrisiken, Kunden und rechtliche Pflichten nicht wie ein verantwortlicher Mensch. Sie kann gute Arbeit beschleunigen. Überzeugende Fehler beschleunigt sie genauso."
         ],
         "coreIdea": {
           "title": "Die Grundidee",
           "paragraphs": [
-            "Eine Software-Pipeline besteht aus mehreren Kontrollpunkten. Das Team plant eine Änderung. Danach schreibt, baut und testet es den Code. Es rollt die Änderung aus und beobachtet sie im Betrieb. Sicherheitsfragen gehören an jeden dieser Punkte. KI kann dabei vergleichen, zusammenfassen und Vorschläge machen. Die normalen Sicherheitskontrollen entscheiden weiterhin über den nächsten Schritt.",
-            "Die Frage an einen Chatbot nach sicherem Code reicht nicht aus. Eine belastbare Lösung verbindet unterschiedliche Nachweise. Dazu gehören Anforderungen, Bedrohungsmodelle, Codeanalysen und Abhängigkeitsprüfungen. Auch Testergebnisse, Herkunft von Build-Artefakten, Deployment-Regeln und Monitoring zählen. KI darf diese Signale zusammenführen. Die Belege dahinter müssen prüfbar bleiben."
+            "Softwareentwicklung hat mehrere Kontrollpunkte: planen, programmieren, bauen, testen, ausrollen und überwachen. Sicherheitsfragen gehören an jeden Punkt. KI kann vergleichen, zusammenfassen und Vorschläge machen. Normale Kontrollen entscheiden weiterhin, was weitergehen darf.",
+            "Die Frage an einen Chatbot, ob Code sicher ist, reicht nicht. Ein belastbarer Prozess verbindet Anforderungen, Threat Models, Scan-Ergebnisse, Tests, Build-Nachweise, Deployment-Regeln und Signale aus dem Betrieb. KI kann diese Hinweise verbinden. Die Belege müssen sichtbar bleiben."
           ]
         },
         "howItWorks": {
           "title": "So funktioniert es in der Praxis",
-          "intro": "Es gibt weder das eine AI-in-DevSecOps-Produkt noch einen allgemeingültigen Ablauf. Eine sorgfältige Einführung ergänzt begrenzte Assistenzfunktionen in einem bereits definierten sicheren Entwicklungsprozess.",
+          "intro": "Für AI in DevSecOps gibt es kein Standardprodukt und keinen festen Ablauf. Sinnvoll ist der Einsatz dort, wo bereits ein klarer Entwicklungs- und Sicherheitsprozess besteht.",
           "steps": [
             {
               "title": "Planen",
@@ -739,11 +739,11 @@
             },
             {
               "title": "Entwickeln",
-              "text": "Ein Coding-Assistent kann Funktionen erklären, Tests entwerfen oder eine sicherere Schnittstelle vorschlagen. Der Entwickler prüft den tatsächlichen Diff, hinterfragt Annahmen und bleibt für jeden übernommenen Code verantwortlich."
+              "text": "Ein Coding-Assistent kann Funktionen erklären, Tests entwerfen oder eine sicherere Schnittstelle vorschlagen. Entwickler prüfen den tatsächlichen Diff und bleiben für übernommenen Code verantwortlich."
             },
             {
               "title": "Prüfen",
-              "text": "Statische Analyse, Abhängigkeitsprüfungen, Secret-Scans und Tests liefern Befunde. KI kann Duplikate gruppieren oder Kontext ergänzen. Reproduzierbare Tests und deterministische Werkzeuge bleiben der Nachweis."
+              "text": "Codeanalyse, Dependency- und Secret-Scans sowie Tests liefern Befunde. KI kann Duplikate gruppieren und Kontext ergänzen. Der eigentliche Nachweis bleibt reproduzierbar und prüfbar."
             },
             {
               "title": "Bauen",
@@ -761,7 +761,7 @@
         },
         "whereUsed": {
           "title": "Wo der Ansatz nützlich ist",
-          "intro": "Die stärksten Anwendungsfälle haben klare Eingaben, überprüfbare Ausgaben und einen sicheren Weg, den Vorschlag abzulehnen.",
+          "intro": "Gut geeignet sind Aufgaben mit klaren Eingaben, prüfbaren Ergebnissen und einer einfachen Möglichkeit, den Vorschlag abzulehnen.",
           "items": [
             {
               "title": "Code- und Test-Review",
@@ -783,7 +783,7 @@
         },
         "benefits": {
           "title": "Was sich verbessern kann",
-          "intro": "KI bringt den größten Nutzen, wenn Menschen früher hilfreiches Sicherheitsfeedback erhalten und vorhandenes Wissen konsequenter anwenden können.",
+          "intro": "KI ist dann nützlich, wenn Teams früher brauchbares Feedback bekommen und vorhandenes Wissen leichter anwenden können.",
           "items": [
             "Kürzere Feedback-Schleifen zwischen einer Codeänderung und einer Sicherheitsfrage.",
             "Weniger Zeitaufwand für wiederkehrende Sortier- und Sucharbeit.",
@@ -793,7 +793,7 @@
         },
         "risks": {
           "title": "Risiken und Grenzen",
-          "intro": "Eine KI-Antwort kann sicher klingen und trotzdem falsch sein. Schneller Output ist kein stärkerer Nachweis. Automatisierung verstärkt gute und schlechte Entscheidungen.",
+          "intro": "KI kann sicher klingen und trotzdem falsch liegen. Schneller Output ist kein besserer Nachweis. Automatisierung skaliert gute und schlechte Entscheidungen.",
           "items": [
             {
               "title": "Unsicherer oder erfundener Output",
@@ -801,11 +801,11 @@
             },
             {
               "title": "Abfluss sensibler Daten",
-              "text": "Quellcode, Secrets, Protokolle und Kundendaten können über Prompts, Integrationen, Aufbewahrungseinstellungen oder eine nicht vertrauenswürdige Lieferkette offengelegt werden."
+              "text": "Quellcode, Secrets, Logs und Kundendaten können über Prompts, Integrationen, Speicherregeln oder unsichere Anbieter abfließen."
             },
             {
               "title": "Automatisierungsbias",
-              "text": "Menschen übernehmen eine flüssig formulierte Empfehlung zu schnell oder beenden die Untersuchung, sobald das System einen Befund als harmlos bezeichnet."
+              "text": "Menschen übernehmen gut formulierte Empfehlungen zu schnell oder prüfen nicht weiter, sobald das System einen Befund als harmlos einstuft."
             },
             {
               "title": "Gezielte Manipulation",
@@ -820,8 +820,8 @@
         "humanResponsibility": {
           "title": "Menschliche Verantwortung",
           "paragraphs": [
-            "Sichere Softwarebereitstellung ist eine organisatorische Verantwortung. Menschen bestimmen akzeptable Risiken und ausreichende Nachweise. Sie legen Freigaberechte und den Schutz von Kunden für Fehlerfälle fest.",
-            "Menschliche Prüfung ist bei folgenreichen Vorschlägen besonders wichtig. Dazu zählen Änderungen an Zugriffen, sensiblen Daten oder der Produktion. Auch das Unterdrücken eines Befunds und schwer umkehrbare Aktionen brauchen eine Prüfung. Eine benannte Person muss die Entscheidung erklären können. 'Die KI hat es gesagt' ist keine Begründung."
+            "Menschen bleiben für sichere Software verantwortlich. Sie entscheiden, welches Risiko tragbar ist, welche Nachweise reichen, wer ein Release freigibt und wie Kunden bei Fehlern geschützt werden.",
+            "Menschliche Prüfung ist besonders wichtig bei Zugriffen, sensiblen Daten, unterdrückten Befunden und Änderungen an der Produktion. Eine benannte Person muss die Entscheidung erklären können. 'Die KI hat es gesagt' reicht nicht."
           ],
           "items": [
             "Sicherheitsanforderungen und Risikotoleranz festlegen",
@@ -833,10 +833,10 @@
         "takeaways": {
           "title": "Das Wichtigste in Kürze",
           "items": [
-            "KI kann jede Phase unterstützen, sollte aber in ein bestehendes Framework für sichere Entwicklung eingebettet sein.",
-            "Deterministische Prüfungen, geschützte Abläufe und reproduzierbare Nachweise bleiben unverzichtbar.",
-            "Sichere Automatisierung ist begrenzt, beobachtbar, reversibel und für Menschen leicht abzulehnen.",
-            "Menschliche Rechenschaftspflicht verschwindet nicht, wenn das System schneller oder autonomer wird."
+            "KI kann jede Phase unterstützen, braucht aber einen bestehenden Sicherheitsprozess.",
+            "Wiederholbare Prüfungen und nachvollziehbare Nachweise bleiben wichtig.",
+            "Begrenze Automatisierung, mache sie sichtbar und halte sie umkehrbar.",
+            "Mehr Tempo oder Autonomie entfernen keine menschliche Verantwortung."
           ]
         },
         "sources": [
@@ -870,24 +870,24 @@
       "agenticEngineering": {
         "metadata": {
           "title": "Agentic Engineering verständlich erklärt | niwo",
-          "description": "Eine verständliche Einführung in KI-Agenten, Werkzeuge, Rechte, Freigaben, Memory, Beobachtbarkeit und die Grenzen agentischer Systeme."
+          "description": "Wie KI-Agenten Werkzeuge, Rechte, Memory und Feedback nutzen und wie ihre Aktionen unter Kontrolle bleiben."
         },
         "eyebrow": "Begrenzte KI-Systeme",
         "title": "Agentic Engineering",
         "intro": [
-          "Ein KI-Agent verfolgt ein Ziel über mehrere Schritte. Er erfasst die Lage und wählt eine Aktion. Dann benutzt er ein Werkzeug und beobachtet das Ergebnis. Auf dieser Grundlage bestimmt er den nächsten Schritt. Darin unterscheidet er sich von einem Chatbot mit einer einzelnen Antwort.",
-          "Agentic Engineering macht diese Schleife nützlich, nachvollziehbar und begrenzt. Das Gebiet entwickelt sich noch. Begriffe sind uneinheitlich und Fähigkeiten ändern sich schnell. Es gibt keine allgemein anerkannte Architektur für automatisch zuverlässige oder sichere Agenten."
+          "Ein KI-Agent bearbeitet ein Ziel in mehreren Schritten. Er prüft den aktuellen Stand, wählt eine Aktion, nutzt ein Werkzeug und liest das Ergebnis. Danach entscheidet er über den nächsten Schritt. Ein Chatbot gibt meist eine Antwort und stoppt.",
+          "Agentic Engineering macht diese Schleife nützlich und kontrollierbar. Das Gebiet ist jung. Begriffe und Fähigkeiten ändern sich schnell. Keine Standardarchitektur macht Agenten automatisch sicher oder zuverlässig."
         ],
         "coreIdea": {
           "title": "Die Grundidee",
           "paragraphs": [
-            "Ein praktischer Agent verbindet ein Modell mit Anweisungen, Werkzeugen und einem Arbeitszustand. Eine Kontrollschleife führt diese Teile zusammen. Werkzeuge können ein Repository lesen oder eine Datenbank abfragen. Sie können auch ein Ticket vorbereiten oder eine Codeänderung vorschlagen. Memory hält Kontext fest. Richtlinien begrenzen Informationen und Aktionen.",
-            "Scheinbares Schlussfolgern garantiert weder Verständnis noch ein richtiges Ergebnis. Deshalb muss jede wichtige Aktion durch normale Kontrollen laufen. Dazu gehören authentisierte Identitäten, minimale Rechte und strukturierte Eingaben. Auch Validierung, Protokolle, Budgets und Abbruchbedingungen sind nötig. Aktionen mit hoher Auswirkung brauchen eine menschliche Freigabe."
+            "Ein praktischer Agent verbindet Modell, Anweisungen, Werkzeuge, Arbeitszustand und Schleife. Werkzeuge können Code lesen, Datenbanken abfragen, Tickets öffnen oder Änderungen vorschlagen. Memory hält Kontext fest. Regeln begrenzen, was der Agent sehen und tun darf.",
+            "Ein Modell kann klar argumentieren und trotzdem falsch liegen. Wichtige Aktionen brauchen deshalb normale Kontrollen: Identität, minimale Rechte, validierte Eingaben, Protokolle, Budgets, Abbruchbedingungen und menschliche Freigaben bei hoher Auswirkung."
           ]
         },
         "howItWorks": {
           "title": "So läuft ein agentischer Workflow ab",
-          "intro": "Die konkrete Schleife unterscheidet sich je nach System. Ein kontrollierter Ablauf enthält meistens diese Schritte.",
+          "intro": "Der genaue Ablauf hängt vom System ab. Diese Schritte gehören meist dazu.",
           "steps": [
             {
               "title": "Aufgabe begrenzen",
@@ -899,7 +899,7 @@
             },
             {
               "title": "Werkzeug wählen",
-              "text": "Das System wählt aus einer Positivliste mit strukturierten Parametern. Nur weil ein Werkzeug einen engen Zugriff braucht, darf der Agent nicht pauschal allgemeine Zugangsdaten bekommen."
+              "text": "Der Agent wählt ein Werkzeug aus einer festen Liste und nutzt klar definierte Parameter. Ein einzelner benötigter Zugriff rechtfertigt keine allgemeinen Zugangsdaten."
             },
             {
               "title": "Berechtigung prüfen",
@@ -907,7 +907,7 @@
             },
             {
               "title": "Handeln und beobachten",
-              "text": "Das Werkzeug führt die begrenzte Aktion aus. Der Agent protokolliert und prüft die Antwort. Danach verwendet er sie als neuen Beleg. Sie gilt nicht als unfehlbare Wahrheit."
+              "text": "Das Werkzeug führt die begrenzte Aktion aus. Der Agent protokolliert und prüft das Ergebnis. Es ist ein neuer Hinweis, keine unfehlbare Wahrheit."
             },
             {
               "title": "Beenden oder eskalieren",
@@ -917,7 +917,7 @@
         },
         "whereUsed": {
           "title": "Wo der Ansatz eingesetzt wird",
-          "intro": "Agentische Systeme sind am glaubwürdigsten in klar definierten Umgebungen mit messbaren Ergebnissen und begrenzten Folgen.",
+          "intro": "Agentische Systeme eignen sich am ehesten für klar begrenzte Aufgaben mit messbaren Ergebnissen.",
           "items": [
             {
               "title": "Softwareentwicklung",
@@ -939,7 +939,7 @@
         },
         "benefits": {
           "title": "Was sich verbessern kann",
-          "intro": "Agenten können die Koordinationskosten mehrstufiger Arbeit senken, besonders wenn Informationen über mehrere Werkzeuge verteilt sind.",
+          "intro": "Agenten können mehrstufige Arbeit vereinfachen, vor allem wenn Informationen über mehrere Werkzeuge verteilt sind.",
           "items": [
             "Kontext über mehrere Schritte halten, statt bei jedem Werkzeug neu zu beginnen.",
             "Wiederkehrende Sammel- und Vorbereitungsarbeit rund um Expertenentscheidungen automatisieren.",
@@ -949,7 +949,7 @@
         },
         "risks": {
           "title": "Risiken und Grenzen",
-          "intro": "Werkzeugzugriff verändert das Risiko. Aus einem falschen Satz kann eine falsche Aktion werden. Security-Leitlinien für Agenten entwickeln sich schnell. Deshalb braucht es laufende Tests statt einer einmaligen Abnahme.",
+          "intro": "Werkzeuge können aus einer falschen Antwort eine falsche Aktion machen. Kontrollen brauchen regelmäßige Tests, weil sich Agenten und Leitlinien weiter verändern.",
           "items": [
             {
               "title": "Manipulierte Ziele oder Anweisungen",
@@ -965,7 +965,7 @@
             },
             {
               "title": "Vergiftetes Memory",
-              "text": "Falsche oder bösartige gespeicherte Informationen beeinflussen spätere Aufgaben, Nutzer oder Entscheidungen, lange nachdem die ursprüngliche Eingabe verschwunden ist."
+              "text": "Falsche oder bösartige Einträge im Memory können spätere Aufgaben und Entscheidungen beeinflussen, lange nachdem die ursprüngliche Eingabe verschwunden ist."
             },
             {
               "title": "Fehlende Beobachtbarkeit",
@@ -980,8 +980,8 @@
         "humanResponsibility": {
           "title": "Menschliche Verantwortung",
           "paragraphs": [
-            "Menschen bestimmen Ziel, verfügbare Werkzeuge, Identitäten, Rechte, Evaluationskriterien und Freigabepunkte. Das sind Governance-Entscheidungen, die sich nicht an einen Prompt delegieren lassen.",
-            "Auch Aufsicht muss realistisch sein. Hunderte undurchsichtige Aktionen abzunicken ist keine wirksame Kontrolle. Reviewer brauchen Kontext, Zeit, Autorität und technische Belege, um einen Vorschlag tatsächlich ablehnen oder ändern zu können."
+            "Menschen bestimmen Ziel, Werkzeuge, Rechte, Prüfkriterien und Freigaben. Das sind Governance-Entscheidungen. Ein Prompt sollte sie nicht treffen.",
+            "Aufsicht muss realistisch bleiben. Hunderte unklare Aktionen abzunicken ist keine Kontrolle. Reviewer brauchen Kontext, Zeit und Befugnis, um Nein zu sagen."
           ],
           "items": [
             "Aufgabengrenzen und minimale Rechte festlegen",
@@ -993,10 +993,10 @@
         "takeaways": {
           "title": "Das Wichtigste in Kürze",
           "items": [
-            "Ein Agent ist ein Modell in einer kontrollierten Schleife aus Beobachtung, Planung, Werkzeugen und Rückmeldung.",
-            "Nützliche Autonomie braucht enge Rechte, Validierung, sichtbare Aktionen, Budgets und Abbruchbedingungen.",
-            "Agentic Engineering ist ein junges Gebiet. Beeindruckende Demos belegen keine verlässliche Praxisleistung.",
-            "Menschen bleiben für Ziele, Zugriff, Freigaben, Rechenschaft und Vorfallbehandlung verantwortlich."
+            "Ein Agent verbindet ein Modell mit einer Schleife aus Beobachtung, Aktion, Werkzeugen und Rückmeldung.",
+            "Nützliche Autonomie braucht enge Rechte, Validierung, Protokolle, Budgets und Abbruchbedingungen.",
+            "Eine starke Demo beweist noch keine verlässliche Leistung im Alltag.",
+            "Menschen bleiben für Ziele, Zugriff, Freigaben und Vorfälle verantwortlich."
           ]
         },
         "sources": [
@@ -1025,28 +1025,28 @@
       "incidentResponse": {
         "metadata": {
           "title": "Incident Response verständlich erklärt | niwo",
-          "description": "Eine praxisnahe Einführung in Erkennung, Triage, Eindämmung, Untersuchung, Wiederherstellung und Lernen nach einem Cybersecurity-Vorfall."
+          "description": "Wie Teams Cybersecurity-Vorfälle erkennen, eindämmen, untersuchen, aufarbeiten und daraus lernen."
         },
         "eyebrow": "Handeln unter Unsicherheit",
         "title": "Incident Response",
         "intro": [
-          "Incident Response beginnt beim Verdacht auf kompromittierte Systeme, Konten oder Daten. Sie koordiniert alle weiteren Arbeiten. Das Ziel ist nicht nur die Entfernung von Schadsoftware. Teams begrenzen den Schaden und versuchen den Ablauf zu verstehen. Sie sichern verlässliche Beweise und stellen einen vertrauenswürdigen Betrieb wieder her. Auch eine verantwortliche Kommunikation gehört dazu.",
-          "Eine gute Reaktion verbindet Tempo mit Sorgfalt. Das Trennen eines Rechners kann einen Angreifer stoppen. Es kann aber auch einen kritischen Dienst unterbrechen oder flüchtige Belege vernichten. Deshalb arbeiten Teams mit erprobten Plänen und klaren Zuständigkeiten. Sie dokumentieren Entscheidungen und passen ihr Bild an neue Fakten an."
+          "Incident Response beginnt beim Verdacht auf kompromittierte Konten, Systeme oder Daten. Die Arbeit geht über das Entfernen von Schadsoftware hinaus. Teams begrenzen den Schaden, klären den Ablauf, schützen Beweise, stellen einen vertrauenswürdigen Betrieb her und informieren die richtigen Stellen.",
+          "Tempo ist wichtig, aber Sorgfalt auch. Ein getrenntes System kann einen Angreifer stoppen. Es kann ebenso einen wichtigen Dienst unterbrechen oder Beweise vernichten. Teams brauchen erprobte Pläne, klare Zuständigkeiten und ein Protokoll wichtiger Entscheidungen."
         ],
         "coreIdea": {
           "title": "Die Grundidee",
           "paragraphs": [
-            "Incident Response ist ein Kreislauf aus Vorbereitung, Erkennung, Reaktion und Wiederherstellung. Eine gute Vorbereitung schafft verfügbare Logs und funktionierende Backups. Sie klärt Kontakte und hilft Menschen bei Entscheidungen unter Druck. Erkennung und Triage formen aus Signalen ein belegbares Bild. Dieses Bild zeigt Umfang und Auswirkung.",
-            "Danach begrenzt das Team das akute Risiko. Es sichert Beweise und analysiert sie. Anschließend beseitigt es die Ursache und stellt Systeme vorsichtig wieder her. Recovery ist erst mit vertrauenswürdigen Diensten abgeschlossen. Betroffene müssen die nötigen Informationen erhalten. Die Erkenntnisse sollten außerdem die nächste Reaktion verbessern."
+            "Incident Response verbindet Vorbereitung, Erkennung, Reaktion und Recovery. Die Vorbereitung klärt Logs, Backups, Kontakte und Entscheidungen unter Druck. Erkennung und Triage formen aus Warnsignalen ein Arbeitsbild zu Umfang und Auswirkung.",
+            "Danach begrenzt das Team das Risiko, sichert Beweise, beseitigt die Ursache und stellt Systeme vorsichtig wieder her. Recovery ist erst abgeschlossen, wenn wichtige Dienste wieder vertrauenswürdig sind und Erkenntnisse zu echten Verbesserungen führen."
           ]
         },
         "howItWorks": {
           "title": "So verläuft die Reaktion",
-          "intro": "Echte Vorfälle folgen selten einer geraden Linie. Mit wachsendem Wissen werden Schritte wiederholt. Die Struktur verhindert jedoch widersprüchliche Improvisation.",
+          "intro": "Vorfälle laufen selten geradlinig ab. Neue Erkenntnisse führen oft zurück zu früheren Schritten. Eine feste Struktur verhindert widersprüchliche Schnellschüsse.",
           "steps": [
             {
               "title": "Vorbereiten",
-              "text": "Definiere Rollen, Kontakte und Eskalationsschwellen vorab. Lege auch Kommunikationswege, Beweissicherung, Backups und sichere Zugänge fest. Teste alles mit realistischen Übungen."
+              "text": "Lege Rollen, Kontakte, Eskalationswege, Kommunikation, Beweissicherung, Backups und sichere Zugänge vorab fest. Teste den Ablauf mit realistischen Übungen."
             },
             {
               "title": "Erkennen und prüfen",
@@ -1058,7 +1058,7 @@
             },
             {
               "title": "Eindämmen",
-              "text": "Begrenze weiteren Schaden. Mögliche Maßnahmen sind die Isolation eines Hosts oder die Sperrung eines Kontos. Auch Verbindungen und Netzsegmente lassen sich blockieren. Jede Maßnahme muss zum betrieblichen Risiko passen."
+              "text": "Begrenze weiteren Schaden, etwa durch die Isolation eines Systems, die Sperrung eines Kontos oder das Blockieren einer Verbindung. Jede Maßnahme muss zum betrieblichen Risiko passen."
             },
             {
               "title": "Sichern und analysieren",
@@ -1076,7 +1076,7 @@
         },
         "whereUsed": {
           "title": "Wo Incident Response gebraucht wird",
-          "intro": "Incident Response beginnt bei einem möglichen Verlust von digitalem Vertrauen. Das kann ein einzelnes Konto oder den Ausfall wichtiger Dienste betreffen.",
+          "intro": "Incident Response wird nötig, sobald Konten, Systeme oder Daten nicht mehr als vertrauenswürdig gelten. Das kann ein einzelnes Konto oder einen wichtigen Dienst betreffen.",
           "items": [
             {
               "title": "Kontoübernahme",
@@ -1092,13 +1092,13 @@
             },
             {
               "title": "Anwendungsangriff",
-              "text": "Responders begrenzen den verwundbaren Dienst, sichern App- und Infrastrukturbelege, bestimmen betroffene Daten, beheben den Fehler und überwachen das reparierte System."
+              "text": "Das Team begrenzt den verwundbaren Dienst, sichert Belege aus Anwendung und Infrastruktur, prüft betroffene Daten, behebt den Fehler und überwacht das reparierte System."
             }
           ]
         },
         "benefits": {
           "title": "Was gute Reaktion verbessert",
-          "intro": "Vorbereitung garantiert keinen kleinen Vorfall. Sie verbessert aber die Fähigkeit, unter Unsicherheit nachvollziehbare Entscheidungen zu treffen.",
+          "intro": "Vorbereitung verhindert keinen Vorfall. Sie hilft dem Team aber, unter Druck nachvollziehbare Entscheidungen zu treffen.",
           "items": [
             "Schnellere Eindämmung und weniger Zeit für zusätzlichen Schaden.",
             "Klarere Zusammenarbeit zwischen Technik, Recht, Führung, Kommunikation und Partnern.",
@@ -1108,7 +1108,7 @@
         },
         "risks": {
           "title": "Risiken und Grenzen",
-          "intro": "Entscheidungen fallen mit unvollständigem Wissen. Ein Playbook gibt Struktur, ersetzt aber kein Urteil über Sicherheit, Betrieb, Beweise, Recht und betroffene Menschen.",
+          "intro": "Teams entscheiden mit unvollständigen Informationen. Ein Playbook hilft. Das Urteil über Sicherheit, Beweise, Betrieb, Pflichten und betroffene Menschen bleibt bei ihnen.",
           "items": [
             {
               "title": "Beweise vernichten",
@@ -1120,7 +1120,7 @@
             },
             {
               "title": "Betrieblicher Schaden",
-              "text": "Aggressive Isolation kann wichtige Dienste unterbrechen. Die Wahl muss fortbestehenden Angreiferzugriff gegen Sicherheit und Geschäftsauswirkung abwägen."
+              "text": "Eine harte Isolation kann wichtige Dienste unterbrechen. Das Team muss den laufenden Angreiferzugriff gegen Sicherheit und Geschäftsauswirkungen abwägen."
             },
             {
               "title": "Unsichere Wiederherstellung",
@@ -1139,8 +1139,8 @@
         "humanResponsibility": {
           "title": "Menschliche Verantwortung",
           "paragraphs": [
-            "Eine Reaktion braucht benannte Entscheider. Incident Command koordiniert Prioritäten und dokumentiert den Ablauf. Technische Spezialisten untersuchen und begrenzen den Vorfall. Systemverantwortliche erklären die Folgen für den Betrieb. Recht, Datenschutz, Kommunikation und Führung behandeln Pflichten jenseits der Technik.",
-            "Werkzeuge können Alarme korrelieren und Artefakte sammeln. Sie können auch freigegebene Eindämmungsschritte automatisieren. Menschen entscheiden weiterhin über die Aussagekraft der Belege und die Verhältnismäßigkeit einer Maßnahme. Sie bestimmen den Informationskreis und den Zeitpunkt einer vertrauenswürdigen Wiederaufnahme. Auch die weitere Verantwortung bleibt bei Menschen."
+            "Eine Reaktion braucht benannte Entscheider. Incident Command setzt Prioritäten und dokumentiert Entscheidungen. Technische Fachleute untersuchen und begrenzen. Systemverantwortliche erklären Folgen für den Betrieb. Recht, Datenschutz, Kommunikation und Führung übernehmen Aufgaben außerhalb der Technik.",
+            "Werkzeuge können Alarme verbinden, Beweise sammeln und freigegebene Schritte automatisieren. Menschen entscheiden weiterhin, ob die Belege reichen, ob eine Maßnahme angemessen ist, wer informiert werden muss und wann der Betrieb wieder vertrauenswürdig ist."
           ],
           "items": [
             "Befugnisse, Rollen und Eskalationswege festlegen",
@@ -1152,10 +1152,10 @@
         "takeaways": {
           "title": "Das Wichtigste in Kürze",
           "items": [
-            "Incident Response ist koordiniertes Risikomanagement. Sie ist mehr als technische Aufräumarbeit.",
-            "Vorbereitung, belastbare Beweise, klare Rollen und geübte Kommunikation zählen vor dem ersten Alarm.",
-            "Eindämmung muss Schaden begrenzen, ohne unnötig Beweise oder kritischen Betrieb zu zerstören.",
-            "Recovery umfasst Prüfung, Kommunikation, Dokumentation und Lernen. Das bloße Wiedereinschalten reicht nicht aus."
+            "Incident Response ist koordinierte Risikoarbeit, nicht nur technisches Aufräumen.",
+            "Klär Rollen, Beweise, Kontakte und Kommunikation vor dem ersten Alarm.",
+            "Begrenze den Angriff, ohne Beweise oder den Betrieb unnötig zu schädigen.",
+            "Recovery umfasst Prüfung, Kommunikation, Dokumentation und Lernen."
           ]
         },
         "sources": [
