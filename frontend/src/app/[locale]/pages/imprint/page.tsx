@@ -54,14 +54,19 @@ export default async function ImprintPage({
         <p>
           <strong>{t("sections.provider.body")}</strong>
           <br />
-          niwo systems
+          {t("sections.provider.name")}
           <br />
-          {t("sections.provider.owner")}
+          {t("sections.provider.careOf")}
           <br />
-          Email:{" "}
-          <a href="mailto:legal@niwosystems.com">legal@niwosystems.com</a>
+          {t("sections.provider.street")}
           <br />
-          {t("sections.provider.address")}
+          {t("sections.provider.city")}
+        </p>
+        <p>
+          {t("sections.provider.emailLabel")}:{" "}
+          <a href="mailto:info@niwosystems.com">info@niwosystems.com</a>
+          <br />
+          {t("sections.provider.phoneLabel")}: {t("sections.provider.phone")}
         </p>
       </section>
 

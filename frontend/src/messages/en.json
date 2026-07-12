@@ -1274,13 +1274,18 @@
     },
     "eyebrow": "Legal",
     "title": "Imprint",
-    "lastUpdated": "10 July 2026",
+    "lastUpdated": "12 July 2026",
     "sections": {
       "provider": {
         "title": "1. Provider Identification",
-        "body": "Provider information under Section 5 DDG and Section 18 MStV",
-        "owner": "Operator and person responsible for content: Nikita Wokurka",
-        "address": "Business address: being finalized and will be published here once available"
+        "body": "Information in accordance with Section 5 DDG",
+        "name": "Nikita Wokurka",
+        "careOf": "c/o Impressumservice Dein-Impressum",
+        "street": "Stettiner Str. 41",
+        "city": "35410 Hungen, Germany",
+        "emailLabel": "Email",
+        "phoneLabel": "Phone",
+        "phone": "+49 157 9234 1658 (imprint service)"
       },
       "nature": {
         "title": "2. Nature of the Website",
@@ -1290,7 +1295,7 @@
       },
       "contact": {
         "title": "3. Contact",
-        "body": "For legal notices or formal correspondence, please contact legal@niwosystems.com. The external business address is being established and will be published here once finalized."
+        "body": "For legal notices or formal correspondence, please contact legal@niwosystems.com. Postal correspondence reaches me at the address above."
       },
       "liability": {
         "title": "4. Liability for Content",

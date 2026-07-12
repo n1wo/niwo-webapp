@@ -1274,13 +1274,18 @@
     },
     "eyebrow": "Rechtliches",
     "title": "Impressum",
-    "lastUpdated": "10. Juli 2026",
+    "lastUpdated": "12. Juli 2026",
     "sections": {
       "provider": {
         "title": "1. Anbieterkennzeichnung",
-        "body": "Anbieterkennzeichnung gemäß § 5 DDG und § 18 MStV",
-        "owner": "Anbieter und inhaltlich verantwortlich: Nikita Wokurka",
-        "address": "Geschäftsanschrift: wird derzeit eingerichtet und anschließend hier veröffentlicht"
+        "body": "Angaben gemäß § 5 DDG",
+        "name": "Nikita Wokurka",
+        "careOf": "c/o Impressumservice Dein-Impressum",
+        "street": "Stettiner Str. 41",
+        "city": "35410 Hungen",
+        "emailLabel": "E-Mail",
+        "phoneLabel": "Telefon",
+        "phone": "0157 9234 1658 (Impressumsservice)"
       },
       "nature": {
         "title": "2. Art der Website",
@@ -1290,7 +1295,7 @@
       },
       "contact": {
         "title": "3. Kontakt",
-        "body": "Für rechtliche Hinweise oder formelle Korrespondenz kontaktiere bitte legal@niwosystems.com. Die externe Geschäftsanschrift wird derzeit eingerichtet und nach Abschluss hier veröffentlicht."
+        "body": "Für rechtliche Hinweise oder formelle Korrespondenz kontaktiere bitte legal@niwosystems.com. Postalisch erreichst du mich über die oben genannte Anschrift."
       },
       "liability": {
         "title": "4. Haftung für Inhalte",
