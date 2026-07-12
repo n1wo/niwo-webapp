@@ -27,6 +27,11 @@ type BuildMetadataArgs = {
   description: string;
   path?: string;
   ogType?: "website" | "article";
+  /** ISO dates; only used when ogType is "article". */
+  articleDates?: {
+    published: string;
+    modified: string;
+  };
 };
 
 /**
@@ -40,6 +45,7 @@ export function buildMetadata({
   description,
   path = "",
   ogType = "website",
+  articleDates,
 }: BuildMetadataArgs): Metadata {
   return {
     title,
@@ -55,6 +61,12 @@ export function buildMetadata({
       description,
       url: `/${locale}${path}`,
       locale: OG_LOCALES[locale] ?? OG_LOCALES[routing.defaultLocale],
+      ...(ogType === "article" && articleDates
+        ? {
+            publishedTime: articleDates.published,
+            modifiedTime: articleDates.modified,
+          }
+        : {}),
       images: [
         {
           url: "/opengraph-image",

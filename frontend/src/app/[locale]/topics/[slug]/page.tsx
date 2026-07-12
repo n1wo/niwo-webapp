@@ -32,6 +32,10 @@ export async function generateMetadata({
     description: content.metadata.description,
     path: `/topics/${slug}`,
     ogType: "article",
+    articleDates: {
+      published: topicArticle.datePublished,
+      modified: topicArticle.dateModified,
+    },
   });
 }
 
@@ -59,6 +63,8 @@ export default async function TopicPage({
     inLanguage: locale,
     url: pageUrl,
     mainEntityOfPage: pageUrl,
+    datePublished: topicArticle.datePublished,
+    dateModified: topicArticle.dateModified,
     author: {
       "@type": "Person",
       name: "Nikita Wokurka",

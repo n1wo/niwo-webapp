@@ -9,6 +9,10 @@ export type TopicArticleKey =
 export type TopicArticleDefinition = {
   key: TopicArticleKey;
   slug: string;
+  /** ISO date (YYYY-MM-DD); feeds JSON-LD and og:article meta. */
+  datePublished: string;
+  /** Bump manually whenever the article content changes. */
+  dateModified: string;
 };
 
 /*
@@ -20,26 +24,38 @@ export const topicArticleDefinitions: TopicArticleDefinition[] = [
   {
     key: "webAppSecurity",
     slug: "web-app-security",
+    datePublished: "2026-07-11",
+    dateModified: "2026-07-12",
   },
   {
     key: "secureDevelopment",
     slug: "secure-development",
+    datePublished: "2026-07-11",
+    dateModified: "2026-07-12",
   },
   {
     key: "pentestPreparation",
     slug: "penetration-testing",
+    datePublished: "2026-07-11",
+    dateModified: "2026-07-12",
   },
   {
     key: "aiDevSecOps",
     slug: "ai-in-devsecops",
+    datePublished: "2026-07-11",
+    dateModified: "2026-07-12",
   },
   {
     key: "agenticEngineering",
     slug: "agentic-engineering",
+    datePublished: "2026-07-11",
+    dateModified: "2026-07-12",
   },
   {
     key: "incidentResponse",
     slug: "incident-response",
+    datePublished: "2026-07-11",
+    dateModified: "2026-07-12",
   },
 ];
 
