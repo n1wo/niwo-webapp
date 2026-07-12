@@ -882,7 +882,7 @@
           "title": "Die Grundidee",
           "paragraphs": [
             "Ein praktischer Agent verbindet ein Modell mit Anweisungen, Werkzeugen, Arbeitszustand und einer Kontrollschleife. Werkzeuge können ein Repository lesen, eine Datenbank abfragen, ein Ticket vorbereiten oder eine Codeänderung vorschlagen. Memory hält Kontext fest; Richtlinien begrenzen Informationen und Aktionen.",
-            "Scheinbare Schlussfolgerungen des Modells garantieren weder Verständnis noch Richtigkeit. Deshalb muss jede wichtige Aktion durch normale Kontrollen laufen: authentisierte Identitäten, minimale Rechte, strukturierte Eingaben, Validierung, Protokolle, Budgets, Abbruchbedingungen und menschliche Freigabe bei hohem Einfluss."
+            "Dass ein Modell scheinbar schlussfolgert, garantiert weder Verständnis noch ein richtiges Ergebnis. Deshalb muss jede wichtige Aktion durch normale Kontrollen laufen: authentisierte Identitäten, minimale Rechte, strukturierte Eingaben, Validierung, Protokolle, Budgets, Abbruchbedingungen und menschliche Freigabe bei hohem Einfluss."
           ]
         },
         "howItWorks": {
@@ -899,7 +899,7 @@
             },
             {
               "title": "Werkzeug wählen",
-              "text": "Das System wählt aus einer Positivliste mit strukturierten Parametern. Weil ein Werkzeug engen Zugriff braucht, darf der Agent nicht automatisch allgemeine Zugangsdaten erhalten."
+              "text": "Das System wählt aus einer Positivliste mit strukturierten Parametern. Nur weil ein Werkzeug einen engen Zugriff braucht, darf der Agent nicht pauschal allgemeine Zugangsdaten bekommen."
             },
             {
               "title": "Berechtigung prüfen",
