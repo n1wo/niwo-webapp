@@ -149,7 +149,7 @@
         "title": "Web App Security",
         "intro": [
           "Web application security is the practice of making sure an application only does what its operators and users intend - even when someone deliberately sends it input it was never meant to receive. It covers the code, the configuration around it, and the assumptions that connect them.",
-          "This page builds a working mental model: where trust boundaries sit, how a request actually moves through an application, where risk tends to concentrate, and which common beliefs quietly fail. It is written for developers, learners, and small teams who want to reason about their own systems."
+          "This page gives you a working mental model: where trust boundaries sit, how a request actually moves through an application, where risk tends to concentrate, and which common beliefs quietly fail. It is written for developers, learners, and small teams who want to reason about their own systems."
         ],
         "coreIdea": {
           "title": "What web application security actually protects",
@@ -162,7 +162,7 @@
         },
         "howItWorks": {
           "title": "How a request moves through an application",
-          "intro": "Following one request end to end shows where the important decisions happen. Each stage answers a different question, and no single stage can answer them all.",
+          "intro": "Follow one request end to end and you can see where the important decisions happen. Each stage answers a different question, and no single stage can answer them all.",
           "steps": [
             {
               "title": "Transport",
@@ -196,7 +196,7 @@
         },
         "whereUsed": {
           "title": "Where risk tends to concentrate",
-          "intro": "Across very different applications, the same areas keep producing findings. They deserve attention first.",
+          "intro": "Across very different applications, the same areas keep producing findings. That is where to look first.",
           "items": [
             {
               "title": "Authentication",
@@ -232,7 +232,7 @@
           "title": "A realistic request-flow example",
           "paragraphs": [
             "Consider a small invoicing application. A logged-in user requests the PDF export of invoice number 8241. Transport encryption is in place, the session cookie is valid, and the endpoint checks authentication correctly. The code then loads invoice 8241 and returns the file.",
-            "The missing question is ownership. Nothing verified that invoice 8241 belongs to the requesting account. Any authenticated user who changes the number in the URL can read other customers' invoices - an insecure direct object reference and a concrete form of broken object-level authorization.",
+            "One question is missing: does invoice 8241 actually belong to the requesting account? Nothing checked that. Any authenticated user who changes the number in the URL can read other customers' invoices - an insecure direct object reference and a concrete form of broken object-level authorization.",
             "Every earlier control worked exactly as designed. TLS was valid, passwords were hashed, the session was intact - and the data still leaked, because authorization for this specific object was never checked on the server.",
             "The fix is small: scope the database query to the authenticated account. The point of the example is not that the fix is hard, but that no scanner output, framework default, or encryption setting would have made this decision automatically."
           ]
@@ -270,7 +270,7 @@
         "humanResponsibility": {
           "title": "What testing can and cannot prove",
           "paragraphs": [
-            "Any form of security testing - automated or manual - examines one version of an application, in one configuration, for a bounded amount of time. It can demonstrate the presence of problems and it can raise justified confidence. It cannot demonstrate their absence. New code, new dependencies, and new features reset the picture.",
+            "Any form of security testing - automated or manual - examines one version of an application, in one configuration, for a bounded amount of time. It can demonstrate the presence of problems and it can raise justified confidence. It cannot prove that none exist. New code, new dependencies, and new features reset the picture.",
             "That is why current guidance treats security as a property of the development process rather than a one-time verification event. Verification standards such as the OWASP ASVS define what to check; when and how often to check remains a judgement call that depends on the data involved, the risk, and the rate of change."
           ],
           "items": [

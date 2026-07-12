@@ -149,20 +149,20 @@
         "title": "Web App Security",
         "intro": [
           "Web-App-Sicherheit bedeutet, dafür zu sorgen, dass eine Anwendung nur das tut, was Betreiber und Nutzer beabsichtigen - auch dann, wenn jemand ihr gezielt Eingaben schickt, für die sie nie gedacht war. Das umfasst den Code, die Konfiguration darum herum und die Annahmen, die beides verbindet.",
-          "Diese Seite baut ein brauchbares Denkmodell auf: wo Vertrauensgrenzen liegen, wie eine Anfrage tatsächlich durch eine Anwendung läuft, wo sich Risiko konzentriert und welche verbreiteten Annahmen leise scheitern. Sie richtet sich an Entwicklerinnen und Entwickler, Lernende und kleine Teams, die über ihre eigenen Systeme nachdenken wollen."
+          "Diese Seite gibt dir ein brauchbares Denkmodell: wo Vertrauensgrenzen liegen, wie eine Anfrage tatsächlich durch eine Anwendung läuft, wo sich Risiko konzentriert und welche verbreiteten Annahmen leise scheitern. Sie richtet sich an Entwicklerinnen und Entwickler, Lernende und kleine Teams, die über ihre eigenen Systeme nachdenken wollen."
         ],
         "coreIdea": {
           "title": "Was Web-App-Sicherheit tatsächlich schützt",
           "paragraphs": [
-            "Es lohnt sich, das Ziel präzise zu fassen. Anwendungssicherheit macht Software nicht unangreifbar; sie schützt konkrete Güter: die Vertraulichkeit der Daten, die eine Anwendung hält, die Integrität der Aktionen, die sie ausführt, und die Verfügbarkeit des Dienstes für die Menschen, die sich darauf verlassen. Jede technische Maßnahme dient einem dieser Schutzziele.",
-            "Das zentrale Konzept ist die Vertrauensgrenze. Ein Browser steht vollständig unter der Kontrolle der Nutzerin oder des Nutzers - nichts, was von dort kommt, darf der Server ungeprüft übernehmen: Formularfelder, Cookies, Header, URLs, Datei-Uploads. Dasselbe gilt überall dort, wo Daten von einem Kontrollbereich in einen anderen wechseln: zwischen einer API und einem Drittdienst, zwischen Anwendung und Datenbank, zwischen zwei internen Diensten mit unterschiedlichen Rechten.",
+            "Es lohnt sich, das Ziel präzise zu fassen. Anwendungssicherheit macht Software nicht unangreifbar; sie schützt konkrete Dinge: die Vertraulichkeit der Daten, die eine Anwendung hält, die Integrität der Aktionen, die sie ausführt, und die Verfügbarkeit des Dienstes für die Menschen, die sich darauf verlassen. Jede technische Maßnahme dient einem dieser Schutzziele.",
+            "Das zentrale Konzept ist die Vertrauensgrenze. Ein Browser steht komplett unter der Kontrolle der Person, die ihn benutzt - nichts, was von dort kommt, darf der Server ungeprüft übernehmen: Formularfelder, Cookies, Header, URLs, Datei-Uploads. Dasselbe gilt überall dort, wo Daten von einem Kontrollbereich in einen anderen wechseln: zwischen einer API und einem Drittdienst, zwischen Anwendung und Datenbank, zwischen zwei internen Diensten mit unterschiedlichen Rechten.",
             "Fehler an Vertrauensgrenzen sind ein hilfreiches Denkmodell für viele Web-Schwachstellen. Die Anwendung behandelt angreiferkontrollierte Eingaben wie Struktur (Injection), verlässt sich darauf, dass der Client selbst angibt, wer er ist oder was er darf (fehlerhafte Authentifizierung und Zugriffskontrolle), oder reicht Daten dorthin weiter, wo sie als Code interpretiert werden (Cross-Site-Scripting). Die OWASP Top 10 bündeln diese wiederkehrenden Fehler in Awareness-Kategorien - angeführt in der Ausgabe 2025 von Broken Access Control.",
             "Weil Vertrauensgrenzen Architekturfragen sind, ist Sicherheit ebenfalls eine Architekturfrage. Ein Framework kann viele gute Entscheidungen vorwegnehmen, aber es kann nicht wissen, welche Nutzerin welchen Datensatz sehen darf. Genau diese Entscheidungen sind die eigentliche Sicherheit einer Anwendung."
           ]
         },
         "howItWorks": {
           "title": "Wie eine Anfrage durch die Anwendung läuft",
-          "intro": "Wer eine einzelne Anfrage von Anfang bis Ende verfolgt, sieht, wo die wichtigen Entscheidungen fallen. Jede Station beantwortet eine andere Frage - und keine kann alle beantworten.",
+          "intro": "Verfolg eine Anfrage einmal von Anfang bis Ende, und du siehst, wo die wichtigen Entscheidungen fallen. Jede Station beantwortet eine andere Frage - und keine kann alle beantworten.",
           "steps": [
             {
               "title": "Transport",
@@ -196,7 +196,7 @@
         },
         "whereUsed": {
           "title": "Wo sich Risiko konzentriert",
-          "intro": "Über sehr unterschiedliche Anwendungen hinweg liefern immer wieder dieselben Bereiche Befunde. Ihnen gilt die erste Aufmerksamkeit.",
+          "intro": "Über sehr unterschiedliche Anwendungen hinweg liefern immer wieder dieselben Bereiche Befunde. Dort lohnt sich der erste Blick.",
           "items": [
             {
               "title": "Authentifizierung",
@@ -232,7 +232,7 @@
           "title": "Ein realistisches Beispiel entlang einer Anfrage",
           "paragraphs": [
             "Angenommen, eine kleine Anwendung verwaltet Rechnungen. Eine eingeloggte Nutzerin ruft den PDF-Export der Rechnung Nummer 8241 auf. Die Transportverschlüsselung steht, das Session-Cookie ist gültig, und der Endpunkt prüft die Authentifizierung korrekt. Der Code lädt anschließend Rechnung 8241 und liefert die Datei aus.",
-            "Die fehlende Frage ist die nach dem Eigentum. Nichts hat geprüft, ob Rechnung 8241 zum anfragenden Konto gehört. Jede authentifizierte Person, die die Nummer in der URL ändert, kann die Rechnungen anderer Kunden lesen - eine Insecure Direct Object Reference und eine konkrete Form fehlerhafter objektbezogener Autorisierung.",
+            "Eine Frage fehlt: Gehört Rechnung 8241 überhaupt zum anfragenden Konto? Genau das hat niemand geprüft. Jede authentifizierte Person, die die Nummer in der URL ändert, kann die Rechnungen anderer Kunden lesen - eine Insecure Direct Object Reference und eine konkrete Form fehlerhafter objektbezogener Autorisierung.",
             "Jede vorgelagerte Kontrolle hat exakt wie vorgesehen funktioniert. TLS war gültig, Passwörter waren gehasht, die Session war intakt - und die Daten sind trotzdem abgeflossen, weil die Autorisierung für genau dieses Objekt serverseitig nie geprüft wurde.",
             "Die Korrektur ist klein: die Datenbankabfrage auf das authentifizierte Konto einschränken. Das Beispiel zeigt nicht, dass die Korrektur schwierig wäre - sondern dass kein Scanner-Ergebnis, keine Framework-Voreinstellung und keine Verschlüsselung diese Entscheidung automatisch getroffen hätte."
           ]
@@ -270,7 +270,7 @@
         "humanResponsibility": {
           "title": "Was Tests belegen können - und was nicht",
           "paragraphs": [
-            "Jede Form von Sicherheitstest - automatisiert oder manuell - untersucht eine Version einer Anwendung, in einer Konfiguration, für eine begrenzte Zeit. Ein Test kann Probleme nachweisen und berechtigtes Vertrauen aufbauen. Ihre Abwesenheit kann er nicht belegen. Neuer Code, neue Abhängigkeiten und neue Funktionen setzen das Bild zurück.",
+            "Jede Form von Sicherheitstest - automatisiert oder manuell - untersucht eine Version einer Anwendung, in einer Konfiguration, für eine begrenzte Zeit. Ein Test kann Probleme nachweisen und berechtigtes Vertrauen aufbauen. Dass keine Probleme existieren, kann er nicht belegen. Neuer Code, neue Abhängigkeiten und neue Funktionen setzen das Bild zurück.",
             "Deshalb behandeln aktuelle Leitfäden Sicherheit als Eigenschaft des Entwicklungsprozesses und nicht als einmaliges Prüfereignis. Prüfstandards wie der OWASP ASVS definieren, was zu prüfen ist; wann und wie oft geprüft wird, bleibt eine Abwägung, die von den Daten, dem Risiko und der Änderungsgeschwindigkeit abhängt."
           ],
           "items": [
@@ -278,18 +278,18 @@
             "Schweregrade beschreiben technische Auswirkungen, nicht Geschäftsauswirkungen",
             "Testergebnisse veralten mit jeder Änderung der Anwendung",
             "Werkzeuge unterstützen Urteilsvermögen, sie ersetzen es nicht",
-            "Getestet wird nur, was einem gehört oder wofür eine ausdrückliche Erlaubnis vorliegt"
+            "Teste nur, was dir gehört oder wofür du eine ausdrückliche Erlaubnis hast"
           ]
         },
         "takeaways": {
           "title": "Das Wichtigste in Kürze",
           "items": [
-            "Zuerst die Vertrauensgrenzen zeichnen: Überall dort, wo Daten aus fremder Kontrolle in die eigene wechseln, fallen Sicherheitsentscheidungen.",
-            "Identität authentifizieren, dann jede Aktion und jedes Objekt serverseitig autorisieren - das sind zwei verschiedene Prüfungen.",
-            "Eingaben beim Eingang validieren und Ausgaben beim Ausgang encodieren; keine der beiden Kontrollen ersetzt die andere.",
-            "Abhängigkeiten und Konfiguration als Teil der Anwendung behandeln - Angreifer tun es auch.",
-            "Die OWASP Top 10 für Awareness nutzen, den ASVS für echte Prüftiefe.",
-            "Jedes Testergebnis als Momentaufnahme verstehen; Sicherheit entsteht im Prozess, der die nächste Version hervorbringt."
+            "Zeichne zuerst die Vertrauensgrenzen: Überall dort, wo Daten aus fremder Kontrolle in deine wechseln, fallen Sicherheitsentscheidungen.",
+            "Authentifiziere die Identität, dann autorisiere jede Aktion und jedes Objekt serverseitig - das sind zwei verschiedene Prüfungen.",
+            "Validiere Eingaben beim Eingang und encodiere Ausgaben beim Ausgang; keine der beiden Kontrollen ersetzt die andere.",
+            "Behandle Abhängigkeiten und Konfiguration als Teil der Anwendung - Angreifer tun es auch.",
+            "Nutze die OWASP Top 10 für Awareness und den ASVS für echte Prüftiefe.",
+            "Nimm jedes Testergebnis als Momentaufnahme; Sicherheit entsteht im Prozess, der die nächste Version hervorbringt."
           ]
         },
         "sources": [
