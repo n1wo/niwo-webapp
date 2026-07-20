@@ -6,7 +6,10 @@ export const SITE_URL =
 
 export const SITE_NAME = "niwo systems";
 
-const SOCIAL_IMAGE_ALT = "niwo - Practical web security for developers and small teams";
+const SOCIAL_IMAGE_ALT: Record<string, string> = {
+  en: "niwo systems — Software, IT and cybersecurity consulting",
+  de: "niwo systems — Beratung für Software, IT und Cybersecurity",
+};
 
 const OG_LOCALES: Record<string, string> = {
   en: "en_US",
@@ -15,9 +18,10 @@ const OG_LOCALES: Record<string, string> = {
 
 export function getLocalizedAlternates(pathname = ""): Metadata["alternates"] {
   return {
-    languages: Object.fromEntries(
-      routing.locales.map((locale) => [locale, `/${locale}${pathname}`]),
-    ),
+    languages: {
+      ...Object.fromEntries(routing.locales.map((locale) => [locale, `/${locale}${pathname}`])),
+      "x-default": `/${routing.defaultLocale}${pathname}`,
+    },
   };
 }
 
@@ -32,12 +36,13 @@ type BuildMetadataArgs = {
     published: string;
     modified: string;
   };
+  socialImageAlt?: string;
 };
 
 /**
  * Builds page metadata with canonical/hreflang alternates plus Open Graph and
  * Twitter cards. The Open Graph / Twitter image is supplied automatically by the
- * file-based `app/opengraph-image` (and `twitter-image`) routes.
+ * localized file-based `app/[locale]/opengraph-image` and `twitter-image` routes.
  */
 export function buildMetadata({
   locale,
@@ -46,10 +51,16 @@ export function buildMetadata({
   path = "",
   ogType = "website",
   articleDates,
+  socialImageAlt,
 }: BuildMetadataArgs): Metadata {
+  const imageAlt =
+    socialImageAlt ??
+    SOCIAL_IMAGE_ALT[locale] ??
+    SOCIAL_IMAGE_ALT[routing.defaultLocale];
   return {
     title,
     description,
+    robots: { index: true, follow: true },
     alternates: {
       canonical: `/${locale}${path}`,
       ...getLocalizedAlternates(path),
@@ -69,10 +80,10 @@ export function buildMetadata({
         : {}),
       images: [
         {
-          url: "/opengraph-image",
+          url: `/${locale}/opengraph-image`,
           width: 1200,
           height: 630,
-          alt: SOCIAL_IMAGE_ALT,
+          alt: imageAlt,
         },
       ],
     },
@@ -82,8 +93,8 @@ export function buildMetadata({
       description,
       images: [
         {
-          url: "/twitter-image",
-          alt: SOCIAL_IMAGE_ALT,
+          url: `/${locale}/twitter-image`,
+          alt: imageAlt,
         },
       ],
     },

@@ -26,10 +26,15 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
-        source: "/:locale(en|de)/services/:slug",
-        destination: "/:locale/topics/:slug",
+        source: "/security.txt",
+        destination: "/.well-known/security.txt",
         permanent: true,
       },
+      ...["web-app-security", "secure-development", "penetration-testing", "ai-in-devsecops", "agentic-engineering", "incident-response"].map((slug) => ({
+        source: `/:locale(en|de)/services/${slug}`,
+        destination: `/:locale/topics/${slug}`,
+        permanent: true,
+      })),
     ];
   },
 };

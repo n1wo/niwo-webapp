@@ -196,6 +196,10 @@ export default function HomePage(): JSX.Element {
               {t("heroParagraph")}
             </p>
 
+            <p data-niwo-identity className="max-w-3xl border-l-2 border-[rgb(140_127_224/0.5)] pl-5 text-sm leading-7 text-zinc-300">
+              {t("identityStatement")}
+            </p>
+
             <ul className="flex max-w-3xl flex-wrap gap-2">
               {heroKeywords.map((keyword) => (
                 <li
@@ -367,7 +371,7 @@ export default function HomePage(): JSX.Element {
                 </p>
               </div>
               <ActionLink
-                href="/pages/about"
+                href="/pages/whoami"
                 variant="subtle"
                 font="mono"
                 withArrow

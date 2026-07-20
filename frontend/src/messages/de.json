@@ -9,6 +9,8 @@
   },
   "Navbar": {
     "services": "Themen",
+    "servicesPage": "Leistungen",
+    "insights": "Beiträge",
     "about": "About",
     "contact": "Kontakt",
     "allTopics": "Alle Themen",
@@ -35,12 +37,13 @@
   },
   "Home": {
     "metadata": {
-      "title": "niwo | Software, IT & Cybersecurity",
+      "title": "niwo | Beratung für Software, IT & Cybersecurity",
       "description": "niwo systems entwickelt eine fokussierte Software-, IT- und Cybersecurity-Beratungspraxis rund um sichere Systeme und Incident-Response-Readiness."
     },
     "heroEyebrow": "Software · IT · Cybersecurity-Beratung",
     "heroHeadline": "Sicher durch das digitale Zeitalter.",
     "heroParagraph": "Wir helfen Start-ups, kleinen und mittelgroßen Unternehmen sowie Privatpersonen, digitale Risiken zu verstehen, ihre Systeme besser abzusichern und neue Technologien verantwortungsvoll einzusetzen.",
+    "identityStatement": "NIWO ist eine inhabergeführte Beratung für Software, IT und Cybersecurity mit Sitz in Bonn, die klar abgegrenzte Leistungen auch remote erbringt.",
     "heroKeywords": ["DevSecOps", "Agentic Engineering", "Incident Response", "Security Hardening"],
     "primaryCta": "Unverbindlich anfragen",
     "secondaryCta": "Themen ansehen",
@@ -57,7 +60,6 @@
       "text": "Ein kurzes Profil zu meinem Hintergrund, aktuellem Fokus und wie ich über praktische Security-Arbeit nachdenke.",
       "cta": "whoami öffnen"
     },
-    "hiringNotice": "Offen für Werkstudenten- & Teilzeitstellen — IT-Security · IT-Support · Softwareentwicklung",
     "servicesEyebrow": "Security verständlich erklärt",
     "servicesTitle": "Komplexe Security-Themen, klar erklärt",
     "servicesDescription": "Praxisnahe Erklärungen zu Cybersecurity, sicherer Softwareentwicklung, Incident Response und KI-gestütztem Engineering — so strukturiert, dass klar wird, worauf es ankommt, wo Risiken entstehen und wie die Konzepte in der Praxis funktionieren.",
@@ -1183,12 +1185,12 @@
       }
     }
   },
-  "About": {
+  "Whoami": {
     "metadata": {
-      "title": "Über mich | niwo",
-      "description": "Über Nikita, Cybersecurity-Student in Bonn, der Niwo Systems öffentlich aufbaut: echte Security-Arbeit, ehrlich dokumentiert, mit klar abgesteckter Hilfe, wo es passt."
+      "title": "whoami — Über Nikita Wokurka | niwo",
+      "description": "Über Nikita Wokurka, den Cybersecurity-Studenten in Bonn hinter NIWO: echte Security-Arbeit, ehrlich dokumentiert — von eigenen Projekten bis zu klar abgegrenzten Reviews."
     },
-    "eyebrow": "ÜBER MICH",
+    "eyebrow": "WHOAMI",
     "title": "whoami",
     "intro": {
       "paragraphs": [

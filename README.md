@@ -24,7 +24,7 @@ This repository is public for transparency, technical credibility, and easier in
 
 ## Tech Stack
 
-- Next.js 15 App Router
+- Next.js 16 App Router
 - React 19
 - TypeScript
 - Tailwind CSS 4

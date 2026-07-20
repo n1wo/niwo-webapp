@@ -67,10 +67,13 @@ export default function Navbar() {
             <div className="hidden md:flex items-center">
               <ul className="flex my-auto w-fit h-fit gap-6">
                 <li>
-                  <LinkAnimation href="mailto:info@niwosystems.com">{t("contact")}</LinkAnimation>
+                  <LinkAnimation href="/pages/contact">{t("contact")}</LinkAnimation>
                 </li>
                 <li>
                   <LinkAnimation href="/pages/about">{t("about")}</LinkAnimation>
+                </li>
+                <li>
+                  <LinkAnimation href="/services">{t("servicesPage")}</LinkAnimation>
                 </li>
                 <li>
                   <TopicsDropdown />
@@ -133,7 +136,7 @@ export default function Navbar() {
               </li>
               <li>
                 <LinkAnimation
-                  href="mailto:info@niwosystems.com"
+                  href="/pages/contact"
                   onClick={() => setIsOpen(false)}
                 >
                   {t("contact")}
@@ -148,6 +151,11 @@ export default function Navbar() {
                 <p className="font-mono text-xs uppercase tracking-[0.2em] text-zinc-500">
                   {t("services")}
                 </p>
+              </li>
+              <li className="border-l border-white/[0.1] pl-4">
+                <LinkAnimation href="/services" onClick={() => setIsOpen(false)}>
+                  {t("servicesPage")}
+                </LinkAnimation>
               </li>
               {topicLinks.map((topic) => (
                 <li
