@@ -30,6 +30,11 @@ const nextConfig: NextConfig = {
         destination: "/.well-known/security.txt",
         permanent: true,
       },
+      {
+        source: "/favicon.ico",
+        destination: "/assets/logos/niwo-favicon.svg",
+        permanent: true,
+      },
       ...["web-app-security", "secure-development", "penetration-testing", "ai-in-devsecops", "agentic-engineering", "incident-response"].map((slug) => ({
         source: `/:locale(en|de)/services/${slug}`,
         destination: `/:locale/topics/${slug}`,

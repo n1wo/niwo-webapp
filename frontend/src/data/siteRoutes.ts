@@ -19,7 +19,7 @@ export const staticPublicPaths = [
  * ISO date for routes without per-content dates (static pages and services).
  * Update when their copy changes meaningfully.
  */
-export const STATIC_CONTENT_UPDATED = "2026-07-12";
+export const STATIC_CONTENT_UPDATED = "2026-07-20";
 
 export type PublicContentRoute = { path: string; lastModified: string };
 
