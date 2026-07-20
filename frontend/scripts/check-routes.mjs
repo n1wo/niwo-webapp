@@ -358,6 +358,72 @@ function wait(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+function readMeta(body, property) {
+  return body.match(new RegExp(`<meta[^>]+(?:name|property)="${property}"[^>]+content="([^"]+)"`))?.[1]
+    ?? body.match(new RegExp(`<meta[^>]+content="([^"]+)"[^>]+(?:name|property)="${property}"`))?.[1]
+    ?? "";
+}
+
+async function checkDiscoverabilityOutput() {
+  const sitemap = await (await fetch(`${BASE_URL}/sitemap.xml`)).text();
+  const urls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => new URL(match[1]).pathname);
+  const uniqueUrls = [...new Set(urls)];
+  if (uniqueUrls.length !== urls.length) throw new Error("sitemap contains duplicate URLs");
+  const titles = new Map();
+  const descriptions = new Map();
+  const linkedPaths = new Set(["/en", "/de"]);
+  const checkedSocialAssets = new Set();
+
+  for (const path of uniqueUrls) {
+    const response = await fetch(`${BASE_URL}${path}`);
+    const body = await response.text();
+    if (response.status !== 200) throw new Error(`${path} from sitemap returned ${response.status}`);
+    if (body.length > 700_000) throw new Error(`${path} HTML is ${body.length} bytes; budget is 700000`);
+    const title = body.match(/<title>([^<]+)<\/title>/)?.[1] ?? "";
+    const description = readMeta(body, "description");
+    const canonical = body.match(/<link rel="canonical" href="([^"]+)"/)?.[1] ?? "";
+    const robots = readMeta(body, "robots");
+    const ogTitle = readMeta(body, "og:title");
+    const ogDescription = readMeta(body, "og:description");
+    const ogUrl = readMeta(body, "og:url");
+    const ogImage = readMeta(body, "og:image");
+    const twitterCard = readMeta(body, "twitter:card");
+    const twitterImage = readMeta(body, "twitter:image");
+    const h1Count = (body.match(/<h1(?:\s|>)/g) ?? []).length;
+    const jsonLdBlocks = [...body.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)];
+    for (const [, jsonLd] of jsonLdBlocks) {
+      try { JSON.parse(jsonLd); } catch (error) { throw new Error(`${path} has invalid JSON-LD: ${error.message}`); }
+    }
+    for (const [field, value] of Object.entries({ title, description, canonical, robots, ogTitle, ogDescription, ogUrl, ogImage, twitterCard, twitterImage })) if (!value) throw new Error(`${path} is missing metadata field ${field}`);
+    for (const assetUrl of [ogImage, twitterImage]) {
+      const assetPath = new URL(assetUrl).pathname;
+      if (!checkedSocialAssets.has(assetPath)) {
+        const assetResponse = await fetch(`${BASE_URL}${assetPath}`);
+        if (assetResponse.status !== 200 || !assetResponse.headers.get("content-type")?.startsWith("image/")) throw new Error(`${path} social asset ${assetPath} is not a reachable image`);
+        checkedSocialAssets.add(assetPath);
+      }
+    }
+    if (!canonical.endsWith(path) || !ogUrl.endsWith(path)) throw new Error(`${path} has inconsistent canonical/og:url`);
+    for (const locale of ["en", "de"]) if (!body.match(new RegExp(`hrefLang="${locale}" href="[^"]+\/${locale}${path.replace(/^\/(?:en|de)/, "")}"`))) throw new Error(`${path} is missing ${locale} hreflang`);
+    if (!body.includes('hrefLang="x-default"')) throw new Error(`${path} is missing x-default hreflang`);
+    if (h1Count !== 1) throw new Error(`${path} has ${h1Count} h1 elements`);
+    if (titles.has(title)) throw new Error(`${path} duplicates title used by ${titles.get(title)}: ${title}`);
+    if (descriptions.has(description)) throw new Error(`${path} duplicates description used by ${descriptions.get(description)}`);
+    titles.set(title, path); descriptions.set(description, path);
+    for (const match of body.matchAll(/href="(\/(?:en|de)\/[^"]*)"/g)) linkedPaths.add(match[1].split("#")[0]);
+    if (path.includes("/services/") && !body.includes('"@type":"Service"')) throw new Error(`${path} is missing Service structured data`);
+    if (path.includes("/insights/") && (!body.includes("dateModified") || !body.includes('id="limitations"'))) throw new Error(`${path} is missing visible evidence fields or Article schema`);
+    if ((path === "/en" || path === "/de") && !body.includes("data-niwo-identity")) throw new Error(`${path} is missing the rendered NIWO identity statement`);
+    if (/<img(?![^>]*\balt=)[^>]*>/i.test(body)) throw new Error(`${path} contains an image without alt`);
+  }
+  const orphans = uniqueUrls.filter((path) => !linkedPaths.has(path) && !/\/pages\/(privacy-policy|imprint|vdp)$/.test(path));
+  if (orphans.length) throw new Error(`orphan sitemap routes: ${orphans.join(", ")}`);
+  const robotsText = await (await fetch(`${BASE_URL}/robots.txt`)).text();
+  for (const expected of ["Googlebot", "Bingbot", "OAI-SearchBot", "GPTBot", "ChatGPT-User"]) if (!robotsText.includes(`User-Agent: ${expected}`)) throw new Error(`robots.txt is missing ${expected}`);
+  if (!/User-Agent: GPTBot[\s\S]*?Disallow: \//.test(robotsText)) throw new Error("GPTBot training opt-out is missing");
+  console.log(`discoverability -> ${uniqueUrls.length} sitemap routes have unique metadata, canonical/locale parity, one h1, link coverage, structured content, and HTML budgets`);
+}
+
 async function waitForServer() {
   const deadline = Date.now() + 30000;
 
@@ -547,6 +613,7 @@ try {
   }
 
   await checkSecurityHeaders();
+  await checkDiscoverabilityOutput();
 } finally {
   server.kill();
 }

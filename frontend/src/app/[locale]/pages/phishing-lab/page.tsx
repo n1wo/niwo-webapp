@@ -9,7 +9,7 @@ const meta = {
       "A hands-on inbox simulation. Review eight real-world emails and decide: phishing or legitimate? Train your team to spot the tells before a real attack lands.",
   },
   de: {
-    title: "Phishing Defense Lab — niwo systems",
+    title: "Phishing-Abwehr-Labor — niwo systems",
     description:
       "Eine praxisnahe Posteingangs-Simulation. Prüfe acht realistische E-Mails und entscheide: Phishing oder legitim? Trainiere dein Team, die Warnsignale zu erkennen, bevor ein echter Angriff landet.",
   },

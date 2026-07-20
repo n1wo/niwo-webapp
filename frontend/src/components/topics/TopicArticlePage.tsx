@@ -7,6 +7,8 @@ import {
   type TopicArticleDefinition,
 } from "@/data/topicArticles";
 import { Link } from "@/i18n/navigation";
+import Breadcrumbs from "@/components/common/Breadcrumbs";
+import { serviceDefinitions } from "@/data/services";
 
 type TFunction = Awaited<ReturnType<typeof getTranslations>>;
 
@@ -221,6 +223,7 @@ export default async function TopicArticlePage({
   const t = await getTranslations({ locale });
   const content = getTopicArticleContent(t, topic);
   const relatedTopics = topicArticleDefinitions.filter((item) => item.slug !== topic.slug);
+  const relatedServices = serviceDefinitions.filter((service) => service.topicSlugs.includes(topic.slug));
 
   const numberedSections: [string, string][] = [
     ["core-idea", content.coreIdea.title],
@@ -242,6 +245,11 @@ export default async function TopicArticlePage({
   return (
     <article className="bg-[var(--background)] px-6 pb-28 pt-28 text-foreground sm:px-10 lg:px-16">
       <div className="mx-auto max-w-7xl 2xl:max-w-[88rem]">
+        <Breadcrumbs locale={locale} items={[
+          { label: locale === "de" ? "Start" : "Home", href: "" },
+          { label: t("TopicArticles.index.title"), href: "/topics" },
+          { label: content.title, href: `/topics/${topic.slug}` },
+        ]} />
         <Link
           href="/topics"
           className="inline-flex items-center gap-2 rounded-sm font-mono text-xs uppercase tracking-[0.22em] text-zinc-500 transition-colors hover:text-zinc-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(140_127_224/0.74)] focus-visible:ring-offset-4 focus-visible:ring-offset-[var(--background)]"
@@ -443,6 +451,20 @@ export default async function TopicArticlePage({
         </div>
 
         <footer className="mt-20 border-t border-white/[0.08] pt-10">
+          {relatedServices.length > 0 ? (
+            <div className="mb-10 border-b border-white/[0.08] pb-10">
+              <p className="font-mono text-[0.68rem] uppercase tracking-[0.24em] text-zinc-500">
+                {locale === "de" ? "Passende Leistungen" : "Related services"}
+              </p>
+              <div className="mt-5 flex flex-wrap gap-5">
+                {relatedServices.map((service) => (
+                  <Link key={service.slug} href={`/services/${service.slug}`} className="font-mono text-sm text-[var(--color-accent-light)] hover:text-white">
+                    {service.content[locale === "de" ? "de" : "en"].shortTitle} &rarr;
+                  </Link>
+                ))}
+              </div>
+            </div>
+          ) : null}
           <p className="font-mono text-[0.68rem] uppercase tracking-[0.24em] text-zinc-500">
             {t("TopicArticles.common.continueReading")}
           </p>

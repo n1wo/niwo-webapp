@@ -6,6 +6,10 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "check:routes": "npm run build && node scripts/check-routes.mjs",
+    "check:discoverability": "npm run check:routes",
+    "check:crawlers": "node scripts/check-crawlers.mjs",
+    "typecheck": "next typegen && tsc --noEmit",
+    "test": "npm run check:discoverability",
     "start": "next start",
     "lint": "eslint"
   },

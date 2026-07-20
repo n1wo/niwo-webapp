@@ -9,6 +9,8 @@
   },
   "Navbar": {
     "services": "Topics",
+    "servicesPage": "Services",
+    "insights": "Insights",
     "about": "About",
     "contact": "Contact",
     "allTopics": "All topics",
@@ -41,6 +43,7 @@
     "heroEyebrow": "Software · IT · Cybersecurity consulting",
     "heroHeadline": "Securely through the digital age.",
     "heroParagraph": "We help startups, small and medium-sized businesses, and individuals understand digital risks, better secure their systems, and adopt new technologies responsibly.",
+    "identityStatement": "NIWO is a founder-led software, IT, and cybersecurity consulting practice based in Bonn, Germany, working remotely with carefully scoped engagements.",
     "heroKeywords": ["DevSecOps", "Agentic Engineering", "Incident Response", "Security Hardening"],
     "primaryCta": "Start an initial conversation",
     "secondaryCta": "Explore topics",
@@ -57,7 +60,6 @@
       "text": "A short profile of my background, current focus, and how I think about practical security work.",
       "cta": "Open whoami"
     },
-    "hiringNotice": "Open to working student & part-time roles — IT-Security · IT-Support · Software Development",
     "servicesEyebrow": "Security explained",
     "servicesTitle": "Complex security topics, explained clearly",
     "servicesDescription": "Practical explanations of cybersecurity, secure development, incident response, and AI-assisted engineering — structured to show what matters, where the risks are, and how these ideas work in practice.",
@@ -1183,12 +1185,12 @@
       }
     }
   },
-  "About": {
+  "Whoami": {
     "metadata": {
-      "title": "About | niwo",
-      "description": "About Nikita, a cybersecurity student in Bonn building Niwo Systems in public: real security work, documented honestly, with carefully scoped help where it fits."
+      "title": "whoami — Nikita Wokurka | niwo",
+      "description": "About Nikita Wokurka, the cybersecurity student in Bonn behind NIWO: real security work, documented honestly, from hands-on projects to carefully scoped reviews."
     },
-    "eyebrow": "ABOUT",
+    "eyebrow": "WHOAMI",
     "title": "whoami",
     "intro": {
       "paragraphs": [
@@ -1306,7 +1308,7 @@
   "Vdp": {
     "metadata": {
       "title": "Vulnerability Disclosure Policy | niwo",
-      "description": "How to responsibly report vulnerabilities to the niwo security team."
+      "description": "How to responsibly report a vulnerability affecting the NIWO website."
     },
     "eyebrow": "Security",
     "title": "Vulnerability Disclosure Policy",

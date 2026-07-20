@@ -77,40 +77,11 @@ export default async function TopicPage({
     },
   };
 
-  const breadcrumbJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: SITE_NAME,
-        item: `${SITE_URL}/${locale}`,
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: t("TopicArticles.index.title"),
-        item: `${SITE_URL}/${locale}/topics`,
-      },
-      {
-        "@type": "ListItem",
-        position: 3,
-        name: content.title,
-        item: pageUrl,
-      },
-    ],
-  };
-
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       <TopicArticlePage locale={locale} topic={topicArticle} />
     </>
